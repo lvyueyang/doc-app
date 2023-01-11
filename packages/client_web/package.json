@@ -1,0 +1,13 @@
+{
+  "name": "@kangmi/web",
+  "private": true,
+  "author": "lvyueyang <975794403@qq.com>",
+  "scripts": {
+    "build": "umi build",
+    "dev": "umi dev",
+    "postinstall": "umi setup",
+    "setup": "umi setup",
+    "start": "npm run dev"
+  },
+  "dependencies": {}
+}

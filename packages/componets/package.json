@@ -1,0 +1,10 @@
+{
+  "name": "@kangmi/components",
+  "private": true,
+  "author": "lvyueyang <975794403@qq.com>",
+  "main": "index.js",
+  "scripts": {},
+  "dependencies": {
+    "@antv/x6": "^2.0.8"
+  }
+}
