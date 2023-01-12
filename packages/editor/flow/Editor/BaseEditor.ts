@@ -8,6 +8,7 @@ import { Keyboard } from '@antv/x6-plugin-keyboard';
 import { History } from '@antv/x6-plugin-history';
 import { Scroller } from '@antv/x6-plugin-scroller';
 import { Selection } from '@antv/x6-plugin-selection';
+import { Export } from '@antv/x6-plugin-export';
 import * as graphEvents from './events';
 
 import styles from './index.module.less';
@@ -62,6 +63,7 @@ export class BaseEditor extends EventEmitter {
     return graph;
   }
 
+  /** 加载插件 */
   private __initPlugin() {
     this.__useSnapline();
     this.__useTransform();
@@ -70,6 +72,7 @@ export class BaseEditor extends EventEmitter {
     this.__useHistory();
     this.__useScroller();
     this.__useSelection();
+    this.__useExport();
 
     this.__useEvents();
   }
@@ -127,9 +130,11 @@ export class BaseEditor extends EventEmitter {
   private __useScroller() {
     this.graph.use(
       new Scroller({
+        className: styles.scrollerPluginContainer,
         enabled: true,
-        modifiers: ['ctrl'],
+        // modifiers: 'space',
         pageVisible: true,
+        // pannable: true,
       }),
     );
   }
@@ -144,6 +149,10 @@ export class BaseEditor extends EventEmitter {
         showNodeSelectionBox: true,
       }),
     );
+  }
+  /** 导出 */
+  private __useExport() {
+    this.graph.use(new Export());
   }
 
   /** 注册相关事件 */
