@@ -4,8 +4,46 @@
   top: var(--header-height);
   width: var(--sidebar-width);
   flex: 0 0 var(--sidebar-width);
+  background-color: var(--bg-color);
   height: calc(100vh - var(--header-height));
   display: flex;
   border-right: 1px solid #eee;
   z-index: 90;
+}
+
+.groupItem {
+  width: 100%;
+  margin-bottom: 10px;
+  dt {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 0 10px;
+  }
+  dd {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .item {
+    margin: 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+.thumbnailCover {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  :global {
+    .x6-node {
+      cursor: auto;
+    }
+  }
 }

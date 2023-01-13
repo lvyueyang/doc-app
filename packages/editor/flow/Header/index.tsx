@@ -1,3 +1,5 @@
+import { Dropdown } from 'antd';
+import Button from 'antd/es/button';
 import { NODE_NAME } from '../Editor/nodes';
 import { useFlowEditor } from '../hooks';
 import styles from './index.module.less';
@@ -26,6 +28,26 @@ export default function Header() {
       >
         导出 json
       </button>
+      <Dropdown
+        menu={{
+          items: [
+            {
+              label: (
+                <span
+                  onClick={() => {
+                    editor.graph.exportPNG();
+                  }}
+                >
+                  导出 PNG
+                </span>
+              ),
+              key: 'PNG',
+            },
+          ],
+        }}
+      >
+        <Button>下载</Button>
+      </Dropdown>
     </div>
   );
 }
