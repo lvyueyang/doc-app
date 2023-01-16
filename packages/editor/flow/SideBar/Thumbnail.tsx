@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Editor } from '../Editor';
 import type { NodeConfig, NODE_NAME_ENUM } from '../Editor/nodes';
+import { BASE_WIDTH } from './config';
 import styles from './index.module.less';
 
 interface ThumbnailProps {
@@ -16,6 +17,11 @@ export default function Thumbnail({ shape, config }: ThumbnailProps) {
     });
   }, [shape, config]);
 
+  // return (
+  //   <div className={styles.thumbnailCover}>
+  //     <img src={cover} alt="" />
+  //   </div>
+  // );
   return <div className={styles.thumbnailCover} dangerouslySetInnerHTML={{ __html: cover }} />;
 }
 
@@ -39,8 +45,28 @@ function createCover(shape: NODE_NAME_ENUM, config?: NodeConfig): Promise<string
           iframe.remove();
           resolve(dataUri);
         },
-        { copyStyles: false },
+        {
+          copyStyles: false,
+          beforeSerialize(svg) {
+            const viewBox = svg.getAttribute('viewBox');
+            if (viewBox) {
+              // 给 viewBox 加个 2 的 padding
+              const [x, y, width, height] = viewBox.split(' ').map((i) => Number(i));
+              svg.setAttribute('viewBox', [x - 2, y - 2, width + 4, height + 4].join(' '));
+            }
+          },
+        },
       );
-    }, 400);
+      // editor.graph.toPNG(
+      //   (dataUri) => {
+      //     iframe.remove();
+      //     resolve(dataUri);
+      //   },
+      //   {
+      //     padding: 2,
+      //     backgroundColor: 'rgba(0,0,0,0)',
+      //   },
+      // );
+    }, 500);
   });
 }

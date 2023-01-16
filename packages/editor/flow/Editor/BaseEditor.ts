@@ -1,6 +1,5 @@
 import { EventEmitter } from 'events';
 import { Graph } from '@antv/x6';
-
 import { Snapline } from '@antv/x6-plugin-snapline';
 import { Transform } from '@antv/x6-plugin-transform';
 import { Clipboard } from '@antv/x6-plugin-clipboard';
@@ -14,6 +13,7 @@ import * as graphEvents from './events';
 import styles from './index.module.less';
 
 import './nodes/register';
+import './ports/register';
 
 export interface BaseEditorOptions {
   container: HTMLElement;

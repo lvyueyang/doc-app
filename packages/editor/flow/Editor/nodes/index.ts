@@ -2,7 +2,7 @@ import { createNode } from './common';
 export * from './types';
 
 const prefix = 'kangmi';
-const portDefaultStyle = {
+export const portDefaultStyle = {
   circle: {
     magnet: true,
     stroke: 'blue',
@@ -10,7 +10,90 @@ const portDefaultStyle = {
   },
 };
 
+// 上下左右中心的连接桩
+export const TRBL_CENTER_GROUPS = {
+  top: {
+    position: 'top',
+    attrs: {
+      ...portDefaultStyle,
+    },
+  },
+  right: {
+    position: 'right',
+    attrs: {
+      ...portDefaultStyle,
+    },
+  },
+  bottom: {
+    position: 'bottom',
+    attrs: {
+      ...portDefaultStyle,
+    },
+  },
+  left: {
+    position: 'left',
+    attrs: {
+      ...portDefaultStyle,
+    },
+  },
+};
+
+// 上下左右顶角的连接桩
+export const TRBL_CORNER_GROUPS = {
+  topLeft: {
+    position: {
+      name: 'absolute',
+      args: { x: 0, y: 0 },
+    },
+    attrs: {
+      ...portDefaultStyle,
+      path: {},
+    },
+  },
+  topRight: {
+    position: {
+      name: 'absolute',
+      args: { x: '100%', y: 0 },
+    },
+    attrs: {
+      ...portDefaultStyle,
+    },
+  },
+  bottomRight: {
+    position: {
+      name: 'absolute',
+      args: { x: '100%', y: '100%' },
+    },
+    attrs: {
+      ...portDefaultStyle,
+    },
+  },
+  bottomLeft: {
+    position: {
+      name: 'absolute',
+      args: { x: 0, y: '100%' },
+    },
+    attrs: {
+      ...portDefaultStyle,
+    },
+  },
+};
+
 export const NODE_NAME = {
+  TEXT: {
+    name: `${prefix}-text`,
+    cname: '文字',
+    config: createNode({
+      inherit: 'rect',
+      width: 120,
+      height: 60,
+      attrs: {
+        body: {
+          strokeWidth: 0,
+        },
+      },
+    }),
+  },
   RECT: {
     name: `${prefix}-rect`,
     cname: '矩形',
@@ -20,99 +103,31 @@ export const NODE_NAME = {
       height: 60,
       ports: {
         groups: {
-          topLeft: {
-            position: {
-              name: 'absolute',
-              args: { x: 0, y: 0 },
-            },
-            attrs: {
-              ...portDefaultStyle,
-              path: {},
-            },
-          },
-          top: {
-            position: 'top',
-            attrs: {
-              ...portDefaultStyle,
-            },
-          },
-          topRight: {
-            position: {
-              name: 'absolute',
-              args: { x: '100%', y: 0 },
-            },
-            attrs: {
-              ...portDefaultStyle,
-            },
-          },
-          right: {
-            position: 'right',
-            attrs: {
-              ...portDefaultStyle,
-            },
-          },
-          bottomRight: {
-            position: {
-              name: 'absolute',
-              args: { x: '100%', y: '100%' },
-            },
-            attrs: {
-              ...portDefaultStyle,
-            },
-          },
-          bottom: {
-            position: 'bottom',
-            attrs: {
-              ...portDefaultStyle,
-            },
-          },
-          bottomLeft: {
-            position: {
-              name: 'absolute',
-              args: { x: 0, y: '100%' },
-            },
-            attrs: {
-              ...portDefaultStyle,
-            },
-          },
-          left: {
-            position: 'left',
-            attrs: {
-              ...portDefaultStyle,
-            },
-          },
+          ...TRBL_CENTER_GROUPS,
         },
         items: [
           // {
-          //   id: 'topLeft',
           //   group: 'topLeft',
           // },
           {
-            id: 'top',
             group: 'top',
           },
           // {
-          //   id: 'topRight',
           //   group: 'topRight',
           // },
           {
-            id: 'right',
             group: 'right',
           },
           {
-            id: 'bottom',
             group: 'bottom',
           },
           // {
-          //   id: 'bottomRight',
           //   group: 'bottomRight',
           // },
           // {
-          //   id: 'bottomLeft',
           //   group: 'bottomLeft',
           // },
           {
-            id: 'left',
             group: 'left',
           },
         ],
@@ -124,6 +139,32 @@ export const NODE_NAME = {
     cname: '圆形',
     config: createNode({
       inherit: 'circle',
+      width: 120,
+      height: 120,
+      ports: {
+        groups: {
+          ...TRBL_CENTER_GROUPS,
+        },
+        items: [
+          {
+            id: 'top',
+            group: 'top',
+          },
+
+          {
+            id: 'right',
+            group: 'right',
+          },
+          {
+            id: 'bottom',
+            group: 'bottom',
+          },
+          {
+            id: 'left',
+            group: 'left',
+          },
+        ],
+      },
     }),
   },
   ELLIPSE: {
@@ -131,6 +172,31 @@ export const NODE_NAME = {
     cname: '椭圆',
     config: createNode({
       inherit: 'ellipse',
+      width: 120,
+      height: 60,
+      ports: {
+        groups: {
+          ...TRBL_CENTER_GROUPS,
+        },
+        items: [
+          {
+            id: 'top',
+            group: 'top',
+          },
+          {
+            id: 'right',
+            group: 'right',
+          },
+          {
+            id: 'bottom',
+            group: 'bottom',
+          },
+          {
+            id: 'left',
+            group: 'left',
+          },
+        ],
+      },
     }),
   },
   /** 多边形 */

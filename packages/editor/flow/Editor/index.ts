@@ -29,9 +29,7 @@ export class Editor extends BaseEditor {
       nodeConfig.x = x;
       nodeConfig.y = y;
     }
-    console.log('opt: ', nodeConfig);
-
-    this.graph.addNode({
+    return this.graph.addNode({
       shape,
       ...nodeConfig,
     });
