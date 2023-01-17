@@ -209,9 +209,35 @@ export const NODE_NAME = {
   },
   POLYLINE: {
     name: `${prefix}-polyline`,
-    cname: '多边形',
+    cname: '折线',
     config: createNode({
       inherit: 'polyline',
+    }),
+  },
+  PATH: {
+    name: `${prefix}-path`,
+    cname: '路径',
+    config: createNode({
+      inherit: 'path',
+      attrs: {
+        body: {
+          fill: '#fff',
+        },
+      },
+    }),
+  },
+  IMAGE: {
+    name: `${prefix}-image`,
+    cname: '图片',
+    config: createNode({
+      inherit: 'image',
+    }),
+  },
+  HTML: {
+    name: `${prefix}-html`,
+    cname: 'HTML',
+    config: createNode({
+      inherit: 'html',
     }),
   },
 } as const;
