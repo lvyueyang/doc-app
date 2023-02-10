@@ -123,10 +123,10 @@
   resolved "https://registry.npmmirror.com/@antv/x6-plugin-transform/-/x6-plugin-transform-2.1.4.tgz#c7836e83f9c12a94f6580736b347499c18a19610"
   integrity sha512-AI0MaXbcglQB1nd2WCoXKmT3ds/Hw4fS953hDz5Y0dbJLMNWaB3SbHQBHp5gKQF/01SQqx9GtPKVHdmyHOVQFA==
 
-"@antv/x6@^2.0.8":
-  version "2.0.8"
-  resolved "https://registry.npmmirror.com/@antv/x6/-/x6-2.0.8.tgz#e39476372ee51df7f3f77cc880f1a076c17c3b56"
-  integrity sha512-Y7ByFlwaRcvWYClXS+ExiL3MxYHslRqMS3sTj31LGV0SN3L0sCz2j6zfGXjpr4AfVB9iPp18NgJtVkLtxNHJDQ==
+"@antv/x6@^2.3.8":
+  version "2.3.0"
+  resolved "https://registry.npmmirror.com/@antv/x6/-/x6-2.3.0.tgz#a52227c49ccd14451a784025130f1358c20c3708"
+  integrity sha512-fnhr26F7ztPmNjjm670QvA/yD09bQNn4MYAQaLDhqBzbRwA3eGZjYuljFvXjstOq18VG2lzFpIiAEeqJkYVIwA==
   dependencies:
     "@antv/x6-common" "^2.0.x"
     "@antv/x6-geometry" "^2.0.x"

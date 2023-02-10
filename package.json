@@ -15,7 +15,7 @@
     "**/*.{tsx,ts,jsx,js}": "npm run lint"
   },
   "dependencies": {
-    "@antv/x6": "^2.0.8",
+    "@antv/x6": "^2.3.8",
     "@antv/x6-plugin-clipboard": "^2.1.3",
     "@antv/x6-plugin-dnd": "^2.0.3",
     "@antv/x6-plugin-export": "^2.1.5",

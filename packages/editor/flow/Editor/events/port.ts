@@ -3,22 +3,29 @@ import type { Graph } from '@antv/x6';
 /** 链接桩相关事件 */
 
 export function portEvents(graph: Graph) {
-  graph.on('node:mouseenter', ({ cell }) => {
+  graph.on('node:mouseenter', ({ cell, e }) => {
     const ports = cell.getPorts();
     ports.forEach((port) => {
-      cell.portProp(port.id!, 'attrs/circle/r', 6);
+      if (port.id) {
+        cell.portProp(port.id, 'attrs/circle/r', 6);
+        cell.portProp(port.id, 'args', { target: e.target });
+      }
     });
   });
   graph.on('node:mouseleave', ({ cell }) => {
     const ports = cell.getPorts();
     ports.forEach((port) => {
-      cell.portProp(port.id!, 'attrs/circle/r', 0);
+      if (port.id) {
+        cell.portProp(port.id!, 'attrs/circle/r', 0);
+      }
     });
   });
   graph.on('node:selected', ({ node }) => {
     const ports = node.getPorts();
     ports.forEach((port) => {
-      node.portProp(port.id!, 'attrs/circle/r', 0);
+      if (port.id) {
+        node.portProp(port.id!, 'attrs/circle/r', 0);
+      }
     });
   });
 }

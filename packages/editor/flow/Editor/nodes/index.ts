@@ -1,3 +1,5 @@
+import type { Cell } from '@antv/x6';
+import { Graph, Shape } from '@antv/x6';
 import { createNode } from './common';
 export * from './types';
 
@@ -83,6 +85,7 @@ export const NODE_NAME = {
   TEXT: {
     name: `${prefix}-text`,
     cname: '文字',
+    type: 'rect',
     config: createNode({
       inherit: 'rect',
       width: 120,
@@ -97,6 +100,7 @@ export const NODE_NAME = {
   RECT: {
     name: `${prefix}-rect`,
     cname: '矩形',
+    type: 'rect',
     config: createNode({
       inherit: 'rect',
       width: 120,
@@ -137,6 +141,7 @@ export const NODE_NAME = {
   CIRCLE: {
     name: `${prefix}-circle`,
     cname: '圆形',
+    type: 'circle',
     config: createNode({
       inherit: 'circle',
       width: 120,
@@ -170,6 +175,7 @@ export const NODE_NAME = {
   ELLIPSE: {
     name: `${prefix}-ellipse`,
     cname: '椭圆',
+    type: 'ellipse',
     config: createNode({
       inherit: 'ellipse',
       width: 120,
@@ -203,6 +209,7 @@ export const NODE_NAME = {
   POLYGON: {
     name: `${prefix}-polygon`,
     cname: '多边形',
+    type: 'polygon',
     config: createNode({
       inherit: 'polygon',
     }),
@@ -210,6 +217,7 @@ export const NODE_NAME = {
   POLYLINE: {
     name: `${prefix}-polyline`,
     cname: '折线',
+    type: 'polyline',
     config: createNode({
       inherit: 'polyline',
     }),
@@ -229,15 +237,40 @@ export const NODE_NAME = {
   IMAGE: {
     name: `${prefix}-image`,
     cname: '图片',
+    type: 'image',
     config: createNode({
       inherit: 'image',
     }),
   },
-  HTML: {
-    name: `${prefix}-html`,
-    cname: 'HTML',
+  CYLINDER: {
+    name: `${prefix}-cylinder`,
+    cname: '圆柱',
     config: createNode({
-      inherit: 'html',
+      markup: [
+        {
+          tagName: 'rect',
+          selector: 'body',
+          attrs: {
+            fill: '#fff',
+            stroke: '#000',
+            strokeWidth: 2,
+            width: 100,
+            height: 60,
+          },
+        },
+        {
+          tagName: 'text',
+          selector: 'label',
+        },
+        {
+          tagName: 'path',
+          selector: 'path',
+        },
+        {
+          tagName: 'path',
+          selector: 'path2',
+        },
+      ],
     }),
   },
 } as const;
