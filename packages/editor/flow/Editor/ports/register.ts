@@ -1,43 +1,46 @@
 import { Graph } from '@antv/x6';
 
+interface Points {
+  x: number;
+  y: number;
+}
+
 Graph.registerPortLayout(
   '三角形链接桩',
-  (portsPositionArgs) => {
-    const target = portsPositionArgs[0].target as SVGPolygonElement;
-    if (target) {
-      const { points } = target;
-      const [a, b, c] = points;
-      return [
-        {
-          position: getLineCenter(a, b),
+  (portsPositionArgs, box) => {
+    const { width, height } = box;
+    const a = { x: 0, y: 0 };
+    const b = { x: width, y: height / 2 };
+    const c = { x: 0, y: box.height };
+    return [
+      {
+        position: getLineCenter(a, b),
+      },
+      {
+        position: getLineCenter(a, c),
+      },
+      {
+        position: getLineCenter(b, c),
+      },
+      {
+        position: {
+          x: a.x,
+          y: a.y,
         },
-        {
-          position: getLineCenter(a, c),
+      },
+      {
+        position: {
+          x: b.x,
+          y: b.y,
         },
-        {
-          position: getLineCenter(b, c),
+      },
+      {
+        position: {
+          x: c.x,
+          y: c.y,
         },
-        {
-          position: {
-            x: a.x,
-            y: a.y,
-          },
-        },
-        {
-          position: {
-            x: b.x,
-            y: b.y,
-          },
-        },
-        {
-          position: {
-            x: c.x,
-            y: c.y,
-          },
-        },
-      ];
-    }
-    return createDefaultResult(6);
+      },
+    ];
   },
   true,
 );
@@ -102,7 +105,7 @@ Graph.registerPortLayout(
   true,
 );
 // 计算线段中点坐标
-function getLineCenter(start: SVGPoint, end: SVGPoint) {
+function getLineCenter(start: Points, end: Points) {
   const x = (start.x + end.x) / 2;
   const y = (start.y + end.y) / 2;
 

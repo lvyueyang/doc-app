@@ -55,7 +55,10 @@ export class BaseEditor extends EventEmitter {
         snap: true,
         router: {
           name: 'manhattan',
-          args: {},
+          args: {
+            // step: 10,
+            // padding: 100,
+          },
         },
       },
     });

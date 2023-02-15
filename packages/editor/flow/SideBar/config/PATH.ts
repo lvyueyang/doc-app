@@ -1,6 +1,6 @@
 import type { GroupChildrenItem } from './common';
 import { BASE_WIDTH } from './common';
-import { HTML_NODE, NODE_NAME, portDefaultStyle, TRBL_CENTER_GROUPS } from '../../Editor/nodes';
+import { NODE_NAME, portDefaultStyle, TRBL_CENTER_GROUPS } from '../../Editor/nodes';
 
 export const CLOUD: GroupChildrenItem = {
   label: '云朵',
@@ -10,38 +10,38 @@ export const CLOUD: GroupChildrenItem = {
       width: BASE_WIDTH,
       height: BASE_WIDTH / 1.5,
       path: 'M 2975 2114 C 2903 2114 2885 2164 2942.6 2174 C 2885 2196 2949.8 2244 2996.6 2224 C 3029 2264 3137 2264 3173 2224 C 3245 2224 3245 2184 3200 2164 C 3245 2124 3173 2084 3110 2104 C 3065 2074 2993 2074 2975 2114 Z',
-      ports: {
-        groups: {
-          a: {
-            position: {
-              name: '云朵链接桩',
-            },
-            attrs: {
-              ...portDefaultStyle,
-            },
-          },
-        },
-        items: [
-          {
-            group: 'a',
-          },
-          {
-            group: 'a',
-          },
-          {
-            group: 'a',
-          },
-          {
-            group: 'a',
-          },
-          {
-            group: 'a',
-          },
-          {
-            group: 'a',
-          },
-        ],
-      },
+      // ports: {
+      //   groups: {
+      //     a: {
+      //       position: {
+      //         name: '云朵链接桩',
+      //       },
+      //       attrs: {
+      //         ...portDefaultStyle,
+      //       },
+      //     },
+      //   },
+      //   items: [
+      //     {
+      //       group: 'a',
+      //     },
+      //     {
+      //       group: 'a',
+      //     },
+      //     {
+      //       group: 'a',
+      //     },
+      //     {
+      //       group: 'a',
+      //     },
+      //     {
+      //       group: 'a',
+      //     },
+      //     {
+      //       group: 'a',
+      //     },
+      //   ],
+      // },
     },
   },
 };
@@ -77,44 +77,30 @@ export const DOC: GroupChildrenItem = {
 export const CYLINDER: GroupChildrenItem = {
   label: '圆柱',
   config: {
-    shape: NODE_NAME.CYLINDER.name,
+    shape: NODE_NAME.PATH.name,
     option: {
-      width: BASE_WIDTH,
-      height: BASE_WIDTH / 1.5,
-      // body: {
-      //   width: BASE_WIDTH,
-      //   height: BASE_WIDTH / 1.5,
-      // },
-      // attrs: {
-      //   path: {
-      //     path: 'M 1367 1435 C 1367 1426.72 1380.43 1420 1397 1420 C 1404.96 1420 1412.59 1421.58 1418.21 1424.39 C 1423.84 1427.21 1427 1431.02 1427 1435 L 1427 1485 C 1427 1493.28 1413.57 1500 1397 1500 C 1380.43 1500 1367 1493.28 1367 1485 Z',
-      //   },
-      // },
-      // markup: [
-      //   {
-      //     tagName: 'path',
-      //     selector: 'aaa',
-      //   },
-      // ],
-      // ports: {
-      //   groups: {
-      //     ...TRBL_CENTER_GROUPS,
-      //   },
-      //   items: [
-      //     {
-      //       group: 'top',
-      //     },
-      //     {
-      //       group: 'left',
-      //     },
-      //     {
-      //       group: 'right',
-      //     },
-      //     {
-      //       group: 'bottom',
-      //     },
-      //   ],
-      // },
+      width: BASE_WIDTH / 1.5,
+      height: BASE_WIDTH,
+      path: 'M 410,171 C 410,204 322,231 215,231 C 107,231 17,204 17,172 C 17,140 107,113 215,113 C 322,113 410,139 410,171 z M 410,171 L 411,680 C 411,709 323,743 215,743 C 107,743.7014 17,710 17,681 L 17,172',
+      ports: {
+        groups: {
+          ...TRBL_CENTER_GROUPS,
+        },
+        items: [
+          {
+            group: 'top',
+          },
+          {
+            group: 'left',
+          },
+          {
+            group: 'right',
+          },
+          {
+            group: 'bottom',
+          },
+        ],
+      },
     },
   },
 };

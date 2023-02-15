@@ -10,7 +10,8 @@ interface FlowEditorContextOptions {
 }
 
 interface FlowEditorProps {
-  value?: Model.FromJSONData;
+  // value?: Model.FromJSONData;
+  value?: any;
 }
 
 export const FlowEditorContext = createContext<FlowEditorContextOptions>({});

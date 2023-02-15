@@ -1,6 +1,6 @@
 import type { GroupChildrenItem } from './common';
 import { BASE_WIDTH } from './common';
-import { NODE_NAME, portDefaultStyle } from '../../Editor/nodes';
+import { NODE_NAME, portDefaultStyle, TRBL_CENTER_GROUPS } from '../../Editor/nodes';
 
 export const RECT: GroupChildrenItem = {
   label: '矩形',
@@ -56,27 +56,14 @@ export const PARALLELOGRAM: GroupChildrenItem = {
       ],
       ports: {
         groups: {
-          a: {
-            position: {
-              name: '平行四边形链接桩',
-            },
-            attrs: {
-              ...portDefaultStyle,
-            },
-          },
+          ...TRBL_CENTER_GROUPS,
         },
         items: [
           {
-            group: 'a',
+            group: 'top',
           },
           {
-            group: 'a',
-          },
-          {
-            group: 'a',
-          },
-          {
-            group: 'a',
+            group: 'bottom',
           },
         ],
       },

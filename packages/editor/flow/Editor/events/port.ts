@@ -8,7 +8,6 @@ export function portEvents(graph: Graph) {
     ports.forEach((port) => {
       if (port.id) {
         cell.portProp(port.id, 'attrs/circle/r', 6);
-        cell.portProp(port.id, 'args', { target: e.target });
       }
     });
   });

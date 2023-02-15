@@ -241,58 +241,6 @@ export const NODE_NAME = {
       inherit: 'image',
     }),
   },
-  CYLINDER: {
-    name: `${prefix}-cylinder`,
-    cname: '圆柱',
-    config: createNode({
-      inherit: 'rect',
-      markup: [
-        {
-          tagName: 'rect',
-          selector: 'body',
-        },
-        {
-          tagName: 'path',
-          selector: 'path1',
-        },
-        {
-          tagName: 'path',
-          selector: 'path2',
-        },
-        {
-          tagName: 'text',
-          selector: 'label',
-        },
-      ],
-      attrs: {
-        body: {
-          fill: 'none',
-          stroke: 'none',
-          pointerEvents: 'all',
-        },
-        path1: {
-          fill: 'none',
-          stroke: '#000',
-          strokeWidth: 2,
-        },
-        path2: {
-          fill: 'none',
-          stroke: '#000',
-          strokeWidth: 2,
-        },
-      },
-      propHooks(metadata) {
-        const { path1, path2, ...others } = metadata;
-        console.log('metadata: ', metadata);
-        const PATH1 = ' M 1 7 C 23.5 1 68.5 1  88 7 L 88 52 C 65.5 58 23.5 58  1 52 Z';
-        const PATH2 = ' M 1 7 C 23.5 13 68.5 13  88 7';
-
-        ObjectExt.setByPath(others, 'attrs/path1/refD', PATH1);
-        ObjectExt.setByPath(others, 'attrs/path2/refD', PATH2);
-        return others;
-      },
-    }),
-  },
 } as const;
 
 export type NODE_NAME_ENUM = typeof NODE_NAME[keyof typeof NODE_NAME]['name'];
