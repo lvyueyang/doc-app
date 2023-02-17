@@ -104,3 +104,34 @@ export const CYLINDER: GroupChildrenItem = {
     },
   },
 };
+
+export const TAPE: GroupChildrenItem = {
+  label: '条带',
+  config: {
+    shape: NODE_NAME.PATH.name,
+    option: {
+      width: BASE_WIDTH,
+      height: BASE_WIDTH / 1.5,
+      path: 'M 1955 1260 Q 1985 1296 2015 1260 Q 2045 1224 2075 1260 L 2075 1320 Q 2045 1284 2015 1320 Q 1985 1356 1955 1320 L 1955 1260 Z',
+      ports: {
+        groups: {
+          ...TRBL_CENTER_GROUPS,
+        },
+        items: [
+          {
+            group: 'top',
+          },
+          {
+            group: 'left',
+          },
+          {
+            group: 'right',
+          },
+          {
+            group: 'bottom',
+          },
+        ],
+      },
+    },
+  },
+};

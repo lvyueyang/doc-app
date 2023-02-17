@@ -3,7 +3,7 @@ import type { NodeConfig, NODE_NAME_ENUM } from '../../Editor/nodes';
 export interface GroupChildrenItem {
   label: string;
   config: {
-    shape: NODE_NAME_ENUM;
+    shape: string;
     option?: NodeConfig;
   };
 }

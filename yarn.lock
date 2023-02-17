@@ -123,6 +123,11 @@
   resolved "https://registry.npmmirror.com/@antv/x6-plugin-transform/-/x6-plugin-transform-2.1.5.tgz#ed81052bd1783213254ed4b37010076238329087"
   integrity sha512-/Cgk28ad5llw1u5TML4FTFcNyDKsiLIkGlFoigb0REBpfyBSDtVU5HYEPgjVJadeBzv8qirdRQvBfmIv4MCHjA==
 
+"@antv/x6-react-shape@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.npmmirror.com/@antv/x6-react-shape/-/x6-react-shape-2.1.0.tgz#b364a021d9690abb1f8f35cefd2da913dfd145d3"
+  integrity sha512-HY9tPbMU1Z7Tu2lwBenXJe53DzT2MFt9LXRBPyN+r5qu8kP3VMU1vzS+2+LsPFdPL3s71wolGjL1GExUoh77JQ==
+
 "@antv/x6@^2.3.0":
   version "2.3.0"
   resolved "https://registry.npmmirror.com/@antv/x6/-/x6-2.3.0.tgz#a52227c49ccd14451a784025130f1358c20c3708"

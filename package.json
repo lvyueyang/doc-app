@@ -9,7 +9,7 @@
     "eslint": "eslint --ext .jsx,.js,.cjs,.mjs,.ts,.tsx --fix",
     "lint": "npm run eslint && npm run prettier",
     "prepare": "husky install",
-    "prettier": "prettier --write ./packages/saturn_tenant"
+    "prettier": "prettier --write ./packages/"
   },
   "lint-staged": {
     "**/*.{tsx,ts,jsx,js}": "npm run lint"
@@ -26,6 +26,7 @@
     "@antv/x6-plugin-selection": "^2.1.5",
     "@antv/x6-plugin-snapline": "^2.1.6",
     "@antv/x6-plugin-transform": "^2.1.5",
+    "@antv/x6-react-shape": "^2.1.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "antd": "^5.0.7"

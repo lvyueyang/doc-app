@@ -1,20 +1,15 @@
 import type { GroupChildrenItem } from './common';
 import { BASE_WIDTH } from './common';
 import { NODE_NAME } from '../../Editor/nodes';
+import { TextNode } from '../../nodes';
 
 export const TEXT: GroupChildrenItem = {
   label: '文本',
   config: {
-    shape: NODE_NAME.TEXT.name,
+    shape: TextNode.NODE_NAME,
     option: {
-      width: BASE_WIDTH,
-      height: BASE_WIDTH / 2,
-      label: '文本',
-      attrs: {
-        body: {
-          strokeWidth: 0,
-          fill: 'rgba(0,0,0,0)',
-        },
+      data: {
+        label: '文本',
       },
     },
   },

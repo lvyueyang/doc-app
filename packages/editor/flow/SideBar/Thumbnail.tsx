@@ -67,6 +67,6 @@ function createCover(shape: NODE_NAME_ENUM, config?: NodeConfig): Promise<string
       //     backgroundColor: 'rgba(0,0,0,0)',
       //   },
       // );
-    }, 500);
+    }, 1000);
   });
 }
