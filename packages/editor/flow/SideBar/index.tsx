@@ -4,7 +4,6 @@ import styles from './index.module.less';
 import DATA_GROUP from './config/index';
 import Thumbnail from './Thumbnail';
 import { useFlowEditor } from '../hooks';
-import type { NODE_NAME_ENUM } from '../Editor/nodes';
 
 export default function SideBar() {
   const { editor } = useFlowEditor();
@@ -22,7 +21,7 @@ export default function SideBar() {
   }, [editor]);
   const starDragHandler = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    shape: NODE_NAME_ENUM,
+    shape: string,
     config: any,
   ) => {
     const node = editor?.graph.createNode({

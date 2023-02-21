@@ -1,4 +1,5 @@
 import type { Graph, Node } from '@antv/x6';
+import type { ReactShapeConfig } from '@antv/x6-react-shape';
 import type React from 'react';
 
 export type NodeConfig =
@@ -12,10 +13,9 @@ export interface ReactNodeProps {
   node: Node;
 }
 
-export interface KMReactNode {
+export interface KMReactNode extends Omit<ReactShapeConfig, 'shape' | 'component'> {
   NODE_NAME: string;
   Component: React.FC<ReactNodeProps>;
-  ports?: Node['ports'];
   type?: 'react';
 }
 

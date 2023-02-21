@@ -68,14 +68,14 @@ export function createApplyTextBlockSvgNode({ name, inherit, markup }: Options) 
 
 /** 更新连接桩 */
 export function updatePort(node: Node, options: Node['ports']['items']) {
-  const ports = node.getPorts();
-  if (!ports.length) {
-    node.addPorts(options);
-  } else {
-    options.forEach((port) => {
+  options.forEach((port) => {
+    const p = node.getPort(port.id!);
+    if (!p) {
+      node.addPort(port);
+    } else {
       node.setPortProp(port.id!, 'args', port.args);
-    });
-  }
+    }
+  });
 }
 
 interface Points {
@@ -91,4 +91,18 @@ export function getLineCenter(start: Points, end: Points) {
     x,
     y,
   };
+}
+
+/** 将点转为链接桩 */
+export function points2PortGroups(obj: Record<string, number[]>) {
+  return Object.entries(obj).map(([key, value]) => {
+    return {
+      group: 'absolute',
+      id: key,
+      args: {
+        x: value[0] * 2,
+        y: value[1] * 2,
+      },
+    };
+  });
 }

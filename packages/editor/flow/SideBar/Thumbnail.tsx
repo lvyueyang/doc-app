@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Editor } from '../Editor';
-import type { NodeConfig, NODE_NAME_ENUM } from '../Editor/nodes';
-import { BASE_WIDTH } from './config';
+import type { NodeConfig } from '../Editor/nodes';
 import styles from './index.module.less';
 
 interface ThumbnailProps {
-  shape: NODE_NAME_ENUM;
+  shape: string;
   config?: NodeConfig;
 }
 export default function Thumbnail({ shape, config }: ThumbnailProps) {
@@ -25,7 +24,7 @@ export default function Thumbnail({ shape, config }: ThumbnailProps) {
   return <div className={styles.thumbnailCover} dangerouslySetInnerHTML={{ __html: cover }} />;
 }
 
-function createCover(shape: NODE_NAME_ENUM, config?: NodeConfig): Promise<string> {
+function createCover(shape: string, config?: NodeConfig): Promise<string> {
   const iframe = document.createElement('iframe');
   document.body.appendChild(iframe);
   const container = document.createElement('div');

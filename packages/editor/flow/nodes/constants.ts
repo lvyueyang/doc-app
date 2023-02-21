@@ -114,3 +114,26 @@ export const TextBlockMarkup = {
     },
   ],
 };
+
+export const DefaultPortsGroups = {
+  absolute: {
+    position: {
+      name: 'absolute',
+    },
+    attrs: {
+      ...portDefaultStyle,
+    },
+  },
+  line: {
+    position: {
+      name: 'line',
+      args: {
+        start: { x: 1, y: 1 },
+        end: { x: 1, y: 90 },
+      },
+    },
+    attrs: {
+      ...portDefaultStyle,
+    },
+  },
+};

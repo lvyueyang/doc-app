@@ -1,6 +1,6 @@
 import type { BaseEditorOptions } from './BaseEditor';
 import { BaseEditor } from './BaseEditor';
-import type { NODE_NAME_ENUM, NodeConfig } from './nodes';
+import type { NodeConfig } from './nodes';
 
 interface AppendNodeOptions {
   /** 是否添加到画布中心 */
@@ -17,7 +17,7 @@ export class Editor extends BaseEditor {
   }
 
   /** 添加节点 */
-  appendNode(shape: NODE_NAME_ENUM, config?: NodeConfig, options?: AppendNodeOptions) {
+  appendNode(shape: string, config?: NodeConfig, options?: AppendNodeOptions) {
     const nodeConfig: NodeConfig = {
       ...config,
     };

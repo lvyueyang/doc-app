@@ -6,31 +6,34 @@ interface HtmlTextProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const DefaultStyle: React.CSSProperties = {
-  fontSize: DefaultNodeConfig.fontSize,
-  color: DefaultNodeConfig.fontColor,
   position: 'absolute',
   top: 0,
   left: 0,
+  backgroundColor: 'transparent',
+  textAlign: 'center',
+  margin: '0',
+  padding: '0px 5px',
   width: '100%',
   height: '100%',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  boxSizing: 'border-box',
 };
 
 export default function HtmlText({ style = {}, node }: HtmlTextProps) {
-  const { fontSize, fontColor, label = DefaultNodeConfig.label } = node?.getAttrs()?.text || {};
+  const { label } = node?.getAttrs() || {};
+  const { text, fontSize, color } = label || {};
   return (
     <div
       style={{
         ...DefaultStyle,
-        fontSize: fontSize as number,
-        color: fontColor as string,
+        fontSize: (fontSize as number) || DefaultNodeConfig.fontSize,
+        color: (color as string) || DefaultNodeConfig.fontColor,
         ...style,
       }}
       data-type="text-container"
-    >
-      <div dangerouslySetInnerHTML={{ __html: label as string }} />
-    </div>
+      dangerouslySetInnerHTML={{ __html: text as string }}
+    />
   );
 }

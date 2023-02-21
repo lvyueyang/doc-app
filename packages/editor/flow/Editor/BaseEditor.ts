@@ -13,7 +13,6 @@ import * as graphEvents from './events';
 import styles from './index.module.less';
 
 import '../nodes/register';
-import './nodes/register';
 import './ports/register';
 
 export interface BaseEditorOptions {
@@ -54,6 +53,7 @@ export class BaseEditor extends EventEmitter {
       },
       connecting: {
         snap: true,
+        allowBlank: true,
         router: {
           name: 'manhattan',
           args: {

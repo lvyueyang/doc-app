@@ -7,10 +7,12 @@ Object.values(nodes).forEach((node: KMNode) => {
   if (node.type === 'svg') {
     Graph.registerNode(node.NODE_NAME, node.config);
   } else {
+    const { NODE_NAME, Component, ports, ...config } = node;
     register({
-      shape: node.NODE_NAME,
-      component: node.Component,
-      ports: node.ports,
+      shape: NODE_NAME,
+      component: Component,
+      ports,
+      ...config,
     });
   }
 });

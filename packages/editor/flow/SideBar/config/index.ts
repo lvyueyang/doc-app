@@ -1,10 +1,3 @@
-import { CIRCLE, ELLIPSE } from './CIRCLE';
-import { CLOUD, CYLINDER, DOC, TAPE } from './PATH';
-import type { GroupItem } from './common';
-import { BASE_WIDTH } from './common';
-import { DIAMOND } from './DIAMOND';
-import { PARALLELOGRAM, RECT_RADIUS, SQUARE } from './RECT';
-import { TRIANGLE } from './TRIANGLE';
 import {
   TextNodeConfig,
   RectNodeConfig,
@@ -12,7 +5,29 @@ import {
   CircleNodeConfig,
   TriangleNodeConfig,
   DiamondNodeConfig,
+  ParallelogramNodeConfig,
+  DocNodeConfig,
+  CylinderNodeConfig,
+  TapeNodeConfig,
+  PentagonNodeConfig,
+  HexagonNodeConfig,
 } from '../../nodes';
+import { CloudNodeConfig } from '../../nodes/modules/cloud';
+import type { NodeConfig } from '../../Editor/nodes';
+
+export interface GroupChildrenItem {
+  label: string;
+  config: {
+    shape: string;
+    option?: NodeConfig;
+  };
+}
+export interface GroupItem {
+  groupName: string;
+  children: GroupChildrenItem[];
+}
+
+export const BASE_WIDTH = 60;
 
 const groupList: GroupItem[] = [
   {
@@ -36,6 +51,7 @@ const groupList: GroupItem[] = [
           option: {
             width: BASE_WIDTH,
             height: BASE_WIDTH / 2,
+            text: '矩形',
           },
         },
       },
@@ -46,6 +62,7 @@ const groupList: GroupItem[] = [
           option: {
             width: BASE_WIDTH,
             height: BASE_WIDTH / 2,
+            text: '圆角矩形',
             attrs: {
               body: {
                 rx: 10,
@@ -83,6 +100,7 @@ const groupList: GroupItem[] = [
           option: {
             width: BASE_WIDTH,
             height: BASE_WIDTH,
+            text: '正方形',
           },
         },
       },
@@ -108,12 +126,83 @@ const groupList: GroupItem[] = [
           },
         },
       },
-      // DIAMOND,
-      PARALLELOGRAM,
-      CLOUD,
-      DOC,
-      CYLINDER,
-      TAPE,
+      {
+        label: '平行四边形',
+        config: {
+          shape: ParallelogramNodeConfig.NODE_NAME,
+          option: {
+            width: BASE_WIDTH,
+            height: BASE_WIDTH / 2,
+            text: '平行四边形',
+          },
+        },
+      },
+      {
+        label: '云朵',
+        config: {
+          shape: CloudNodeConfig.NODE_NAME,
+          option: {
+            width: BASE_WIDTH,
+            height: BASE_WIDTH / 1.5,
+            text: '云朵',
+          },
+        },
+      },
+      {
+        label: '文档',
+        config: {
+          shape: DocNodeConfig.NODE_NAME,
+          option: {
+            width: BASE_WIDTH,
+            height: BASE_WIDTH / 1.5,
+            text: '文档',
+          },
+        },
+      },
+      {
+        label: '圆柱',
+        config: {
+          shape: CylinderNodeConfig.NODE_NAME,
+          option: {
+            width: BASE_WIDTH / 1.5,
+            height: BASE_WIDTH,
+            text: '圆柱',
+          },
+        },
+      },
+      {
+        label: '条带',
+        config: {
+          shape: TapeNodeConfig.NODE_NAME,
+          option: {
+            width: BASE_WIDTH,
+            height: BASE_WIDTH / 1.5,
+            text: '条带',
+          },
+        },
+      },
+      {
+        label: '五边形',
+        config: {
+          shape: PentagonNodeConfig.NODE_NAME,
+          option: {
+            width: BASE_WIDTH,
+            height: BASE_WIDTH,
+            text: '五边形',
+          },
+        },
+      },
+      {
+        label: '六边形',
+        config: {
+          shape: HexagonNodeConfig.NODE_NAME,
+          option: {
+            width: BASE_WIDTH,
+            height: BASE_WIDTH,
+            text: '六边形',
+          },
+        },
+      },
     ],
   },
 ];

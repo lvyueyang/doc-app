@@ -1,65 +1,39 @@
 import type { KMReactNode, ReactNodeProps } from '../types';
 import { createNodeName, updatePort, getLineCenter, createTextBlock } from '../utils';
-import { DefaultNodeConfig, DefaultPortsGroups } from '../constants';
+import { DefaultNodeConfig, DefaultPortsGroups, TRBL_CENTER_GROUPS } from '../constants';
 import { useEffect } from 'react';
 import HtmlText from '../components/HtmlText';
 
 const TextBlock = createTextBlock();
 
-const DiamondNodeComponent: React.FC<ReactNodeProps> = ({ node }) => {
+const ParallelogramNodeComponent: React.FC<ReactNodeProps> = ({ node }) => {
   const { width, height } = node.getSize();
   const { fill, stroke } = node.getAttrs() as unknown as Record<string, string>;
 
   const w = width / 2;
   const h = height / 2;
 
+  const auto = w * 0.25;
+
   const points = [
+    [auto, 0.5],
+    [w - 0.5, 0.5],
+    [w - auto - 0.5, h - 0.5],
     [0.5, h - 0.5],
-    [0.5, 0.5],
-    [w - 0.5, h / 2 - 0.5],
   ];
+  const [a, b, c, d] = points;
 
   useEffect(() => {
-    const [a, b, c] = points;
     updatePort(node, [
       {
         group: 'absolute',
-        id: 'leftTop',
-        args: {
-          x: b[0] * 2,
-          y: b[1] * 2,
-        },
-      },
-      {
-        group: 'absolute',
-        id: 'leftBottom',
-        args: {
-          x: a[0] * 2,
-          y: a[1] * 2,
-        },
+        id: 'leftCenter',
+        args: getLineCenter({ x: a[0] * 2, y: a[1] * 2 }, { x: d[0] * 2, y: d[1] * 2 }),
       },
       {
         group: 'absolute',
         id: 'rightCenter',
-        args: {
-          x: c[0] * 2,
-          y: c[1] * 2,
-        },
-      },
-      {
-        group: 'absolute',
-        id: 'a',
-        args: getLineCenter({ x: b[0], y: b[1] }, { x: a[0], y: a[1] * 2 }),
-      },
-      {
-        group: 'absolute',
-        id: 'b',
-        args: getLineCenter({ x: b[0], y: b[1] }, { x: c[0] * 2, y: c[1] * 2 }),
-      },
-      {
-        group: 'absolute',
-        id: 'c',
-        args: getLineCenter({ x: a[0], y: a[1] * 2 }, { x: c[0] * 2, y: c[1] * 2 }),
+        args: getLineCenter({ x: b[0] * 2, y: b[1] * 2 }, { x: c[0] * 2, y: c[1] * 2 }),
       },
     ]);
   }, [width, height]);
@@ -79,14 +53,24 @@ const DiamondNodeComponent: React.FC<ReactNodeProps> = ({ node }) => {
   );
 };
 
-export const DiamondNodeConfig: KMReactNode = {
-  NODE_NAME: createNodeName('Diamond'),
-  Component: DiamondNodeComponent,
+export const ParallelogramNodeConfig: KMReactNode = {
+  NODE_NAME: createNodeName('Parallelogram'),
+  Component: ParallelogramNodeComponent,
   ports: {
     groups: {
       ...DefaultPortsGroups,
+      ...TRBL_CENTER_GROUPS,
     },
-    items: [],
+    items: [
+      {
+        group: 'top',
+        id: 'top',
+      },
+      {
+        group: 'bottom',
+        id: 'bottom',
+      },
+    ],
   },
   propHooks: TextBlock.propHooks,
 };
