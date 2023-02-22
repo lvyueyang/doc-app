@@ -1,8 +1,14 @@
-import type { Node, Markup } from '@antv/x6';
+import type { Node, Markup, Cell } from '@antv/x6';
 import type { Attr } from '@antv/x6/es/registry';
 import { ObjectExt, Shape } from '@antv/x6';
-import { LINE_TYPE, PREFIX } from './constants';
-import type { KMSvgNode } from './types';
+import {
+  DefaultNodeConfig,
+  DefaultTextStyle,
+  LINE_TYPE,
+  PREFIX,
+  TextEditorClassName,
+} from './constants';
+import type { KMSvgNode, NodeConfig } from './types';
 
 export const createNodeName = (name: string) => {
   return `${PREFIX}${name}`;
@@ -18,8 +24,9 @@ export function createTextBlock() {
     },
     label: {
       style: {
-        fontSize: 14,
+        ...DefaultTextStyle,
       },
+      class: TextEditorClassName,
     },
   };
 
@@ -143,4 +150,39 @@ export function getLineType({
     return [strokeWidth, strokeWidth].join(' ');
   }
   return 'none';
+}
+
+/** 带有文本的 SVG 节点配置 */
+export function createTextSvgNodeConfig({
+  markup,
+  attrs = {},
+  propHooks,
+  attrHooks,
+}: {
+  markup: Cell['markup'][];
+  attrs?: Cell.Properties;
+  propHooks?: (metadata: Node.Metadata) => Node.Metadata;
+  attrHooks?: NodeConfig['attrHooks'];
+}) {
+  const TextBlock = createTextBlock();
+
+  return {
+    markup: [...markup, TextBlock.markup],
+    attrs: {
+      ...TextBlock.attrs,
+      body: {
+        fill: DefaultNodeConfig.fill,
+        stroke: DefaultNodeConfig.stroke,
+        strokeWidth: DefaultNodeConfig.strokeWidth,
+      },
+      ...attrs,
+    } as Cell.Properties,
+    propHooks: (metadata: Node.Metadata) => {
+      return TextBlock.propHooks(propHooks?.(metadata) || metadata);
+    },
+    attrHooks: {
+      ...TextBlock.attrHooks,
+      ...attrHooks,
+    },
+  };
 }

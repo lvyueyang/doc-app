@@ -6,7 +6,7 @@ import {
   createTextBlock,
   getLineType,
 } from '../utils';
-import { DefaultNodeConfig, DefaultPortsGroups, TRBL_CENTER_GROUPS } from '../constants';
+import { DefaultPortsGroups, TRBL_CENTER_GROUPS } from '../constants';
 import { useEffect } from 'react';
 import HtmlText from '../components/HtmlText';
 
@@ -64,13 +64,6 @@ export const PentagonNodeConfig: KMReactNode = {
         group: 'bottom',
       },
     ],
-  },
-  attrs: {
-    body: {
-      fill: DefaultNodeConfig.fill,
-      stroke: DefaultNodeConfig.stroke,
-      strokeWidth: DefaultNodeConfig.strokeWidth,
-    },
   },
   propHooks: TextBlock.propHooks,
 };

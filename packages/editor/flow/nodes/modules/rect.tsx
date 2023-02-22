@@ -1,7 +1,7 @@
 /** 矩形 */
 import type { KMSvgNode } from '../types';
 import { TRBL_CENTER_GROUPS } from '../constants';
-import { createNodeName, lineTypeAttrHooks } from '../utils';
+import { createNodeName } from '../utils';
 
 export const RectNodeConfig: KMSvgNode = {
   type: 'svg',
@@ -26,11 +26,6 @@ export const RectNodeConfig: KMSvgNode = {
           group: 'left',
         },
       ],
-    },
-    attrHooks: {
-      lineType: {
-        set: lineTypeAttrHooks,
-      },
     },
   },
 };

@@ -14,6 +14,7 @@ import styles from './index.module.less';
 
 import '../nodes/register';
 import './ports/register';
+import './tools/register';
 
 export interface BaseEditorOptions {
   container: HTMLElement;

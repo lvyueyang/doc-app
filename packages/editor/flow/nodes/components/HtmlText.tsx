@@ -1,5 +1,5 @@
 import type { Node } from '@antv/x6';
-import { DefaultNodeConfig } from '../constants';
+import { DefaultNodeConfig, DefaultTextStyle, TextEditorClassName } from '../constants';
 
 interface HtmlTextProps extends React.HTMLAttributes<HTMLDivElement> {
   node?: Node;
@@ -16,14 +16,11 @@ const DefaultStyle: React.CSSProperties = {
   width: '100%',
   height: '100%',
   display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
   boxSizing: 'border-box',
-  fontSize: DefaultNodeConfig.fontSize,
-  color: DefaultNodeConfig.fontColor,
+  ...DefaultTextStyle,
 };
 
-export default function HtmlText({ style = {}, node }: HtmlTextProps) {
+export default function HtmlText({ style = {}, className, node }: HtmlTextProps) {
   const { label } = node?.getAttrs() || {};
   const text = label.text;
   const styles = label.style as React.CSSProperties;
@@ -34,8 +31,9 @@ export default function HtmlText({ style = {}, node }: HtmlTextProps) {
         ...style,
         ...styles,
       }}
-      data-type="text-container"
+      className={[TextEditorClassName, className].filter((i) => !!i).join(' ')}
       dangerouslySetInnerHTML={{ __html: text as string }}
+      contentEditable={false}
     />
   );
 }

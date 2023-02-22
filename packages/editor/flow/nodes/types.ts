@@ -2,11 +2,9 @@ import type { Graph, Node } from '@antv/x6';
 import type { ReactShapeConfig } from '@antv/x6-react-shape';
 import type React from 'react';
 
-export type NodeConfig =
-  | Node.Definition
-  | (Node.Config & {
-      inherit?: string | Node.Definition | undefined;
-    });
+export type NodeConfig = Node.Config & {
+  inherit?: string | Node.Definition | undefined;
+};
 
 export interface ReactNodeProps {
   graph: Graph;

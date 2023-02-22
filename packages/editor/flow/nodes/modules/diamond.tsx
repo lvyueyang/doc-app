@@ -3,7 +3,7 @@
  */
 import type { KMReactNode, ReactNodeProps } from '../types';
 import { createNodeName, updatePort, getLineCenter, createTextBlock, getLineType } from '../utils';
-import { DefaultNodeConfig, DefaultPortsGroups } from '../constants';
+import { DefaultPortsGroups } from '../constants';
 import { useEffect } from 'react';
 import HtmlText from '../components/HtmlText';
 
@@ -96,11 +96,4 @@ export const DiamondNodeConfig: KMReactNode = {
     items: [],
   },
   propHooks: TextBlock.propHooks,
-  attrs: {
-    body: {
-      fill: DefaultNodeConfig.fill,
-      stroke: DefaultNodeConfig.stroke,
-      strokeWidth: DefaultNodeConfig.strokeWidth,
-    },
-  },
 };

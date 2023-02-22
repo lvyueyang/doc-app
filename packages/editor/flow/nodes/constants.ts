@@ -2,6 +2,9 @@ import { Dom } from '@antv/x6';
 import type { TypeValue } from './types';
 export const NODE_WIDTH = 60;
 export const NODE_HEIGHT = 60;
+export const PREFIX = 'kangmi';
+
+export const TextEditorClassName = `${PREFIX}TextEditor`;
 
 export const DefaultNodeConfig = {
   stroke: '#333',
@@ -13,7 +16,12 @@ export const DefaultNodeConfig = {
   strokeDasharray: 'none',
 };
 
-export const PREFIX = 'kangmi';
+export const DefaultTextStyle = {
+  fontSize: DefaultNodeConfig.fontSize,
+  color: DefaultNodeConfig.fontColor,
+  alignItems: 'center',
+  justifyContent: 'center',
+};
 
 export const portDefaultStyle = {
   circle: {
