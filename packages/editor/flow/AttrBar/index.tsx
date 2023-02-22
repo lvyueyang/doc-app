@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import type { Cell, Rectangle } from '@antv/x6';
 import styles from './index.module.less';
 import { useFlowEditor } from '../hooks';
-import { Button, Empty, InputNumber, Radio, Row, Select } from 'antd';
+import { Button, InputNumber, Row, Select } from 'antd';
 import {
   AlignCenterOutlined,
   AlignLeftOutlined,
@@ -17,7 +17,7 @@ import {
 } from '@ant-design/icons';
 import ColorSelect from '../../components/ColorSelect';
 import type { Editor } from '../Editor';
-import { DefaultNodeConfig, LINE_TYPE } from '../nodes/constants';
+import { LINE_TYPE } from '../nodes/constants';
 
 export default function AttrBar() {
   const { editor } = useFlowEditor();
@@ -32,16 +32,16 @@ export default function AttrBar() {
     x,
     y,
   }: Partial<Pick<Rectangle, 'width' | 'height' | 'x' | 'y'>> = {}) => {
-    if (!bBox) return;
     selectCells?.forEach((cell) => {
+      const box = cell.getBBox();
       if (cell.isNode()) {
         cell.setSize({
-          width: width || bBox.width,
-          height: height || bBox.height,
+          width: width || box.width,
+          height: height || box.height,
         });
         cell.setPosition({
-          x: x || bBox.x,
-          y: y || bBox.y,
+          x: x || box.x,
+          y: y || box.y,
         });
       }
     });
@@ -121,8 +121,7 @@ export default function AttrBar() {
                   value={body.fill}
                   style={{ width: 100 }}
                   onChange={(e) => {
-                    const fill = e.target.value;
-                    changeAttrsHandler('body/fill', fill);
+                    changeAttrsHandler('body/fill', e);
                   }}
                 />
               </Row>
@@ -163,7 +162,7 @@ export default function AttrBar() {
                   value={body.stroke}
                   style={{ width: 100 }}
                   onChange={(e) => {
-                    changeAttrsHandler('body/stroke', e.target.value);
+                    changeAttrsHandler('body/stroke', e);
                   }}
                 />
               </div>
@@ -175,8 +174,9 @@ export default function AttrBar() {
               <div className={styles.item}>
                 <label>字号</label>
                 <InputNumber
-                  value={text.fontSize || DefaultNodeConfig.fontSize}
+                  value={text.fontSize}
                   style={{ width: 100 }}
+                  min={12}
                   onChange={(e) => {
                     changeAttrsHandler('label/style/fontSize', e);
                   }}
@@ -185,10 +185,10 @@ export default function AttrBar() {
               <div className={styles.item}>
                 <label>颜色</label>
                 <ColorSelect
-                  value={text.color || DefaultNodeConfig.fontColor}
+                  value={text.color}
                   style={{ width: 100 }}
                   onChange={(e) => {
-                    changeAttrsHandler('label/style/color', e.target.value);
+                    changeAttrsHandler('label/style/color', e);
                   }}
                 />
               </div>
