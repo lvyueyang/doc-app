@@ -19,18 +19,20 @@ const DefaultStyle: React.CSSProperties = {
   alignItems: 'center',
   justifyContent: 'center',
   boxSizing: 'border-box',
+  fontSize: DefaultNodeConfig.fontSize,
+  color: DefaultNodeConfig.fontColor,
 };
 
 export default function HtmlText({ style = {}, node }: HtmlTextProps) {
   const { label } = node?.getAttrs() || {};
-  const { text, fontSize, color } = label || {};
+  const text = label.text;
+  const styles = label.style as React.CSSProperties;
   return (
     <div
       style={{
         ...DefaultStyle,
-        fontSize: (fontSize as number) || DefaultNodeConfig.fontSize,
-        color: (color as string) || DefaultNodeConfig.fontColor,
         ...style,
+        ...styles,
       }}
       data-type="text-container"
       dangerouslySetInnerHTML={{ __html: text as string }}

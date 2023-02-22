@@ -11,7 +11,16 @@
           "lineType": "dashed",
           "strokeDasharray": "6 6"
         },
-        "label": { "text": "圆角矩形" }
+        "label": {
+          "style": {
+            "fontWeight": "bold",
+            "fontStyle": "italic",
+            "textDecoration": "underline",
+            "justifyContent": "start",
+            "alignItems": "flex-start"
+          },
+          "text": "圆角矩形"
+        }
       },
       "visible": true,
       "shape": "kangmiRect",
