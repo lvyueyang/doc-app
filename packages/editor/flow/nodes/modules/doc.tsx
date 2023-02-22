@@ -1,7 +1,10 @@
+/**
+ * 文档
+ */
 import { ObjectExt } from '@antv/x6';
-import { TRBL_CENTER_GROUPS } from '../constants';
+import { DefaultNodeConfig, TRBL_CENTER_GROUPS } from '../constants';
 import type { KMSvgNode } from '../types';
-import { createTextBlock, createNodeName } from '../utils';
+import { createTextBlock, createNodeName, lineTypeAttrHooks } from '../utils';
 const TextBlock = createTextBlock();
 
 export const DocNodeConfig: KMSvgNode = {
@@ -18,7 +21,9 @@ export const DocNodeConfig: KMSvgNode = {
     ],
     attrs: {
       body: {
-        fill: '#fff',
+        fill: DefaultNodeConfig.fill,
+        stroke: DefaultNodeConfig.stroke,
+        strokeWidth: DefaultNodeConfig.strokeWidth,
       },
       ...TextBlock.attrs,
     },
@@ -32,6 +37,9 @@ export const DocNodeConfig: KMSvgNode = {
     },
     attrHooks: {
       ...TextBlock.attrHooks,
+      lineType: {
+        set: lineTypeAttrHooks,
+      },
     },
     ports: {
       groups: {

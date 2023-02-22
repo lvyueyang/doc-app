@@ -1,6 +1,6 @@
 import type { BaseEditorOptions } from './BaseEditor';
 import { BaseEditor } from './BaseEditor';
-import type { NodeConfig } from './nodes';
+import type { NodeConfig } from './nodes1';
 
 interface AppendNodeOptions {
   /** 是否添加到画布中心 */

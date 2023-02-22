@@ -1,6 +1,5 @@
 import { Dropdown } from 'antd';
 import Button from 'antd/es/button';
-import { NODE_NAME } from '../Editor/nodes';
 import { useFlowEditor } from '../hooks';
 import styles from './index.module.less';
 
@@ -13,13 +12,6 @@ export default function Header() {
     <div className={styles.header}>
       <button>撤销</button>
       <button>回退</button>
-      <button
-        onClick={() => {
-          editor.appendNode(NODE_NAME.RECT.name);
-        }}
-      >
-        添加节点
-      </button>
       <button
         onClick={() => {
           const json = editor.graph.toJSON();

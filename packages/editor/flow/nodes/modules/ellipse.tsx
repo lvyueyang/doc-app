@@ -1,6 +1,9 @@
-import { TRBL_CENTER_GROUPS } from '../constants';
+/**
+ * 椭圆
+ */
+import { DefaultNodeConfig, TRBL_CENTER_GROUPS } from '../constants';
 import type { KMSvgNode } from '../types';
-import { createTextBlock, createNodeName } from '../utils';
+import { createTextBlock, createNodeName, lineTypeAttrHooks } from '../utils';
 const TextBlock = createTextBlock();
 
 export const EllipseNodeConfig: KMSvgNode = {
@@ -17,10 +20,18 @@ export const EllipseNodeConfig: KMSvgNode = {
     ],
     attrs: {
       ...TextBlock.attrs,
+      body: {
+        fill: DefaultNodeConfig.fill,
+        stroke: DefaultNodeConfig.stroke,
+        strokeWidth: DefaultNodeConfig.strokeWidth,
+      },
     },
     propHooks: TextBlock.propHooks,
     attrHooks: {
       ...TextBlock.attrHooks,
+      lineType: {
+        set: lineTypeAttrHooks,
+      },
     },
     ports: {
       groups: {

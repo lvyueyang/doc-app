@@ -1,7 +1,10 @@
+/**
+ * 菱形
+ */
 import { ObjectExt } from '@antv/x6';
-import { TRBL_CENTER_GROUPS } from '../constants';
+import { DefaultNodeConfig, TRBL_CENTER_GROUPS } from '../constants';
 import type { KMSvgNode } from '../types';
-import { createTextBlock, createNodeName } from '../utils';
+import { createTextBlock, createNodeName, lineTypeAttrHooks } from '../utils';
 const TextBlock = createTextBlock();
 
 export const TriangleNodeConfig: KMSvgNode = {
@@ -18,6 +21,11 @@ export const TriangleNodeConfig: KMSvgNode = {
     ],
     attrs: {
       ...TextBlock.attrs,
+      body: {
+        fill: DefaultNodeConfig.fill,
+        stroke: DefaultNodeConfig.stroke,
+        strokeWidth: DefaultNodeConfig.strokeWidth,
+      },
     },
     propHooks: (metadata) => {
       ObjectExt.setByPath(metadata, 'attrs/body/refPoints', [
@@ -30,6 +38,9 @@ export const TriangleNodeConfig: KMSvgNode = {
     },
     attrHooks: {
       ...TextBlock.attrHooks,
+      lineType: {
+        set: lineTypeAttrHooks,
+      },
     },
     ports: {
       groups: {

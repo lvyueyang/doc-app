@@ -26,3 +26,5 @@ export interface KMSvgNode {
 }
 
 export type KMNode = KMReactNode | KMSvgNode;
+
+export type TypeValue<T> = T[keyof T];

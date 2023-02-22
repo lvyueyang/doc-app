@@ -1,6 +1,7 @@
 import type { Node, Markup } from '@antv/x6';
+import type { Attr } from '@antv/x6/es/registry';
 import { ObjectExt, Shape } from '@antv/x6';
-import { PREFIX } from './constants';
+import { LINE_TYPE, PREFIX } from './constants';
 import type { KMSvgNode } from './types';
 
 export const createNodeName = (name: string) => {
@@ -37,6 +38,23 @@ export function createTextBlock() {
     attrHooks: Shape.TextBlock.getAttrHooks(),
   };
 }
+
+/** 线条风格 */
+export const lineTypeAttrHooks = (lineType: any, options: Record<string, any>) => {
+  const { attrs, cell } = options as Attr.Options;
+  if (lineType === LINE_TYPE.SOLID.code) {
+    cell.setAttrByPath('body/strokeDasharray', 'none');
+  }
+  if (lineType === LINE_TYPE.DASHED.code) {
+    cell.setAttrByPath(
+      'body/strokeDasharray',
+      [(attrs.strokeWidth as number) * 3, (attrs.strokeWidth as number) * 3].join(' '),
+    );
+  }
+  if (lineType === LINE_TYPE.DOTTED.code) {
+    cell.setAttrByPath('body/strokeDasharray', [attrs.strokeWidth, attrs.strokeWidth].join(' '));
+  }
+};
 
 interface Options {
   name: string;
@@ -105,4 +123,24 @@ export function points2PortGroups(obj: Record<string, number[]>) {
       },
     };
   });
+}
+
+type ComplexAttrValue = Attr.ComplexAttrValue;
+export function getLineType({
+  lineType,
+  strokeWidth,
+}: {
+  lineType?: ComplexAttrValue;
+  strokeWidth?: ComplexAttrValue;
+}) {
+  if (lineType === LINE_TYPE.SOLID.code) {
+    return 'none';
+  }
+  if (lineType === LINE_TYPE.DASHED.code) {
+    return [(strokeWidth as number) * 3, (strokeWidth as number) * 3].join(' ');
+  }
+  if (lineType === LINE_TYPE.DOTTED.code) {
+    return [strokeWidth, strokeWidth].join(' ');
+  }
+  return 'none';
 }

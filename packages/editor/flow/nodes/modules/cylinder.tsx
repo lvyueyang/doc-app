@@ -1,7 +1,10 @@
+/**
+ * 圆柱
+ */
 import { ObjectExt } from '@antv/x6';
-import { TRBL_CENTER_GROUPS } from '../constants';
+import { DefaultNodeConfig, TRBL_CENTER_GROUPS } from '../constants';
 import type { KMSvgNode } from '../types';
-import { createTextBlock, createNodeName } from '../utils';
+import { createTextBlock, createNodeName, lineTypeAttrHooks } from '../utils';
 const TextBlock = createTextBlock();
 
 export const CylinderNodeConfig: KMSvgNode = {
@@ -18,7 +21,9 @@ export const CylinderNodeConfig: KMSvgNode = {
     ],
     attrs: {
       body: {
-        fill: '#fff',
+        fill: DefaultNodeConfig.fill,
+        stroke: DefaultNodeConfig.stroke,
+        strokeWidth: DefaultNodeConfig.strokeWidth,
       },
       ...TextBlock.attrs,
     },
@@ -36,6 +41,9 @@ export const CylinderNodeConfig: KMSvgNode = {
     ports: {
       groups: {
         ...TRBL_CENTER_GROUPS,
+        lineType: {
+          set: lineTypeAttrHooks,
+        },
       },
       items: [
         {

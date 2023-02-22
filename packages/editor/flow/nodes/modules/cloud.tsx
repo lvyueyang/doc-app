@@ -1,6 +1,9 @@
+/**
+ * 云朵
+ */
 import type { KMReactNode, ReactNodeProps } from '../types';
-import { createNodeName, updatePort, getLineCenter, createTextBlock } from '../utils';
-import { DefaultNodeConfig, DefaultPortsGroups, TRBL_CENTER_GROUPS } from '../constants';
+import { createNodeName, updatePort, createTextBlock, getLineType } from '../utils';
+import { DefaultNodeConfig, DefaultPortsGroups } from '../constants';
 import { useEffect } from 'react';
 import HtmlText from '../components/HtmlText';
 
@@ -8,7 +11,9 @@ const TextBlock = createTextBlock();
 
 const CloudNodeComponent: React.FC<ReactNodeProps> = ({ node }) => {
   const { width, height } = node.getSize();
-  const { fill, stroke } = node.getAttrs() as unknown as Record<string, string>;
+  const { fill, stroke, strokeWidth, lineType } = node.getAttrs().body || {};
+
+  const strokeDasharray = getLineType({ strokeWidth, lineType });
 
   const w = width / 2;
   const h = height / 2;
@@ -45,8 +50,10 @@ const CloudNodeComponent: React.FC<ReactNodeProps> = ({ node }) => {
       <svg viewBox={`0 0 ${w} ${h}`} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
         <path
           d={d}
-          fill={fill && fill !== 'none' ? fill : DefaultNodeConfig.fill}
-          stroke={stroke || DefaultNodeConfig.stroke}
+          fill={fill as string}
+          stroke={stroke as string}
+          strokeWidth={(strokeWidth as number) / 2}
+          strokeDasharray={strokeDasharray}
         />
         您的设备不支持 SVG
       </svg>
@@ -63,6 +70,13 @@ export const CloudNodeConfig: KMReactNode = {
       ...DefaultPortsGroups,
     },
     items: [],
+  },
+  attrs: {
+    body: {
+      fill: DefaultNodeConfig.fill,
+      stroke: DefaultNodeConfig.stroke,
+      strokeWidth: DefaultNodeConfig.strokeWidth,
+    },
   },
   propHooks: TextBlock.propHooks,
 };

@@ -1,0 +1,40 @@
+.attrBar {
+  top: var(--header-height);
+  width: var(--sidebar-width);
+  flex: 0 0 var(--sidebar-width);
+  background-color: var(--bg-color);
+  height: calc(100vh - var(--header-height));
+  border-right: 1px solid #eee;
+  z-index: 90;
+  dl,
+  dd {
+    margin: 0;
+  }
+}
+.groupItem {
+  width: 100%;
+
+  dt {
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+  }
+
+  dd {
+    padding: 0 10px;
+    border-bottom: 1px solid #d6d6d6;
+    margin-bottom: 10px;
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    label {
+      font-size: 12px;
+    }
+  }
+}

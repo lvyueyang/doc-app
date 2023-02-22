@@ -1,4 +1,5 @@
 import { Dom } from '@antv/x6';
+import type { TypeValue } from './types';
 export const NODE_WIDTH = 60;
 export const NODE_HEIGHT = 60;
 
@@ -9,6 +10,7 @@ export const DefaultNodeConfig = {
   fontSize: 14,
   fontColor: '#333',
   label: '',
+  strokeDasharray: 'none',
 };
 
 export const PREFIX = 'kangmi';
@@ -137,3 +139,20 @@ export const DefaultPortsGroups = {
     },
   },
 };
+
+export const LINE_TYPE = {
+  SOLID: {
+    code: 'solid',
+    cname: '实线',
+  },
+  DASHED: {
+    code: 'dashed',
+    cname: '虚线',
+  },
+  DOTTED: {
+    code: 'dotted',
+    cname: '点线',
+  },
+} as const;
+
+export type LINE_TYPE_ENUM = TypeValue<typeof LINE_TYPE>['code'];

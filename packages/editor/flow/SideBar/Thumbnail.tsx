@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Editor } from '../Editor';
-import type { NodeConfig } from '../Editor/nodes';
+import type { NodeConfig } from '../Editor/nodes1';
 import styles from './index.module.less';
 
 interface ThumbnailProps {

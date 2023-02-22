@@ -1,5 +1,8 @@
+/**
+ * 文本
+ */
 import type { KMSvgNode } from '../types';
-import { createNodeName } from '../utils';
+import { createNodeName, lineTypeAttrHooks } from '../utils';
 
 export const TextNodeConfig: KMSvgNode = {
   type: 'svg',
@@ -10,6 +13,11 @@ export const TextNodeConfig: KMSvgNode = {
       body: {
         fill: 'none',
         strokeWidth: 0,
+      },
+    },
+    attrHooks: {
+      lineType: {
+        set: lineTypeAttrHooks,
       },
     },
   },

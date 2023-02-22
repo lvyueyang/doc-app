@@ -1,7 +1,7 @@
-import type { KMReactNode, KMSvgNode, ReactNodeProps } from '../types';
-import { DefaultNodeConfig, TextBlockMarkup, TRBL_CENTER_GROUPS } from '../constants';
-import { createNodeName } from '../utils';
-import { ObjectExt } from '@antv/x6';
+/** 矩形 */
+import type { KMSvgNode } from '../types';
+import { TRBL_CENTER_GROUPS } from '../constants';
+import { createNodeName, lineTypeAttrHooks } from '../utils';
 
 export const RectNodeConfig: KMSvgNode = {
   type: 'svg',
@@ -26,6 +26,11 @@ export const RectNodeConfig: KMSvgNode = {
           group: 'left',
         },
       ],
+    },
+    attrHooks: {
+      lineType: {
+        set: lineTypeAttrHooks,
+      },
     },
   },
 };

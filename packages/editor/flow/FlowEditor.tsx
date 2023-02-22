@@ -1,9 +1,9 @@
 import { createContext, useEffect, useRef, useState } from 'react';
-import type { Model } from '@antv/x6';
 import { Editor } from './Editor';
 import Header from './Header';
 import styles from './index.module.less';
 import SideBar from './SideBar';
+import AttrBar from './AttrBar';
 
 interface FlowEditorContextOptions {
   editor?: Editor;
@@ -47,6 +47,7 @@ export function FlowEditor({ value }: FlowEditorProps) {
           <div className={styles.canvasContainer}>
             <div className={styles.canvas} ref={canvasRef} />
           </div>
+          <AttrBar />
         </div>
       </div>
     </FlowEditorContext.Provider>

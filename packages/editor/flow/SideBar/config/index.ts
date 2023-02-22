@@ -13,7 +13,7 @@ import {
   HexagonNodeConfig,
 } from '../../nodes';
 import { CloudNodeConfig } from '../../nodes/modules/cloud';
-import type { NodeConfig } from '../../Editor/nodes';
+import type { NodeConfig } from '../../Editor/nodes1';
 
 export interface GroupChildrenItem {
   label: string;
