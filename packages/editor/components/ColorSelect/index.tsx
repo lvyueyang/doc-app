@@ -3,11 +3,35 @@ import { useEffect, useState } from 'react';
 import { SketchPicker } from 'react-color';
 import styles from './index.module.less';
 
+const presetColors = [
+  '#ffffff',
+  '#000000',
+  '#DB3E00',
+  '#FCCB00',
+  '#008B02',
+  '#006B76',
+  '#1273DE',
+  '#004DCF',
+  '#5300EB',
+  '#EB9694',
+  '#FAD0C3',
+  '#FEF3BD',
+  '#C1E1C5',
+  '#BEDADC',
+  '#BED3F3',
+  '#D4C4FB',
+  {
+    color: 'rgba(0,0,0,0)',
+    title: '透明',
+  },
+];
+
 // type ColorSelectProps = React.InputHTMLAttributes<HTMLInputElement>;
 interface ColorSelectProps {
   style?: React.CSSProperties;
   className?: string;
   value?: string;
+  defaultValue?: string;
   onChange?: (value: string) => void;
 }
 
@@ -15,10 +39,11 @@ export default function ColorSelect({
   style,
   className,
   value = '#000000',
+  defaultValue,
   onChange,
 }: ColorSelectProps) {
   const { token } = theme.useToken();
-  const [color, setColor] = useState(value);
+  const [color, setColor] = useState(defaultValue || value);
   useEffect(() => {
     setColor(value);
   }, [value]);
@@ -31,32 +56,12 @@ export default function ColorSelect({
         <SketchPicker
           width="225px"
           color={color}
-          presetColors={[
-            '#ffffff',
-            '#000000',
-            '#DB3E00',
-            '#FCCB00',
-            '#008B02',
-            '#006B76',
-            '#1273DE',
-            '#004DCF',
-            '#5300EB',
-            '#EB9694',
-            '#FAD0C3',
-            '#FEF3BD',
-            '#C1E1C5',
-            '#BEDADC',
-            '#BED3F3',
-            '#D4C4FB',
-            {
-              color: 'rgba(0,0,0,0)',
-              title: '透明',
-            },
-          ]}
+          presetColors={presetColors}
           onChange={(e) => {
-            console.log(e);
             const { r, g, b, a } = e.rgb;
-            onChange?.(`rgba(${r},${g},${b},${a})`);
+            const rgba = `rgba(${r},${g},${b},${a})`;
+            setColor(rgba);
+            onChange?.(rgba);
           }}
         />
       }
@@ -74,7 +79,7 @@ export default function ColorSelect({
       >
         <span
           style={{
-            background: value,
+            background: color,
             borderRadius: token.borderRadius,
             borderColor: token.colorBorder,
           }}

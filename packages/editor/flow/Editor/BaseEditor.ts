@@ -127,6 +127,10 @@ export class BaseEditor extends EventEmitter {
             // 控制连接桩变化时不计入历史记录
             return false;
           }
+          if (args.key === 'tools') {
+            // https://github.com/antvis/X6/issues/1879
+            return false;
+          }
         },
       }),
     );
@@ -152,6 +156,7 @@ export class BaseEditor extends EventEmitter {
         rubberband: true,
         movable: true,
         showNodeSelectionBox: true,
+        // showEdgeSelectionBox: true,
       }),
     );
   }

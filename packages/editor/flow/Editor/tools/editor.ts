@@ -1,18 +1,18 @@
-import type { Cell, CellView, NodeView, EdgeView } from '@antv/x6';
+import type { Cell, CellView, NodeView, EdgeView, Edge } from '@antv/x6';
 import { Dom, FunctionExt, Point, ToolsView, Util } from '@antv/x6';
 
 interface TextEditorOptions extends ToolsView.ToolItem.Options {
   event?: Dom.EventObject;
   attrs?: {
-    fontSize: number;
-    fontFamily: string;
-    fontWeight: string;
-    fontStyle: string;
-    textDecoration: string;
-    color: string;
-    backgroundColor: string;
-    alignItems: string;
-    justifyContent: string;
+    fontSize?: number;
+    fontFamily?: string;
+    fontWeight?: string;
+    fontStyle?: string;
+    textDecoration?: string;
+    color?: string;
+    backgroundColor?: string;
+    alignItems?: string;
+    justifyContent?: string;
   };
   labelAddable?: boolean;
   getText: (
@@ -61,18 +61,22 @@ export class TextEditor extends ToolsView.ToolItem<NodeView | EdgeView, TextEdit
 
   updateEditor() {
     const { graph, cell, editor } = this;
+    const isNode = cell.isNode();
+    const isEdge = cell.isEdge();
     const style = editor.style;
-    style.display = 'inline-flex';
 
     // set tool position
     let pos = new Point();
     let minWidth = 20;
     let minHeight = 20;
-    if (cell.isNode()) {
+    if (isNode) {
+      style.display = 'inline-flex';
       pos = cell.getBBox().center;
       minWidth = cell.size().width - 4;
       minHeight = cell.size().height - 4;
-    } else if (cell.isEdge()) {
+    } else if (isEdge) {
+      style.padding = '5px';
+      style.textAlign = 'center';
       const e = this.options.event!;
       const target = e.target;
       const parent = target.parentElement;
@@ -108,14 +112,14 @@ export class TextEditor extends ToolsView.ToolItem<NodeView | EdgeView, TextEdit
     const attrs = this.options.attrs;
     if (attrs) {
       style.fontSize = `${attrs.fontSize}px`;
-      style.fontFamily = attrs.fontFamily;
-      style.color = attrs.color;
-      style.backgroundColor = attrs.backgroundColor;
-      style.fontWeight = attrs.fontWeight;
-      style.fontStyle = attrs.fontStyle;
-      style.textDecoration = attrs.textDecoration;
-      style.alignItems = attrs.alignItems;
-      style.justifyContent = attrs.justifyContent;
+      style.fontFamily = attrs.fontFamily!;
+      style.color = attrs.color!;
+      style.backgroundColor = attrs.backgroundColor!;
+      style.fontWeight = attrs.fontWeight!;
+      style.fontStyle = attrs.fontStyle!;
+      style.textDecoration = attrs.textDecoration!;
+      style.alignItems = attrs.alignItems!;
+      style.justifyContent = attrs.justifyContent!;
     }
 
     // set init value
@@ -127,10 +131,17 @@ export class TextEditor extends ToolsView.ToolItem<NodeView | EdgeView, TextEdit
         index: this.labelIndex,
       });
     }
-    editor.innerHTML = text || '';
+    if (isNode) {
+      editor.innerHTML = text || '';
+    }
+    if (isEdge) {
+      editor.textContent = text || '';
+    }
 
     // clear display value when edit status because char ghosting.
-    this.setCellText('');
+    if (isNode) {
+      this.setCellText('');
+    }
 
     return this;
   }
@@ -199,10 +210,54 @@ TextEditor.config({
 
 export const NodeTextEditor = TextEditor.define<TextEditorOptions>({
   getText({ cell }) {
-    console.log(cell.attr('label/text'));
     return cell.attr('label/text');
   },
   setText({ cell, value }) {
     cell.attr('label/text', value);
+  },
+});
+
+export const EdgeTextEditor = TextEditor.define<TextEditorOptions>({
+  labelAddable: true,
+  attrs: {
+    fontSize: 14,
+    color: '#000',
+  },
+  getText(args) {
+    const { cell, index } = args;
+    if (index === -1) {
+      return '';
+    }
+    return cell.prop(`labels/${index}/attrs/label/text`);
+  },
+  setText(args) {
+    const { cell, value, index, distance } = args;
+    const edge = cell as Edge;
+
+    if (index === -1) {
+      edge.appendLabel({
+        position: {
+          distance: distance!,
+        },
+        attrs: {
+          label: {
+            text: value,
+            fontSize: 14,
+            fill: '#000',
+            fontStyle: 'normal',
+            fontWeight: 'normal',
+          },
+          rect: {
+            fill: '#fff',
+          },
+        },
+      });
+    } else {
+      if (value) {
+        edge.setPropByPath(`labels/${index}/attrs/label/text`, value);
+      } else if (typeof index === 'number') {
+        edge.removeLabelAt(index);
+      }
+    }
   },
 });

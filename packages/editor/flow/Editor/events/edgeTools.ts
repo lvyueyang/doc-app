@@ -7,12 +7,12 @@ const TOOLS = [
   // {
   //   name: 'segments',
   // },
-  {
-    name: 'source-arrowhead',
-  },
-  {
-    name: 'target-arrowhead',
-  },
+  // {
+  //   name: 'source-arrowhead',
+  // },
+  // {
+  //   name: 'target-arrowhead',
+  // },
 ];
 
 /** 鼠标悬浮添加边操作工具 */

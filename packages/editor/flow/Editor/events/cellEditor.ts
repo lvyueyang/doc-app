@@ -4,7 +4,7 @@ import { TextEditorClassName } from '../../nodes/constants';
 /** 双击添加文本 */
 export function cellEditorEvents(graph: Graph) {
   graph.on('edge:dblclick', ({ cell, e }) => {
-    const name = 'edge-editor';
+    const name = 'edge-text-editor';
     cell.removeTool(name);
     cell.addTools({
       name,
@@ -23,7 +23,6 @@ export function cellEditorEvents(graph: Graph) {
     const editorContainer = view.container.querySelector(`.${TextEditorClassName}`);
     if (!editorContainer) return;
     const style = (node.getAttrs().label?.style as React.CSSProperties) || {};
-    console.log('style: ', style);
 
     cell.addTools({
       name,

@@ -1,30 +1,29 @@
 import { useEffect, useState } from 'react';
-import type { Cell, Rectangle } from '@antv/x6';
+import type { Cell, Rectangle, Edge, EdgeView } from '@antv/x6';
 import styles from './index.module.less';
 import { useFlowEditor } from '../hooks';
-import { Button, InputNumber, Row, Select } from 'antd';
-import {
-  AlignCenterOutlined,
-  AlignLeftOutlined,
-  AlignRightOutlined,
-  BoldOutlined,
-  ItalicOutlined,
-  StrikethroughOutlined,
-  UnderlineOutlined,
-  VerticalAlignBottomOutlined,
-  VerticalAlignMiddleOutlined,
-  VerticalAlignTopOutlined,
-} from '@ant-design/icons';
+import { Button, InputNumber, Select } from 'antd';
 import ColorSelect from '../../components/ColorSelect';
 import type { Editor } from '../Editor';
 import { LINE_TYPE } from '../nodes/constants';
+import {
+  FontStyleButton,
+  FontWeightButton,
+  HorizontalAlignButtonGroup,
+  LineThroughButton,
+  UnderlineButton,
+  VerticalAlignButtonGroup,
+} from './components';
 
 export default function AttrBar() {
   const { editor } = useFlowEditor();
-  const { visible, attrs, bBox, selectCells, loadAttrs } = useVisible(editor);
+  const { nodeAttrs, edgeAttrs, bBox, selectCells, selectedEdgeLabels, loadAttrs } =
+    useSelectedCell(editor);
 
-  const body = attrs?.body || {};
-  const text = attrs?.label?.style || {};
+  const body = nodeAttrs?.body || {};
+  const text = nodeAttrs?.label?.style || {};
+  const edgeLine = edgeAttrs?.line || {};
+  const edgeLabelAttrs = selectedEdgeLabels[0]?.labels?.[0]?.label?.attrs;
 
   const changeBBoxHandler = ({
     width,
@@ -53,276 +52,304 @@ export default function AttrBar() {
     });
     loadAttrs();
   };
+  const changeLabelsHandler = (path: string, value: string | number) => {
+    selectedEdgeLabels.forEach(({ labels, edge }) => {
+      labels.forEach(({ index }) => {
+        edge?.setPropByPath(`labels/${index}/attrs/${path}`, value);
+      });
+    });
+  };
 
   return (
     <div className={styles.attrBar}>
-      {visible && (
+      {nodeAttrs && (
         <>
-          <dl className={styles.groupItem}>
-            <dt>位置</dt>
-            <dd>
-              <Row className={styles.item}>
-                <label>X</label>
-                <InputNumber
-                  value={bBox?.x}
-                  style={{ width: 100 }}
-                  min={0}
+          <GroupItem label="位置">
+            <AttrItem label="x">
+              <InputNumber
+                value={bBox?.x}
+                style={{ width: 100 }}
+                min={0}
+                onChange={(e) => {
+                  changeBBoxHandler({ x: e! });
+                }}
+              />
+            </AttrItem>
+            <AttrItem label="Y">
+              <InputNumber
+                value={bBox?.y}
+                style={{ width: 100 }}
+                min={0}
+                onChange={(e) => {
+                  changeBBoxHandler({ y: e! });
+                }}
+              />
+            </AttrItem>
+          </GroupItem>
+          <GroupItem label="尺寸">
+            <AttrItem label="宽度">
+              <InputNumber
+                value={bBox?.width}
+                style={{ width: 100 }}
+                min={0}
+                onChange={(e) => {
+                  changeBBoxHandler({ width: e! });
+                }}
+              />
+            </AttrItem>
+            <AttrItem label="高度">
+              <InputNumber
+                value={bBox?.height}
+                style={{ width: 100 }}
+                min={0}
+                onChange={(e) => {
+                  changeBBoxHandler({ height: e! });
+                }}
+              />
+            </AttrItem>
+          </GroupItem>
+          <GroupItem label="填充">
+            <AttrItem label="颜色">
+              <ColorSelect
+                value={body.fill}
+                style={{ width: 100 }}
+                onChange={(e) => {
+                  changeAttrsHandler('body/fill', e);
+                }}
+              />
+            </AttrItem>
+          </GroupItem>
+          <GroupItem label="线条">
+            <AttrItem label="样式">
+              <Select
+                style={{ width: 100 }}
+                value={body.lineType || LINE_TYPE.SOLID.code}
+                onChange={(e) => {
+                  changeAttrsHandler('body/lineType', e);
+                }}
+                options={Object.values(LINE_TYPE).map((item) => ({
+                  value: item.code,
+                  label: item.cname,
+                }))}
+              />
+            </AttrItem>
+            <AttrItem label="线宽">
+              <InputNumber
+                value={body.strokeWidth}
+                style={{ width: 100 }}
+                min={0}
+                step={2}
+                onChange={(e) => {
+                  changeAttrsHandler('body/strokeWidth', e);
+                }}
+              />
+            </AttrItem>
+            <AttrItem label="颜色">
+              <ColorSelect
+                value={body.stroke}
+                style={{ width: 100 }}
+                onChange={(e) => {
+                  changeAttrsHandler('body/stroke', e);
+                }}
+              />
+            </AttrItem>
+          </GroupItem>
+          <GroupItem label="文本">
+            <AttrItem label="字号">
+              <InputNumber
+                value={text.fontSize}
+                style={{ width: 100 }}
+                min={12}
+                onChange={(e) => {
+                  changeAttrsHandler('label/style/fontSize', e);
+                }}
+              />
+            </AttrItem>
+            <AttrItem label="颜色">
+              <ColorSelect
+                value={text.color}
+                style={{ width: 100 }}
+                onChange={(e) => {
+                  changeAttrsHandler('label/style/color', e);
+                }}
+              />
+            </AttrItem>
+            <AttrItem label="字体风格">
+              <Button.Group>
+                <FontWeightButton
+                  value={text.fontWeight}
                   onChange={(e) => {
-                    changeBBoxHandler({ x: e! });
+                    changeAttrsHandler('label/style/fontWeight', e);
                   }}
                 />
-              </Row>
-              <Row className={styles.item}>
-                <label>Y</label>
-                <InputNumber
-                  value={bBox?.y}
-                  style={{ width: 100 }}
-                  min={0}
+                <FontStyleButton
+                  value={text.fontStyle}
                   onChange={(e) => {
-                    changeBBoxHandler({ y: e! });
+                    changeAttrsHandler('label/style/fontStyle', e);
                   }}
                 />
-              </Row>
-            </dd>
-          </dl>
-          <dl className={styles.groupItem}>
-            <dt>尺寸</dt>
-            <dd>
-              <Row className={styles.item}>
-                <label>宽度</label>
-                <InputNumber
-                  value={bBox?.width}
-                  style={{ width: 100 }}
-                  min={0}
+                <UnderlineButton
+                  value={text.textDecoration}
                   onChange={(e) => {
-                    changeBBoxHandler({ width: e! });
+                    changeAttrsHandler('label/style/textDecoration', e);
                   }}
                 />
-              </Row>
-              <Row className={styles.item}>
-                <label>高度</label>
-                <InputNumber
-                  value={bBox?.height}
-                  style={{ width: 100 }}
-                  min={0}
+                <LineThroughButton
+                  value={text.textDecoration}
                   onChange={(e) => {
-                    changeBBoxHandler({ height: e! });
+                    changeAttrsHandler('label/style/textDecoration', e);
                   }}
                 />
-              </Row>
-            </dd>
-          </dl>
-          <dl className={styles.groupItem}>
-            <dt>填充</dt>
-            <dd>
-              <Row className={styles.item}>
-                <label>颜色</label>
-                <ColorSelect
-                  value={body.fill}
-                  style={{ width: 100 }}
+              </Button.Group>
+            </AttrItem>
+            <AttrItem label="水平对齐">
+              <HorizontalAlignButtonGroup
+                value={text.justifyContent}
+                onChange={(e) => {
+                  changeAttrsHandler('label/style/justifyContent', e!);
+                }}
+              />
+            </AttrItem>
+            <AttrItem label="垂直对齐">
+              <VerticalAlignButtonGroup
+                value={text.alignItems}
+                onChange={(e) => {
+                  changeAttrsHandler('label/style/alignItems', e!);
+                }}
+              />
+            </AttrItem>
+          </GroupItem>
+        </>
+      )}
+      {edgeAttrs && (
+        <>
+          <GroupItem label="边/连线">
+            <AttrItem label="样式">
+              <Select
+                style={{ width: 100 }}
+                value={edgeLine.lineType || LINE_TYPE.SOLID.code}
+                onChange={(e) => {
+                  changeAttrsHandler('line/lineType', e);
+                }}
+                options={Object.values(LINE_TYPE).map((item) => ({
+                  value: item.code,
+                  label: item.cname,
+                }))}
+              />
+            </AttrItem>
+            <AttrItem label="线宽">
+              <InputNumber
+                value={edgeLine.strokeWidth}
+                style={{ width: 100 }}
+                min={0}
+                step={2}
+                onChange={(e) => {
+                  changeAttrsHandler('line/strokeWidth', e);
+                }}
+              />
+            </AttrItem>
+            <AttrItem label="颜色">
+              <ColorSelect
+                value={edgeLine.stroke}
+                style={{ width: 100 }}
+                onChange={(e) => {
+                  changeAttrsHandler('line/stroke', e);
+                }}
+              />
+            </AttrItem>
+          </GroupItem>
+          <GroupItem label="文本">
+            <AttrItem label="字号">
+              <InputNumber
+                defaultValue={(edgeLabelAttrs?.label?.fontSize as number) || 12}
+                style={{ width: 100 }}
+                min={12}
+                onChange={(e) => {
+                  changeLabelsHandler('label/fontSize', e!);
+                }}
+              />
+            </AttrItem>
+            <AttrItem label="颜色">
+              <ColorSelect
+                defaultValue={(edgeLabelAttrs?.label?.fill as string) || '#000'}
+                style={{ width: 100 }}
+                onChange={(e) => {
+                  changeLabelsHandler('label/fill', e!);
+                }}
+              />
+            </AttrItem>
+            <AttrItem label="填充">
+              <ColorSelect
+                defaultValue={(edgeLabelAttrs?.rect?.fill as string) || '#000'}
+                style={{ width: 100 }}
+                onChange={(e) => {
+                  changeLabelsHandler('rect/fill', e!);
+                }}
+              />
+            </AttrItem>
+            <AttrItem label="字体风格">
+              <Button.Group>
+                <FontWeightButton
+                  value={edgeLabelAttrs?.label?.fontWeight as string}
                   onChange={(e) => {
-                    changeAttrsHandler('body/fill', e);
+                    changeLabelsHandler('label/fontWeight', e);
                   }}
                 />
-              </Row>
-            </dd>
-          </dl>
-          <dl className={styles.groupItem}>
-            <dt>线条</dt>
-            <dd>
-              <div className={styles.item}>
-                <label>样式</label>
-                <Select
-                  style={{ width: 100 }}
-                  value={body.lineType || LINE_TYPE.SOLID.code}
+                <FontStyleButton
+                  value={edgeLabelAttrs?.label?.fontStyle as string}
                   onChange={(e) => {
-                    changeAttrsHandler('body/lineType', e);
-                  }}
-                  options={Object.values(LINE_TYPE).map((item) => ({
-                    value: item.code,
-                    label: item.cname,
-                  }))}
-                />
-              </div>
-              <div className={styles.item}>
-                <label>线宽</label>
-                <InputNumber
-                  value={body.strokeWidth}
-                  style={{ width: 100 }}
-                  min={0}
-                  step={2}
-                  onChange={(e) => {
-                    changeAttrsHandler('body/strokeWidth', e);
+                    changeLabelsHandler('label/fontStyle', e);
                   }}
                 />
-              </div>
-              <div className={styles.item}>
-                <label>颜色</label>
-                <ColorSelect
-                  value={body.stroke}
-                  style={{ width: 100 }}
-                  onChange={(e) => {
-                    changeAttrsHandler('body/stroke', e);
-                  }}
-                />
-              </div>
-            </dd>
-          </dl>
-          <dl className={styles.groupItem}>
-            <dt>文本</dt>
-            <dd>
-              <div className={styles.item}>
-                <label>字号</label>
-                <InputNumber
-                  value={text.fontSize}
-                  style={{ width: 100 }}
-                  min={12}
-                  onChange={(e) => {
-                    changeAttrsHandler('label/style/fontSize', e);
-                  }}
-                />
-              </div>
-              <div className={styles.item}>
-                <label>颜色</label>
-                <ColorSelect
-                  value={text.color}
-                  style={{ width: 100 }}
-                  onChange={(e) => {
-                    changeAttrsHandler('label/style/color', e);
-                  }}
-                />
-              </div>
-              <div className={styles.item}>
-                <label>字体风格</label>
-                <Button.Group>
-                  <Button
-                    icon={<BoldOutlined />}
-                    type={text.fontWeight === 'bold' ? 'primary' : 'default'}
-                    onClick={() => {
-                      changeAttrsHandler(
-                        'label/style/fontWeight',
-                        text.fontWeight === 'bold' ? '' : 'bold',
-                      );
-                    }}
-                  />
-                  <Button
-                    icon={<ItalicOutlined />}
-                    type={text.fontStyle === 'italic' ? 'primary' : 'default'}
-                    onClick={() => {
-                      changeAttrsHandler(
-                        'label/style/fontStyle',
-                        text.fontStyle === 'italic' ? '' : 'italic',
-                      );
-                    }}
-                  />
-                  <Button
-                    icon={<UnderlineOutlined />}
-                    type={text.textDecoration === 'underline' ? 'primary' : 'default'}
-                    onClick={() => {
-                      changeAttrsHandler(
-                        'label/style/textDecoration',
-                        text.textDecoration === 'underline' ? '' : 'underline',
-                      );
-                    }}
-                  />
-                  <Button
-                    icon={<StrikethroughOutlined />}
-                    type={text.textDecoration === 'line-through' ? 'primary' : 'default'}
-                    onClick={() => {
-                      changeAttrsHandler(
-                        'label/style/textDecoration',
-                        text.textDecoration === 'line-through' ? '' : 'line-through',
-                      );
-                    }}
-                  />
-                </Button.Group>
-              </div>
-              <div className={styles.item}>
-                <label>水平对齐</label>
-                <Button.Group>
-                  <Button
-                    icon={<AlignLeftOutlined />}
-                    type={text.justifyContent === 'start' ? 'primary' : 'default'}
-                    onClick={() => {
-                      changeAttrsHandler('label/style/justifyContent', 'start');
-                    }}
-                  />
-                  <Button
-                    icon={<AlignCenterOutlined />}
-                    type={text.justifyContent === 'center' ? 'primary' : 'default'}
-                    onClick={() => {
-                      changeAttrsHandler('label/style/justifyContent', 'center');
-                    }}
-                  />
-                  <Button
-                    icon={<AlignRightOutlined />}
-                    type={text.justifyContent === 'end' ? 'primary' : 'default'}
-                    onClick={() => {
-                      changeAttrsHandler('label/style/justifyContent', 'end');
-                    }}
-                  />
-                </Button.Group>
-              </div>
-              <div className={styles.item}>
-                <label>垂直对齐</label>
-                <Button.Group>
-                  <Button
-                    icon={<VerticalAlignTopOutlined />}
-                    type={text.alignItems === 'flex-start' ? 'primary' : 'default'}
-                    onClick={() => {
-                      changeAttrsHandler('label/style/alignItems', 'flex-start');
-                    }}
-                  />
-                  <Button
-                    icon={<VerticalAlignMiddleOutlined />}
-                    type={text.alignItems === 'center' ? 'primary' : 'default'}
-                    onClick={() => {
-                      changeAttrsHandler('label/style/alignItems', 'center');
-                    }}
-                  />
-                  <Button
-                    icon={<VerticalAlignBottomOutlined />}
-                    type={text.alignItems === 'flex-end' ? 'primary' : 'default'}
-                    onClick={() => {
-                      changeAttrsHandler('label/style/alignItems', 'flex-end');
-                    }}
-                  />
-                </Button.Group>
-              </div>
-            </dd>
-          </dl>
+              </Button.Group>
+            </AttrItem>
+          </GroupItem>
         </>
       )}
     </div>
   );
 }
 
-function useVisible(editor?: Editor) {
-  const [visible, setVisible] = useState(false);
+interface SelectedLabel {
+  edge: Edge;
+  labels: { label: Edge.Label; index: number }[];
+}
+
+function useSelectedCell(editor?: Editor) {
   const [selectCells, setSelectCells] = useState<Cell[]>();
-  const [attrs, setAttrs] = useState<Cell.Properties>();
+  const [selectedEdgeLabels, setSelectedEdgeLabels] = useState<SelectedLabel[]>([]);
+  const [nodeAttrs, setNodeAttrs] = useState<Cell.Properties>();
+  const [edgeAttrs, setEdgeAttrs] = useState<Cell.Properties>();
   const [bBox, setBBox] = useState<Rectangle>();
 
   const loadAttrs = (cells = selectCells) => {
     const node = cells?.find((cell) => cell.isNode());
-    if (node) {
-      setAttrs(node.getAttrs());
-      setBBox(node.getBBox());
-    }
+    const edge = cells?.find((cell) => cell.isEdge());
+    setNodeAttrs(node?.getAttrs());
+    setBBox(node?.getBBox());
+    setEdgeAttrs(edge?.getAttrs());
   };
 
   useEffect(() => {
     const graph = editor?.graph;
     if (!graph) return;
     const selectedHandler = () => {
+      console.log('selectedHandler: ');
       const cells = graph.getSelectedCells();
-      setVisible(!!cells.length);
       setSelectCells(cells);
+      setSelectedEdgeLabels(
+        cells
+          .filter((cell) => cell.isEdge())
+          .map((cell) => {
+            const edge = cell as Edge;
+            const labels = edge.labels.map((label, index) => ({ label, index }));
+            return {
+              edge,
+              labels,
+            };
+          }),
+      );
       loadAttrs(cells);
-      const node = cells.find((cell) => cell.isNode());
-      if (node) {
-        setAttrs(node.getAttrs());
-      }
     };
     selectedHandler();
     let timer: NodeJS.Timeout;
@@ -332,18 +359,65 @@ function useVisible(editor?: Editor) {
         selectedHandler();
       });
     };
+    const edgeClickHandler = (args: EdgeView.PositionEventArgs<any>) => {
+      const { e, edge } = args;
+      const target = e.target as HTMLElement;
+      const parent = target.parentElement;
+      if (parent?.classList?.value.includes('x6-edge-label')) {
+        const index = Number(parent.getAttribute('data-index') || '0');
+        const label = edge.getLabelAt(index);
+        if (label) {
+          setSelectedEdgeLabels([
+            {
+              edge,
+              labels: [{ label, index }],
+            },
+          ]);
+        }
+      } else {
+        setSelectedEdgeLabels(
+          edge.labels.map((label, index) => {
+            return {
+              edge,
+              labels: [{ label, index }],
+            };
+          }),
+        );
+      }
+    };
     graph.on('selection:changed', selectFn);
+    graph.on('edge:click', edgeClickHandler);
+
     return () => {
       graph.off('selection:changed', selectFn);
+      graph.off('edge:click', edgeClickHandler);
     };
   }, [editor]);
 
   return {
-    visible,
     selectCells,
-    attrs,
+    selectedEdgeLabels,
+    nodeAttrs,
+    edgeAttrs,
     bBox,
     loadAttrs,
-    setVisible,
   };
+}
+
+function AttrItem({ label, children }: React.PropsWithChildren<{ label?: string }>) {
+  return (
+    <div className={styles.item}>
+      {label && <label>{label}</label>}
+      <>{children}</>
+    </div>
+  );
+}
+
+function GroupItem({ label, children }: React.PropsWithChildren<{ label: string }>) {
+  return (
+    <dl className={styles.groupItem}>
+      <dt>{label}</dt>
+      <dd>{children}</dd>
+    </dl>
+  );
 }
