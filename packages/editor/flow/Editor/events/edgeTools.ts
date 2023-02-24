@@ -1,4 +1,6 @@
 import type { Graph } from '@antv/x6';
+import { theme } from 'antd';
+console.log('theme: ', theme);
 
 const TOOLS = [
   // {
@@ -7,12 +9,22 @@ const TOOLS = [
   // {
   //   name: 'segments',
   // },
-  // {
-  //   name: 'source-arrowhead',
-  // },
-  // {
-  //   name: 'target-arrowhead',
-  // },
+  {
+    name: 'source-arrowhead',
+    args: {
+      attrs: {
+        fill: theme.defaultConfig.token.colorPrimary,
+      },
+    },
+  },
+  {
+    name: 'target-arrowhead',
+    args: {
+      attrs: {
+        fill: theme.defaultConfig.token.colorPrimary,
+      },
+    },
+  },
 ];
 
 /** 鼠标悬浮添加边操作工具 */
