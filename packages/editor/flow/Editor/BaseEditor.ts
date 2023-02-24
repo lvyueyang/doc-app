@@ -18,6 +18,8 @@ import './tools/register';
 
 export interface BaseEditorOptions {
   container: HTMLElement;
+  /** cover 是做组件缩略图渲染用的 */
+  mode?: 'normal' | 'cover';
 }
 export class BaseEditor extends EventEmitter {
   options: BaseEditorOptions;
@@ -47,6 +49,7 @@ export class BaseEditor extends EventEmitter {
     const graph = new Graph({
       container,
       background: { color: '#fff' },
+      autoResize: true,
       // mousewheel: {},
       grid: {
         visible: true,
@@ -73,16 +76,19 @@ export class BaseEditor extends EventEmitter {
 
   /** 加载插件 */
   private __initPlugin() {
-    this.__useSnapline();
-    this.__useTransform();
-    this.__useClipboard();
-    this.__useKeyboard();
-    this.__useHistory();
-    this.__useScroller();
-    this.__useSelection();
     this.__useExport();
 
-    this.__useEvents();
+    if (this.options.mode !== 'cover') {
+      this.__useSnapline();
+      this.__useTransform();
+      this.__useClipboard();
+      this.__useKeyboard();
+      this.__useHistory();
+      this.__useScroller();
+      this.__useSelection();
+
+      this.__useEvents();
+    }
   }
 
   /** 对齐线功能 */
@@ -170,6 +176,7 @@ export class BaseEditor extends EventEmitter {
 
   /** 注册相关事件 */
   private __useEvents() {
+    console.log('__useEvents: ');
     Object.values(graphEvents).forEach((eventFn) => {
       eventFn(this.graph);
     });

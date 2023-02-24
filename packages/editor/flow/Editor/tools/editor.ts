@@ -57,6 +57,12 @@ export class TextEditor extends ToolsView.ToolItem<NodeView | EdgeView, TextEdit
     this.addClass(classNames, this.editor);
     this.editor.contentEditable = 'true';
     this.container.appendChild(this.editor);
+
+    this.editor.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') {
+        e.stopPropagation();
+      }
+    });
   }
 
   updateEditor() {
@@ -135,7 +141,7 @@ export class TextEditor extends ToolsView.ToolItem<NodeView | EdgeView, TextEdit
       editor.innerHTML = text || '';
     }
     if (isEdge) {
-      editor.textContent = text || '';
+      editor.innerHTML = text || '';
     }
 
     // clear display value when edit status because char ghosting.
@@ -149,8 +155,10 @@ export class TextEditor extends ToolsView.ToolItem<NodeView | EdgeView, TextEdit
   onDocumentMouseDown(e: Dom.MouseDownEvent) {
     if (e.target !== this.editor) {
       const cell = this.cell;
-      // const value = this.editor.innerText.replace(/\n$/, '') || '';
-      const value = this.editor.innerHTML || '';
+      let value = this.editor.innerText.replace(/\n$/, '') || '';
+      if (cell.isNode()) {
+        value = this.editor.innerHTML || '';
+      }
       // set value
       this.setCellText(value);
       // remove tool
@@ -254,7 +262,7 @@ export const EdgeTextEditor = TextEditor.define<TextEditorOptions>({
       });
     } else {
       if (value) {
-        edge.setPropByPath(`labels/${index}/attrs/label/text`, value);
+        edge.prop(`labels/${index}/attrs/label/text`, value);
       } else if (typeof index === 'number') {
         edge.removeLabelAt(index);
       }

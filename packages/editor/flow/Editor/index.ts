@@ -1,19 +1,17 @@
+import type { NodeConfig } from '../nodes/types';
 import type { BaseEditorOptions } from './BaseEditor';
 import { BaseEditor } from './BaseEditor';
-import type { NodeConfig } from './nodes1';
 
 interface AppendNodeOptions {
   /** 是否添加到画布中心 */
   center: boolean;
 }
 
-interface EditorOptions {
-  container: BaseEditorOptions['container'];
-}
+type EditorOptions = BaseEditorOptions;
 
 export class Editor extends BaseEditor {
   constructor(opt: EditorOptions) {
-    super({ container: opt.container });
+    super(opt as BaseEditorOptions);
   }
 
   /** 添加节点 */

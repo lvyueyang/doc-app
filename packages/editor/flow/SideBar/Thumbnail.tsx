@@ -35,6 +35,7 @@ function createCover(shape: string, config?: NodeConfig): Promise<string> {
 
   const editor = new Editor({
     container,
+    mode: 'cover',
   });
   editor.appendNode(shape, config);
   return new Promise((resolve) => {
