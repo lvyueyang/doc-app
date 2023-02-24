@@ -63,6 +63,9 @@ export class BaseEditor extends EventEmitter {
           },
         },
       },
+      interacting: {
+        edgeLabelMovable: true,
+      },
     });
 
     return graph;

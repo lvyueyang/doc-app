@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { Cell, Rectangle, Edge, EdgeView } from '@antv/x6';
+import type { Cell, Rectangle, Edge, EdgeView, Dom } from '@antv/x6';
 import styles from './index.module.less';
 import { useFlowEditor } from '../hooks';
 import { Button, InputNumber, Select } from 'antd';
@@ -359,38 +359,34 @@ function useSelectedCell(editor?: Editor) {
         selectedHandler();
       });
     };
-    const edgeClickHandler = (args: EdgeView.PositionEventArgs<any>) => {
+    const edgeClickHandler = (
+      args: EdgeView.PositionEventArgs<Dom.ClickEvent<any, any, any, any>>,
+    ) => {
       const { e, edge } = args;
       const target = e.target as HTMLElement;
       const parent = target.parentElement;
       if (parent?.classList?.value.includes('x6-edge-label')) {
-        const index = Number(parent.getAttribute('data-index') || '0');
-        const label = edge.getLabelAt(index);
-        if (label) {
-          setSelectedEdgeLabels([
-            {
-              edge,
-              labels: [{ label, index }],
-            },
-          ]);
-        }
-      } else {
-        setSelectedEdgeLabels(
-          edge.labels.map((label, index) => {
-            return {
-              edge,
-              labels: [{ label, index }],
-            };
-          }),
-        );
+        setTimeout(() => {
+          // 用setTimeout 是为了能覆盖 selected
+          const index = Number(parent.getAttribute('data-index') || '0');
+          const label = edge.getLabelAt(index);
+          if (label) {
+            setSelectedEdgeLabels([
+              {
+                edge,
+                labels: [{ label, index }],
+              },
+            ]);
+          }
+        });
       }
     };
-    graph.on('selection:changed', selectFn);
     graph.on('edge:click', edgeClickHandler);
+    graph.on('selection:changed', selectFn);
 
     return () => {
-      graph.off('selection:changed', selectFn);
       graph.off('edge:click', edgeClickHandler);
+      graph.off('selection:changed', selectFn);
     };
   }, [editor]);
 
