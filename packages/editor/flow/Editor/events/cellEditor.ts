@@ -1,5 +1,5 @@
-import type { Graph, Cell } from '@antv/x6';
-import { TextEditorClassName } from '../../nodes/constants';
+import type { Graph } from '@antv/x6';
+import { TextEditorClassName } from '../nodes/constants';
 
 /** 双击添加文本 */
 export function cellEditorEvents(graph: Graph) {

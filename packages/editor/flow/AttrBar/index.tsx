@@ -5,7 +5,7 @@ import { useFlowEditor } from '../hooks';
 import { Button, InputNumber, Select } from 'antd';
 import ColorSelect from '../../components/ColorSelect';
 import type { Editor } from '../Editor';
-import { LINE_TYPE } from '../nodes/constants';
+import { LINE_TYPE } from '../Editor/nodes/constants';
 import {
   FontStyleButton,
   FontWeightButton,

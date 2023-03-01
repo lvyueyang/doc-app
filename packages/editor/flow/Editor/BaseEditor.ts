@@ -12,7 +12,7 @@ import * as graphEvents from './events';
 
 import styles from './index.module.less';
 
-import '../nodes/register';
+import './nodes/register';
 import './ports/register';
 import './tools/register';
 

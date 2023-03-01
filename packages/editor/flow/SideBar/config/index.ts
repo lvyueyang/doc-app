@@ -11,9 +11,9 @@ import {
   TapeNodeConfig,
   PentagonNodeConfig,
   HexagonNodeConfig,
-} from '../../nodes';
-import { CloudNodeConfig } from '../../nodes/modules/cloud';
-import type { NodeConfig } from '../../Editor/nodes1';
+  CloudNodeConfig,
+} from '../../Editor/nodes';
+import type { NodeConfig } from '../../Editor/nodes/types';
 
 export interface GroupChildrenItem {
   label: string;
