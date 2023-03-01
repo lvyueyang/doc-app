@@ -53,11 +53,24 @@ export class BaseEditor extends EventEmitter {
       // mousewheel: {},
       grid: {
         visible: true,
+        size: 10,
         type: 'doubleMesh',
+        args: [
+          {
+            color: '#f1f1f1', // 主网格线颜色
+            thickness: 1, // 主网格线宽度
+          },
+          {
+            color: '#c1c1c1', // 次网格线颜色
+            thickness: 1, // 次网格线宽度
+            factor: 5, // 主次网格线间隔
+          },
+        ],
       },
       connecting: {
         snap: true,
-        allowBlank: true,
+        highlight: true,
+        // allowBlank: true,
         router: {
           name: 'manhattan',
           args: {

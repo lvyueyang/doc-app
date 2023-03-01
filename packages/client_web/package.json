@@ -9,5 +9,7 @@
     "setup": "umi setup",
     "start": "npm run dev"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@icon-park/react": "^1.4.2"
+  }
 }

@@ -1,0 +1,56 @@
+:global {
+  .kangmiContextMenu {
+    --item-height: 34px;
+
+    position: absolute;
+    width: 220px;
+    background: #fff;
+    z-index: 100;
+    box-shadow: 0 6px 16px 0 rgb(0 0 0 / 8%), 0 3px 6px -4px rgb(0 0 0 / 12%),
+      0 9px 28px 8px rgb(0 0 0 / 5%);
+    border-radius: 3px;
+    .divider {
+      border-bottom: 1px solid #e9edf2;
+    }
+    .item {
+      margin: 5px;
+      height: var(--item-height);
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 3px;
+      color: #333;
+      &.disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+        &:hover {
+          background-color: transparent;
+        }
+      }
+      &:hover {
+        background-color: #f3f5f9;
+      }
+      .icon {
+        width: var(--item-height);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        svg {
+          vertical-align: middle;
+        }
+      }
+      .label {
+        flex: 1;
+      }
+      .extra {
+        color: #a6b9cd;
+        float: right;
+        padding-right: 5px;
+        font-size: 12px;
+      }
+    }
+  }
+}

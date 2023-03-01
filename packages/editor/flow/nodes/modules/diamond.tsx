@@ -53,8 +53,11 @@ const DiamondNodeComponent: React.FC<ReactNodeProps> = ({ node }) => {
       },
       {
         group: 'absolute',
-        id: 'a',
-        args: getLineCenter({ x: b[0], y: b[1] }, { x: a[0], y: a[1] * 2 }),
+        id: 'leftCenter',
+        args: {
+          x: a[0] * 2,
+          y: a[1],
+        },
       },
       {
         group: 'absolute',

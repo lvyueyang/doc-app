@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {},
   "dependencies": {
-    "@antv/x6": "^2.0.8"
+    "@antv/x6": "^2.0.8",
+    "@icon-park/react": "^1.4.2"
   }
 }

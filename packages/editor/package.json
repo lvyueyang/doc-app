@@ -5,6 +5,7 @@
   "author": "lvyueyang <975794403@qq.com>",
   "scripts": {},
   "dependencies": {
+    "@icon-park/react": "^1.4.2",
     "@types/react-color": "^3.0.6",
     "react-color": "^2.19.3"
   }
