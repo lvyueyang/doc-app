@@ -1,9 +1,7 @@
-import { CopyOutlined, ScissorOutlined } from '@ant-design/icons';
 import { BringForward, BringToFront, SendBackward, SentToBack } from '@icon-park/react';
 import type { Graph } from '@antv/x6';
 import { ContextMenu } from '../../../components/ContextMenu';
 import { message } from 'antd';
-console.log('contextMenuEvents');
 
 let contextMenu: ContextMenu | undefined;
 

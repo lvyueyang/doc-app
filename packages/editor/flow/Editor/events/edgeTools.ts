@@ -1,6 +1,5 @@
 import type { Graph } from '@antv/x6';
 import { theme } from 'antd';
-console.log('theme: ', theme);
 
 const TOOLS = [
   // {
@@ -37,4 +36,12 @@ export function edgeToolEvents(graph: Graph) {
       edge.removeTool(name);
     });
   });
+  // graph.on('edge:mouseenter', ({ edge, view }) => {
+  //   // const vertices = view.cell.getVertices();
+  //   // console.log('vertices: ', vertices);
+  //   edge.addTools([{ name: 'segments' }]);
+  // });
+  // graph.on('edge:mouseleave', ({ edge }) => {
+  //   edge.removeTool('segments');
+  // });
 }

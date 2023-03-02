@@ -1,6 +1,6 @@
 /** 矩形 */
-import type { KMSvgNode } from '../types';
-import { TRBL_CENTER_GROUPS } from '../constants';
+import type { KMSvgNode } from '../../types';
+import { TRBL_CENTER_GROUPS } from '../../constants';
 import { createNodeName } from '../utils';
 
 export const RectNodeConfig: KMSvgNode = {

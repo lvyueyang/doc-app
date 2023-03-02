@@ -1,8 +1,8 @@
 import { Graph, Shape } from '@antv/x6';
 import { register } from '@antv/x6-react-shape';
-import { DefaultNodeConfig, DefaultTextStyle, TextEditorClassName } from './constants';
+import { DefaultNodeConfig, DefaultTextStyle, TextEditorClassName } from '../constants';
 import * as nodes from './index';
-import type { KMNode } from './types';
+import type { KMNode } from '../types';
 import { lineTypeAttrHooks } from './utils';
 
 /** 为文字节点设置 className */

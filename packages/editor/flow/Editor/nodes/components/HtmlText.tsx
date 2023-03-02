@@ -1,5 +1,5 @@
 import type { Node } from '@antv/x6';
-import { DefaultNodeConfig, DefaultTextStyle, TextEditorClassName } from '../constants';
+import { DefaultTextStyle, TextEditorClassName } from '../../constants';
 
 interface HtmlTextProps extends React.HTMLAttributes<HTMLDivElement> {
   node?: Node;

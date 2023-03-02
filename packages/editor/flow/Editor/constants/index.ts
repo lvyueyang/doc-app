@@ -1,5 +1,7 @@
 import { Dom } from '@antv/x6';
-import type { TypeValue } from './types';
+import { theme } from 'antd';
+import type { TypeValue } from '../types';
+
 export const NODE_WIDTH = 60;
 export const NODE_HEIGHT = 60;
 export const PREFIX = 'kangmi';
@@ -26,7 +28,7 @@ export const DefaultTextStyle = {
 export const portDefaultStyle = {
   circle: {
     magnet: true,
-    stroke: 'blue',
+    stroke: theme.defaultConfig.token.colorPrimary,
     r: 0,
   },
 };

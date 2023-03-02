@@ -1,3 +1,4 @@
+import { CurveEdgeConfig } from '../../Editor/edges';
 import {
   TextNodeConfig,
   RectNodeConfig,
@@ -13,10 +14,11 @@ import {
   HexagonNodeConfig,
   CloudNodeConfig,
 } from '../../Editor/nodes';
-import type { NodeConfig } from '../../Editor/nodes/types';
+import type { NodeConfig } from '../../Editor/types';
 
 export interface GroupChildrenItem {
   label: string;
+  type?: 'edge' | 'node';
   config: {
     shape: string;
     option?: NodeConfig;
@@ -24,6 +26,7 @@ export interface GroupChildrenItem {
 }
 export interface GroupItem {
   groupName: string;
+  type?: 'edge' | 'node';
   children: GroupChildrenItem[];
 }
 
@@ -201,6 +204,18 @@ const groupList: GroupItem[] = [
             height: BASE_WIDTH,
             text: '六边形',
           },
+        },
+      },
+    ],
+  },
+  {
+    groupName: '连线',
+    children: [
+      {
+        label: '曲线',
+        type: 'edge',
+        config: {
+          shape: CurveEdgeConfig.EDGE_NAME,
         },
       },
     ],

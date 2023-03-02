@@ -4,7 +4,6 @@ import Header from './Header';
 import styles from './index.module.less';
 import SideBar from './SideBar';
 import AttrBar from './AttrBar';
-import ContextMenuComponent from '../components/ContextMenu';
 
 interface FlowEditorContextOptions {
   editor?: Editor;

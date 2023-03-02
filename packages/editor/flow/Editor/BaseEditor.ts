@@ -13,8 +13,10 @@ import * as graphEvents from './events';
 import styles from './index.module.less';
 
 import './nodes/register';
+import './edges/register';
 import './ports/register';
 import './tools/register';
+import './router/register';
 
 export interface BaseEditorOptions {
   container: HTMLElement;
@@ -57,7 +59,7 @@ export class BaseEditor extends EventEmitter {
         type: 'doubleMesh',
         args: [
           {
-            color: '#f1f1f1', // 主网格线颜色
+            color: '#eee', // 主网格线颜色
             thickness: 1, // 主网格线宽度
           },
           {
@@ -67,20 +69,14 @@ export class BaseEditor extends EventEmitter {
           },
         ],
       },
-      connecting: {
-        snap: true,
-        highlight: true,
-        // allowBlank: true,
-        router: {
-          name: 'manhattan',
-          args: {
-            // step: 10,
-            // padding: 100,
-          },
-        },
-      },
       interacting: {
         edgeLabelMovable: true,
+      },
+      connecting: {
+        snap: true,
+        allowNode: false,
+        highlight: true,
+        anchor: 'top',
       },
     });
 
@@ -189,7 +185,6 @@ export class BaseEditor extends EventEmitter {
 
   /** 注册相关事件 */
   private __useEvents() {
-    console.log('__useEvents: ');
     Object.values(graphEvents).forEach((eventFn) => {
       eventFn(this.graph);
     });

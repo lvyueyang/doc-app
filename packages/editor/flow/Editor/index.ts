@@ -1,6 +1,7 @@
-import type { NodeConfig } from '../nodes/types';
+import type { NodeConfig } from './nodes/types';
 import type { BaseEditorOptions } from './BaseEditor';
 import { BaseEditor } from './BaseEditor';
+import type { EdgeConfig } from './edges/types';
 
 interface AppendNodeOptions {
   /** 是否添加到画布中心 */
@@ -16,7 +17,7 @@ export class Editor extends BaseEditor {
 
   /** 添加节点 */
   appendNode(shape: string, config?: NodeConfig, options?: AppendNodeOptions) {
-    const nodeConfig: NodeConfig = {
+    const conf: NodeConfig = {
       ...config,
     };
     const opt = appendNodeDefaultOptions(options);
@@ -24,12 +25,37 @@ export class Editor extends BaseEditor {
       const {
         center: { x, y },
       } = this.graph.getGraphArea();
-      nodeConfig.x = x;
-      nodeConfig.y = y;
+      conf.x = x;
+      conf.y = y;
     }
     return this.graph.addNode({
       shape,
-      ...nodeConfig,
+      ...conf,
+    });
+  }
+  /** 添加边 */
+  appendEdge(shape: string, config?: EdgeConfig, options?: AppendNodeOptions) {
+    console.log('config: ', config);
+    const conf: EdgeConfig = {
+      ...config,
+    };
+    const opt = appendNodeDefaultOptions(options);
+    if (opt?.center) {
+      const {
+        center: { x, y },
+      } = this.graph.getGraphArea();
+      conf.target = { x: x + 50, y: y - 50 };
+      conf.source = { x: x - 50, y: y + 50 };
+      conf.vertices = [
+        {
+          x,
+          y,
+        },
+      ];
+    }
+    return this.graph.addEdge({
+      shape,
+      ...conf,
     });
   }
 }

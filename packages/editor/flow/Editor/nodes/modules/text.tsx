@@ -1,7 +1,7 @@
 /**
  * 文本
  */
-import type { KMSvgNode } from '../types';
+import type { KMSvgNode } from '../../types';
 import { createNodeName } from '../utils';
 
 export const TextNodeConfig: KMSvgNode = {

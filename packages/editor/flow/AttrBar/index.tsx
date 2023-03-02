@@ -5,7 +5,7 @@ import { useFlowEditor } from '../hooks';
 import { Button, InputNumber, Select } from 'antd';
 import ColorSelect from '../../components/ColorSelect';
 import type { Editor } from '../Editor';
-import { LINE_TYPE } from '../Editor/nodes/constants';
+import { LINE_TYPE } from '../Editor/constants';
 import {
   FontStyleButton,
   FontWeightButton,
@@ -334,7 +334,6 @@ function useSelectedCell(editor?: Editor) {
     const graph = editor?.graph;
     if (!graph) return;
     const selectedHandler = () => {
-      console.log('selectedHandler: ');
       const cells = graph.getSelectedCells();
       setSelectCells(cells);
       setSelectedEdgeLabels(

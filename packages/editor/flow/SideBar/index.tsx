@@ -1,6 +1,7 @@
 import { useEffect, useRef, createRef } from 'react';
 import { Dnd } from '@antv/x6-plugin-dnd';
 import styles from './index.module.less';
+import type { GroupChildrenItem } from './config';
 import DATA_GROUP from './config/index';
 import Thumbnail from './Thumbnail';
 import { useFlowEditor } from '../hooks';
@@ -21,17 +22,31 @@ export default function SideBar() {
   }, [editor]);
   const starDragHandler = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    shape: string,
-    config: any,
+    item: GroupChildrenItem,
   ) => {
-    const node = editor?.graph.createNode({
-      shape,
-      ...config,
-      width: config.width * 1.5,
-      height: config.height * 1.5,
-    });
-    if (node) {
-      dndRef.current?.start(node, e as any);
+    const type = item.type;
+    const shape = item.config.shape;
+    const config = item.config.option || ({} as any);
+    if (type === 'edge') {
+      const edge = editor?.graph.createEdge({
+        shape,
+        ...config,
+      });
+      console.log('edge: ', edge);
+
+      if (edge) {
+        // dndRef.current?.start(edge, e as any);
+      }
+    } else {
+      const node = editor?.graph.createNode({
+        shape,
+        ...config,
+        width: config.width! * 1.5,
+        height: config.height * 1.5,
+      });
+      if (node) {
+        dndRef.current?.start(node, e as any);
+      }
     }
   };
   return (
@@ -47,10 +62,14 @@ export default function SideBar() {
                     key={dd.label}
                     className={styles.item}
                     onMouseDown={(e) => {
-                      starDragHandler(e, dd.config.shape, dd.config.option);
+                      console.log('e: ', e);
+                      starDragHandler(e, dd);
+                    }}
+                    onClick={(e) => {
+                      editor?.appendEdge(dd.config.shape);
                     }}
                   >
-                    <Thumbnail shape={dd.config.shape} config={dd.config.option} />
+                    <Thumbnail type={dd.type} shape={dd.config.shape} config={dd.config.option} />
                   </div>
                 );
               })}

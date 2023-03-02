@@ -1,8 +1,8 @@
 /**
  * 椭圆
  */
-import { TRBL_CENTER_GROUPS } from '../constants';
-import type { KMSvgNode } from '../types';
+import { TRBL_CENTER_GROUPS } from '../../constants';
+import type { KMSvgNode } from '../../types';
 import { createNodeName, createTextSvgNodeConfig } from '../utils';
 
 export const EllipseNodeConfig: KMSvgNode = {

@@ -1,9 +1,9 @@
 /**
  * 云朵
  */
-import type { KMReactNode, ReactNodeProps } from '../types';
+import type { KMReactNode, ReactNodeProps } from '../../types';
 import { createNodeName, updatePort, createTextBlock, getLineType } from '../utils';
-import { DefaultPortsGroups } from '../constants';
+import { DefaultPortsGroups } from '../../constants';
 import { useEffect } from 'react';
 import HtmlText from '../components/HtmlText';
 

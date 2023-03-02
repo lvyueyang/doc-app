@@ -7,8 +7,8 @@ import {
   LINE_TYPE,
   PREFIX,
   TextEditorClassName,
-} from './constants';
-import type { KMSvgNode, NodeConfig } from './types';
+} from '../constants';
+import type { KMSvgNode, NodeConfig } from '../types';
 
 export const createNodeName = (name: string) => {
   return `${PREFIX}${name}`;
