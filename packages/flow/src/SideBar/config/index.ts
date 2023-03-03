@@ -14,6 +14,12 @@ import {
   HexagonNodeConfig,
   CloudNodeConfig,
   StarNodeConfig,
+  FanNodeConfig,
+  Fan2NodeConfig,
+  DropNodeConfig,
+  HeartNodeConfig,
+  SubprocessNodeConfig,
+  StoredataNodeConfig,
 } from '../../Editor/nodes';
 import { OctagonNodeConfig } from '../../Editor/nodes/modules/octagon';
 import type { NodeConfig } from '../../Editor/types';
@@ -214,20 +220,80 @@ const groupList: GroupItem[] = [
           },
         },
       },
-    ],
-  },
-  {
-    groupName: '连线',
-    children: [
       {
-        label: '曲线',
-        type: 'edge',
+        label: '扇形',
         config: {
-          shape: CurveEdgeConfig.EDGE_NAME,
+          shape: FanNodeConfig.NODE_NAME,
+          option: {
+            width: BASE_WIDTH / 1.5,
+            height: BASE_WIDTH,
+          },
+        },
+      },
+      {
+        label: '半扇形',
+        config: {
+          shape: Fan2NodeConfig.NODE_NAME,
+          option: {
+            width: BASE_WIDTH,
+            height: BASE_WIDTH / 1.5,
+          },
+        },
+      },
+      {
+        label: '水滴',
+        config: {
+          shape: DropNodeConfig.NODE_NAME,
+          option: {
+            width: BASE_WIDTH / 1.5,
+            height: BASE_WIDTH,
+          },
+        },
+      },
+      {
+        label: '心形',
+        config: {
+          shape: HeartNodeConfig.NODE_NAME,
+          option: {
+            width: BASE_WIDTH,
+            height: BASE_WIDTH,
+          },
+        },
+      },
+      {
+        label: '子流程',
+        config: {
+          shape: SubprocessNodeConfig.NODE_NAME,
+          option: {
+            width: BASE_WIDTH,
+            height: BASE_WIDTH / 1.5,
+          },
+        },
+      },
+      {
+        label: '内部存储',
+        config: {
+          shape: StoredataNodeConfig.NODE_NAME,
+          option: {
+            width: BASE_WIDTH,
+            height: BASE_WIDTH,
+          },
         },
       },
     ],
   },
+  // {
+  //   groupName: '连线',
+  //   children: [
+  //     {
+  //       label: '曲线',
+  //       type: 'edge',
+  //       config: {
+  //         shape: CurveEdgeConfig.EDGE_NAME,
+  //       },
+  //     },
+  //   ],
+  // },
 ];
 
 export default groupList;

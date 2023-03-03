@@ -35,7 +35,6 @@ export class Editor extends BaseEditor {
   }
   /** 添加边 */
   appendEdge(shape: string, config?: EdgeConfig, options?: AppendNodeOptions) {
-    console.log('config: ', config);
     const conf: EdgeConfig = {
       ...config,
     };

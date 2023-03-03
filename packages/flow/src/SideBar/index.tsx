@@ -32,7 +32,6 @@ export default function SideBar() {
         shape,
         ...config,
       });
-      console.log('edge: ', edge);
 
       if (edge) {
         // dndRef.current?.start(edge, e as any);
@@ -62,7 +61,6 @@ export default function SideBar() {
                     key={dd.label}
                     className={styles.item}
                     onMouseDown={(e) => {
-                      console.log('e: ', e);
                       starDragHandler(e, dd);
                     }}
                     onClick={(e) => {

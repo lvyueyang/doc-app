@@ -186,3 +186,22 @@ export function createTextSvgNodeConfig({
     },
   };
 }
+
+/** svg 路径点字符串转数组 */
+export function svgPath2Array(value: string) {
+  const result: (string | number)[][] = [];
+
+  value.split(' ').forEach((k) => {
+    if (/[A-Za-z]+/.test(k)) {
+      result.push([k]);
+    } else {
+      result[result.length - 1].push(Number(k));
+    }
+  });
+  console.log('result: ', result);
+
+  return result;
+}
+export function svgPathArray2String(value: (string | number)[][]) {
+  return value.map((item) => item.join(' ')).join(' ');
+}
