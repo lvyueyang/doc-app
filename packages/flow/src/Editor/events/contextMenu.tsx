@@ -1,6 +1,6 @@
 import { BringForward, BringToFront, SendBackward, SentToBack } from '@icon-park/react';
 import type { Graph } from '@antv/x6';
-import { ContextMenu } from '../../../components/ContextMenu';
+import { ContextMenu } from '@kangmi/components';
 import { message } from 'antd';
 
 let contextMenu: ContextMenu | undefined;

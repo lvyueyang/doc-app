@@ -3,7 +3,7 @@ import type { Cell, Rectangle, Edge, EdgeView, Dom } from '@antv/x6';
 import styles from './index.module.less';
 import { useFlowEditor } from '../hooks';
 import { Button, InputNumber, Select } from 'antd';
-import ColorSelect from '../../components/ColorSelect';
+import { ColorSelect } from '@kangmi/components';
 import type { Editor } from '../Editor';
 import { LINE_TYPE } from '../Editor/constants';
 import {

@@ -13,7 +13,9 @@ import {
   PentagonNodeConfig,
   HexagonNodeConfig,
   CloudNodeConfig,
+  StarNodeConfig,
 } from '../../Editor/nodes';
+import { OctagonNodeConfig } from '../../Editor/nodes/modules/octagon';
 import type { NodeConfig } from '../../Editor/types';
 
 export interface GroupChildrenItem {
@@ -54,7 +56,6 @@ const groupList: GroupItem[] = [
           option: {
             width: BASE_WIDTH,
             height: BASE_WIDTH / 2,
-            text: '矩形',
           },
         },
       },
@@ -65,7 +66,6 @@ const groupList: GroupItem[] = [
           option: {
             width: BASE_WIDTH,
             height: BASE_WIDTH / 2,
-            text: '圆角矩形',
             attrs: {
               body: {
                 rx: 10,
@@ -81,7 +81,6 @@ const groupList: GroupItem[] = [
           option: {
             width: BASE_WIDTH,
             height: BASE_WIDTH / 2,
-            text: '椭圆',
           },
         },
       },
@@ -92,7 +91,6 @@ const groupList: GroupItem[] = [
           option: {
             width: BASE_WIDTH,
             height: BASE_WIDTH,
-            text: '圆',
           },
         },
       },
@@ -103,7 +101,6 @@ const groupList: GroupItem[] = [
           option: {
             width: BASE_WIDTH,
             height: BASE_WIDTH,
-            text: '正方形',
           },
         },
       },
@@ -114,7 +111,6 @@ const groupList: GroupItem[] = [
           option: {
             width: BASE_WIDTH,
             height: BASE_WIDTH,
-            text: '菱形',
           },
         },
       },
@@ -125,7 +121,6 @@ const groupList: GroupItem[] = [
           option: {
             width: BASE_WIDTH,
             height: BASE_WIDTH,
-            text: '三角形',
           },
         },
       },
@@ -136,7 +131,6 @@ const groupList: GroupItem[] = [
           option: {
             width: BASE_WIDTH,
             height: BASE_WIDTH / 2,
-            text: '平行四边形',
           },
         },
       },
@@ -147,7 +141,6 @@ const groupList: GroupItem[] = [
           option: {
             width: BASE_WIDTH,
             height: BASE_WIDTH / 1.5,
-            text: '云朵',
           },
         },
       },
@@ -158,7 +151,6 @@ const groupList: GroupItem[] = [
           option: {
             width: BASE_WIDTH,
             height: BASE_WIDTH / 1.5,
-            text: '文档',
           },
         },
       },
@@ -169,7 +161,6 @@ const groupList: GroupItem[] = [
           option: {
             width: BASE_WIDTH / 1.5,
             height: BASE_WIDTH,
-            text: '圆柱',
           },
         },
       },
@@ -180,7 +171,6 @@ const groupList: GroupItem[] = [
           option: {
             width: BASE_WIDTH,
             height: BASE_WIDTH / 1.5,
-            text: '条带',
           },
         },
       },
@@ -191,7 +181,6 @@ const groupList: GroupItem[] = [
           option: {
             width: BASE_WIDTH,
             height: BASE_WIDTH,
-            text: '五边形',
           },
         },
       },
@@ -202,7 +191,26 @@ const groupList: GroupItem[] = [
           option: {
             width: BASE_WIDTH,
             height: BASE_WIDTH,
-            text: '六边形',
+          },
+        },
+      },
+      {
+        label: '八边形',
+        config: {
+          shape: OctagonNodeConfig.NODE_NAME,
+          option: {
+            width: BASE_WIDTH,
+            height: BASE_WIDTH,
+          },
+        },
+      },
+      {
+        label: '五角星',
+        config: {
+          shape: StarNodeConfig.NODE_NAME,
+          option: {
+            width: BASE_WIDTH,
+            height: BASE_WIDTH,
           },
         },
       },

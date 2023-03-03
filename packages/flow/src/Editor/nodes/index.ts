@@ -11,3 +11,5 @@ export * from './modules/cylinder';
 export * from './modules/tape';
 export * from './modules/pentagon';
 export * from './modules/hexagon';
+export * from './modules/octagon';
+export * from './modules/star';

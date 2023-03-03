@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Root } from 'react-dom/client';
 import { createRoot } from 'react-dom/client';
 import './index.module.less';

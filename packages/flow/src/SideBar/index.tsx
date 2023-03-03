@@ -68,6 +68,7 @@ export default function SideBar() {
                     onClick={(e) => {
                       editor?.appendEdge(dd.config.shape);
                     }}
+                    title={dd.label}
                   >
                     <Thumbnail type={dd.type} shape={dd.config.shape} config={dd.config.option} />
                   </div>

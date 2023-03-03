@@ -1,3 +1,4 @@
+import React from 'react';
 import { Popover, theme } from 'antd';
 import { useEffect, useState } from 'react';
 import { SketchPicker } from 'react-color';
@@ -35,7 +36,7 @@ interface ColorSelectProps {
   onChange?: (value: string) => void;
 }
 
-export default function ColorSelect({
+export function ColorSelect({
   style,
   className,
   value = '#000000',

@@ -5,6 +5,8 @@ import type { NodeConfig } from '../Editor/types';
 import type { GroupChildrenItem } from './config';
 import styles from './index.module.less';
 
+const iframeID = 'SideBarEditorIframe';
+
 interface ThumbnailProps {
   type?: GroupChildrenItem['type'];
   shape: string;
@@ -27,19 +29,30 @@ export default function Thumbnail({ type = 'node', shape, config }: ThumbnailPro
   return <div className={styles.thumbnailCover} dangerouslySetInnerHTML={{ __html: cover }} />;
 }
 
+function createIframe(): HTMLIFrameElement {
+  if (document.getElementById(iframeID)) {
+    return document.getElementById(iframeID) as HTMLIFrameElement;
+  }
+  const iframe = document.createElement('iframe');
+  iframe.id = iframeID;
+  document.body.appendChild(iframe);
+  iframe.style.display = 'none';
+  return iframe;
+}
+
 function createCover(
   shape: string,
   type: GroupChildrenItem['type'],
   config?: NodeConfig | EdgeConfig,
 ): Promise<string> {
-  const iframe = document.createElement('iframe');
-  document.body.appendChild(iframe);
+  const iframe = createIframe();
+  if (iframe.contentDocument) {
+    iframe.contentDocument.body.innerHTML = '';
+  }
   const container = document.createElement('div');
   container.style.width = '500px';
   container.style.height = '200px';
   iframe.contentWindow?.document.body.appendChild(container);
-  iframe.style.display = 'none';
-
   const editor = new Editor({
     container,
     mode: 'cover',
@@ -49,11 +62,11 @@ function createCover(
   } else {
     editor.appendNode(shape, config as NodeConfig);
   }
+
   return new Promise((resolve) => {
     setTimeout(() => {
       editor.graph.toSVG(
         (dataUri) => {
-          iframe.remove();
           resolve(dataUri);
         },
         {

@@ -1,12 +1,11 @@
 {
-  "name": "@kangmi/editor",
+  "name": "@kangmi/flow",
   "version": "0.0.1",
   "private": true,
   "author": "lvyueyang <975794403@qq.com>",
+  "main": "./src/index.ts",
   "scripts": {},
   "dependencies": {
-    "@icon-park/react": "^1.4.2",
-    "@types/react-color": "^3.0.6",
-    "react-color": "^2.19.3"
+    "@icon-park/react": "^1.4.2"
   }
 }
