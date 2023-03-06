@@ -53,7 +53,7 @@ export default function SideBar() {
       {DATA_GROUP.map((group) => {
         return (
           <dl key={group.groupName} className={styles.groupItem}>
-            <dt>{group.groupName}</dt>
+            {/* <dt>{group.groupName}</dt> */}
             <dd>
               {group.children.map((dd) => {
                 return (
