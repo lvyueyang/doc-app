@@ -18,11 +18,12 @@ export const DefaultNodeConfig = {
   strokeDasharray: 'none',
 };
 
-export const DefaultTextStyle = {
+export const DefaultTextStyle: React.CSSProperties = {
   fontSize: DefaultNodeConfig.fontSize,
   color: DefaultNodeConfig.fontColor,
   alignItems: 'center',
   justifyContent: 'center',
+  flexDirection: 'column',
 };
 
 export const portDefaultStyle = {

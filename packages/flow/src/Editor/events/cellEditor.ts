@@ -28,6 +28,7 @@ export function cellEditorEvents(graph: Graph) {
       name,
       args: {
         event: e,
+        textView: editorContainer,
         attrs: {
           ...style,
         },

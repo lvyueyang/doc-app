@@ -41,7 +41,7 @@ const OrNodeComponent: React.FC<ReactNodeProps> = ({ node }) => {
         </g>
         您的设备不支持 SVG
       </svg>
-      <HtmlText node={node} />
+      <HtmlText node={node} style={{ position: 'initial', height: 'auto', minHeight: 30 }} />
     </>
   );
 };

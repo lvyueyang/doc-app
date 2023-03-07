@@ -10,7 +10,6 @@ const DefaultStyle: React.CSSProperties = {
   top: 0,
   left: 0,
   backgroundColor: 'transparent',
-  textAlign: 'center',
   margin: '0',
   padding: '0px 5px',
   width: '100%',
@@ -33,7 +32,6 @@ export default function HtmlText({ style = {}, className, node }: HtmlTextProps)
       }}
       className={[TextEditorClassName, className].filter((i) => !!i).join(' ')}
       dangerouslySetInnerHTML={{ __html: text as string }}
-      contentEditable={false}
     />
   );
 }

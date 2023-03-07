@@ -1,8 +1,9 @@
-import type { Cell, CellView, NodeView, EdgeView, Edge } from '@antv/x6';
-import { Dom, FunctionExt, Point, ToolsView, Util } from '@antv/x6';
+import type { Cell, CellView, NodeView, EdgeView, Dom } from '@antv/x6';
+import { FunctionExt, ToolsView } from '@antv/x6';
 
 interface TextEditorOptions extends ToolsView.ToolItem.Options {
   event?: Dom.EventObject;
+  textView: HTMLDivElement;
   attrs?: {
     fontSize?: number;
     fontFamily?: string;
@@ -14,7 +15,6 @@ interface TextEditorOptions extends ToolsView.ToolItem.Options {
     alignItems?: string;
     justifyContent?: string;
   };
-  labelAddable?: boolean;
   getText: (
     this: CellView,
     args: {
@@ -33,8 +33,22 @@ interface TextEditorOptions extends ToolsView.ToolItem.Options {
   ) => void;
 }
 
-export class TextEditor extends ToolsView.ToolItem<NodeView | EdgeView, TextEditorOptions> {
+const getNodeText: TextEditorOptions['getText'] = ({ cell }) => {
+  return cell.attr('label/text');
+};
+const setNodeText: TextEditorOptions['setText'] = ({ cell, value }) => {
+  cell.attr('label/text', value);
+};
+
+const spaceHackFn = (e: KeyboardEvent) => {
+  if (e.code === 'Space') {
+    e.stopPropagation();
+  }
+};
+
+export class NodeTextEditor extends ToolsView.ToolItem<NodeView | EdgeView, TextEditorOptions> {
   private editor!: HTMLDivElement;
+  private textView?: HTMLDivElement;
   private labelIndex = -1;
   private distance = 0.5;
 
@@ -48,63 +62,45 @@ export class TextEditor extends ToolsView.ToolItem<NodeView | EdgeView, TextEdit
   }
 
   createElement() {
-    const { cell } = this;
     const classNames = [
-      this.prefixClassName(`${cell.isEdge() ? 'edge' : 'node'}-tool-editor`),
+      this.prefixClassName(`node-tool-editor`),
       this.prefixClassName('cell-tool-editor'),
     ];
     this.editor = ToolsView.createElement('div', false) as HTMLDivElement;
     this.addClass(classNames, this.editor);
     this.editor.contentEditable = 'true';
     this.container.appendChild(this.editor);
-
-    this.editor.addEventListener('keydown', (e) => {
-      if (e.code === 'Space') {
-        e.stopPropagation();
-      }
-    });
   }
 
   updateEditor() {
-    const { graph, cell, editor } = this;
-    const isNode = cell.isNode();
-    const isEdge = cell.isEdge();
+    const { graph, cell, editor, cellView, options } = this;
+    const textView = options.textView;
+    editor.addEventListener('keydown', spaceHackFn);
+
+    this.textView = textView;
+
+    const cellContainerBox = cellView.container.getBoundingClientRect();
+    const textViewBox = textView?.getBoundingClientRect();
+
     const style = editor.style;
 
-    // set tool position
-    let pos = new Point();
     let minWidth = 20;
     let minHeight = 20;
-    if (isNode) {
-      style.display = 'inline-flex';
-      pos = cell.getBBox().center;
-      minWidth = cell.size().width - 4;
-      minHeight = cell.size().height - 4;
-    } else if (isEdge) {
-      style.padding = '5px';
-      style.textAlign = 'center';
-      const e = this.options.event!;
-      const target = e.target;
-      const parent = target.parentElement;
-      const isEdgeLabel = parent && Dom.hasClass(parent, this.prefixClassName('edge-label'));
-      if (isEdgeLabel) {
-        const index = parent.getAttribute('data-index') || '0';
-        this.labelIndex = parseInt(index, 10);
-        const matrix = parent.getAttribute('transform');
-        const { translation } = Dom.parseTransformString(matrix);
-        pos = new Point(translation.tx, translation.ty);
-        minWidth = Util.getBBox(target).width;
-      } else {
-        if (!this.options.labelAddable) {
-          return this;
-        }
-        pos = graph.clientToLocal(Point.create(e.clientX, e.clientY));
-        const view = this.cellView as EdgeView;
-        const d = view.path.closestPointLength(pos);
-        this.distance = d;
-      }
-    }
-    pos = graph.localToGraph(pos);
+
+    style.display = 'flex';
+    style.flexDirection = 'column';
+
+    minWidth = textViewBox.width;
+    minHeight = textViewBox.height;
+
+    // set tool position
+    const pos = graph.localToGraph(cell.getBBox());
+    // 与节点的偏移量
+    const offsetX = textViewBox!.x - cellContainerBox.x;
+    const offsetY = textViewBox!.y - cellContainerBox.y;
+    pos.x += offsetX;
+    pos.y += offsetY;
+
     style.left = `${pos.x}px`;
     style.top = `${pos.y}px`;
     style.minWidth = `${minWidth}px`;
@@ -112,42 +108,30 @@ export class TextEditor extends ToolsView.ToolItem<NodeView | EdgeView, TextEdit
 
     // set tool transform
     const scale = graph.scale();
-    style.transform = `scale(${scale.sx}, ${scale.sy}) translate(-50%, -50%)`;
 
     // set font style
     const attrs = this.options.attrs;
     if (attrs) {
-      style.fontSize = `${attrs.fontSize}px`;
+      style.fontSize = `${attrs.fontSize! * scale.sx}px`;
       style.fontFamily = attrs.fontFamily!;
       style.color = attrs.color!;
       style.backgroundColor = attrs.backgroundColor!;
       style.fontWeight = attrs.fontWeight!;
       style.fontStyle = attrs.fontStyle!;
       style.textDecoration = attrs.textDecoration!;
-      style.alignItems = attrs.alignItems!;
-      style.justifyContent = attrs.justifyContent!;
+      style.alignItems = attrs.alignItems! || 'center';
+      style.justifyContent = attrs.justifyContent! || 'center';
     }
 
     // set init value
-    const getText = this.options.getText;
-    let text;
-    if (typeof getText === 'function') {
-      text = FunctionExt.call(getText, this.cellView, {
-        cell: this.cell,
-        index: this.labelIndex,
-      });
-    }
-    if (isNode) {
-      editor.innerHTML = text || '';
-    }
-    if (isEdge) {
-      editor.innerHTML = text || '';
-    }
-
-    // clear display value when edit status because char ghosting.
-    if (isNode) {
-      this.setCellText('');
-    }
+    const getText = this.options.getText || getNodeText;
+    const text = FunctionExt.call(getText, this.cellView, {
+      cell: this.cell,
+      index: this.labelIndex,
+    });
+    editor.innerHTML = text || '文字内容';
+    // 隐藏节点，防止阴影
+    this.textView.style.visibility = 'hidden';
 
     return this;
   }
@@ -161,9 +145,14 @@ export class TextEditor extends ToolsView.ToolItem<NodeView | EdgeView, TextEdit
       }
       // set value
       this.setCellText(value);
+
       // remove tool
-      cell.removeTool(cell.isEdge() ? 'edge-text-editor' : 'node-text-editor');
+      cell.removeTool('node-text-editor');
       this.undelegateDocumentEvents();
+      if (this.textView) {
+        this.textView.style.visibility = '';
+      }
+      this.editor.removeEventListener('keydown', spaceHackFn);
     }
   }
 
@@ -193,18 +182,17 @@ export class TextEditor extends ToolsView.ToolItem<NodeView | EdgeView, TextEdit
   }
 
   setCellText(value: string) {
-    const setText = this.options.setText;
-    if (typeof setText === 'function') {
-      FunctionExt.call(setText, this.cellView, {
-        cell: this.cell,
-        value,
-        index: this.labelIndex,
-        distance: this.distance,
-      });
-    }
+    const setText = this.options.setText || setNodeText;
+    FunctionExt.call(setText, this.cellView, {
+      cell: this.cell,
+      value,
+      index: this.labelIndex,
+      distance: this.distance,
+    });
   }
 }
-TextEditor.config({
+
+NodeTextEditor.config({
   tagName: 'div',
   isSVGElement: false,
   events: {
@@ -213,59 +201,5 @@ TextEditor.config({
   },
   documentEvents: {
     mousedown: 'onDocumentMouseDown',
-  },
-});
-
-export const NodeTextEditor = TextEditor.define<TextEditorOptions>({
-  getText({ cell }) {
-    return cell.attr('label/text');
-  },
-  setText({ cell, value }) {
-    cell.attr('label/text', value);
-  },
-});
-
-export const EdgeTextEditor = TextEditor.define<TextEditorOptions>({
-  labelAddable: true,
-  attrs: {
-    fontSize: 14,
-    color: '#000',
-  },
-  getText(args) {
-    const { cell, index } = args;
-    if (index === -1) {
-      return '';
-    }
-    return cell.prop(`labels/${index}/attrs/label/text`);
-  },
-  setText(args) {
-    const { cell, value, index, distance } = args;
-    const edge = cell as Edge;
-
-    if (index === -1) {
-      edge.appendLabel({
-        position: {
-          distance: distance!,
-        },
-        attrs: {
-          label: {
-            text: value,
-            fontSize: 14,
-            fill: '#000',
-            fontStyle: 'normal',
-            fontWeight: 'normal',
-          },
-          rect: {
-            fill: '#fff',
-          },
-        },
-      });
-    } else {
-      if (value) {
-        edge.prop(`labels/${index}/attrs/label/text`, value);
-      } else if (typeof index === 'number') {
-        edge.removeLabelAt(index);
-      }
-    }
   },
 });

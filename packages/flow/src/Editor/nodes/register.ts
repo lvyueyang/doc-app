@@ -10,6 +10,9 @@ Shape.TextBlock.config({
   attrs: {
     label: {
       class: TextEditorClassName,
+      style: {
+        ...DefaultTextStyle,
+      },
     },
   },
   attrHooks: {
