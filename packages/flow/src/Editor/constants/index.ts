@@ -30,35 +30,43 @@ export const portDefaultStyle = {
   circle: {
     magnet: true,
     stroke: theme.defaultConfig.token.colorPrimary,
+    fill: '#fff',
     r: 0,
   },
 };
+
+export const protDefaultMarkup = [
+  // {
+  //   tagName: 'rect',
+  //   selector: 'rect',
+  // },
+  {
+    tagName: 'circle',
+    selector: 'circle',
+  },
+];
 
 // 上下左右中心的连接桩
 export const TRBL_CENTER_GROUPS = {
   top: {
     position: 'top',
-    attrs: {
-      ...portDefaultStyle,
-    },
+    attrs: portDefaultStyle,
+    markup: protDefaultMarkup,
   },
   right: {
     position: 'right',
-    attrs: {
-      ...portDefaultStyle,
-    },
+    attrs: portDefaultStyle,
+    markup: protDefaultMarkup,
   },
   bottom: {
     position: 'bottom',
-    attrs: {
-      ...portDefaultStyle,
-    },
+    attrs: portDefaultStyle,
+    markup: protDefaultMarkup,
   },
   left: {
     position: 'left',
-    attrs: {
-      ...portDefaultStyle,
-    },
+    attrs: portDefaultStyle,
+    markup: protDefaultMarkup,
   },
 };
 
@@ -73,6 +81,7 @@ export const TRBL_CORNER_GROUPS = {
       ...portDefaultStyle,
       path: {},
     },
+    markup: protDefaultMarkup,
   },
   topRight: {
     position: {
@@ -82,6 +91,7 @@ export const TRBL_CORNER_GROUPS = {
     attrs: {
       ...portDefaultStyle,
     },
+    markup: protDefaultMarkup,
   },
   bottomRight: {
     position: {
@@ -91,15 +101,15 @@ export const TRBL_CORNER_GROUPS = {
     attrs: {
       ...portDefaultStyle,
     },
+    markup: protDefaultMarkup,
   },
   bottomLeft: {
     position: {
       name: 'absolute',
       args: { x: 0, y: '100%' },
     },
-    attrs: {
-      ...portDefaultStyle,
-    },
+    attrs: portDefaultStyle,
+    markup: protDefaultMarkup,
   },
 };
 
@@ -133,9 +143,8 @@ export const DefaultPortsGroups = {
     position: {
       name: 'absolute',
     },
-    attrs: {
-      ...portDefaultStyle,
-    },
+    attrs: portDefaultStyle,
+    markup: protDefaultMarkup,
   },
   line: {
     position: {
@@ -145,9 +154,8 @@ export const DefaultPortsGroups = {
         end: { x: 1, y: 90 },
       },
     },
-    attrs: {
-      ...portDefaultStyle,
-    },
+    attrs: portDefaultStyle,
+    markup: protDefaultMarkup,
   },
 };
 

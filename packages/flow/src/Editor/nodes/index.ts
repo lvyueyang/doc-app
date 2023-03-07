@@ -32,3 +32,4 @@ export * from './modules/sort';
 export * from './modules/mdBrackets';
 export * from './modules/lgBrackets';
 export * from './modules/arrow';
+export * from './modules/sum';

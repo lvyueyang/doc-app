@@ -33,6 +33,7 @@ import {
   MdBracketsNodeConfig,
   LgBracketsNodeConfig,
   ArrowNodeConfig,
+  SumNodeConfig,
 } from '../../Editor/nodes';
 import type { GroupItem } from './common';
 import { BASE_WIDTH } from './common';
@@ -375,17 +376,10 @@ export const baseShape: GroupItem = {
     {
       label: '求和',
       config: {
-        shape: OrNodeConfig.NODE_NAME,
+        shape: SumNodeConfig.NODE_NAME,
         option: {
           width: BASE_WIDTH,
           height: BASE_WIDTH,
-          attrs: {
-            shape: {
-              style: {
-                transform: 'rotate(45deg)',
-              },
-            },
-          },
         },
       },
     },
