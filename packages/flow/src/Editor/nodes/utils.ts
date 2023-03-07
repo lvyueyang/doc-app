@@ -198,7 +198,6 @@ export function svgPath2Array(value: string) {
       result[result.length - 1].push(Number(k));
     }
   });
-  console.log('result: ', result);
 
   return result;
 }

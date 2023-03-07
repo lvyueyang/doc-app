@@ -40,10 +40,7 @@ const SortNodeComponent: React.FC<ReactNodeProps> = ({ node }) => {
         height="100%"
       >
         <g style={{ transform: 'translateX(1px) translateY(1px)' }}>
-          <polygon
-            {...pathProps}
-            points={`${w / 2} 0, ${w} ${h / 2}, ${w / 2} ${h}, 0 ${h / 2},`}
-          />
+          <polygon {...pathProps} points={`${w / 2} 0, ${w} ${h / 2}, ${w / 2} ${h}, 0 ${h / 2}`} />
           <path {...pathProps} d={`M ${w} ${h / 2} L 0 ${h / 2},`} />
           {/* <polygon {...pathProps} points={`${w / 2} ${h}, ${w} ${h / 2}, 0 ${h / 2}`} /> */}
         </g>

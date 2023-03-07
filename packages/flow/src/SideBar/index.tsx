@@ -1,7 +1,7 @@
 import { useEffect, useRef, createRef } from 'react';
 import { Dnd } from '@antv/x6-plugin-dnd';
 import styles from './index.module.less';
-import type { GroupChildrenItem } from './config';
+import type { GroupChildrenItem } from './config/common';
 import DATA_GROUP from './config/index';
 import Thumbnail from './Thumbnail';
 import { useFlowEditor } from '../hooks';

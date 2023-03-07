@@ -162,6 +162,7 @@ export class BaseEditor extends EventEmitter {
         // modifiers: 'space',
         pageVisible: true,
         // pannable: true,
+        graph: this.graph,
       }),
     );
   }
