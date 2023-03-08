@@ -1,0 +1,9 @@
+{
+  "name": "@kangmi/utils",
+  "version": "0.0.1",
+  "private": true,
+  "author": "lvyueyang <975794403@qq.com>",
+  "main": "./src/index.ts",
+  "scripts": {},
+  "dependencies": {}
+}

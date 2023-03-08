@@ -3,6 +3,7 @@ import { EqualRatio, ZoomIn, ZoomOut } from '@icon-park/react';
 import type { TooltipProps } from 'antd';
 import { Dropdown, Space, Tooltip } from 'antd';
 import { useEffect, useState } from 'react';
+import { downloadJson } from '@kangmi/utils';
 import { useFlowEditor } from '../hooks';
 import styles from './index.module.less';
 
@@ -33,7 +34,12 @@ export default function Header() {
       graph.off('history:change', updateOperateHandler);
     };
   }, [editor]);
-  if (!editor) return null;
+
+  const getFileName = () => {
+    return `flow-${Date.now()}`;
+  };
+
+  if (!editor?.graph) return null;
 
   return (
     <div className={styles.header}>
@@ -85,58 +91,35 @@ export default function Header() {
           menu={{
             items: [
               {
-                label: (
-                  <span
-                    onClick={() => {
-                      const json = editor.graph.toJSON();
-                      const str = JSON.stringify(json);
-                      const blob = new Blob([str]);
-                      const a = document.createElement('a');
-                      a.href = URL.createObjectURL(blob);
-                      a.download = `flow-${Date.now()}.json`;
-                      a.click();
-                    }}
-                  >
-                    导出 JSON 文件
-                  </span>
-                ),
+                label: '导出 JSON 文件',
                 key: 'JSON',
+                onClick: editor.exportJSON,
               },
               {
-                label: (
-                  <span
-                    onClick={() => {
-                      editor.graph.exportPNG();
-                    }}
-                  >
-                    导出 PNG 文件
-                  </span>
-                ),
+                label: '导出 PNG 文件',
                 key: 'PNG',
+                onClick: () => {
+                  editor.exportPNG();
+                },
               },
               {
-                label: (
-                  <span
-                    onClick={() => {
-                      editor.graph.exportJPEG();
-                    }}
-                  >
-                    导出 JPEG 文件
-                  </span>
-                ),
+                label: '导出 PNG 文件 (透明背景)',
+                key: 'PNG-TRANSPARENT',
+                onClick: () => {
+                  editor.exportPNG(true);
+                },
+              },
+              {
+                label: '导出 JPEG 文件',
                 key: 'JPEG',
+                onClick: () => {
+                  editor.exportJPEG();
+                },
               },
               {
-                label: (
-                  <span
-                    onClick={() => {
-                      editor.graph.exportSVG();
-                    }}
-                  >
-                    导出 SVG 文件
-                  </span>
-                ),
+                label: '导出 SVG 文件',
                 key: 'SVG',
+                onClick: editor.exportSVG,
               },
             ],
           }}
