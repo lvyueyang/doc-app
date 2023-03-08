@@ -36,10 +36,10 @@ export const portDefaultStyle = {
 };
 
 export const protDefaultMarkup = [
-  // {
-  //   tagName: 'rect',
-  //   selector: 'rect',
-  // },
+  {
+    tagName: 'rect',
+    selector: 'rect',
+  },
   {
     tagName: 'circle',
     selector: 'circle',

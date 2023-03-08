@@ -33,7 +33,8 @@ export function keyboardEvents(graph: Graph) {
     graph.removeCells(selectedCells);
   });
   // 全选
-  graph.bindKey(['ctrl+A', 'cmd+A'], () => {
+  graph.bindKey(['ctrl+A', 'cmd+A'], (e) => {
+    e.preventDefault();
     graph.select(graph.getCells());
   });
 }

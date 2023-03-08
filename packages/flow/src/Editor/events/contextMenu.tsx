@@ -1,7 +1,8 @@
 import { BringForward, BringToFront, SendBackward, SentToBack } from '@icon-park/react';
-import type { Graph } from '@antv/x6';
+import type { Graph, Node } from '@antv/x6';
 import { ContextMenu } from '@kangmi/components';
 import { message } from 'antd';
+import { cancelGroup, createGroup } from '../utils';
 
 let contextMenu: ContextMenu | undefined;
 
@@ -26,6 +27,8 @@ export function contextMenuEvents(graph: Graph) {
     }
 
     const position = { x: e.pageX + left - offsetLeft, y: e.pageY + top - offsetTop };
+    const selectedCells = graph.getSelectedCells();
+    const selectedNodes = selectedCells.filter((c) => c.isNode()) as Node[];
     contextMenu.show({
       position,
       items: [
@@ -34,7 +37,7 @@ export function contextMenuEvents(graph: Graph) {
           key: 'copy',
           extra: 'Ctrl+C',
           onClick: () => {
-            graph.copy(graph.getSelectedCells());
+            graph.copy(selectedCells);
           },
         },
         {
@@ -42,7 +45,7 @@ export function contextMenuEvents(graph: Graph) {
           key: 'cut',
           extra: 'Ctrl+X',
           onClick: () => {
-            graph.cut(graph.getSelectedCells());
+            graph.cut(selectedCells);
           },
         },
         {
@@ -58,7 +61,7 @@ export function contextMenuEvents(graph: Graph) {
           key: 'delete',
           extra: 'Delete/Backspace',
           onClick: () => {
-            graph.removeCells(graph.getSelectedCells());
+            graph.removeCells(selectedCells);
           },
         },
         {
@@ -70,7 +73,7 @@ export function contextMenuEvents(graph: Graph) {
           icon: <BringToFront theme="outline" size="16" fill="#333" />,
           key: 'toFront',
           onClick: () => {
-            graph.getSelectedCells().forEach((cell) => {
+            selectedCells.forEach((cell) => {
               cell.toFront();
             });
           },
@@ -106,11 +109,38 @@ export function contextMenuEvents(graph: Graph) {
           key: 'd2',
         },
         {
+          label: '组合',
+          key: 'group',
+          disabled: selectedNodes.length <= 1,
+          onClick: () => {
+            const groupNode = createGroup(graph, selectedNodes);
+            const minZIndex = selectedNodes[0].getZIndex() || 0;
+            selectedNodes.forEach((node) => {
+              console.log(node.getZIndex());
+            });
+            groupNode.setZIndex(minZIndex === 0 ? 0 : minZIndex - 1);
+            graph.cleanSelection();
+            graph.select(groupNode);
+          },
+        },
+        {
+          label: '取消组合',
+          key: 'unGroup',
+          disabled: !selectedCells.find((c) => c.hasParent()),
+          onClick: () => {
+            cancelGroup(graph, selectedNodes);
+          },
+        },
+        {
+          type: 'divider',
+          key: 'd2',
+        },
+        {
           label: '全选',
           key: 'selectAll',
           extra: 'Ctrl+A',
           onClick: () => {
-            graph.copy(graph.getSelectedCells());
+            graph.copy(selectedCells);
           },
         },
       ],

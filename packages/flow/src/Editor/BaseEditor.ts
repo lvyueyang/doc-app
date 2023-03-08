@@ -175,6 +175,7 @@ export class BaseEditor extends EventEmitter {
         rubberband: true,
         movable: true,
         showNodeSelectionBox: true,
+        strict: true,
         // showEdgeSelectionBox: true,
       }),
     );

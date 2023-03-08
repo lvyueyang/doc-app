@@ -1,3 +1,4 @@
+export * from './modules/group';
 export * from './modules/text';
 export * from './modules/rect';
 export * from './modules/ellipse';
