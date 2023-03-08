@@ -1,6 +1,6 @@
-import type { Graph } from '@antv/x6';
+import type { Graph, Node } from '@antv/x6';
 
-/** 双击添加文本 */
+/** 键盘快捷键 */
 export function keyboardEvents(graph: Graph) {
   // 复制
   graph.bindKey(['ctrl+c', 'cmd+c'], () => {
@@ -36,6 +36,58 @@ export function keyboardEvents(graph: Graph) {
   graph.bindKey(['ctrl+A', 'cmd+A'], (e) => {
     e.preventDefault();
     graph.select(graph.getCells());
+  });
+
+  // 节点移动
+  document.addEventListener('keydown', (e) => {
+    const code = e.code;
+    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(code)) {
+      const selectedNodes = graph.getSelectedCells().filter((c) => c.isNode()) as Node[];
+
+      if (selectedNodes.length > 0) {
+        e.preventDefault();
+        // 上移 ↑
+        if (code === 'ArrowUp') {
+          selectedNodes.forEach((node) => {
+            const pos = node.getPosition();
+            node.setPosition({
+              ...pos,
+              y: pos.y - 1,
+            });
+          });
+        }
+        // 下移 ↓
+        if (code === 'ArrowDown') {
+          selectedNodes.forEach((node) => {
+            const pos = node.getPosition();
+            node.setPosition({
+              ...pos,
+              y: pos.y + 1,
+            });
+          });
+        }
+        // 左移 ←
+        if (code === 'ArrowLeft') {
+          selectedNodes.forEach((node) => {
+            const pos = node.getPosition();
+            node.setPosition({
+              ...pos,
+              x: pos.x - 1,
+            });
+          });
+        }
+        // 右移 →
+        if (code === 'ArrowRight') {
+          selectedNodes.forEach((node) => {
+            const pos = node.getPosition();
+            node.setPosition({
+              ...pos,
+              x: pos.x + 1,
+            });
+          });
+        }
+      }
+    }
   });
 }
 
