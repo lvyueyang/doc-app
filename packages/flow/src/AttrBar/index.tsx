@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import type { Cell, Rectangle, Edge, EdgeView, Dom } from '@antv/x6';
 import styles from './index.module.less';
 import { useFlowEditor } from '../hooks';
-import { Button, InputNumber, Select } from 'antd';
+import { Button, InputNumber, Select, Switch } from 'antd';
 import { ColorSelect } from '@kangmi/components';
 import type { Editor } from '../Editor';
 import { LINE_TYPE } from '../Editor/constants';
@@ -15,11 +15,31 @@ import {
   VerticalAlignButtonGroup,
 } from './components';
 
+interface PageConfigState {
+  background: {
+    color: string;
+  };
+  grid: {
+    size: number;
+    visible: boolean;
+  };
+}
+
 export default function AttrBar() {
   const { editor } = useFlowEditor();
   const { nodeAttrs, edgeAttrs, bBox, selectCells, selectedEdgeLabels, loadAttrs } =
     useSelectedCell(editor);
+  const [pageConfig, setPageConfig] = useState<PageConfigState>({
+    background: {
+      color: '#fff',
+    },
+    grid: {
+      size: 10,
+      visible: true,
+    },
+  });
 
+  const graph = editor?.graph;
   const body = nodeAttrs?.body || {};
   const text = nodeAttrs?.label?.style || {};
   const edgeLine = edgeAttrs?.line || {};
@@ -59,9 +79,64 @@ export default function AttrBar() {
       });
     });
   };
+  const updatePageConfig = () => {
+    if (graph) {
+      setPageConfig({
+        background: {
+          color: (graph.options.background as unknown as string) || '#fff',
+        },
+        grid: {
+          size: graph.getGridSize(),
+          visible: graph.options.grid.visible,
+        },
+      });
+    }
+  };
+
+  useEffect(() => {
+    updatePageConfig();
+  }, [editor]);
 
   return (
     <div className={styles.attrBar}>
+      <GroupItem label="页面配置">
+        <AttrItem label="背景颜色">
+          <ColorSelect
+            value={pageConfig.background.color}
+            style={{ width: 100 }}
+            onChange={(e) => {
+              graph?.drawBackground({ color: e });
+              updatePageConfig();
+            }}
+          />
+        </AttrItem>
+        <AttrItem label="显示网格">
+          <Switch
+            checked={pageConfig.grid.visible}
+            onChange={(e) => {
+              if (e) {
+                graph?.showGrid();
+              } else {
+                graph?.hideGrid();
+              }
+              updatePageConfig();
+            }}
+          />
+        </AttrItem>
+        <AttrItem label="网格尺寸">
+          <InputNumber
+            value={pageConfig.grid.size}
+            style={{ width: 100 }}
+            min={0}
+            onChange={(e) => {
+              if (e) {
+                graph?.setGridSize(e);
+                updatePageConfig();
+              }
+            }}
+          />
+        </AttrItem>
+      </GroupItem>
       {nodeAttrs && (
         <>
           <GroupItem label="位置">
@@ -204,17 +279,17 @@ export default function AttrBar() {
             </AttrItem>
             <AttrItem label="水平对齐">
               <HorizontalAlignButtonGroup
-                value={text.justifyContent}
+                value={text.alignItems}
                 onChange={(e) => {
-                  changeAttrsHandler('label/style/justifyContent', e!);
+                  changeAttrsHandler('label/style/alignItems', e!);
                 }}
               />
             </AttrItem>
             <AttrItem label="垂直对齐">
               <VerticalAlignButtonGroup
-                value={text.alignItems}
+                value={text.justifyContent}
                 onChange={(e) => {
-                  changeAttrsHandler('label/style/alignItems', e!);
+                  changeAttrsHandler('label/style/justifyContent', e!);
                 }}
               />
             </AttrItem>
