@@ -1,12 +1,9 @@
-import type { Node, Cell, Graph } from '@antv/x6';
+import type { Cell, Graph, Node } from '@antv/x6';
 import { GroupNodeConfig } from '../nodes';
 
 /** 获取与node节点连接的边 */
 export function getNodeConnectEdges(graph: Graph, node: Node | string) {
-  const id = typeof node === 'string' ? node : node.id;
-  return graph.getEdges().filter((edge) => {
-    return edge.getSourceCellId() === id || edge.getTargetCellId() === id;
-  });
+  return graph.getConnectedEdges(node, { deep: true, enclosed: true, indirect: true });
 }
 
 /** 在多个图形可以成组时计算组节点的宽高和位置 */
@@ -62,8 +59,8 @@ export function createGroup(graph: Graph, cells: Cell[]) {
 
 /** 取消组合 */
 export function cancelGroup(graph: Graph, cells: Cell[]) {
-  cells.forEach((child) => {
-    const parentNode = child.getParent();
+  cells.forEach((cell) => {
+    const parentNode = cell.shape === GroupNodeConfig.NODE_NAME ? cell : cell.getParent();
     parentNode?.getChildren()?.forEach((c) => {
       parentNode.removeChild(c);
       c.addTo(graph);

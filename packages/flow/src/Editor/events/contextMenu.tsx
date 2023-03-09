@@ -1,7 +1,8 @@
-import { BringForward, BringToFront, SendBackward, SentToBack } from '@icon-park/react';
 import type { Graph, Node } from '@antv/x6';
+import { BringForward, BringToFront, SendBackward, SentToBack } from '@icon-park/react';
 import { ContextMenu } from '@kangmi/components';
 import { message } from 'antd';
+import { GroupNodeConfig } from '../nodes';
 import { cancelGroup, createGroup } from '../utils';
 
 let contextMenu: ContextMenu | undefined;
@@ -126,7 +127,9 @@ export function contextMenuEvents(graph: Graph) {
         {
           label: '取消组合',
           key: 'unGroup',
-          disabled: !selectedCells.find((c) => c.hasParent()),
+          disabled: !selectedCells.find((c) => {
+            return c.hasParent() || c.shape === GroupNodeConfig.NODE_NAME;
+          }),
           onClick: () => {
             cancelGroup(graph, selectedNodes);
           },
