@@ -1,19 +1,10 @@
 /**
  * 水滴
  */
+import { TRBL_CENTER_GROUPS } from '../../constants';
 import type { KMReactNode, ReactNodeProps } from '../../types';
-import {
-  createNodeName,
-  updatePort,
-  createTextBlock,
-  getLineType,
-  svgPath2Array,
-  svgPathArray2String,
-  points2PortGroups,
-} from '../utils';
-import { DefaultPortsGroups, TRBL_CENTER_GROUPS } from '../../constants';
-import { useEffect } from 'react';
 import HtmlText from '../components/HtmlText';
+import { createNodeName, createTextBlock, getLineType } from '../utils';
 
 const TextBlock = createTextBlock();
 

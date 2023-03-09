@@ -1,6 +1,7 @@
 /**
  * 大括号
  */
+import { DefaultPortsGroups, TRBL_CENTER_GROUPS } from '../../constants';
 import type { KMReactNode, ReactNodeProps } from '../../types';
 import {
   createNodeName,
@@ -9,8 +10,6 @@ import {
   svgPath2Array,
   svgPathArray2String,
 } from '../utils';
-import { DefaultPortsGroups, TRBL_CENTER_GROUPS } from '../../constants';
-import HtmlText from '../components/HtmlText';
 
 const TextBlock = createTextBlock();
 

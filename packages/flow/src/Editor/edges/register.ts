@@ -10,6 +10,8 @@ Shape.Edge.config({
       padding: 10,
     },
   },
+  // 将边置于最底层, 否则会出现覆盖到链接桩问题
+  zIndex: 0,
 });
 
 Object.values(edges).forEach((edge) => {

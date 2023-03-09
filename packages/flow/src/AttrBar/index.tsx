@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import type { Cell, Rectangle, Edge, EdgeView, Dom, Graph } from '@antv/x6';
-import styles from './index.module.less';
-import { useFlowEditor } from '../hooks';
-import { Button, InputNumber, Select, Switch } from 'antd';
+import type { Cell, Dom, Edge, EdgeView, Graph, Rectangle } from '@antv/x6';
 import { ColorSelect } from '@kangmi/components';
+import { Button, InputNumber, Select, Switch } from 'antd';
+import { useEffect, useState } from 'react';
+import type { Editor } from '../Editor';
 import { LINE_TYPE } from '../Editor/constants';
+import { useFlowEditor } from '../hooks';
 import {
   FontStyleButton,
   FontWeightButton,
@@ -13,7 +13,7 @@ import {
   UnderlineButton,
   VerticalAlignButtonGroup,
 } from './components';
-import type { Editor } from '../Editor';
+import styles from './index.module.less';
 
 interface SelectedLabel {
   edge: Edge;

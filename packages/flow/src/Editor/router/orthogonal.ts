@@ -1,5 +1,5 @@
 import type { Point } from './utils';
-import { add, multiply, vectorFromPoints, isParallel, dot, getUnitVector } from './utils';
+import { add, dot, getUnitVector, isParallel, multiply, vectorFromPoints } from './utils';
 
 interface Options {
   entryPoint: Point;

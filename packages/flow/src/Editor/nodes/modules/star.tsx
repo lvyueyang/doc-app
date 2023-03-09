@@ -1,7 +1,10 @@
 /**
  * 五角星
  */
+import { useEffect } from 'react';
+import { DefaultPortsGroups } from '../../constants';
 import type { KMReactNode, ReactNodeProps } from '../../types';
+import HtmlText from '../components/HtmlText';
 import {
   createNodeName,
   createTextBlock,
@@ -9,9 +12,6 @@ import {
   points2PortGroups,
   updatePort,
 } from '../utils';
-import { DefaultPortsGroups, TRBL_CENTER_GROUPS } from '../../constants';
-import HtmlText from '../components/HtmlText';
-import { useEffect } from 'react';
 
 const TextBlock = createTextBlock();
 

@@ -1,10 +1,10 @@
 /**
  * 八边形
  */
-import type { KMReactNode, ReactNodeProps } from '../../types';
-import { createNodeName, createTextBlock, getLineType } from '../utils';
 import { DefaultPortsGroups, TRBL_CENTER_GROUPS } from '../../constants';
+import type { KMReactNode, ReactNodeProps } from '../../types';
 import HtmlText from '../components/HtmlText';
+import { createNodeName, createTextBlock, getLineType } from '../utils';
 
 const TextBlock = createTextBlock();
 

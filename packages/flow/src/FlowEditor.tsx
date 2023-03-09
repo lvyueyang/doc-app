@@ -1,9 +1,9 @@
 import { createContext, useEffect, useRef, useState } from 'react';
+import AttrBar from './AttrBar';
 import { Editor } from './Editor';
 import Header from './Header';
 import styles from './index.module.less';
 import SideBar from './SideBar';
-import AttrBar from './AttrBar';
 
 interface FlowEditorContextOptions {
   editor?: Editor;

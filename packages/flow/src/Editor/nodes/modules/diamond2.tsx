@@ -1,18 +1,18 @@
 /**
  * 三角形
  */
+import { useEffect } from 'react';
+import { DefaultPortsGroups } from '../../constants';
 import type { KMReactNode, ReactNodeProps } from '../../types';
+import HtmlText from '../components/HtmlText';
 import {
   createNodeName,
-  updatePort,
-  getLineCenter,
   createTextBlock,
+  getLineCenter,
   getLineType,
   points2PortGroups,
+  updatePort,
 } from '../utils';
-import { DefaultPortsGroups } from '../../constants';
-import { useEffect } from 'react';
-import HtmlText from '../components/HtmlText';
 
 const TextBlock = createTextBlock();
 

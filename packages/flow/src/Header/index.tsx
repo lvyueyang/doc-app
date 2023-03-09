@@ -3,7 +3,6 @@ import { EqualRatio, ZoomIn, ZoomOut } from '@icon-park/react';
 import type { TooltipProps } from 'antd';
 import { Dropdown, Space, Tooltip } from 'antd';
 import { useEffect, useState } from 'react';
-import { downloadJson } from '@kangmi/utils';
 import { useFlowEditor } from '../hooks';
 import styles from './index.module.less';
 

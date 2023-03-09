@@ -1,6 +1,5 @@
-import React from 'react';
 import { Popover, theme } from 'antd';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SketchPicker } from 'react-color';
 import styles from './index.module.less';
 

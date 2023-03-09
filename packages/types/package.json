@@ -1,0 +1,9 @@
+{
+  "name": "@kangmi/types",
+  "version": "0.0.1",
+  "private": true,
+  "author": "lvyueyang <975794403@qq.com>",
+  "main": "./types/index.ts",
+  "scripts": {},
+  "dependencies": {}
+}

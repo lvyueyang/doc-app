@@ -1,6 +1,4 @@
 import type { EdgeView, Point, Rectangle } from '@antv/x6';
-import { Util } from '@antv/x6';
-import { getLineCenter } from '../nodes/utils';
 import orthogonal from './orthogonal';
 
 interface FlowRouterArgs {}

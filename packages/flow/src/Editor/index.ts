@@ -1,5 +1,5 @@
-import { downloadJson } from '@kangmi/utils';
 import type { Cell, Graph } from '@antv/x6';
+import { downloadJson } from '@kangmi/utils';
 import type { BaseEditorOptions } from './BaseEditor';
 import { BaseEditor } from './BaseEditor';
 import type { EdgeConfig } from './edges/types';

@@ -1,9 +1,9 @@
 /**
  * 水滴
  */
+import { DefaultPortsGroups, TRBL_CENTER_GROUPS } from '../../constants';
 import type { KMReactNode, ReactNodeProps } from '../../types';
 import { createNodeName, createTextBlock, getLineType } from '../utils';
-import { DefaultPortsGroups, TRBL_CENTER_GROUPS } from '../../constants';
 
 const TextBlock = createTextBlock();
 

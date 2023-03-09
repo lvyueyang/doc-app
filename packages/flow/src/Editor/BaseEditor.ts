@@ -1,22 +1,22 @@
-import { EventEmitter } from 'events';
 import { Graph } from '@antv/x6';
-import { Snapline } from '@antv/x6-plugin-snapline';
-import { Transform } from '@antv/x6-plugin-transform';
 import { Clipboard } from '@antv/x6-plugin-clipboard';
-import { Keyboard } from '@antv/x6-plugin-keyboard';
+import { Export } from '@antv/x6-plugin-export';
 import { History } from '@antv/x6-plugin-history';
+import { Keyboard } from '@antv/x6-plugin-keyboard';
 import { Scroller } from '@antv/x6-plugin-scroller';
 import { Selection } from '@antv/x6-plugin-selection';
-import { Export } from '@antv/x6-plugin-export';
+import { Snapline } from '@antv/x6-plugin-snapline';
+import { Transform } from '@antv/x6-plugin-transform';
+import { EventEmitter } from 'events';
 import * as graphEvents from './events';
 
 import styles from './index.module.less';
 
-import './nodes/register';
 import './edges/register';
+import './nodes/register';
 import './ports/register';
-import './tools/register';
 import './router/register';
+import './tools/register';
 
 export interface BaseEditorOptions {
   container: HTMLElement;

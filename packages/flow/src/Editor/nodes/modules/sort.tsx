@@ -1,17 +1,10 @@
 /**
  * 队列数据
  */
-import type { KMReactNode, ReactNodeProps } from '../../types';
-import {
-  createNodeName,
-  updatePort,
-  createTextBlock,
-  getLineType,
-  points2PortGroups,
-} from '../utils';
 import { DefaultPortsGroups, TRBL_CENTER_GROUPS } from '../../constants';
-import { useEffect } from 'react';
+import type { KMReactNode, ReactNodeProps } from '../../types';
 import HtmlText from '../components/HtmlText';
+import { createNodeName, createTextBlock, getLineType } from '../utils';
 
 const TextBlock = createTextBlock();
 

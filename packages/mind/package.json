@@ -1,0 +1,11 @@
+{
+  "name": "@kangmi/mind",
+  "version": "0.0.1",
+  "private": true,
+  "author": "lvyueyang <975794403@qq.com>",
+  "main": "./src/index.ts",
+  "scripts": {},
+  "dependencies": {
+    "@icon-park/react": "^1.4.2"
+  }
+}
