@@ -1,7 +1,7 @@
 import { DownloadOutlined, RollbackOutlined } from '@ant-design/icons';
 import { EqualRatio, ZoomIn, ZoomOut } from '@icon-park/react';
 import type { TooltipProps } from 'antd';
-import { Dropdown, Space, Tooltip } from 'antd';
+import { Dropdown, Tooltip } from 'antd';
 import { useEffect, useState } from 'react';
 import { useMindEditor } from '../hooks';
 import styles from './index.module.less';
@@ -42,7 +42,7 @@ export default function Header() {
 
   return (
     <div className={styles.header}>
-      <Space size={8}>
+      <div className={styles.wrap}>
         <OperateItem
           title="撤销 (ctrl+z)"
           disabled={!canOperate.canUndo}
@@ -135,7 +135,7 @@ export default function Header() {
         >
           JSON
         </OperateItem>
-      </Space>
+      </div>
     </div>
   );
 }

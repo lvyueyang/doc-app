@@ -1,8 +1,6 @@
 import type { Graph, Node } from '@antv/x6';
-import { BringForward, BringToFront, SendBackward, SentToBack } from '@icon-park/react';
 import { ContextMenu } from '@kangmi/components';
 import { message } from 'antd';
-import { cancelGroup, createGroup } from '../utils';
 
 let contextMenu: ContextMenu | undefined;
 
@@ -67,81 +65,6 @@ export function contextMenuEvents(graph: Graph) {
         {
           type: 'divider',
           key: 'd1',
-        },
-        {
-          label: '置于顶层',
-          icon: <BringToFront theme="outline" size="16" fill="#333" />,
-          key: 'toFront',
-          onClick: () => {
-            selectedCells.forEach((cell) => {
-              cell.toFront();
-            });
-          },
-        },
-        {
-          label: '置于底层',
-          key: 'toBack',
-          icon: <SentToBack theme="outline" size="16" fill="#333" />,
-          onClick: () => {
-            graph.getSelectedCells().forEach((cell) => {
-              cell.toBack();
-            });
-          },
-        },
-        {
-          label: '上移一层',
-          key: 'zIndexUp',
-          icon: <BringForward theme="outline" size="16" fill="#333" />,
-          onClick: () => {
-            graph.copy(graph.getSelectedCells());
-          },
-        },
-        {
-          label: '下移一层',
-          key: 'zIndexDown',
-          icon: <SendBackward theme="outline" size="16" fill="#333" />,
-          onClick: () => {
-            graph.copy(graph.getSelectedCells());
-          },
-        },
-        {
-          type: 'divider',
-          key: 'd2',
-        },
-        {
-          label: '组合',
-          key: 'group',
-          disabled: selectedNodes.length <= 1,
-          onClick: () => {
-            const groupNode = createGroup(graph, selectedNodes);
-            const minZIndex = selectedNodes[0].getZIndex() || 0;
-            selectedNodes.forEach((node) => {
-              console.log(node.getZIndex());
-            });
-            groupNode.setZIndex(minZIndex === 0 ? 0 : minZIndex - 1);
-            graph.cleanSelection();
-            graph.select(groupNode);
-          },
-        },
-        {
-          label: '取消组合',
-          key: 'unGroup',
-          disabled: !selectedCells.find((c) => c.hasParent()),
-          onClick: () => {
-            cancelGroup(graph, selectedNodes);
-          },
-        },
-        {
-          type: 'divider',
-          key: 'd2',
-        },
-        {
-          label: '全选',
-          key: 'selectAll',
-          extra: 'Ctrl+A',
-          onClick: () => {
-            graph.copy(selectedCells);
-          },
         },
       ],
       onClick: ({ label }) => {

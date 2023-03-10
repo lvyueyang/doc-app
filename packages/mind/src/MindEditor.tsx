@@ -1,8 +1,8 @@
 import { createContext, useEffect, useRef, useState } from 'react';
-import AttrBar from './AttrBar';
 import { Editor } from './Editor';
 import Header from './Header';
 import styles from './index.module.less';
+import SideBar from './SideBar';
 
 interface MindEditorContextOptions {
   editor?: Editor;
@@ -32,7 +32,6 @@ export function MindEditor({ value }: MindEditorProps) {
       mindEditor?.fromJSON(value);
     } else {
       mindEditor?.appendRootNode({ isCenter: true });
-      console.log('mindEditor: ', mindEditor);
     }
     setEditor(mindEditor);
   }, []);
@@ -47,12 +46,10 @@ export function MindEditor({ value }: MindEditorProps) {
     <MindEditorContext.Provider value={{ editor }}>
       <div className={styles.main}>
         <Header />
-        <div className={styles.row}>
-          <div className={styles.canvasContainer} ref={containerRef}>
-            <div className={styles.canvas} ref={canvasRef} />
-          </div>
-          <AttrBar />
+        <div className={styles.canvasContainer} ref={containerRef}>
+          <div className={styles.canvas} ref={canvasRef} />
         </div>
+        <SideBar />
       </div>
     </MindEditorContext.Provider>
   );
