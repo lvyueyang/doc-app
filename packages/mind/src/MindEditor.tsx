@@ -31,7 +31,7 @@ export function MindEditor({ value }: MindEditorProps) {
     if (value) {
       mindEditor?.fromJSON(value);
     } else {
-      mindEditor?.appendRootNode();
+      mindEditor?.appendRootNode({ isCenter: true });
       console.log('mindEditor: ', mindEditor);
     }
     setEditor(mindEditor);

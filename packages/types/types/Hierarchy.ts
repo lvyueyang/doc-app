@@ -13,9 +13,20 @@ export interface MindMapResult {
   y: number;
   data: MindMapData;
   children?: MindMapResult[];
+  depth: number;
+  height: number;
+  width: number;
+  hgap: number;
+  preH: number;
+  preV: number;
+  side: 'left' | 'right';
+  startY: number;
+  totalHeight: number;
+  vgap: number;
 }
 
 export interface MindmapOptions {
+  direction?: string;
   getId?: (data: MindMapData) => string;
   getPreH?: (data: MindMapData) => number;
   getPreV?: (data: MindMapData) => number;

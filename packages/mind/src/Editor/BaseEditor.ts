@@ -52,21 +52,12 @@ export class BaseEditor extends EventEmitter {
       container,
       height,
       width,
-      background: { color: '#fff' },
+      background: { color: '#fafafa' },
       autoResize: true,
-      mousewheel: {},
       grid: {
-        visible: true,
+        visible: false,
+        size: 1,
       },
-      // interacting: {
-      //   // nodeMovable: false,
-      //   edgeLabelMovable: false,
-      //   edgeMovable: false,
-      //   arrowheadMovable: false,
-      //   vertexMovable: false,
-      //   vertexAddable: false,
-      //   vertexDeletable: false,
-      // },
       interacting: (cellView) => {
         const options = {
           nodeMovable: cellView.cell.shape === RootNodeConfig.NODE_NAME,
@@ -87,7 +78,7 @@ export class BaseEditor extends EventEmitter {
         allowNode: false,
         highlight: true,
         allowLoop: false,
-        anchor: 'center',
+        anchor: 'right',
       },
     });
 

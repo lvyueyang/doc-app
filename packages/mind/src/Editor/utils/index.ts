@@ -1,5 +1,7 @@
 import type { Cell, Graph, Node } from '@antv/x6';
-import { GroupNodeConfig } from '../nodes';
+import type { MindMapTheme } from 'Editor/theme/types';
+import type { MindMapData } from '../../../types/Hierarchy';
+import { BranchNodeConfig, GroupNodeConfig, RootNodeConfig } from '../nodes';
 
 /** 获取与node节点连接的边 */
 export function getNodeConnectEdges(graph: Graph, node: Node | string) {
@@ -70,4 +72,77 @@ export function cancelGroup(graph: Graph, cells: Cell[]) {
     });
     parentNode?.remove();
   });
+}
+
+function cellItem2TreeItem(cell: Cell.Properties) {
+  return {
+    id: cell.id!,
+    type: cell.shape!,
+    width: cell.size.width,
+    height: cell.size.height,
+    data: cell,
+  };
+}
+
+/** 将平级的数据转换为 tree */
+export function cells2Tree(cells: Cell.Properties[]) {
+  const rootCell = cells.find((cell) => cell.shape === RootNodeConfig.NODE_NAME);
+  if (!rootCell) return;
+  const root: MindMapData = {
+    id: rootCell.id!,
+    type: rootCell.shape!,
+    width: rootCell.size.width,
+    height: rootCell.size.height,
+    data: rootCell,
+  };
+  const traverse = (dataItem: MindMapData) => {
+    const children = cells.find((cell) => cell.id === dataItem.id)?.children;
+    if (!children) return;
+
+    dataItem.children = children
+      .map((item) => {
+        const cell = cells.find((c) => c.id === item);
+        if (!cell) {
+          console.warn(`节点 ${item} 不存在`);
+          return;
+        }
+        return {
+          ...cellItem2TreeItem(cell!),
+          children: cell.children,
+        };
+      })
+      .filter((item) => !!item) as MindMapData[];
+
+    dataItem.children.forEach((child) => {
+      traverse(child);
+    });
+  };
+  traverse(root);
+
+  return root as MindMapData;
+}
+
+export function shape2Theme(shape: string, theme: MindMapTheme) {
+  if (shape === RootNodeConfig.NODE_NAME) {
+    return {
+      node: theme.rootNodeStyle,
+      size: theme.rootNodeSize,
+      edge: theme.rootNodeEdge,
+      content: theme.rootNodeContent,
+    };
+  }
+  if (shape === BranchNodeConfig.NODE_NAME) {
+    return {
+      node: theme.branchNodeStyle,
+      size: theme.branchNodeSize,
+      edge: theme.branchNodeEdge,
+      content: theme.branchNodeContent,
+    };
+  }
+  return {
+    node: theme.childNodeStyle,
+    size: theme.childNodeSize,
+    edge: theme.childNodeEdge,
+    content: theme.childNodeContent,
+  };
 }

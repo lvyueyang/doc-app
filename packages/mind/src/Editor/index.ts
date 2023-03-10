@@ -1,13 +1,16 @@
-import Hierarchy from '@antv/hierarchy';
 import type { Cell } from '@antv/x6';
-import type { MindMapData, MindMapResult } from '@kangmi/types';
+import type { MindMapResult } from '@kangmi/types';
 import { downloadJson } from '@kangmi/utils';
+import { MindMapLRConnector } from '../Editor/connector';
 import type { BaseEditorOptions } from './BaseEditor';
 import { BaseEditor } from './BaseEditor';
-import { MindmapEdgeConfig } from './edges';
-import type { EdgeConfig } from './edges/types';
+import { MindMapEdgeConfig } from './edges';
+import * as layouts from './layout';
 import { BranchNodeConfig, ChildNodeConfig, RootNodeConfig } from './nodes';
+import * as mindmapTheme from './theme';
+import type { MindMapTheme } from './theme/types';
 import type { NodeConfig } from './types';
+import { cells2Tree, shape2Theme } from './utils';
 
 interface BackgroundOptions {
   color: string;
@@ -23,15 +26,15 @@ interface EditorJsonForm {
   };
 }
 
-interface AppendNodeOptions {
-  /** 是否添加到画布中心 */
-  center: boolean;
-}
-
 type EditorOptions = BaseEditorOptions;
 
 export class Editor extends BaseEditor {
   options: BaseEditorOptions;
+
+  /** 主题 */
+  private theme: MindMapTheme = mindmapTheme.defaultTheme;
+  /** 结构布局*/
+  private layoutType: string = layouts.MindMapBTLayout.name;
 
   /** 画布标题 */
   private title: string = '';
@@ -43,50 +46,75 @@ export class Editor extends BaseEditor {
     this.bindEvent();
   }
 
-  /** 添加根节点 */
-  appendRootNode = (config?: NodeConfig) => {
-    this.appendNode(RootNodeConfig.NODE_NAME, {
-      width: 120,
-      height: 50,
+  // 创建节点
+  createNode = (shape: string, config?: NodeConfig) => {
+    const { node, size, content } = shape2Theme(shape, this.theme);
+    return this.graph.createNode({
+      shape,
+      width: size.width,
+      height: size.height,
       ...config,
       attrs: {
-        body: {},
-        label: {
-          text: 'root',
-        },
         ...config?.attrs,
+        body: {
+          ...config?.attrs?.body,
+          style: { ...node },
+        },
+        label: {
+          ...config?.attrs?.label,
+          style: {
+            ...content,
+          },
+        },
+      },
+    });
+  };
+
+  /** 创建根节点 */
+  createRootNode = (config?: NodeConfig) => {
+    return this.createNode(RootNodeConfig.NODE_NAME, {
+      ...config,
+      attrs: {
+        label: {
+          text: '中心主题',
+        },
       },
     });
   };
   /** 创建分支节点 */
   createBranchNode = (config?: NodeConfig) => {
-    return this.graph.createNode({
-      shape: BranchNodeConfig.NODE_NAME,
-      width: 100,
-      height: 40,
+    return this.createNode(BranchNodeConfig.NODE_NAME, {
       ...config,
       attrs: {
         label: {
           text: '分支主题',
         },
-        ...config?.attrs,
       },
     });
   };
   /** 创建子节点 */
   createChildNode = (config?: NodeConfig) => {
-    return this.graph.createNode({
-      shape: ChildNodeConfig.NODE_NAME,
-      width: 100,
-      height: 40,
+    return this.createNode(ChildNodeConfig.NODE_NAME, {
       ...config,
       attrs: {
         label: {
           text: '子主题',
         },
-        ...config?.attrs,
       },
     });
+  };
+
+  /** 添加根节点 */
+  appendRootNode = (options?: { isCenter?: boolean }) => {
+    let center;
+    if (options?.isCenter) {
+      center = this.graph.getGraphArea().center;
+    }
+    this.graph.addNode(
+      this.createRootNode({
+        ...center,
+      }),
+    );
   };
   /** 添加子节点 */
   appendChildNode = () => {
@@ -98,9 +126,9 @@ export class Editor extends BaseEditor {
           ? this.createBranchNode()
           : this.createChildNode();
       childNode.addTo(selectedNode);
-      this.layout();
-      this.graph.cleanSelection();
-      this.graph.select(childNode.id);
+
+      this.layout(childNode.id);
+
       return childNode;
     }
     return false;
@@ -122,47 +150,41 @@ export class Editor extends BaseEditor {
           : this.createChildNode();
       const index = parent?.getChildren()?.indexOf(selectedNode) || 0;
       childNode.insertTo(parent, index + 1);
-      this.layout();
-      this.graph.cleanSelection();
-      this.graph.select(childNode.id);
+
+      this.layout(childNode.id);
+
       return childNode;
     }
     return false;
   };
 
   /** 布局 */
-  layout = () => {
-    const data = this.graph.toJSON();
-    const treedata = cells2Tree(data.cells);
-    if (!treedata) return;
-    const result: MindMapResult = Hierarchy.mindmap(treedata, {
-      getHeight(d: MindMapData) {
-        return d.height;
-      },
-      getWidth(d: MindMapData) {
-        return d.width;
-      },
-      getHGap() {
-        return 40;
-      },
-      getVGap() {
-        return 20;
-      },
-      getSide: () => {
-        return 'right';
-      },
-    });
+  layout = (nodeId?: string) => {
+    const json = this.graph.toJSON();
+    const treeData = cells2Tree(json.cells);
+
+    if (!treeData) return;
+
+    const { layout, createEdgeConfig } =
+      Object.values(layouts).find(({ name }) => name === this.layoutType) || {};
+
+    const result = layout?.(treeData);
+
+    if (!result) return;
 
     const cells: Cell[] = [];
     const traverse = (hierarchyItem: MindMapResult) => {
+      console.log('hierarchyItem: ', hierarchyItem);
       if (hierarchyItem) {
         const { data, children } = hierarchyItem;
-
+        const position = {
+          x: hierarchyItem.x,
+          y: hierarchyItem.y,
+        };
         const node = this.graph.createNode({
           shape: data.type,
           id: data.id,
-          x: hierarchyItem.x,
-          y: hierarchyItem.y,
+          ...position,
           width: data.width,
           height: data.height,
           type: data.type,
@@ -173,37 +195,37 @@ export class Editor extends BaseEditor {
         });
         cells.push(node);
         if (children) {
-          children.forEach((item) => {
-            const { id, data } = item;
-            cells.push(
-              this.graph.createEdge({
-                shape: MindmapEdgeConfig.EDGE_NAME,
-                source: {
-                  cell: hierarchyItem.id,
-                  anchor:
-                    data.type === ChildNodeConfig.NODE_NAME
-                      ? {
-                          name: 'right',
-                          args: {
-                            dx: -16,
-                          },
-                        }
-                      : {
-                          name: 'center',
-                          args: {
-                            dx: '25%',
-                          },
-                        },
+          children.forEach((child) => {
+            console.log('child: ', child);
+            const edgeLayoutConfig = createEdgeConfig?.(hierarchyItem, child);
+            const edge = this.graph.createEdge({
+              shape: MindMapEdgeConfig.EDGE_NAME,
+              connector: {
+                name: MindMapLRConnector.NAME,
+                ...edgeLayoutConfig?.connector,
+                args: {
+                  type: this.theme.branchNodeEdge.type,
+                  ...edgeLayoutConfig?.connector?.args,
                 },
-                target: {
-                  cell: id,
-                  anchor: {
-                    name: 'left',
-                  },
+              },
+              source: {
+                ...edgeLayoutConfig,
+                cell: hierarchyItem.id,
+                ...edgeLayoutConfig?.source,
+                anchor: edgeLayoutConfig?.source?.anchor,
+              },
+              target: {
+                cell: child.id,
+                anchor: edgeLayoutConfig?.target?.anchor,
+              },
+              attrs: {
+                line: {
+                  ...shape2Theme(data.type, this.theme)?.edge,
                 },
-              }),
-            );
-            traverse(item);
+              },
+            });
+            cells.push(edge);
+            traverse(child);
           });
         }
       }
@@ -211,7 +233,56 @@ export class Editor extends BaseEditor {
     traverse(result);
 
     this.graph.resetCells(cells);
-    this.graph.centerContent();
+
+    if (nodeId) {
+      this.graph.cleanSelection();
+      this.graph.select(nodeId);
+      this.contentCenter();
+    }
+  };
+
+  /** 更换主题 */
+  setTheme(theme: MindMapTheme) {
+    this.theme = theme;
+    const cells = this.graph.getCells();
+    cells.forEach((cell) => {
+      if (cell.isNode()) {
+        const shape = cell.shape;
+        cell.setAttrs({
+          body: {
+            style: { ...shape2Theme(shape, theme)?.node },
+          },
+          label: {
+            style: { ...shape2Theme(shape, theme)?.content },
+          },
+        });
+      }
+      if (cell.isEdge()) {
+        const shape = cell.getTargetCell()?.shape;
+        if (shape) {
+          cell.setAttrs({
+            line: {
+              ...shape2Theme(shape, theme)?.edge,
+            },
+          });
+        }
+      }
+    });
+    this.graph.drawBackground({
+      color: theme.background.color,
+    });
+  }
+
+  contentCenter = () => {
+    const selectNode = this.graph.getSelectedCells()[0];
+    if (selectNode) {
+      this.graph.centerCell(selectNode);
+    } else {
+      const rootNode = this.graph.getRootNodes().find((r) => r.shape === RootNodeConfig.NODE_NAME);
+      if (rootNode) {
+        this.graph.centerCell(rootNode);
+      }
+    }
   };
 
   /** 绑定事件 */
@@ -229,48 +300,6 @@ export class Editor extends BaseEditor {
     });
   };
 
-  /** 添加节点 */
-  appendNode = (shape: string, config?: NodeConfig, options?: AppendNodeOptions) => {
-    const conf: NodeConfig = {
-      ...config,
-    };
-    const opt = appendNodeDefaultOptions(options);
-    if (opt?.center) {
-      const {
-        center: { x, y },
-      } = this.graph.getGraphArea();
-      conf.x = x;
-      conf.y = y;
-    }
-    return this.graph.addNode({
-      shape,
-      ...conf,
-    });
-  };
-  /** 添加边 */
-  appendEdge = (shape: string, config?: EdgeConfig, options?: AppendNodeOptions) => {
-    const conf: EdgeConfig = {
-      ...config,
-    };
-    const opt = appendNodeDefaultOptions(options);
-    if (opt?.center) {
-      const {
-        center: { x, y },
-      } = this.graph.getGraphArea();
-      conf.target = { x: x + 50, y: y - 50 };
-      conf.source = { x: x - 50, y: y + 50 };
-      conf.vertices = [
-        {
-          x,
-          y,
-        },
-      ];
-    }
-    return this.graph.addEdge({
-      shape,
-      ...conf,
-    });
-  };
   /** 获取背景 */
   getBackground = () => {
     const dom = this.graph.container.parentElement!.querySelector('.x6-graph-scroller-background');
@@ -344,59 +373,4 @@ export class Editor extends BaseEditor {
   exportSVG = () => {
     this.graph.exportSVG(this.getFileName());
   };
-}
-
-function appendNodeDefaultOptions(options?: AppendNodeOptions) {
-  return {
-    center: true,
-    ...options,
-  };
-}
-
-function cellItem2TreeItem(cell: Cell.Properties) {
-  return {
-    id: cell.id!,
-    type: cell.shape!,
-    width: cell.size.width,
-    height: cell.size.height,
-    data: cell,
-  };
-}
-
-/** 将平级的数据转换为 tree */
-function cells2Tree(cells: Cell.Properties[]) {
-  const rootCell = cells.find((cell) => cell.shape === RootNodeConfig.NODE_NAME);
-  if (!rootCell) return;
-  const root: MindMapData = {
-    id: rootCell.id!,
-    type: rootCell.shape!,
-    width: rootCell.size.width,
-    height: rootCell.size.height,
-    data: rootCell,
-  };
-  const traverse = (dataItem: MindMapData) => {
-    const children = cells.find((cell) => cell.id === dataItem.id)?.children;
-    if (!children) return;
-
-    dataItem.children = children
-      .map((item) => {
-        const cell = cells.find((c) => c.id === item);
-        if (!cell) {
-          console.warn(`节点 ${item} 不存在`);
-          return;
-        }
-        return {
-          ...cellItem2TreeItem(cell!),
-          children: cell.children,
-        };
-      })
-      .filter((item) => !!item) as MindMapData[];
-
-    dataItem.children.forEach((child) => {
-      traverse(child);
-    });
-  };
-  traverse(root);
-
-  return root as MindMapData;
 }
