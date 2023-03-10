@@ -144,20 +144,26 @@ interface OperateItemProps {
   title: string;
   disabled?: boolean;
   placement?: TooltipProps['placement'];
+  className?: string;
+  active?: boolean;
   onClick?: () => void;
 }
 
-function OperateItem({
+export function OperateItem({
   children,
   title,
   disabled = false,
   placement,
+  className,
+  active,
   onClick,
 }: React.PropsWithChildren<OperateItemProps>) {
   return (
     <Tooltip title={title} placement={placement}>
       <div
-        className={styles.item}
+        className={[styles.item, className, active ? styles.active : '']
+          .filter((i) => !!i)
+          .join(' ')}
         data-disabled={disabled}
         onClick={() => {
           if (disabled) return;
