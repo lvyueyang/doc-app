@@ -2,17 +2,13 @@
  * 根节点
  */
 import type { KMReactNode, ReactNodeProps } from '../../types';
-import HtmlText from '../components/HtmlText';
+import BaseNode from '../components/BaseNode';
 import { createNodeName, createTextBlock } from '../utils';
 
 const TextBlock = createTextBlock();
 
 const RootNodeComponent: React.FC<ReactNodeProps> = ({ node }) => {
-  return (
-    <div>
-      <HtmlText node={node} />
-    </div>
-  );
+  return <BaseNode node={node} />;
 };
 
 export const RootNodeConfig: KMReactNode = {

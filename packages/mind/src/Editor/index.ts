@@ -1,6 +1,7 @@
 import type { Cell } from '@antv/x6';
 import type { MindMapResult } from '@kangmi/types';
 import { downloadJson } from '@kangmi/utils';
+import { EventEmitter } from 'events';
 import { MindMapLRConnector } from '../Editor/connector';
 import type { BaseEditorOptions } from './BaseEditor';
 import { BaseEditor } from './BaseEditor';
@@ -30,7 +31,7 @@ type EditorOptions = BaseEditorOptions;
 
 export class Editor extends BaseEditor {
   options: BaseEditorOptions;
-
+  eventEmitter = new EventEmitter();
   /** 主题 */
   private theme: MindMapTheme = mindmapTheme.darkTheme;
   /** 结构布局*/
@@ -312,6 +313,10 @@ export class Editor extends BaseEditor {
     });
     graph.on('node:resized', (e) => {
       this.layout(e.cell.id);
+    });
+
+    this.on('node:autoresize', (e) => {
+      this.layout(e.id);
     });
   };
 

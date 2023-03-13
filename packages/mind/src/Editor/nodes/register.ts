@@ -53,6 +53,13 @@ Object.values(nodes).forEach((node: KMNode) => {
           stroke: DefaultNodeConfig.stroke,
           strokeWidth: DefaultNodeConfig.strokeWidth,
           ...config.attrs?.body,
+          style: {
+            width: 'auto',
+            height: 'auto',
+            minWidth: '100%',
+            minHeight: '100%',
+            ...config.attrs?.body?.style,
+          },
         },
         label: {
           ...config.attrs?.label,

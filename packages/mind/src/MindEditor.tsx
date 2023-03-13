@@ -1,3 +1,4 @@
+import { Portal } from '@antv/x6-react-shape';
 import { createContext, useEffect, useRef, useState } from 'react';
 import { Editor } from './Editor';
 import Header from './Header';
@@ -12,6 +13,8 @@ interface MindEditorProps {
   // value?: Model.FromJSONData;
   value?: any;
 }
+
+const X6ReactPortalProvider = Portal.getProvider();
 
 export const MindEditorContext = createContext<MindEditorContextOptions>({});
 
@@ -44,6 +47,7 @@ export function MindEditor({ value }: MindEditorProps) {
 
   return (
     <MindEditorContext.Provider value={{ editor }}>
+      <X6ReactPortalProvider />
       <div className={styles.main}>
         <Header />
         <div className={styles.canvasContainer} ref={containerRef}>

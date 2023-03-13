@@ -105,6 +105,7 @@ export class NodeTextEditor extends ToolsView.ToolItem<NodeView | EdgeView, Text
     style.top = `${pos.y}px`;
     style.minWidth = `${minWidth}px`;
     style.minHeight = `${minHeight}px`;
+    style.wordBreak = 'keep-all';
 
     // set tool transform
     const scale = graph.scale();
@@ -142,10 +143,14 @@ export class NodeTextEditor extends ToolsView.ToolItem<NodeView | EdgeView, Text
       let value = this.editor.innerText.replace(/\n$/, '') || '';
       if (cell.isNode()) {
         value = this.editor.innerHTML || '';
+        // const box = this.textView?.getBoundingClientRect();
+        // console.log('box: ', box);
+        // const { width, height } = box;
+        // cell.setSize({ width, height });
       }
+
       // set value
       this.setCellText(value);
-
       // remove tool
       cell.removeTool('node-text-editor');
       this.undelegateDocumentEvents();

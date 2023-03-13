@@ -14,6 +14,6 @@ export function downloadJson(value: string, name: string) {
 }
 
 /** 格式化数组形式的文字 */
-export function cls(names: (string | boolean)[]) {
+export function cls(names: (string | boolean | undefined)[]) {
   return names.filter((i) => !!i).join(' ');
 }
