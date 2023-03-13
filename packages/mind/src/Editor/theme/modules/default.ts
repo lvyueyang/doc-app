@@ -9,8 +9,10 @@ export const defaultTheme: MindMapTheme = {
     height: 50,
   },
   rootNodeStyle: {
-    background: 'rgb(80, 194, 139)',
-    border: '1px solid rgb(80, 194, 139)',
+    backgroundColor: 'rgb(80, 194, 139)',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'rgb(80, 194, 139)',
     borderRadius: 3,
     boxShadow: 'none',
   },
@@ -30,8 +32,10 @@ export const defaultTheme: MindMapTheme = {
     height: 40,
   },
   branchNodeStyle: {
-    background: '#fff',
-    border: '1px solid #fff',
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: '#fff',
     borderRadius: 3,
     boxShadow: '0px 1px 3px rgba(0, 0, 0, 0.15)',
   },
@@ -48,11 +52,11 @@ export const defaultTheme: MindMapTheme = {
 
   childNodeSize: {
     width: 70,
-    height: 25,
+    height: 30,
   },
   childNodeStyle: {
-    background: 'transparent',
-    border: 'none',
+    backgroundColor: 'transparent',
+    borderWidth: 0,
     borderRadius: 3,
     boxShadow: 'none',
   },

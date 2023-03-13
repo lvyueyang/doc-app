@@ -32,7 +32,7 @@ export class Editor extends BaseEditor {
   options: BaseEditorOptions;
 
   /** 主题 */
-  private theme: MindMapTheme = mindmapTheme.defaultTheme;
+  private theme: MindMapTheme = mindmapTheme.darkTheme;
   /** 结构布局*/
   private layoutType: string = layouts.MindMapBTLayout.name;
 
@@ -44,6 +44,7 @@ export class Editor extends BaseEditor {
     this.options = options;
 
     this.bindEvent();
+    this.graph.drawBackground(this.theme.background);
   }
 
   // 创建节点
