@@ -12,3 +12,8 @@ export function downloadJson(value: string, name: string) {
   const blob = new Blob([value]);
   downloadFile(URL.createObjectURL(blob), `${name}.json`);
 }
+
+/** 格式化数组形式的文字 */
+export function cls(names: (string | boolean)[]) {
+  return names.filter((i) => !!i).join(' ');
+}

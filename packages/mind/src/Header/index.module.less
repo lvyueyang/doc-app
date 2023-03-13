@@ -26,11 +26,12 @@
   color: #333;
   font-size: 18px;
   border-radius: 5px;
+  --item-bg: #ddd;
   &.active {
-    background-color: #ddd;
+    background-color: var(--item-bg);
   }
   &:hover {
-    background-color: #ddd;
+    background-color: var(--item-bg);
   }
   &[data-disabled='true'] {
     opacity: 0.6;

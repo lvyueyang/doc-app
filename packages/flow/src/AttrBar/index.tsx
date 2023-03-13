@@ -78,7 +78,6 @@ function PageSettingGroup({ graph, editor }: { graph: Graph; editor: Editor }) {
       <AttrItem label="背景颜色">
         <ColorSelect
           value={pageConfig.background.color}
-          style={{ width: 100 }}
           onChange={(e) => {
             graph?.drawBackground({ color: e });
             updatePageConfig();
@@ -101,7 +100,6 @@ function PageSettingGroup({ graph, editor }: { graph: Graph; editor: Editor }) {
       <AttrItem label="网格尺寸">
         <InputNumber
           value={pageConfig.grid.size}
-          style={{ width: 100 }}
           min={0}
           onChange={(e) => {
             if (e) {
@@ -156,7 +154,6 @@ function NodeSettingGroup({ graph }: { graph: Graph }) {
           <InputNumber
             value={bBox?.x}
             disabled={(selectCells?.length || 0) > 1}
-            style={{ width: 100 }}
             min={0}
             onChange={(e) => {
               changeBBoxHandler({ x: e! });
@@ -166,7 +163,6 @@ function NodeSettingGroup({ graph }: { graph: Graph }) {
         <AttrItem label="Y">
           <InputNumber
             value={bBox?.y}
-            style={{ width: 100 }}
             disabled={(selectCells?.length || 0) > 1}
             min={0}
             onChange={(e) => {
@@ -179,7 +175,6 @@ function NodeSettingGroup({ graph }: { graph: Graph }) {
         <AttrItem label="宽度">
           <InputNumber
             value={bBox?.width}
-            style={{ width: 100 }}
             min={0}
             onChange={(e) => {
               changeBBoxHandler({ width: e! });
@@ -189,7 +184,6 @@ function NodeSettingGroup({ graph }: { graph: Graph }) {
         <AttrItem label="高度">
           <InputNumber
             value={bBox?.height}
-            style={{ width: 100 }}
             min={0}
             onChange={(e) => {
               changeBBoxHandler({ height: e! });
@@ -201,7 +195,6 @@ function NodeSettingGroup({ graph }: { graph: Graph }) {
         <AttrItem label="颜色">
           <ColorSelect
             value={body.fill}
-            style={{ width: 100 }}
             onChange={(e) => {
               changeAttrsHandler('body/fill', e);
             }}
@@ -211,7 +204,6 @@ function NodeSettingGroup({ graph }: { graph: Graph }) {
       <GroupItem label="节点线条">
         <AttrItem label="样式">
           <Select
-            style={{ width: 100 }}
             value={body.lineType || LINE_TYPE.SOLID.code}
             onChange={(e) => {
               changeAttrsHandler('body/lineType', e);
@@ -225,7 +217,6 @@ function NodeSettingGroup({ graph }: { graph: Graph }) {
         <AttrItem label="线宽">
           <InputNumber
             value={body.strokeWidth}
-            style={{ width: 100 }}
             min={0}
             step={2}
             onChange={(e) => {
@@ -236,7 +227,6 @@ function NodeSettingGroup({ graph }: { graph: Graph }) {
         <AttrItem label="颜色">
           <ColorSelect
             value={body.stroke}
-            style={{ width: 100 }}
             onChange={(e) => {
               changeAttrsHandler('body/stroke', e);
             }}
@@ -247,7 +237,6 @@ function NodeSettingGroup({ graph }: { graph: Graph }) {
         <AttrItem label="字号">
           <InputNumber
             value={text.fontSize}
-            style={{ width: 100 }}
             min={12}
             onChange={(e) => {
               changeAttrsHandler('label/style/fontSize', e);
@@ -257,7 +246,6 @@ function NodeSettingGroup({ graph }: { graph: Graph }) {
         <AttrItem label="颜色">
           <ColorSelect
             value={text.color}
-            style={{ width: 100 }}
             onChange={(e) => {
               changeAttrsHandler('label/style/color', e);
             }}
@@ -338,7 +326,6 @@ function EdgeSettingGroup({ graph }: { graph: Graph }) {
       <GroupItem label="边/连线">
         <AttrItem label="样式">
           <Select
-            style={{ width: 100 }}
             value={edgeLine.lineType || LINE_TYPE.SOLID.code}
             onChange={(e) => {
               changeAttrsHandler('line/lineType', e);
@@ -352,7 +339,6 @@ function EdgeSettingGroup({ graph }: { graph: Graph }) {
         <AttrItem label="线宽">
           <InputNumber
             value={edgeLine.strokeWidth}
-            style={{ width: 100 }}
             min={0}
             step={2}
             onChange={(e) => {
@@ -363,7 +349,6 @@ function EdgeSettingGroup({ graph }: { graph: Graph }) {
         <AttrItem label="颜色">
           <ColorSelect
             value={edgeLine.stroke}
-            style={{ width: 100 }}
             onChange={(e) => {
               changeAttrsHandler('line/stroke', e);
             }}
@@ -374,7 +359,6 @@ function EdgeSettingGroup({ graph }: { graph: Graph }) {
         <AttrItem label="字号">
           <InputNumber
             defaultValue={(edgeLabelAttrs?.label?.fontSize as number) || 12}
-            style={{ width: 100 }}
             min={12}
             onChange={(e) => {
               changeLabelsHandler('label/fontSize', e!);
@@ -384,7 +368,6 @@ function EdgeSettingGroup({ graph }: { graph: Graph }) {
         <AttrItem label="颜色">
           <ColorSelect
             defaultValue={(edgeLabelAttrs?.label?.fill as string) || '#000'}
-            style={{ width: 100 }}
             onChange={(e) => {
               changeLabelsHandler('label/fill', e!);
             }}
@@ -393,7 +376,6 @@ function EdgeSettingGroup({ graph }: { graph: Graph }) {
         <AttrItem label="填充">
           <ColorSelect
             defaultValue={(edgeLabelAttrs?.rect?.fill as string) || '#fff'}
-            style={{ width: 100 }}
             onChange={(e) => {
               changeLabelsHandler('rect/fill', e!);
             }}

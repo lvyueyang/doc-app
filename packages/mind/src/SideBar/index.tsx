@@ -6,55 +6,87 @@ import {
   TagOne,
   TextMessage,
 } from '@icon-park/react';
+import type { TypeValue } from '@kangmi/types';
+import { cls } from '@kangmi/utils';
+import { useState } from 'react';
 import { OperateItem } from '../Header';
-import { useMindEditor } from '../hooks';
+import { LayoutSetting, StyleEditor, ThemeSetting } from './components';
 import styles from './index.module.less';
 
+const OPERATES = {
+  STYLE: {
+    key: 'style',
+    title: '样式',
+    icon: <SettingConfig />,
+    content: <StyleEditor />,
+  },
+  LAYOUT: {
+    key: 'layout',
+    title: '结构布局',
+    icon: <ChartGraph />,
+    content: <LayoutSetting />,
+  },
+  THEME: {
+    key: 'theme',
+    title: '主题',
+    icon: <Platte />,
+    content: <ThemeSetting />,
+  },
+  ICON: {
+    key: 'icon',
+    title: '图标',
+    icon: <EmotionHappy />,
+    content: <StyleEditor />,
+  },
+  TAG: {
+    key: 'tag',
+    title: '标签',
+    icon: <TagOne />,
+    content: <StyleEditor />,
+  },
+  REMARK: {
+    key: 'remark',
+    title: '备注',
+    icon: <TextMessage />,
+    content: <StyleEditor />,
+  },
+} as const;
+
+type OPERATES_ITEM = TypeValue<typeof OPERATES>;
+
 export default function SideBar() {
-  const { editor } = useMindEditor();
-  const graph = editor?.graph;
+  const [visible, setVisible] = useState(true);
+  const [active, setActive] = useState<OPERATES_ITEM | undefined>(OPERATES.LAYOUT);
 
   return (
-    <div className={styles.sideBarContainer}>
+    <div className={cls([styles.sideBarContainer, visible ? '' : styles.hide])}>
       <div className={styles.operateList}>
-        <OperateItem title="样式" className={styles.operateItem} placement="left">
-          <SettingConfig />
-        </OperateItem>
-        <OperateItem title="结构" className={styles.operateItem} placement="left">
-          <ChartGraph />
-        </OperateItem>
-        <OperateItem title="主题" className={styles.operateItem} placement="left">
-          <Platte />
-        </OperateItem>
-        <OperateItem title="图标" className={styles.operateItem} placement="left">
-          <EmotionHappy />
-        </OperateItem>
-        <OperateItem title="标签" className={styles.operateItem} placement="left">
-          <TagOne />
-        </OperateItem>
-        <OperateItem title="备注" className={styles.operateItem} placement="left">
-          <TextMessage />
-        </OperateItem>
+        {Object.values(OPERATES).map((item) => {
+          return (
+            <OperateItem
+              title={item.title}
+              key={item.key}
+              className={cls([
+                styles.operateItem,
+                active?.key === item.key && styles.operateItemActive,
+              ])}
+              placement="left"
+              onClick={() => {
+                if (item.key === active?.key) {
+                  setActive(void 0);
+                  setVisible(false);
+                } else {
+                  setActive(item);
+                  setVisible(true);
+                }
+              }}
+            >
+              {item.icon}
+            </OperateItem>
+          );
+        })}
       </div>
-      <div className={styles.settingContainer}>settingContainer</div>
+      <div className={styles.settingContainer}>{active?.content}</div>
     </div>
-  );
-}
-
-function AttrItem({ label, children }: React.PropsWithChildren<{ label?: string }>) {
-  return (
-    <div className={styles.item}>
-      {label && <label>{label}</label>}
-      <>{children}</>
-    </div>
-  );
-}
-
-function GroupItem({ label, children }: React.PropsWithChildren<{ label: string }>) {
-  return (
-    <dl className={styles.groupItem}>
-      <dt>{label}</dt>
-      <dd>{children}</dd>
-    </dl>
   );
 }

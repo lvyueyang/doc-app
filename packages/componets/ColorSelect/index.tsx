@@ -67,7 +67,7 @@ export function ColorSelect({
       }
     >
       <div
-        className={[styles.colorInput, className].join(' ')}
+        className={['kangmiColorSelect', styles.colorInput, className].join(' ')}
         style={{
           height: token.controlHeight,
           borderRadius: token.borderRadius,
@@ -80,7 +80,7 @@ export function ColorSelect({
         <span
           style={{
             background: color,
-            borderRadius: token.borderRadius,
+            borderRadius: token.borderRadius - 3,
             borderColor: token.colorBorder,
           }}
         />

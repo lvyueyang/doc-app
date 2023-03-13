@@ -6,11 +6,15 @@
   bottom: 0px;
   display: flex;
   width: 260px;
+  transition: right 0.3s;
+  &.hide {
+    right: -260px;
+  }
 }
 .operateList {
   position: absolute;
   right: 100%;
-  top: 8px;
+  top: 0px;
   background-color: #fff;
   border-radius: 5px;
   display: flex;
@@ -26,11 +30,16 @@
     justify-content: center;
     min-width: auto;
     min-height: 36px;
+    margin-bottom: 4px;
+  }
+  .operateItemActive {
+    background-color: var(--item-bg);
   }
 }
 
 .groupItem {
   width: 100%;
+  margin-bottom: 4px;
 
   dt {
     padding: 10px;

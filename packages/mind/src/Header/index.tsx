@@ -1,5 +1,5 @@
 import { DownloadOutlined, RollbackOutlined } from '@ant-design/icons';
-import { EqualRatio, ZoomIn, ZoomOut } from '@icon-park/react';
+import { Aiming, ZoomIn, ZoomOut } from '@icon-park/react';
 import type { TooltipProps } from 'antd';
 import { Dropdown, Tooltip } from 'antd';
 import { useEffect, useState } from 'react';
@@ -78,12 +78,12 @@ export default function Header() {
           <ZoomOut />
         </OperateItem>
         <OperateItem
-          title="画布内容充满视口"
+          title="定位到中心主题"
           onClick={() => {
-            editor.graph?.zoomToFit({ padding: 10 });
+            editor.graph?.centerContent();
           }}
         >
-          <EqualRatio />
+          <Aiming />
         </OperateItem>
         <Dropdown
           trigger={['click']}
