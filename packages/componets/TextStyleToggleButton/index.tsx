@@ -12,7 +12,7 @@ import {
 } from '@ant-design/icons';
 import type { ButtonProps } from 'antd';
 import { Button } from 'antd';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface IProps<T = string> extends Omit<ButtonProps, 'onChange' | 'value'> {
   value?: T;
@@ -35,7 +35,7 @@ export function FontWeightButton({ value, onChange, ...props }: IProps<FontWeigh
       {...props}
       icon={<BoldOutlined />}
       type={active === 'bold' ? 'primary' : 'default'}
-      onClick={(e) => {
+      onClick={(e: any) => {
         const result = active === 'bold' ? 'normal' : 'bold';
         props.onClick?.(e);
         setActive(result);
@@ -54,7 +54,7 @@ export function FontStyleButton({ value, onChange, ...props }: IProps<FontStyleB
       {...props}
       icon={<ItalicOutlined />}
       type={active === 'italic' ? 'primary' : 'default'}
-      onClick={(e) => {
+      onClick={(e: any) => {
         const result = active === 'italic' ? 'normal' : 'italic';
         props.onClick?.(e);
         setActive(result);
@@ -73,7 +73,7 @@ export function UnderlineButton({ value, onChange, ...props }: IProps<UnderlineB
       {...props}
       icon={<UnderlineOutlined />}
       type={active === 'underline' ? 'primary' : 'default'}
-      onClick={(e) => {
+      onClick={(e: any) => {
         const result = active === 'underline' ? '' : 'underline';
         props.onClick?.(e);
         setActive(result);
@@ -92,7 +92,7 @@ export function LineThroughButton({ value, onChange, ...props }: IProps<LineThro
       {...props}
       icon={<StrikethroughOutlined />}
       type={active === 'line-through' ? 'primary' : 'default'}
-      onClick={(e) => {
+      onClick={(e: any) => {
         const result = active === 'line-through' ? '' : 'line-through';
         props.onClick?.(e);
         setActive(result);

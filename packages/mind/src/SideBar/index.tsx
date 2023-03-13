@@ -17,26 +17,26 @@ export default function SideBar() {
   return (
     <div className={styles.sideBarContainer}>
       <div className={styles.operateList}>
-        <OperateItem title="样式" className={styles.operateItem}>
+        <OperateItem title="样式" className={styles.operateItem} placement="left">
           <SettingConfig />
         </OperateItem>
-        <OperateItem title="结构" className={styles.operateItem}>
+        <OperateItem title="结构" className={styles.operateItem} placement="left">
           <ChartGraph />
         </OperateItem>
-        <OperateItem title="主题" className={styles.operateItem}>
+        <OperateItem title="主题" className={styles.operateItem} placement="left">
           <Platte />
         </OperateItem>
-        <OperateItem title="图标" className={styles.operateItem}>
+        <OperateItem title="图标" className={styles.operateItem} placement="left">
           <EmotionHappy />
         </OperateItem>
-        <OperateItem title="标签" className={styles.operateItem}>
+        <OperateItem title="标签" className={styles.operateItem} placement="left">
           <TagOne />
         </OperateItem>
-        <OperateItem title="备注" className={styles.operateItem}>
+        <OperateItem title="备注" className={styles.operateItem} placement="left">
           <TextMessage />
         </OperateItem>
       </div>
-      {/* <div className={styles.settingContainer}>settingContainer</div> */}
+      <div className={styles.settingContainer}>settingContainer</div>
     </div>
   );
 }

@@ -1,18 +1,20 @@
 import type { Cell, Dom, Edge, EdgeView, Graph, Rectangle } from '@antv/x6';
-import { ColorSelect } from '@kangmi/components';
+import {
+  ColorSelect,
+  FontStyleButton,
+  FontWeightButton,
+  HorizontalAlignButtonGroup,
+  LineThroughButton,
+  SettingBarAttrItem as AttrItem,
+  SettingBarGroupItem as GroupItem,
+  UnderlineButton,
+  VerticalAlignButtonGroup,
+} from '@kangmi/components';
 import { Button, InputNumber, Select, Switch } from 'antd';
 import { useEffect, useState } from 'react';
 import type { Editor } from '../Editor';
 import { LINE_TYPE } from '../Editor/constants';
 import { useFlowEditor } from '../hooks';
-import {
-  FontStyleButton,
-  FontWeightButton,
-  HorizontalAlignButtonGroup,
-  LineThroughButton,
-  UnderlineButton,
-  VerticalAlignButtonGroup,
-} from './components';
 import styles from './index.module.less';
 
 interface SelectedLabel {
@@ -415,24 +417,6 @@ function EdgeSettingGroup({ graph }: { graph: Graph }) {
         </AttrItem>
       </GroupItem>
     </>
-  );
-}
-
-function AttrItem({ label, children }: React.PropsWithChildren<{ label?: string }>) {
-  return (
-    <div className={styles.item}>
-      {label && <label>{label}</label>}
-      <>{children}</>
-    </div>
-  );
-}
-
-function GroupItem({ label, children }: React.PropsWithChildren<{ label: string }>) {
-  return (
-    <dl className={styles.groupItem}>
-      <dt>{label}</dt>
-      <dd>{children}</dd>
-    </dl>
   );
 }
 
