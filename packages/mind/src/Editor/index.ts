@@ -128,7 +128,7 @@ export class Editor extends BaseEditor {
           : this.createChildNode();
       childNode.addTo(selectedNode);
 
-      this.layout(childNode.id);
+      // this.layout(childNode.id);
 
       return childNode;
     }
@@ -152,7 +152,7 @@ export class Editor extends BaseEditor {
       const index = parent?.getChildren()?.indexOf(selectedNode) || 0;
       childNode.insertTo(parent, index + 1);
 
-      this.layout(childNode.id);
+      // this.layout(childNode.id);
 
       return childNode;
     }
@@ -298,6 +298,20 @@ export class Editor extends BaseEditor {
     graph.bindKey(['enter'], (e) => {
       e.preventDefault();
       this.appendNeighborNode();
+    });
+    // 节点变化，重新布局
+    graph.on('node:added', (e) => {
+      this.layout(e.cell.id);
+    });
+    let removeNodeTimer: NodeJS.Timeout;
+    graph.on('node:removed', () => {
+      clearTimeout(removeNodeTimer);
+      removeNodeTimer = setTimeout(() => {
+        this.layout();
+      }, 40);
+    });
+    graph.on('node:resized', (e) => {
+      this.layout(e.cell.id);
     });
   };
 

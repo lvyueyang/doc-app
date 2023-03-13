@@ -89,7 +89,7 @@ export class BaseEditor extends EventEmitter {
   private __initPlugin() {
     this.__useExport();
 
-    // this.__useTransform();
+    this.__useTransform();
     this.__useClipboard();
     this.__useKeyboard();
     this.__useHistory();
