@@ -2,16 +2,29 @@
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
-  min-width: 100%;
-  min-height: 100%;
   padding: 8px 15px;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
 .mainLine {
   display: inline-flex;
   flex-wrap: nowrap;
+  justify-content: center;
+  :global {
+    .kangmi-icon {
+      line-height: 0;
+    }
+  }
 }
-.icons,
-.remark {
-  flex: 1;
-  flex-basis: 1;
+.icons {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  :global {
+    .kangmi-icon {
+      // margin-right: 4px;
+      padding: 0 2px;
+    }
+  }
 }

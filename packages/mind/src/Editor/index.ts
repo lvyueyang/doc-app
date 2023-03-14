@@ -1,7 +1,8 @@
-import type { Cell } from '@antv/x6';
+import type { Cell, Node } from '@antv/x6';
 import type { MindMapResult } from '@kangmi/types';
 import { downloadJson } from '@kangmi/utils';
 import { EventEmitter } from 'events';
+import { cloneDeep } from 'lodash';
 import { MindMapLRConnector } from '../Editor/connector';
 import type { BaseEditorOptions } from './BaseEditor';
 import { BaseEditor } from './BaseEditor';
@@ -10,7 +11,7 @@ import * as layouts from './layout';
 import { BranchNodeConfig, ChildNodeConfig, RootNodeConfig } from './nodes';
 import * as mindMapTheme from './theme';
 import type { MindMapTheme } from './theme/types';
-import type { NodeConfig } from './types';
+import type { IconDataItem, Icons, NodeConfig } from './types';
 import { cells2Tree, shape2Theme } from './utils';
 
 interface BackgroundOptions {
@@ -192,6 +193,7 @@ export class Editor extends BaseEditor {
           attrs: {
             ...data.data.attrs,
           },
+          data: data.data.data,
           children: children?.map((i) => i.id),
         });
         cells.push(node);
@@ -274,6 +276,55 @@ export class Editor extends BaseEditor {
     }
     this.graph.centerContent();
   };
+
+  /** 为节点添加表情 */
+  addIcon = (node: Node, groupName: string, iconName: string, isOnly: boolean) => {
+    if (!node) return;
+    const nodeData = node.data || {};
+    let icons: Icons = cloneDeep(nodeData.icons) || [];
+    const iconItem: IconDataItem = {
+      groupName,
+      iconName,
+    };
+
+    if (!icons.length) {
+      icons.push(iconItem);
+    } else {
+      const findIcon = icons.find(
+        (i) => i.groupName === iconItem.groupName && i.iconName === iconItem.iconName,
+      );
+
+      if (findIcon) {
+        // 已存在直接删除
+        this.removeIcon(node, iconItem);
+        return;
+      }
+
+      const findGroupIcon = icons.find((i) => i.groupName === iconItem.groupName);
+      if (findGroupIcon && isOnly) {
+        icons = icons.map((icon) => {
+          if (icon.groupName === iconItem.groupName) {
+            return iconItem;
+          }
+          return icon;
+        });
+      } else {
+        icons.push(iconItem);
+      }
+    }
+    node.setData({ ...nodeData, icons });
+  };
+  /** 为节点删除表情 */
+  removeIcon(node: Node<Node.Properties>, iconItem: IconDataItem) {
+    const nodeData = node.data || {};
+    const icons: Icons = cloneDeep(nodeData.icons) || [];
+    node.setData(
+      {
+        icons: icons.filter((icon) => icon.iconName !== iconItem.iconName),
+      },
+      { deep: false },
+    );
+  }
 
   /** 更换主题 */
   setTheme(theme: MindMapTheme) {

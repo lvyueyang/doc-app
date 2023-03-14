@@ -27,7 +27,7 @@ export default function HtmlText({ style = {}, className, node, onChange }: Html
   useEffect(() => {
     const target = targetRef.current;
     if (!target) return;
-    const observer = new MutationObserver((mutationsList) => {
+    const observer = new MutationObserver(() => {
       console.log(text);
       if (text !== target.innerHTML) {
         onChange?.();

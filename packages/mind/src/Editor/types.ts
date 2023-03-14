@@ -26,3 +26,9 @@ export interface KMSvgNode {
 export type KMNode = KMReactNode | KMSvgNode;
 
 export type TypeValue<T> = T[keyof T];
+
+export interface IconDataItem {
+  groupName: string;
+  iconName: string;
+}
+export type Icons = IconDataItem[];

@@ -10,7 +10,7 @@ import type { TypeValue } from '@kangmi/types';
 import { cls } from '@kangmi/utils';
 import { useState } from 'react';
 import { OperateItem } from '../Header';
-import { LayoutSetting, StyleEditor, ThemeSetting } from './components';
+import { IconSetting, LayoutSetting, StyleEditor, ThemeSetting } from './components';
 import styles from './index.module.less';
 
 const OPERATES = {
@@ -36,7 +36,7 @@ const OPERATES = {
     key: 'icon',
     title: '图标',
     icon: <EmotionHappy />,
-    content: <StyleEditor />,
+    content: <IconSetting />,
   },
   TAG: {
     key: 'tag',
@@ -56,7 +56,7 @@ type OPERATES_ITEM = TypeValue<typeof OPERATES>;
 
 export default function SideBar() {
   const [visible, setVisible] = useState(true);
-  const [active, setActive] = useState<OPERATES_ITEM | undefined>(OPERATES.LAYOUT);
+  const [active, setActive] = useState<OPERATES_ITEM | undefined>(OPERATES.ICON);
 
   return (
     <div className={cls([styles.sideBarContainer, visible ? '' : styles.hide])}>
