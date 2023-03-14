@@ -5,8 +5,8 @@ export const defaultTheme: MindMapTheme = {
   themeName: '默认主题',
 
   rootNodeSize: {
-    width: 120,
-    height: 50,
+    width: 160,
+    height: 60,
   },
   rootNodeStyle: {
     backgroundColor: 'rgb(80, 194, 139)',

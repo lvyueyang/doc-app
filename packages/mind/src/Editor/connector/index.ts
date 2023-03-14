@@ -17,7 +17,7 @@ interface ConnectionItem {
 
 /** 左右结构连线 */
 export const MindMapLRConnector: ConnectionItem = {
-  NAME: 'mindmapLR',
+  NAME: 'mindMapLR',
   entity: (sourcePoint, targetPoint, routerPoints, options) => {
     const distanceX = targetPoint.x - sourcePoint.x; // 起点与终点的水平距离
     const distanceY = targetPoint.y - sourcePoint.y; // 起点与终点的垂直距离
@@ -42,7 +42,7 @@ export const MindMapLRConnector: ConnectionItem = {
 
 /** 上下结构连线 */
 export const MindMapTBConnector: ConnectionItem = {
-  NAME: 'mindmapTB',
+  NAME: 'mindMapTB',
   entity: (sourcePoint, targetPoint, routerPoints, options) => {
     const distanceX = targetPoint.x - sourcePoint.x; // 起点与终点的水平距离
     const distanceY = targetPoint.y - sourcePoint.y; // 起点与终点的垂直距离

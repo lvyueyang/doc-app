@@ -8,7 +8,7 @@ import { BaseEditor } from './BaseEditor';
 import { MindMapEdgeConfig } from './edges';
 import * as layouts from './layout';
 import { BranchNodeConfig, ChildNodeConfig, RootNodeConfig } from './nodes';
-import * as mindmapTheme from './theme';
+import * as mindMapTheme from './theme';
 import type { MindMapTheme } from './theme/types';
 import type { NodeConfig } from './types';
 import { cells2Tree, shape2Theme } from './utils';
@@ -33,9 +33,9 @@ export class Editor extends BaseEditor {
   options: BaseEditorOptions;
   eventEmitter = new EventEmitter();
   /** 主题 */
-  private theme: MindMapTheme = mindmapTheme.darkTheme;
+  theme: MindMapTheme = mindMapTheme.defaultTheme;
   /** 结构布局*/
-  private layoutType: string = layouts.MindMapBTLayout.name;
+  layoutType: string = layouts.MindMapHLayout.name;
 
   /** 画布标题 */
   private title: string = '';
@@ -176,7 +176,6 @@ export class Editor extends BaseEditor {
 
     const cells: Cell[] = [];
     const traverse = (hierarchyItem: MindMapResult) => {
-      console.log('hierarchyItem: ', hierarchyItem);
       if (hierarchyItem) {
         const { data, children } = hierarchyItem;
         const position = {
@@ -198,7 +197,6 @@ export class Editor extends BaseEditor {
         cells.push(node);
         if (children) {
           children.forEach((child) => {
-            console.log('child: ', child);
             const edgeLayoutConfig = createEdgeConfig?.(hierarchyItem, child);
             const edge = this.graph.createEdge({
               shape: MindMapEdgeConfig.EDGE_NAME,
@@ -239,8 +237,42 @@ export class Editor extends BaseEditor {
     if (nodeId) {
       this.graph.cleanSelection();
       this.graph.select(nodeId);
-      this.contentCenter();
+      const node = this.graph.getCellById(nodeId);
+      if (node.isNode()) {
+        if (node.shape === RootNodeConfig.NODE_NAME) {
+          this.contentCenter();
+          return;
+        }
+        // 判断是否超出了屏幕
+        const pos = this.graph.localToPage(node.getPosition());
+        const size = node.getSize();
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        if (
+          pos.x + size.width > windowWidth - 300 ||
+          pos.x < 70 ||
+          pos.y + size.height > windowHeight ||
+          pos.y < 100
+        ) {
+          this.contentCenter();
+        }
+        if (node.shape === RootNodeConfig.NODE_NAME) {
+          this.contentCenter();
+        }
+      }
     }
+    this.emit('layout');
+  };
+  /** 设置布局方式 */
+  setLayout = (type: string) => {
+    this.layoutType = type;
+    this.layout();
+    const root = this.graph.getRootNodes().find((item) => item.shape === RootNodeConfig.NODE_NAME);
+    if (root) {
+      this.graph.cleanSelection();
+      this.graph.select(root);
+    }
+    this.graph.centerContent();
   };
 
   /** 更换主题 */

@@ -1,17 +1,29 @@
 import { SettingBarGroupItem } from '@kangmi/components';
 import { Button, Row } from 'antd';
-import * as LayoutMaps from '../../Editor/layout';
+import { useState } from 'react';
+import * as layouts from '../../Editor/layout';
 import { useMindEditor } from '../../hooks';
+
+const { MindMapHLayout, ...LayoutMaps } = layouts;
 
 export function LayoutSetting() {
   const { editor } = useMindEditor();
+  const [active, setActive] = useState(editor?.layoutType);
 
   return (
     <SettingBarGroupItem label="结构布局">
       <Row style={{ padding: '10px 2px' }} gutter={[0, 10]}>
-        {Object.values(LayoutMaps).map((item) => {
+        {Object.entries({ MindMapHLayout, ...LayoutMaps }).map(([key, item]) => {
           return (
-            <Button key={item.name} block>
+            <Button
+              type={active === item.name ? 'primary' : 'default'}
+              key={key}
+              block
+              onClick={() => {
+                editor?.setLayout(item.name);
+                setActive(item.name);
+              }}
+            >
               {item.cname}
             </Button>
           );
