@@ -41,15 +41,26 @@ export default function BaseNode({ node, className, style }: BaseNodeProps) {
 
   return (
     <div
-      className={cls(['kangmi-node', styles.node, className])}
+      className={cls(['kangmi-node', className])}
       ref={targetRef}
       style={{
         position: 'absolute',
+        display: 'inline-flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        padding: '8px 15px',
+        top: '50%',
+        left: '50%',
+        transform: 'translateX(-50%) translateY(-50%)',
+        boxSizing: 'border-box',
         ...style,
       }}
     >
       <div className={styles.image} />
-      <div className={styles.mainLine}>
+      <div
+        className={styles.mainLine}
+        style={{ display: 'inline-flex', flexWrap: 'nowrap', boxSizing: 'border-box' }}
+      >
         <IconList node={node} onChange={changeHandler} />
         <HtmlText node={node} onChange={changeHandler} />
         <RemarkItem node={node} onChange={changeHandler} />

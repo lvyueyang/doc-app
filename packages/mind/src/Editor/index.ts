@@ -528,7 +528,7 @@ export class Editor extends BaseEditor {
     this.graph.exportPNG(this.getFileName(), {
       backgroundColor: transparent ? 'transparent' : this.getBackground().color,
       quality: 1,
-      padding: 10,
+      padding: 40,
     });
   };
   /**
@@ -538,7 +538,7 @@ export class Editor extends BaseEditor {
     this.graph.exportJPEG(this.getFileName(), {
       backgroundColor: this.getBackground().color,
       quality: 1,
-      padding: 10,
+      padding: 40,
     });
   };
   /**

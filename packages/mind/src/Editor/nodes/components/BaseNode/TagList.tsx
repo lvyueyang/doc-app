@@ -1,10 +1,9 @@
 import type { Node } from '@antv/x6';
-import { Popover, Tag } from 'antd';
+import { Popover } from 'antd';
 import { useEffect } from 'react';
 import FormTag from '../../../../components/FormTag';
 import { useMindEditor } from '../../../../hooks';
 import type { Tags } from '../../../types';
-import styles from './index.module.less';
 
 interface TagListProps {
   node?: Node;
@@ -25,9 +24,9 @@ export default function TagList({ node, onChange }: TagListProps) {
   }, []);
   if (!tags?.length) return null;
   return (
-    <div className={styles.tags}>
+    <div style={{ whiteSpace: 'nowrap', paddingTop: 6 }}>
       {tags
-        ?.map(({ color, value }) => {
+        ?.map(({ color, value }, index) => {
           return (
             <Popover
               trigger={['click']}
@@ -36,14 +35,26 @@ export default function TagList({ node, onChange }: TagListProps) {
                 <FormTag
                   value={{ color, value }}
                   onChange={(newValue) => {
-                    editor?.updateTag(node, value, newValue);
+                    editor?.updateTag(node!, value, newValue);
                   }}
                 />
               }
             >
-              <Tag color={color} className={styles.tagItem}>
+              <span
+                style={{
+                  display: 'inline-block',
+                  backgroundColor: color,
+                  color: '#fff',
+                  borderRadius: 3,
+                  padding: '4px 7px',
+                  fontSize: 12,
+                  marginRight: index === tags.length - 1 ? 0 : 8,
+                  cursor: 'pointer',
+                  boxSizing: 'border-box',
+                }}
+              >
                 {value}
-              </Tag>
+              </span>
             </Popover>
           );
         })

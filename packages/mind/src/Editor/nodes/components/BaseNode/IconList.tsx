@@ -27,7 +27,10 @@ export default function IconList({ node, onChange }: IconListProps) {
   }, []);
   if (!icons?.length) return null;
   return (
-    <div className={styles.icons} style={{ fontSize }}>
+    <div
+      className={styles.icons}
+      style={{ fontSize, display: 'inline-flex', alignItems: 'center', whiteSpace: 'nowrap' }}
+    >
       {icons
         ?.map(({ groupName, iconName }) => {
           const group = iconGroup.find((g) => g.name === groupName);
@@ -50,7 +53,7 @@ export default function IconList({ node, onChange }: IconListProps) {
                           ])}
                           key={name}
                           onClick={() => {
-                            editor?.addIcon(node, group.name, name, group.isOnly);
+                            editor?.addIcon(node!, group.name, name, group.isOnly);
                           }}
                         >
                           {iconElement}
