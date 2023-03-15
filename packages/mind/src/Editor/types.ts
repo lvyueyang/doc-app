@@ -27,8 +27,16 @@ export type KMNode = KMReactNode | KMSvgNode;
 
 export type TypeValue<T> = T[keyof T];
 
+/** 图标 */
 export interface IconDataItem {
   groupName: string;
   iconName: string;
 }
 export type Icons = IconDataItem[];
+
+/** 标签 */
+export interface TagDataItem {
+  color: string;
+  value: string;
+}
+export type Tags = TagDataItem[];

@@ -11,7 +11,7 @@ import * as layouts from './layout';
 import { BranchNodeConfig, ChildNodeConfig, RootNodeConfig } from './nodes';
 import * as mindMapTheme from './theme';
 import type { MindMapTheme } from './theme/types';
-import type { IconDataItem, Icons, NodeConfig } from './types';
+import type { IconDataItem, Icons, NodeConfig, TagDataItem, Tags } from './types';
 import { cells2Tree, shape2Theme } from './utils';
 
 interface BackgroundOptions {
@@ -322,6 +322,51 @@ export class Editor extends BaseEditor {
       {
         ...nodeData,
         icons: icons.filter((icon) => icon.iconName !== iconName),
+      },
+      {
+        deep: false,
+      },
+    );
+  }
+
+  /** 为节点添加标签 */
+  addTag = (node: Node, tagItem: TagDataItem) => {
+    if (!node) return;
+    const nodeData = node.data || {};
+    const tags: Tags = cloneDeep(nodeData.tags) || [];
+    if (tags.find((tag) => tag.value === tagItem.value)) return;
+    tags.push(tagItem);
+    console.log('tags: ', tags);
+    node.setData({ tags });
+  };
+  /** 更新节点标签 */
+  updateTag = (node: Node, oldValue: string, tagItem: TagDataItem) => {
+    if (!node) return;
+    const nodeData = node.data || {};
+    let tags: Tags = cloneDeep(nodeData.tags) || [];
+    tags = tags.map((tag) => {
+      if (tag.value === oldValue) {
+        return {
+          ...tagItem,
+        };
+      }
+      return tag;
+    });
+    node.setData(
+      { ...nodeData, tags },
+      {
+        deep: false,
+      },
+    );
+  };
+  /** 为节点删除标签 */
+  removeTag(node: Node<Node.Properties>, value: string) {
+    const nodeData = node.data || {};
+    const tags: Tags = cloneDeep(nodeData.tags) || [];
+    node.setData(
+      {
+        ...nodeData,
+        tags: tags.filter((tag) => tag.value !== value),
       },
       {
         deep: false,

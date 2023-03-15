@@ -55,10 +55,20 @@
     cursor: pointer;
     font-size: 24px;
   }
+  :global {
+    .ant-tag {
+      cursor: pointer;
+    }
+  }
 }
 .sectionContentDisabled {
   opacity: 0.5;
   .iconItem {
     cursor: not-allowed;
+  }
+  :global {
+    .ant-tag {
+      cursor: not-allowed;
+    }
   }
 }

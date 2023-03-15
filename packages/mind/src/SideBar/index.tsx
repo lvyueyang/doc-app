@@ -1,6 +1,7 @@
 import {
   ChartGraph,
   EmotionHappy,
+  Pic,
   Platte,
   SettingConfig,
   TagOne,
@@ -11,6 +12,7 @@ import { cls } from '@kangmi/utils';
 import { useState } from 'react';
 import { OperateItem } from '../Header';
 import { IconSetting, LayoutSetting, StyleEditor, ThemeSetting } from './components';
+import { TagSetting } from './components/TagSetting';
 import styles from './index.module.less';
 
 const OPERATES = {
@@ -42,6 +44,12 @@ const OPERATES = {
     key: 'tag',
     title: '标签',
     icon: <TagOne />,
+    content: <TagSetting />,
+  },
+  IMAGE: {
+    key: 'image',
+    title: '图片',
+    icon: <Pic />,
     content: <StyleEditor />,
   },
   REMARK: {
@@ -56,7 +64,7 @@ type OPERATES_ITEM = TypeValue<typeof OPERATES>;
 
 export default function SideBar() {
   const [visible, setVisible] = useState(true);
-  const [active, setActive] = useState<OPERATES_ITEM | undefined>(OPERATES.ICON);
+  const [active, setActive] = useState<OPERATES_ITEM | undefined>(OPERATES.TAG);
 
   return (
     <div className={cls([styles.sideBarContainer, visible ? '' : styles.hide])}>

@@ -6,6 +6,7 @@ import { shape2Theme } from '../../../utils';
 import HtmlText from '../HtmlText';
 import IconList from './IconList';
 import styles from './index.module.less';
+import TagList from './TagList';
 
 interface BaseNodeProps extends React.HTMLAttributes<HTMLDivElement> {
   node: Node;
@@ -14,12 +15,14 @@ interface BaseNodeProps extends React.HTMLAttributes<HTMLDivElement> {
 export default function BaseNode({ node, className, style }: BaseNodeProps) {
   const targetRef = useRef<HTMLDivElement>(null);
   const { editor } = useMindEditor();
-
+  if (!editor) return null;
   const changeHandler = () => {
     const target = targetRef.current;
     if (!target) return;
     window.requestAnimationFrame(() => {
-      const { width, height } = getElementSize(target);
+      const minSize = shape2Theme(node.shape, editor.theme).size;
+      const { width, height } = getElementSize(target, minSize);
+
       node?.setSize({
         width,
         height,
@@ -41,7 +44,6 @@ export default function BaseNode({ node, className, style }: BaseNodeProps) {
       ref={targetRef}
       style={{
         position: 'absolute',
-        ...minStyle,
         ...style,
       }}
     >
@@ -49,20 +51,26 @@ export default function BaseNode({ node, className, style }: BaseNodeProps) {
       <div className={styles.mainLine}>
         <IconList node={node} onChange={changeHandler} />
         <HtmlText node={node} onChange={changeHandler} />
-        <div className={styles.remark}>{/* <TextMessage /> */}</div>
       </div>
-      <div className={styles.tags}>
-        <span />
-      </div>
+      <TagList node={node} onChange={changeHandler} />
     </div>
   );
 }
 
-function getElementSize(ele: Element) {
+function getElementSize(ele: Element, minSize?: { width: number; height: number }) {
   const box = ele.getBoundingClientRect();
 
-  const width = box.width;
-  const height = box.height;
+  let width = box.width;
+  let height = box.height;
+
+  if (minSize) {
+    if (width < minSize.width) {
+      width = minSize.width;
+    }
+    if (height < minSize.height) {
+      height = minSize.height;
+    }
+  }
 
   return { ...box, width, height };
 }

@@ -11,7 +11,7 @@ interface HtmlTextProps extends React.HTMLAttributes<HTMLDivElement> {
 const DefaultStyle: React.CSSProperties = {
   backgroundColor: 'transparent',
   margin: '0',
-  padding: '0px 5px',
+  padding: '0',
   display: 'inline-flex',
   boxSizing: 'border-box',
   whiteSpace: 'nowrap',
