@@ -26,6 +26,10 @@ interface EditorJsonForm {
   page: {
     background: BackgroundOptions;
   };
+  /** 主题 ID */
+  theme: string;
+  /** 布局 */
+  layout: string;
 }
 
 type EditorOptions = BaseEditorOptions;
@@ -491,6 +495,9 @@ export class Editor extends BaseEditor {
     this.graph.drawBackground({
       color: value.page.background.color,
     });
+    this.theme =
+      Object.values(mindMapTheme).find((theme) => theme.id === value.theme) || this.theme;
+    this.layoutType = value.layout || this.layoutType;
   };
 
   /** 导出 JSON 数据 */
@@ -501,6 +508,8 @@ export class Editor extends BaseEditor {
       page: {
         background: this.getBackground(),
       },
+      theme: this.theme.id,
+      layout: this.layoutType,
     };
   };
   /**

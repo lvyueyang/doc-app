@@ -19,6 +19,7 @@ export interface NodeSize {
 export type NodeTheme = React.CSSProperties;
 
 export interface MindMapTheme {
+  id: string;
   /** 主题名称 */
   themeName: string;
 

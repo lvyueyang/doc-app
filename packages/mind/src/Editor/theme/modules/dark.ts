@@ -3,6 +3,7 @@ import type { MindMapTheme } from '../types';
 import { defaultTheme } from './default';
 
 export const darkTheme: MindMapTheme = merge({}, defaultTheme, {
+  id: 'dark',
   themeName: '暗色主题',
 
   rootNodeSize: {

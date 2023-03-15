@@ -2,6 +2,7 @@ import { ConnectionType } from '../../connector';
 import type { MindMapTheme } from '../types';
 
 export const defaultTheme: MindMapTheme = {
+  id: 'default',
   themeName: '默认主题',
 
   rootNodeSize: {
