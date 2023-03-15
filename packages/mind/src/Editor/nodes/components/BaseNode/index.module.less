@@ -24,7 +24,42 @@
   :global {
     .kangmi-icon {
       // margin-right: 4px;
-      padding: 0 2px;
+      padding: 0 4px;
+      cursor: pointer;
     }
   }
+}
+.iconPopoverContainer {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 308px;
+  line-height: 1;
+  .iconPopoverItem {
+    font-size: 22px;
+    margin: 6px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 3px;
+    &:hover {
+      background-color: #eee;
+    }
+    &.iconPopoverItemActive {
+      background-color: #eee;
+    }
+  }
+}
+.removeBtn {
+  border-top: 1px solid #eee;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 8px;
+  line-height: 1;
+  cursor: pointer;
+  color: #333;
 }

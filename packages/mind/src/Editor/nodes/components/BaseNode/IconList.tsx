@@ -1,5 +1,9 @@
 import type { Node } from '@antv/x6';
+import { Delete } from '@icon-park/react';
+import { cls } from '@kangmi/utils';
+import { Popover } from 'antd';
 import { useEffect } from 'react';
+import { useMindEditor } from '../../../../hooks';
 import { iconGroup } from '../../../../icons';
 import type { Icons } from '../../../types';
 import styles from './index.module.less';
@@ -9,6 +13,7 @@ interface IconListProps {
 }
 
 export default function IconList({ node, onChange }: IconListProps) {
+  const { editor } = useMindEditor();
   const { label } = node?.getAttrs() || {};
   const icons: Icons = node?.getData()?.icons || [];
   const { fontSize } = (label?.style as React.CSSProperties) || {};
@@ -26,7 +31,50 @@ export default function IconList({ node, onChange }: IconListProps) {
       {icons
         ?.map(({ groupName, iconName }) => {
           const group = iconGroup.find((g) => g.name === groupName);
-          return group?.icons?.find((i) => i.name === iconName)?.icon || '';
+          const icon = group?.icons?.find((i) => i.name === iconName)?.icon;
+          if (!icon) return null;
+          return (
+            <Popover
+              key={iconName}
+              content={
+                <>
+                  <div className={styles.iconPopoverContainer}>
+                    {group.icons.map(({ name, icon: iconElement }) => {
+                      return (
+                        <span
+                          className={cls([
+                            styles.iconPopoverItem,
+                            icons.find((i) => i.iconName === name)
+                              ? styles.iconPopoverItemActive
+                              : '',
+                          ])}
+                          key={name}
+                          onClick={() => {
+                            editor?.addIcon(node, group.name, name, group.isOnly);
+                          }}
+                        >
+                          {iconElement}
+                        </span>
+                      );
+                    })}
+                  </div>
+                  <div
+                    className={styles.removeBtn}
+                    title="删除图标"
+                    onClick={() => {
+                      if (!node) return;
+                      editor?.removeIcon(node, iconName);
+                    }}
+                  >
+                    <Delete />
+                  </div>
+                </>
+              }
+              trigger={['click']}
+            >
+              {icon}
+            </Popover>
+          );
         })
         .filter((i) => !!i)}
     </div>

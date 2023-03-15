@@ -296,7 +296,7 @@ export class Editor extends BaseEditor {
 
       if (findIcon) {
         // 已存在直接删除
-        this.removeIcon(node, iconItem);
+        this.removeIcon(node, iconItem.iconName);
         return;
       }
 
@@ -315,14 +315,17 @@ export class Editor extends BaseEditor {
     node.setData({ ...nodeData, icons });
   };
   /** 为节点删除表情 */
-  removeIcon(node: Node<Node.Properties>, iconItem: IconDataItem) {
+  removeIcon(node: Node<Node.Properties>, iconName: string) {
     const nodeData = node.data || {};
     const icons: Icons = cloneDeep(nodeData.icons) || [];
     node.setData(
       {
-        icons: icons.filter((icon) => icon.iconName !== iconItem.iconName),
+        ...nodeData,
+        icons: icons.filter((icon) => icon.iconName !== iconName),
       },
-      { deep: false },
+      {
+        deep: false,
+      },
     );
   }
 
