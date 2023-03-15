@@ -16,6 +16,7 @@ export const defaultTheme: MindMapTheme = {
     borderColor: 'rgb(80, 194, 139)',
     borderRadius: 3,
     boxShadow: 'none',
+    padding: '12px 26px',
   },
   rootNodeEdge: {
     stroke: 'rgb(204, 205, 205)',
@@ -39,6 +40,7 @@ export const defaultTheme: MindMapTheme = {
     borderColor: '#fff',
     borderRadius: 3,
     boxShadow: '0px 1px 3px rgba(0, 0, 0, 0.15)',
+    padding: '10px 15px',
   },
   branchNodeEdge: {
     stroke: 'rgb(204, 205, 205)',
@@ -60,6 +62,7 @@ export const defaultTheme: MindMapTheme = {
     borderWidth: 0,
     borderRadius: 3,
     boxShadow: 'none',
+    padding: '6px 14px',
   },
   childNodeEdge: {
     stroke: 'rgb(204, 205, 205)',

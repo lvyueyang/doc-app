@@ -63,8 +63,8 @@ export class Editor extends BaseEditor {
       ...config,
       attrs: {
         ...config?.attrs,
-        body: {
-          ...config?.attrs?.body,
+        box: {
+          ...config?.attrs?.box,
           style: { ...node },
         },
         label: {
@@ -400,7 +400,7 @@ export class Editor extends BaseEditor {
       if (cell.isNode()) {
         const shape = cell.shape;
         cell.setAttrs({
-          body: {
+          box: {
             style: { ...shape2Theme(shape, theme)?.node },
           },
           label: {

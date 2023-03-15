@@ -3,12 +3,10 @@ import {
   ColorSelect,
   FontStyleButton,
   FontWeightButton,
-  HorizontalAlignButtonGroup,
   LineThroughButton,
   SettingBarAttrItem,
   SettingBarGroupItem,
   UnderlineButton,
-  VerticalAlignButtonGroup,
 } from '@kangmi/components';
 import { Button, InputNumber, Row, Select } from 'antd';
 import type { LINE_TYPE_ENUM } from 'Editor/constants';
@@ -73,7 +71,7 @@ function PageSettingGroup({ editor }: { editor: Editor }) {
 function NodeSettingGroup({ editor }: { editor: Editor }) {
   const graph = editor?.graph;
   const { nodeAttrs, selectCells } = useSelectedCell(graph);
-  const nodeStyle = (nodeAttrs?.body?.style as React.CSSProperties) || {};
+  const nodeStyle = (nodeAttrs?.box?.style as React.CSSProperties) || {};
   console.log('nodeStyle: ', nodeStyle);
 
   const changeAttrsHandler = (path: string, value: string | number) => {
@@ -89,7 +87,7 @@ function NodeSettingGroup({ editor }: { editor: Editor }) {
         <ColorSelect
           value={nodeStyle.borderColor}
           onChange={(e) => {
-            changeAttrsHandler('body/style/borderColor', e);
+            changeAttrsHandler('box/style/borderColor', e);
           }}
         />
       </SettingBarAttrItem>
@@ -97,7 +95,7 @@ function NodeSettingGroup({ editor }: { editor: Editor }) {
         <InputNumber
           value={nodeStyle.borderWidth}
           onChange={(e) => {
-            changeAttrsHandler('body/style/borderWidth', e || 0);
+            changeAttrsHandler('box/style/borderWidth', e || 0);
           }}
         />
       </SettingBarAttrItem>
@@ -109,7 +107,7 @@ function NodeSettingGroup({ editor }: { editor: Editor }) {
             label: item.cname,
           }))}
           onChange={(e) => {
-            changeAttrsHandler('body/style/borderStyle', e as LINE_TYPE_ENUM);
+            changeAttrsHandler('box/style/borderStyle', e as LINE_TYPE_ENUM);
           }}
         />
       </SettingBarAttrItem>
@@ -117,7 +115,7 @@ function NodeSettingGroup({ editor }: { editor: Editor }) {
         <ColorSelect
           value={nodeStyle.backgroundColor || '#fff'}
           onChange={(e) => {
-            changeAttrsHandler('body/style/backgroundColor', e);
+            changeAttrsHandler('box/style/backgroundColor', e);
           }}
         />
       </SettingBarAttrItem>
@@ -125,7 +123,7 @@ function NodeSettingGroup({ editor }: { editor: Editor }) {
         <InputNumber
           value={nodeStyle.borderRadius || 0}
           onChange={(e) => {
-            changeAttrsHandler('body/style/borderRadius', e || 0);
+            changeAttrsHandler('box/style/borderRadius', e || 0);
           }}
         />
       </SettingBarAttrItem>
@@ -191,22 +189,6 @@ function TextSettingGroup({ editor }: { editor: Editor }) {
             }}
           />
         </Button.Group>
-      </SettingBarAttrItem>
-      <SettingBarAttrItem label="水平对齐">
-        <HorizontalAlignButtonGroup
-          value={labelStyle.alignItems}
-          onChange={(e) => {
-            changeAttrsHandler('label/style/alignItems', e!);
-          }}
-        />
-      </SettingBarAttrItem>
-      <SettingBarAttrItem label="垂直对齐">
-        <VerticalAlignButtonGroup
-          value={labelStyle.justifyContent}
-          onChange={(e) => {
-            changeAttrsHandler('label/style/justifyContent', e!);
-          }}
-        />
       </SettingBarAttrItem>
     </SettingBarGroupItem>
   );
@@ -313,7 +295,7 @@ function PresetNodeStyle({ editor }: { editor: Editor }) {
                 color: item.style.content.color,
               }}
               onClick={() => {
-                changeAttrsHandler('body/style', item.style.node);
+                changeAttrsHandler('box/style', item.style.node);
                 changeAttrsHandler('label/style', item.style.content);
               }}
             >

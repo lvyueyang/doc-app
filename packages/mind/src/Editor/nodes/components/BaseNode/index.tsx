@@ -1,6 +1,6 @@
-import type { Node } from '@antv/x6';
+import type { Cell, Node } from '@antv/x6';
 import { cls } from '@kangmi/utils';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useMindEditor } from '../../../../hooks';
 import { shape2Theme } from '../../../utils';
 import HtmlText from '../HtmlText';
@@ -15,8 +15,8 @@ interface BaseNodeProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export default function BaseNode({ node, className, style }: BaseNodeProps) {
   const targetRef = useRef<HTMLDivElement>(null);
+  const boxStyle = (node.getAttrs()?.box.style as React.CSSProperties) || {};
   const { editor } = useMindEditor();
-  if (!editor) return null;
   const changeHandler = () => {
     const target = targetRef.current;
     if (!target) return;
@@ -39,21 +39,37 @@ export default function BaseNode({ node, className, style }: BaseNodeProps) {
     minStyle.minHeight = size.height;
   }
 
+  useEffect(() => {
+    const changFn = (e: Cell.ChangeArgs<any>) => {
+      const prevStyle = e.previous?.label?.style as React.CSSProperties;
+      const currentStyle = e.current?.label?.style as React.CSSProperties;
+      if (prevStyle?.fontSize !== currentStyle?.fontSize) {
+        changeHandler();
+      }
+    };
+    node.on('change:attrs', changFn);
+    return () => {
+      node?.off('change:attrs', changFn);
+    };
+  }, []);
+
+  if (!editor) return null;
+
   return (
     <div
       className={cls(['kangmi-node', className])}
       ref={targetRef}
       style={{
         position: 'absolute',
-        display: 'inline-flex',
+        display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
+        alignItems: 'center',
         padding: '8px 15px',
-        top: '50%',
-        left: '50%',
-        transform: 'translateX(-50%) translateY(-50%)',
         boxSizing: 'border-box',
+        ...minStyle,
         ...style,
+        ...boxStyle,
       }}
     >
       <div className={styles.image} />
