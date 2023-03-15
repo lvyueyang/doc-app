@@ -3,14 +3,17 @@
   --sidebar-width: 260px;
   --attrbar-width: 260px;
   --bg-color: #f5f5f5;
+  --scroll-bg: #fff;
+
   position: relative;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
   :global {
     ::-webkit-scrollbar {
-      width: 7px;
-      height: 7px;
+      width: 0px;
+      height: 0px;
+      background-color: var(--scroll-bg);
     }
     ::-webkit-scrollbar-thumb {
       border: 1px solid #fff;

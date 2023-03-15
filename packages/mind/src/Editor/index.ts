@@ -422,6 +422,7 @@ export class Editor extends BaseEditor {
     this.graph.drawBackground({
       color: theme.background.color,
     });
+    this.emit('theme:change', theme);
   }
 
   contentCenter = () => {

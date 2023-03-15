@@ -62,8 +62,8 @@ const OPERATES = {
 type OPERATES_ITEM = TypeValue<typeof OPERATES>;
 
 export default function SideBar() {
-  const [visible, setVisible] = useState(true);
-  const [active, setActive] = useState<OPERATES_ITEM | undefined>(OPERATES.REMARK);
+  const [visible, setVisible] = useState(false);
+  const [active, setActive] = useState<OPERATES_ITEM | undefined>();
 
   return (
     <div className={cls([styles.sideBarContainer, visible ? '' : styles.hide])}>
