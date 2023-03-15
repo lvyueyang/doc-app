@@ -6,6 +6,7 @@ import { shape2Theme } from '../../../utils';
 import HtmlText from '../HtmlText';
 import IconList from './IconList';
 import styles from './index.module.less';
+import RemarkItem from './Remark';
 import TagList from './TagList';
 
 interface BaseNodeProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -51,6 +52,7 @@ export default function BaseNode({ node, className, style }: BaseNodeProps) {
       <div className={styles.mainLine}>
         <IconList node={node} onChange={changeHandler} />
         <HtmlText node={node} onChange={changeHandler} />
+        <RemarkItem node={node} onChange={changeHandler} />
       </div>
       <TagList node={node} onChange={changeHandler} />
     </div>

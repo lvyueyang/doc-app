@@ -1,7 +1,6 @@
 import {
   ChartGraph,
   EmotionHappy,
-  Pic,
   Platte,
   SettingConfig,
   TagOne,
@@ -11,7 +10,7 @@ import type { TypeValue } from '@kangmi/types';
 import { cls } from '@kangmi/utils';
 import { useState } from 'react';
 import { OperateItem } from '../Header';
-import { IconSetting, LayoutSetting, StyleEditor, ThemeSetting } from './components';
+import { IconSetting, LayoutSetting, RemarkEditor, StyleEditor, ThemeSetting } from './components';
 import { TagSetting } from './components/TagSetting';
 import styles from './index.module.less';
 
@@ -46,17 +45,17 @@ const OPERATES = {
     icon: <TagOne />,
     content: <TagSetting />,
   },
-  IMAGE: {
-    key: 'image',
-    title: '图片',
-    icon: <Pic />,
-    content: <StyleEditor />,
-  },
+  // IMAGE: {
+  //   key: 'image',
+  //   title: '图片',
+  //   icon: <Pic />,
+  //   content: <StyleEditor />,
+  // },
   REMARK: {
     key: 'remark',
     title: '备注',
     icon: <TextMessage />,
-    content: <StyleEditor />,
+    content: <RemarkEditor />,
   },
 } as const;
 
@@ -64,7 +63,7 @@ type OPERATES_ITEM = TypeValue<typeof OPERATES>;
 
 export default function SideBar() {
   const [visible, setVisible] = useState(true);
-  const [active, setActive] = useState<OPERATES_ITEM | undefined>(OPERATES.TAG);
+  const [active, setActive] = useState<OPERATES_ITEM | undefined>(OPERATES.REMARK);
 
   return (
     <div className={cls([styles.sideBarContainer, visible ? '' : styles.hide])}>

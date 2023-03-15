@@ -11,7 +11,7 @@ import * as layouts from './layout';
 import { BranchNodeConfig, ChildNodeConfig, RootNodeConfig } from './nodes';
 import * as mindMapTheme from './theme';
 import type { MindMapTheme } from './theme/types';
-import type { IconDataItem, Icons, NodeConfig, TagDataItem, Tags } from './types';
+import type { IconDataItem, Icons, NodeConfig, Remark, TagDataItem, Tags } from './types';
 import { cells2Tree, shape2Theme } from './utils';
 
 interface BackgroundOptions {
@@ -367,6 +367,20 @@ export class Editor extends BaseEditor {
       {
         ...nodeData,
         tags: tags.filter((tag) => tag.value !== value),
+      },
+      {
+        deep: false,
+      },
+    );
+  }
+
+  /** 更新备注信息 */
+  updateRemark(node: Node, remark: Remark) {
+    const nodeData = node.data || {};
+    node.setData(
+      {
+        ...nodeData,
+        remark,
       },
       {
         deep: false,

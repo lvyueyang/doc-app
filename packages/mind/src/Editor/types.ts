@@ -40,3 +40,8 @@ export interface TagDataItem {
   value: string;
 }
 export type Tags = TagDataItem[];
+
+/** 备注 */
+export interface Remark {
+  value: string;
+}
