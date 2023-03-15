@@ -204,6 +204,7 @@ const preStyles = [
       },
       content: {
         color: '#fff',
+        textDecoration: 'none',
       },
     },
   },
@@ -216,6 +217,7 @@ const preStyles = [
       },
       content: {
         color: '#fff',
+        textDecoration: 'none',
       },
     },
   },
@@ -228,6 +230,7 @@ const preStyles = [
       },
       content: {
         color: '#fff',
+        textDecoration: 'none',
       },
     },
   },
@@ -240,6 +243,7 @@ const preStyles = [
       },
       content: {
         color: '#fff',
+        textDecoration: 'none',
       },
     },
   },
@@ -265,6 +269,7 @@ const preStyles = [
       },
       content: {
         color: '#edaf41',
+        textDecoration: 'none',
       },
     },
   },
