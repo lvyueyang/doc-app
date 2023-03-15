@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import { useMindEditor } from '../../../../hooks';
 import { shape2Theme } from '../../../utils';
 import HtmlText from '../HtmlText';
+import Collapse from './Collapse';
 import IconList from './IconList';
 import styles from './index.module.less';
 import RemarkItem from './Remark';
@@ -57,7 +58,7 @@ export default function BaseNode({ node, className, style }: BaseNodeProps) {
 
   return (
     <div
-      className={cls(['kangmi-node', className])}
+      className={cls(['kangmi-node', className, styles.node])}
       ref={targetRef}
       style={{
         position: 'absolute',
@@ -82,6 +83,7 @@ export default function BaseNode({ node, className, style }: BaseNodeProps) {
         <RemarkItem node={node} onChange={changeHandler} />
       </div>
       <TagList node={node} onChange={changeHandler} />
+      <Collapse node={node} onChange={changeHandler} />
     </div>
   );
 }

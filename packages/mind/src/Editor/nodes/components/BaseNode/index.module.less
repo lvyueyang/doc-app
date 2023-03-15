@@ -1,3 +1,10 @@
+.node {
+  &:hover {
+    .collapse {
+      opacity: 1;
+    }
+  }
+}
 .mainLine {
   :global {
     .kangmi-icon {
@@ -55,4 +62,26 @@
   padding-top: 3px;
   padding-left: 8px;
   cursor: pointer;
+}
+.collapse {
+  opacity: 0;
+  display: flex;
+  position: absolute;
+  border: 1px solid #ccc;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: transparent;
+  font-size: 12px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  line-height: 1;
+  transition: all 0.3s;
+  span {
+    transform: scale(0.7);
+  }
+  &:hover {
+    opacity: 1;
+  }
 }

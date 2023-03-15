@@ -182,7 +182,7 @@ export class Editor extends BaseEditor {
     const cells: Cell[] = [];
     const traverse = (hierarchyItem: MindMapResult) => {
       if (hierarchyItem) {
-        const { data, children } = hierarchyItem;
+        const { data, children, side } = hierarchyItem;
         const position = {
           x: hierarchyItem.x,
           y: hierarchyItem.y,
@@ -197,7 +197,9 @@ export class Editor extends BaseEditor {
           attrs: {
             ...data.data.attrs,
           },
-          data: data.data.data,
+          data: {
+            ...data.data.data,
+          },
           children: children?.map((i) => i.id),
         });
         cells.push(node);
