@@ -5,7 +5,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "strokeWidth": 2, "type": "rounded" } },
         "zIndex": 0,
-        "id": "4d30a54b-69d2-4da7-be36-1013d5fa58a3",
+        "id": "824091de-8edf-4223-a762-550b5bf22a77",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
@@ -19,7 +19,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "6ae25f13-0545-4815-a020-8c6ab7db6cb8",
+        "id": "ffb18383-4ba6-42f4-b789-345610724da7",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
@@ -33,7 +33,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "b5a5e3e1-f25b-4649-a3dc-f3cb3915be70",
+        "id": "e5f939f4-66ac-4f3e-9bd6-2541bf1f319c",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
@@ -47,7 +47,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "strokeWidth": 2, "type": "rounded" } },
         "zIndex": 0,
-        "id": "be0bcdad-293a-4e12-8688-9ddfe81bfa17",
+        "id": "b01b8962-707b-4460-9ae1-f40464fb7952",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
@@ -61,7 +61,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "1e1212ba-40bc-4e14-b822-93575e701927",
+        "id": "5504bc70-01ec-468d-b96b-7169783b5108",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
@@ -75,7 +75,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "dd974f1c-b0c7-438f-b80e-caf24f6781e8",
+        "id": "b6c7d032-7c84-4f72-8860-0c798559e1f2",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
@@ -89,7 +89,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "97ac4715-92a1-4677-b69e-8b8c8d6b5f32",
+        "id": "e92e5cfb-1329-460d-b3f1-c8ac2a843b8c",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
@@ -103,7 +103,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "16523c90-28ba-485c-81d6-07a1d598f981",
+        "id": "d98c7e2b-eded-4c4a-9129-d55c3dadac1a",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
@@ -117,7 +117,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "f0202a51-2d29-43a7-bfb0-60a387330824",
+        "id": "826904b2-e430-45ad-bb91-075a44847173",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
@@ -131,7 +131,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "68adad28-42d4-488c-9d6b-508373eda9ad",
+        "id": "386d6469-beba-4378-b8aa-6dedde0d9fec",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
@@ -145,7 +145,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "70d6262c-ad39-4967-90cd-ee9edf0265ea",
+        "id": "6d969c77-6f9f-4dab-9846-f65ac0c1c45d",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
@@ -159,7 +159,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "01a3f68b-4546-4484-805d-02244d8602cc",
+        "id": "c69b7d9f-0180-42ce-9f02-a3f3eefd653e",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
@@ -173,7 +173,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "1e68fa9a-69b3-4a7f-a1b9-7f2f91f7e0d7",
+        "id": "a4a0875e-e2ac-43f8-8093-ceb9e9c2f47f",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
@@ -187,7 +187,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "b93feefe-9324-46b0-98ef-2839dde50bea",
+        "id": "f45719e4-da64-4715-882f-8f6c2eb4e891",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
@@ -201,7 +201,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "dc53d4bd-0190-48fe-a1bd-0063115864e3",
+        "id": "626a3599-449d-430e-9ff0-d9cfe3410695",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
@@ -215,7 +215,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "0b518383-9325-440e-8566-51fa1939b1ea",
+        "id": "d03c5a59-dd56-4387-8c4d-62f0973055be",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
@@ -229,7 +229,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "a7f1e155-0b54-47e7-89b7-60906df75cc1",
+        "id": "b9835904-13e1-4bc4-b125-e42e685c5a25",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
@@ -243,7 +243,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "0af18738-1cf4-46a4-ad27-28e3331faf23",
+        "id": "5f6fb445-d6ec-4a0c-a680-113eca946712",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
@@ -257,7 +257,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "c9b153d2-7c92-4a21-a4d2-f889815d5c0d",
+        "id": "a42e99f3-4c11-4338-948e-9dc3b0e89be9",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
@@ -271,7 +271,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "cb9fbfd0-5d1e-481f-91a7-19d4b06dff36",
+        "id": "fdeb272e-45d8-484d-ad23-d3478831fe50",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
@@ -285,7 +285,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "strokeWidth": 2, "type": "rounded" } },
         "zIndex": 0,
-        "id": "2aea169b-4237-4f6e-b2f3-85b5f73abb6d",
+        "id": "581a85d0-3081-455b-a58f-5202a767517f",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "left" } },
@@ -299,7 +299,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "strokeWidth": 2, "type": "rounded" } },
         "zIndex": 0,
-        "id": "166c47e4-32ea-4350-80f6-c8343b7a4de5",
+        "id": "614ec025-ad1d-4eb6-a98c-ffd4704a3e01",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "left" } },
@@ -313,7 +313,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "954ea9f8-44e7-4292-864d-8958024b2bf4",
+        "id": "53bfbd72-fd4e-4d41-afca-018d2fd4cd66",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "left" } },
@@ -327,7 +327,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "4cf85d6d-ec95-4336-96e4-11a300557e2f",
+        "id": "b44fc774-abac-43fe-918f-b38970668b23",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "left" } },
@@ -341,7 +341,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "4c0f88c3-d947-4653-beaf-f509e27b3c53",
+        "id": "97ab8e46-ec16-4a96-9d59-aa9a45c67f21",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "left" } },
@@ -355,7 +355,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "eb50859c-6d17-470b-8702-7af3d322e4c8",
+        "id": "505fe515-f6b9-4c37-8673-cb12b24ff4e3",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "left" } },
@@ -369,7 +369,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "4f892413-ac0c-4fd4-b99b-fc485e5fef15",
+        "id": "176c1c5e-431e-4307-a2ff-3765baf3fc6e",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "left" } },
@@ -383,7 +383,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "ff3d9c1c-8acb-42f0-97c2-e0161b8fbcb2",
+        "id": "0a70d77b-ec5c-4584-ad73-82065a811cfe",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "left" } },
@@ -397,7 +397,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "5b9482d2-871c-4224-b055-e53cccfa4dcf",
+        "id": "1984ed6c-1c10-43e5-b871-3931e2b1d6a4",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "left" } },
@@ -411,7 +411,7 @@
         "shape": "kangmiEdgeMindMap",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "e52b2b08-047e-4f4f-bbb1-51945a19914a",
+        "id": "74dcb5ca-b2a5-49e1-9b66-6d46dc6de19f",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "left" } },
@@ -422,7 +422,7 @@
         "target": { "cell": "8408d5e0-3437-4a33-9343-245430a3840b", "anchor": { "name": "right" } }
       },
       {
-        "position": { "x": -240, "y": -70 },
+        "position": { "x": -140, "y": -70 },
         "size": { "width": 160, "height": 60 },
         "view": "react-shape-view",
         "attrs": {
@@ -451,7 +451,7 @@
           "0fc41bea-0cfd-4459-b337-ded9e68d52b0",
           "faf85ea5-552c-441b-bd22-c3b2b0c4cfa0"
         ],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
         "position": { "x": 80, "y": -138.75 },
@@ -481,10 +481,10 @@
           "59ef2119-9164-48c3-9439-96b68770c77c",
           "b20691af-d07d-4ae0-9640-06b8210d9f87"
         ],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": 340, "y": -168.75 },
+        "position": { "x": 240, "y": -168.75 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -504,10 +504,10 @@
         "shape": "kangmiChild",
         "id": "59ef2119-9164-48c3-9439-96b68770c77c",
         "children": [],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": 340, "y": -98.75 },
+        "position": { "x": 240, "y": -98.75 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -527,7 +527,7 @@
         "shape": "kangmiChild",
         "id": "b20691af-d07d-4ae0-9640-06b8210d9f87",
         "children": [],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
         "position": { "x": 80, "y": 18.75 },
@@ -557,10 +557,10 @@
           "9ea535fc-2568-40a1-b415-7cf04d40cd59",
           "173240d7-90ce-4a2a-a399-7cebeacf159e"
         ],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": 340, "y": -28.75 },
+        "position": { "x": 240, "y": -28.75 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -581,10 +581,10 @@
         "id": "9ea535fc-2568-40a1-b415-7cf04d40cd59",
         "data": { "side": "left" },
         "children": [],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": 340, "y": 76.25 },
+        "position": { "x": 240, "y": 76.25 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -610,10 +610,10 @@
           "36cd95e0-a417-4ab1-b85e-ced6b69fe9da",
           "068d80b1-418c-44d1-9a51-7aaf7c2e8b63"
         ],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": 570, "y": -28.75 },
+        "position": { "x": 370, "y": -28.75 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -634,10 +634,10 @@
         "id": "5b822178-cfa7-4929-9904-290b31f3ac7e",
         "data": { "side": "left" },
         "children": [],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": 570, "y": 41.25 },
+        "position": { "x": 370, "y": 41.25 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -658,10 +658,10 @@
         "id": "a2c0e3bf-a52c-4fa9-8e3e-b94e42d4a0b2",
         "data": { "side": "left" },
         "children": [],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": 570, "y": 111.25 },
+        "position": { "x": 370, "y": 111.25 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -682,10 +682,10 @@
         "id": "36cd95e0-a417-4ab1-b85e-ced6b69fe9da",
         "data": { "side": "left" },
         "children": [],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": 570, "y": 181.25 },
+        "position": { "x": 370, "y": 181.25 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -710,10 +710,10 @@
           "4167f5d8-916c-4600-b860-74efca992e0b",
           "cfee5ba6-db4b-4ce3-bd39-2debb8c1dfe3"
         ],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": 800, "y": 111.25 },
+        "position": { "x": 500, "y": 111.25 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -734,10 +734,10 @@
         "id": "a580441d-ca19-486f-9498-100121c9b369",
         "data": { "side": "left" },
         "children": [],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": 800, "y": 181.25 },
+        "position": { "x": 500, "y": 181.25 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -758,10 +758,10 @@
         "id": "4167f5d8-916c-4600-b860-74efca992e0b",
         "data": { "side": "left" },
         "children": [],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": 800, "y": 251.25 },
+        "position": { "x": 500, "y": 251.25 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -785,10 +785,10 @@
           "be5e3445-ff38-44de-8ba0-6b685a42d6bb",
           "a795e6d3-0783-4915-80e7-dfce96ebe33a"
         ],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": 1030, "y": 286.25 },
+        "position": { "x": 630, "y": 286.25 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -814,10 +814,10 @@
           "469863bd-d538-406b-a37e-7833ea4dd9f4",
           "8fe7bab9-8405-41b5-97c6-5df1cec5c5bb"
         ],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": 1030, "y": 286.25 },
+        "position": { "x": 630, "y": 286.25 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -839,10 +839,10 @@
         "visible": false,
         "data": { "side": "left" },
         "children": [],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": 1030, "y": 286.25 },
+        "position": { "x": 630, "y": 286.25 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -864,10 +864,10 @@
         "visible": false,
         "data": { "side": "left" },
         "children": [],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": 1030, "y": 286.25 },
+        "position": { "x": 630, "y": 286.25 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -889,10 +889,10 @@
         "visible": false,
         "data": { "side": "left" },
         "children": ["864b49da-5b2c-4b76-8801-0722b9bc78a9"],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": 1030, "y": 286.25 },
+        "position": { "x": 630, "y": 286.25 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -914,10 +914,10 @@
         "visible": false,
         "data": { "side": "left" },
         "children": ["33b1d3dc-0b11-4a00-81d5-a40b4359c9c4"],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": 1030, "y": 286.25 },
+        "position": { "x": 630, "y": 286.25 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -939,10 +939,10 @@
         "visible": false,
         "data": { "side": "left" },
         "children": [],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": 1030, "y": 286.25 },
+        "position": { "x": 630, "y": 286.25 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -964,10 +964,10 @@
         "visible": false,
         "data": {},
         "children": [],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": -500, "y": -100 },
+        "position": { "x": -300, "y": -100 },
         "size": { "width": 100, "height": 40 },
         "view": "react-shape-view",
         "attrs": {
@@ -991,10 +991,10 @@
         "id": "0fc41bea-0cfd-4459-b337-ded9e68d52b0",
         "data": { "side": "left" },
         "children": [],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": -500, "y": -20 },
+        "position": { "x": -300, "y": -20 },
         "size": { "width": 100, "height": 40 },
         "view": "react-shape-view",
         "attrs": {
@@ -1022,10 +1022,10 @@
           "d70219fe-f7b1-471e-a68b-0aa7f58c542a",
           "f7b4ea70-18ff-49b6-911e-8fc61a079418"
         ],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": -730, "y": -85 },
+        "position": { "x": -430, "y": -85 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -1046,10 +1046,10 @@
         "id": "3a62a2df-1ee4-4609-bfb1-c01dd97852fa",
         "data": { "side": "left" },
         "children": [],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": -730, "y": -15 },
+        "position": { "x": -430, "y": -15 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -1070,10 +1070,10 @@
         "id": "d70219fe-f7b1-471e-a68b-0aa7f58c542a",
         "data": { "side": "left" },
         "children": [],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": -730, "y": 55 },
+        "position": { "x": -430, "y": 55 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -1094,10 +1094,10 @@
         "id": "f7b4ea70-18ff-49b6-911e-8fc61a079418",
         "data": { "side": "left" },
         "children": ["0f72b4e7-7c73-4c67-820d-1e13e3f072ee"],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": -960, "y": 55 },
+        "position": { "x": -560, "y": 55 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -1123,10 +1123,10 @@
           "0c5cc8f2-382e-4596-af32-7043c439611f",
           "8408d5e0-3437-4a33-9343-245430a3840b"
         ],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": -1190, "y": -50 },
+        "position": { "x": -690, "y": -50 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -1147,10 +1147,10 @@
         "id": "cfc113ed-045c-40ce-94e8-f0689b1101b1",
         "data": { "side": "left" },
         "children": [],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": -1190, "y": 20 },
+        "position": { "x": -690, "y": 20 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -1171,10 +1171,10 @@
         "id": "8dc59d38-1a9b-4108-8e8c-972a6688b7d0",
         "data": { "side": "left" },
         "children": [],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": -1190, "y": 90 },
+        "position": { "x": -690, "y": 90 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -1195,10 +1195,10 @@
         "id": "0c5cc8f2-382e-4596-af32-7043c439611f",
         "data": { "side": "left" },
         "children": [],
-        "zIndex": 150
+        "zIndex": 152
       },
       {
-        "position": { "x": -1190, "y": 160 },
+        "position": { "x": -690, "y": 160 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -1219,7 +1219,7 @@
         "id": "8408d5e0-3437-4a33-9343-245430a3840b",
         "data": { "side": "left" },
         "children": [],
-        "zIndex": 150
+        "zIndex": 152
       }
     ]
   },

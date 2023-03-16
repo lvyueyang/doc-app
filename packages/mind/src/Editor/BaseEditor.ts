@@ -7,8 +7,6 @@ import { Scroller } from '@antv/x6-plugin-scroller';
 import { Selection } from '@antv/x6-plugin-selection';
 import { Transform } from '@antv/x6-plugin-transform';
 import { EventEmitter } from 'events';
-import * as graphEvents from './events';
-import { RootNodeConfig } from './nodes';
 
 import styles from './index.module.less';
 
@@ -60,7 +58,8 @@ export class BaseEditor extends EventEmitter {
       },
       interacting: (cellView) => {
         const options = {
-          nodeMovable: cellView.cell.shape === RootNodeConfig.NODE_NAME,
+          // nodeMovable: cellView.cell.shape === RootNodeConfig.NODE_NAME,
+          nodeMovable: false,
           edgeLabelMovable: false,
           edgeMovable: false,
           arrowheadMovable: false,
@@ -181,9 +180,5 @@ export class BaseEditor extends EventEmitter {
   }
 
   /** 注册相关事件 */
-  private __useEvents() {
-    Object.values(graphEvents).forEach((eventFn) => {
-      eventFn(this.graph);
-    });
-  }
+  private __useEvents() {}
 }

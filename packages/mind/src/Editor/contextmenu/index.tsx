@@ -1,11 +1,17 @@
-import type { Graph, Node } from '@antv/x6';
+/** 右键菜单 */
+import { CopyOutlined, ScissorOutlined } from '@ant-design/icons';
+import type { Node } from '@antv/x6';
 import { ContextMenu } from '@kangmi/components';
 import { message } from 'antd';
+import type { Editor } from '../index';
 
 let contextMenu: ContextMenu | undefined;
 
+type DeepCloneNode = Node & { _children?: DeepCloneNode[] };
+
 /** 右键菜单 */
-export function contextMenuEvents(graph: Graph) {
+export function registerContextMenu(editor: Editor) {
+  const graph = editor.graph;
   graph.on('cell:contextmenu', ({ e, cell, x, y }) => {
     e.stopPropagation();
 
@@ -27,6 +33,8 @@ export function contextMenuEvents(graph: Graph) {
     const position = { x: e.pageX + left - offsetLeft, y: e.pageY + top - offsetTop };
     const selectedCells = graph.getSelectedCells();
     const selectedNodes = selectedCells.filter((c) => c.isNode()) as Node[];
+    const clipboardCells = graph.getCellsInClipboard();
+    const clipboardNodes = clipboardCells.filter((c): c is DeepCloneNode => c.isNode());
     contextMenu.show({
       position,
       items: [
@@ -34,24 +42,27 @@ export function contextMenuEvents(graph: Graph) {
           label: '复制',
           key: 'copy',
           extra: 'Ctrl+C',
+          icon: <CopyOutlined />,
           onClick: () => {
-            graph.copy(selectedCells);
+            editor.copy();
           },
         },
         {
           label: '剪切',
           key: 'cut',
           extra: 'Ctrl+X',
+          icon: <ScissorOutlined />,
           onClick: () => {
-            graph.cut(selectedCells);
+            editor.cut();
           },
         },
         {
           label: '粘贴',
           key: 'paste',
           extra: 'Ctrl+V',
+          disabled: !clipboardNodes.length,
           onClick: () => {
-            graph.paste();
+            editor.paste();
           },
         },
         {

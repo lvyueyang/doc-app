@@ -6,13 +6,17 @@ import { cloneDeep } from 'lodash';
 import { MindMapLRConnector } from '../Editor/connector';
 import type { BaseEditorOptions } from './BaseEditor';
 import { BaseEditor } from './BaseEditor';
+import { registerContextMenu } from './contextmenu';
 import { MindMapEdgeConfig } from './edges';
+import { registerKeyboard } from './keyboard';
 import * as layouts from './layout';
 import { BranchNodeConfig, ChildNodeConfig, RootNodeConfig } from './nodes';
 import * as mindMapTheme from './theme';
 import type { MindMapTheme } from './theme/types';
 import type { IconDataItem, Icons, NodeConfig, Remark, TagDataItem, Tags } from './types';
 import { cells2Tree, shape2Theme } from './utils';
+
+type DeepCloneNode = Node & { _children?: DeepCloneNode[] };
 
 interface BackgroundOptions {
   color: string;
@@ -54,6 +58,8 @@ export class Editor extends BaseEditor {
 
     this.bindEvent();
     this.graph.drawBackground(this.theme.background);
+    registerContextMenu(this);
+    registerKeyboard(this);
   }
 
   // 创建节点
@@ -120,49 +126,53 @@ export class Editor extends BaseEditor {
     if (options?.isCenter) {
       center = this.graph.getGraphArea().center;
     }
-    this.graph.addNode(
-      this.createRootNode({
-        ...center,
-      }),
-    );
+    const rootNode = this.createRootNode({
+      ...center,
+    });
+    this.graph.addNode(rootNode);
+    this.layout(rootNode.id);
   };
   /** 添加子节点 */
-  appendChildNode = () => {
+  appendChildNode = (node?: Node) => {
     const selectedNode = this.graph.getSelectedCells().filter((cell) => cell.isNode())[0];
 
     if (selectedNode) {
-      const childNode =
-        selectedNode.shape === RootNodeConfig.NODE_NAME
-          ? this.createBranchNode()
-          : this.createChildNode();
+      let childNode = node;
+      if (!childNode) {
+        childNode =
+          selectedNode.shape === RootNodeConfig.NODE_NAME
+            ? this.createBranchNode()
+            : this.createChildNode();
+      }
+
       childNode.addTo(selectedNode);
-
-      // this.layout(childNode.id);
-
+      this.layout(childNode.id);
       return childNode;
     }
     return false;
   };
   /** 添加兄弟节点 */
-  appendNeighborNode = () => {
+  appendNeighborNode = (node?: Node) => {
     const selectedNode = this.graph.getSelectedCells().filter((cell) => cell.isNode())[0];
 
     if (selectedNode) {
       const selectedNodeId = selectedNode?.id;
       const parent = this.graph
         .getNodes()
-        .find((node) => node.getChildren()?.find((c) => c.id === selectedNodeId));
+        .find((n) => n.getChildren()?.find((c) => c.id === selectedNodeId));
 
       if (!parent) return false;
-      const childNode =
-        parent.shape === RootNodeConfig.NODE_NAME
-          ? this.createBranchNode()
-          : this.createChildNode();
+
+      let childNode = node;
+      if (!childNode) {
+        childNode =
+          parent.shape === RootNodeConfig.NODE_NAME
+            ? this.createBranchNode()
+            : this.createChildNode();
+      }
       const index = parent?.getChildren()?.indexOf(selectedNode) || 0;
       childNode.insertTo(parent, index + 1);
-
-      // this.layout(childNode.id);
-
+      this.layout(childNode.id);
       return childNode;
     }
     return false;
@@ -267,6 +277,8 @@ export class Editor extends BaseEditor {
           this.contentCenter();
         }
       }
+    } else {
+      this.graph.cleanSelection();
     }
     this.emit('layout');
   };
@@ -442,6 +454,7 @@ export class Editor extends BaseEditor {
     this.emit('theme:change', theme);
   }
 
+  /** 定位到中心 */
   contentCenter = () => {
     const selectNode = this.graph.getSelectedCells()[0];
     if (selectNode) {
@@ -453,6 +466,56 @@ export class Editor extends BaseEditor {
       }
     }
   };
+
+  /** 粘贴 */
+  paste() {
+    const graph = this.graph;
+    const { firstSelectedNode } = this.selectedHelper();
+
+    const clipboardCells = graph.getCellsInClipboard();
+    const clipboardNodes = clipboardCells.filter((c): c is DeepCloneNode => c.isNode());
+    const currentNode = firstSelectedNode;
+    if (!currentNode) return;
+
+    // 只取父节点
+    const nodes = clipboardNodes.filter((n) => {
+      if (clipboardNodes.find((c: any) => c._children?.map((cc: Node) => cc.id).includes(n.id))) {
+        return false;
+      }
+      return true;
+    });
+    nodes.forEach((node) => {
+      currentNode.addChild(node);
+    });
+    graph.model.addCells(clipboardCells);
+    this.layout(currentNode.id);
+  }
+  /** 复制 */
+  copy() {
+    const graph = this.graph;
+    const { selectedCells, firstSelectedNode } = this.selectedHelper();
+    if (!firstSelectedNode) return;
+    graph.copy(selectedCells, { deep: true });
+  }
+  /** 剪切 */
+  cut() {
+    const graph = this.graph;
+    const { selectedCells, firstSelectedNode } = this.selectedHelper();
+    if (!firstSelectedNode) return;
+    graph.cut(selectedCells, { deep: true });
+  }
+
+  selectedHelper() {
+    const graph = this.graph;
+    const selectedCells = graph.getSelectedCells();
+    const selectedNodes = selectedCells.filter((c) => c.isNode()) as Node[];
+    const firstSelectedNode = selectedNodes[0];
+    return {
+      selectedCells,
+      selectedNodes,
+      firstSelectedNode,
+    };
+  }
 
   /** 绑定事件 */
   bindEvent = () => {
@@ -467,10 +530,7 @@ export class Editor extends BaseEditor {
       e.preventDefault();
       this.appendNeighborNode();
     });
-    // 节点变化，重新布局
-    graph.on('node:added', (e) => {
-      this.layout(e.cell.id);
-    });
+
     let removeNodeTimer: NodeJS.Timeout;
     graph.on('node:removed', () => {
       clearTimeout(removeNodeTimer);
