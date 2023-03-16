@@ -18,13 +18,31 @@ interface LayoutItemConfig {
   createEdgeConfig: (source: MindMapResult, target: MindMapResult) => CreateEdgeConfigResult;
 }
 
+const layoutCommonOptions = {
+  getHeight(d: MindMapData) {
+    if (d.data.visible === false) {
+      return 0;
+    }
+    return d.height;
+  },
+  getWidth(d: MindMapData) {
+    if (d.data.visible === false) {
+      return 0;
+    }
+    return d.width;
+  },
+};
+
 export const MindMapHLayout: LayoutItemConfig = {
   name: 'mindmapH',
   cname: '左右分布',
   layout: (treeData: MindMapData) => {
     const result: MindMapResult = hierarchy.compactBox(treeData, {
       direction: 'H',
-      getHGap() {
+      getHGap(d: MindMapData) {
+        if (d.data.visible === false) {
+          return 0;
+        }
         // 水平间距
         return 40;
       },
@@ -32,6 +50,7 @@ export const MindMapHLayout: LayoutItemConfig = {
         // 垂直间距
         return 20;
       },
+      ...layoutCommonOptions,
     });
     return result;
   },

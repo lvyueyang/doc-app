@@ -81,6 +81,7 @@ function cellItem2TreeItem(cell: Cell.Properties) {
     width: cell.size.width,
     height: cell.size.height,
     data: cell,
+    visible: cell.visible,
   };
 }
 

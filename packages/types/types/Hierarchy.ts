@@ -1,4 +1,5 @@
-export interface MindMapData<Data = any> {
+import type { Node } from '@antv/x6';
+export interface MindMapData<Data = Node.Properties> {
   id: string;
   type: string;
   width: number;

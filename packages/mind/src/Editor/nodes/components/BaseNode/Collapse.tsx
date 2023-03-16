@@ -1,9 +1,8 @@
-import type { Cell, Node } from '@antv/x6';
-import { useEffect, useState } from 'react';
+import type { Node } from '@antv/x6';
 import { useMindEditor } from '../../../../hooks';
 import { MindMapEdgeConfig } from '../../../edges';
 import { shape2Theme } from '../../../utils';
-import { RootNodeConfig } from '../../index';
+import { ChildNodeConfig, RootNodeConfig } from '../../index';
 import styles from './index.module.less';
 
 interface CollapseProps {
@@ -13,48 +12,42 @@ interface CollapseProps {
 
 export default function Collapse({ node, onChange }: CollapseProps) {
   const { editor } = useMindEditor();
-  const [isCollapse, setIsCollapse] = useState(!!node.getData().isCollapse);
   const children = node.getDescendants();
+  const firstChild = node.getChildren()?.filter((i) => i.shape === ChildNodeConfig.NODE_NAME)?.[0];
+  const isCollapse = !firstChild?.isVisible();
 
-  const toggleHandler = (cell = node) => {
-    cell.getDescendants().forEach((child) => {
-      child.setVisible(!cell.getData()?.isCollapse);
-    });
+  const toggleHandler = () => {
+    const first = firstChild;
+    if (first) {
+      const visible = first.isVisible();
+      node.getDescendants().forEach((child) => {
+        child.setVisible(!visible);
+      });
+      onChange?.();
+    }
   };
 
-  useEffect(() => {
-    toggleHandler(node);
-    const fn = (e: Cell.ChangeArgs<any>) => {
-      if (e.previous.isCollapse !== e.current.isCollapse) {
-        toggleHandler(e.cell as Node);
-        setIsCollapse(e.current.isCollapse);
-        onChange?.();
-      }
-    };
-    node.on('change:data', fn);
-    return () => {
-      node.off('change:data', fn);
-    };
-  }, []);
-
-  if (!editor || node.shape === RootNodeConfig.NODE_NAME) return null;
-  const sons = node.getChildren();
-
-  if (!sons?.length) return null;
-
+  if (!editor || node.shape === RootNodeConfig.NODE_NAME || !firstChild) return null;
+  // 边主题
   const { edge } = shape2Theme(node.shape, editor.theme);
-  const sources = editor.graph
-    .getOutgoingEdges(node)
-    ?.filter((e) => e.shape === MindMapEdgeConfig.EDGE_NAME);
-  if (!sources?.length) return null;
-  const source = sources[0];
-  const posName = (source.getSource() as any).anchor.name;
+
+  // 获取要展示的定位的位置
+  const getPosName = (): string | null => {
+    const sources = editor.graph
+      .getOutgoingEdges(node)
+      ?.filter((e) => e.shape === MindMapEdgeConfig.EDGE_NAME);
+    if (!sources?.length) return null;
+    const source = sources[0];
+    return (source.getSource() as any).anchor.name;
+  };
+  const posName = getPosName();
+  if (!posName) return null;
 
   return (
     <div
       className={styles.collapse}
       onClick={() => {
-        node.setData({ isCollapse: !isCollapse }, { deep: false });
+        toggleHandler();
       }}
       style={{
         background: editor?.theme.background.color,
