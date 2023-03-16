@@ -16,6 +16,13 @@ export interface NodeSize {
   height: number;
 }
 
+export interface LayoutConfig {
+  /** 水平间距 */
+  H_Gap: number;
+  /** 垂直间距 */
+  V_Gap: number;
+}
+
 export type NodeTheme = React.CSSProperties;
 
 export interface MindMapTheme {

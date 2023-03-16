@@ -8,7 +8,7 @@ const { MindMapHLayout, ...LayoutMaps } = layouts;
 
 export function LayoutSetting() {
   const { editor } = useMindEditor();
-  const [active, setActive] = useState(editor?.layoutType);
+  const [active, setActive] = useState(editor?.getLayoutType());
 
   return (
     <SettingBarGroupItem label="结构布局">

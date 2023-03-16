@@ -29,7 +29,7 @@ export default function Collapse({ node, onChange }: CollapseProps) {
 
   if (!editor || node.shape === RootNodeConfig.NODE_NAME || !firstChild) return null;
   // 边主题
-  const { edge } = shape2Theme(node.shape, editor.theme);
+  const { edge } = shape2Theme(node.shape, editor.getTheme());
 
   // 获取要展示的定位的位置
   const getPosName = (): string | null => {
@@ -50,7 +50,7 @@ export default function Collapse({ node, onChange }: CollapseProps) {
         toggleHandler();
       }}
       style={{
-        background: editor?.theme.background.color,
+        background: editor?.getTheme().background.color,
         borderColor: edge.stroke,
         color: edge.stroke,
         [posName]: -24,

@@ -30,18 +30,21 @@ interface EditorJsonForm {
   theme: string;
   /** 布局 */
   layout: string;
+  /** 布局配置 */
+  layoutOptions: layouts.LayoutOptions;
 }
 
 type EditorOptions = BaseEditorOptions;
 
 export class Editor extends BaseEditor {
   options: BaseEditorOptions;
-  eventEmitter = new EventEmitter();
+  readonly eventEmitter = new EventEmitter();
   /** 主题 */
-  theme: MindMapTheme = mindMapTheme.defaultTheme;
+  private theme: MindMapTheme = mindMapTheme.defaultTheme;
   /** 结构布局*/
-  layoutType: string = layouts.MindMapHLayout.name;
-
+  private layoutType: string = layouts.MindMapHLayout.name;
+  /** 布局配置 */
+  private layoutOptions: layouts.LayoutOptions = layouts.MindMapHLayout.layoutOptions;
   /** 画布标题 */
   private title: string = '';
 
@@ -175,7 +178,7 @@ export class Editor extends BaseEditor {
     const { layout, createEdgeConfig } =
       Object.values(layouts).find(({ name }) => name === this.layoutType) || {};
 
-    const result = layout?.(treeData);
+    const result = layout?.(treeData, this.layoutOptions);
 
     if (!result) return;
 
@@ -270,6 +273,9 @@ export class Editor extends BaseEditor {
   /** 设置布局方式 */
   setLayout = (type: string) => {
     this.layoutType = type;
+    this.layoutOptions =
+      Object.values(layouts).find((item) => item.name === type)?.layoutOptions ||
+      this.layoutOptions;
     this.layout();
     const root = this.graph.getRootNodes().find((item) => item.shape === RootNodeConfig.NODE_NAME);
     if (root) {
@@ -278,6 +284,19 @@ export class Editor extends BaseEditor {
     }
     this.graph.centerContent();
   };
+  getLayoutType() {
+    return this.layoutType;
+  }
+  getLayoutOptions() {
+    return this.layoutOptions;
+  }
+  setLayoutOptions(options: Partial<layouts.LayoutOptions>) {
+    this.layoutOptions = {
+      ...this.layoutOptions,
+      ...options,
+    };
+    this.layout();
+  }
 
   /** 为节点添加表情 */
   addIcon = (node: Node, groupName: string, iconName: string, isOnly: boolean) => {
@@ -479,6 +498,10 @@ export class Editor extends BaseEditor {
     return result;
   };
 
+  getTheme() {
+    return this.theme;
+  }
+
   setTitle = (title: string) => {
     this.title = title;
   };
@@ -497,6 +520,7 @@ export class Editor extends BaseEditor {
     this.theme =
       Object.values(mindMapTheme).find((theme) => theme.id === value.theme) || this.theme;
     this.layoutType = value.layout || this.layoutType;
+    this.layoutOptions = value.layoutOptions || this.layoutOptions;
   };
 
   /** 导出 JSON 数据 */
@@ -509,6 +533,7 @@ export class Editor extends BaseEditor {
       },
       theme: this.theme.id,
       layout: this.layoutType,
+      layoutOptions: this.layoutOptions,
     };
   };
   /**

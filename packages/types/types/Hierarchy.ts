@@ -26,7 +26,7 @@ export interface MindMapResult {
   vgap: number;
 }
 
-export interface MindmapOptions {
+export interface MindMapOptions {
   direction?: string;
   getId?: (data: MindMapData) => string;
   getPreH?: (data: MindMapData) => number;
@@ -40,8 +40,8 @@ export interface MindmapOptions {
 }
 
 export interface HierarchyLayout {
-  compactBox: any;
-  dendrogram: any;
-  indented: any;
-  mindmap: (root: any, options: MindmapOptions) => MindMapResult;
+  compactBox: (root: any, options: MindMapOptions) => MindMapResult;
+  dendrogram: (root: any, options: MindMapOptions) => MindMapResult;
+  indented: (root: any, options: MindMapOptions) => MindMapResult;
+  mindmap: (root: any, options: MindMapOptions) => MindMapResult;
 }

@@ -9,48 +9,64 @@ interface CreateEdgeConfigResult {
   target?: Partial<Edge.SetCellTerminalArgs>;
 }
 
+export interface LayoutOptions {
+  /** 水平间距 */
+  H_Gap: number;
+  /** 垂直间距 */
+  V_Gap: number;
+}
+
 interface LayoutItemConfig {
   name: string;
   cname: string;
   /** 布局算法 */
-  layout: (treeData: MindMapData) => MindMapResult;
+  layout: (treeData: MindMapData, options: LayoutOptions) => MindMapResult;
+  layoutOptions: LayoutOptions;
   /** 边配置 */
   createEdgeConfig: (source: MindMapResult, target: MindMapResult) => CreateEdgeConfigResult;
 }
 
-const layoutCommonOptions = {
-  getHeight(d: MindMapData) {
-    if (d.data.visible === false) {
-      return 0;
-    }
-    return d.height;
-  },
-  getWidth(d: MindMapData) {
-    if (d.data.visible === false) {
-      return 0;
-    }
-    return d.width;
-  },
+const createLayoutCommonOptions = (options: LayoutOptions) => {
+  return {
+    // 水平间距
+    getHGap(d: MindMapData) {
+      if (d.data.visible === false) {
+        return 0;
+      }
+      return options.H_Gap;
+    },
+    // 垂直间距
+    getVGap(d: MindMapData) {
+      if (d.data.visible === false) {
+        return 0;
+      }
+      return options.V_Gap;
+    },
+    getHeight(d: MindMapData) {
+      if (d.data.visible === false) {
+        return 0;
+      }
+      return d.height;
+    },
+    getWidth(d: MindMapData) {
+      if (d.data.visible === false) {
+        return 0;
+      }
+      return d.width;
+    },
+  };
 };
-
 export const MindMapHLayout: LayoutItemConfig = {
   name: 'mindmapH',
   cname: '左右分布',
-  layout: (treeData: MindMapData) => {
+  layoutOptions: {
+    H_Gap: 40,
+    V_Gap: 20,
+  },
+  layout: (treeData, options) => {
     const result: MindMapResult = hierarchy.compactBox(treeData, {
       direction: 'H',
-      getHGap(d: MindMapData) {
-        if (d.data.visible === false) {
-          return 0;
-        }
-        // 水平间距
-        return 40;
-      },
-      getVGap() {
-        // 垂直间距
-        return 20;
-      },
-      ...layoutCommonOptions,
+      ...createLayoutCommonOptions(options),
     });
     return result;
   },
@@ -73,20 +89,17 @@ export const MindMapHLayout: LayoutItemConfig = {
 export const MindMapLRLayout: LayoutItemConfig = {
   name: 'mindmapLR',
   cname: '右侧分布',
-  layout: (treeData: MindMapData) => {
+  layoutOptions: {
+    H_Gap: 40,
+    V_Gap: 20,
+  },
+  layout: (treeData, options) => {
     const result: MindMapResult = hierarchy.compactBox(treeData, {
       direction: 'H',
       getSide() {
         return 'right';
       },
-      getHGap() {
-        // 水平间距
-        return 40;
-      },
-      getVGap() {
-        // 垂直间距
-        return 20;
-      },
+      ...createLayoutCommonOptions(options),
     });
 
     return result;
@@ -110,20 +123,17 @@ export const MindMapLRLayout: LayoutItemConfig = {
 export const MindMapRLLayout: LayoutItemConfig = {
   name: 'mindmapRL',
   cname: '左侧分布',
-  layout: (treeData: MindMapData) => {
+  layoutOptions: {
+    H_Gap: 40,
+    V_Gap: 20,
+  },
+  layout: (treeData, options) => {
     const result: MindMapResult = hierarchy.compactBox(treeData, {
       direction: 'H',
       getSide() {
         return 'left';
       },
-      getHGap() {
-        // 水平间距
-        return 40;
-      },
-      getVGap() {
-        // 垂直间距
-        return 20;
-      },
+      ...createLayoutCommonOptions(options),
     });
 
     return result;
@@ -147,17 +157,14 @@ export const MindMapRLLayout: LayoutItemConfig = {
 export const MindMapVLayout: LayoutItemConfig = {
   name: 'mindmapV',
   cname: '上下分布',
-  layout: (treeData: MindMapData) => {
+  layoutOptions: {
+    H_Gap: 30,
+    V_Gap: 40,
+  },
+  layout: (treeData, options) => {
     const result: MindMapResult = hierarchy.compactBox(treeData, {
       direction: 'V',
-      getHGap() {
-        // 水平间距
-        return 30;
-      },
-      getVGap() {
-        // 垂直间距
-        return 40;
-      },
+      ...createLayoutCommonOptions(options),
     });
 
     return result;
@@ -184,17 +191,14 @@ export const MindMapVLayout: LayoutItemConfig = {
 export const MindMapTBLayout: LayoutItemConfig = {
   name: 'mindmapTB',
   cname: '向下分布',
-  layout: (treeData: MindMapData) => {
+  layoutOptions: {
+    H_Gap: 30,
+    V_Gap: 40,
+  },
+  layout: (treeData, options) => {
     const result: MindMapResult = hierarchy.compactBox(treeData, {
       direction: 'TB',
-      getHGap() {
-        // 水平间距
-        return 30;
-      },
-      getVGap() {
-        // 垂直间距
-        return 40;
-      },
+      ...createLayoutCommonOptions(options),
     });
 
     return result;
@@ -221,17 +225,14 @@ export const MindMapTBLayout: LayoutItemConfig = {
 export const MindMapBTLayout: LayoutItemConfig = {
   name: 'mindmapBT',
   cname: '向上分布',
-  layout: (treeData: MindMapData) => {
+  layoutOptions: {
+    H_Gap: 30,
+    V_Gap: 40,
+  },
+  layout: (treeData, options) => {
     const result: MindMapResult = hierarchy.compactBox(treeData, {
       direction: 'BT',
-      getHGap() {
-        // 水平间距
-        return 30;
-      },
-      getVGap() {
-        // 垂直间距
-        return 40;
-      },
+      ...createLayoutCommonOptions(options),
     });
 
     return result;

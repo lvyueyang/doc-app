@@ -1,5 +1,6 @@
 import { SettingBarGroupItem } from '@kangmi/components';
 import { Button, Row } from 'antd';
+import { useState } from 'react';
 import * as themeList from '../../Editor/theme';
 import { useMindEditor } from '../../hooks';
 
@@ -7,6 +8,7 @@ const { defaultTheme, ...ThemeMaps } = themeList;
 
 export function ThemeSetting() {
   const { editor } = useMindEditor();
+  const [active, setActive] = useState(editor?.getTheme().id);
 
   return (
     <SettingBarGroupItem label="主题风格">
@@ -18,7 +20,9 @@ export function ThemeSetting() {
               block
               onClick={() => {
                 editor?.setTheme(item);
+                setActive(item.id);
               }}
+              type={active === item.id ? 'primary' : 'default'}
             >
               {item.themeName}
             </Button>

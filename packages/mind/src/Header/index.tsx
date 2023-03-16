@@ -80,7 +80,7 @@ export default function Header() {
         <OperateItem
           title="定位到中心主题"
           onClick={() => {
-            editor.graph?.centerContent();
+            editor.contentCenter();
           }}
         >
           <Aiming />

@@ -13,6 +13,7 @@ import type { LINE_TYPE_ENUM } from 'Editor/constants';
 import { useEffect, useState } from 'react';
 import { LINE_TYPE } from '../../constants';
 import type { Editor } from '../../Editor';
+import type { LayoutOptions } from '../../Editor/layout';
 import { useMindEditor } from '../../hooks';
 import styles from './index.module.less';
 
@@ -33,6 +34,7 @@ interface PageConfigState {
   background: {
     color: string;
   };
+  layoutOptions: LayoutOptions;
 }
 function PageSettingGroup({ editor }: { editor: Editor }) {
   const graph = editor?.graph;
@@ -40,6 +42,7 @@ function PageSettingGroup({ editor }: { editor: Editor }) {
     background: {
       color: '#fff',
     },
+    layoutOptions: editor.getLayoutOptions(),
   });
   const updatePageConfig = () => {
     if (graph) {
@@ -47,6 +50,7 @@ function PageSettingGroup({ editor }: { editor: Editor }) {
         background: {
           color: editor.getBackground().color,
         },
+        layoutOptions: editor.getLayoutOptions(),
       });
     }
   };
@@ -60,6 +64,30 @@ function PageSettingGroup({ editor }: { editor: Editor }) {
           value={pageConfig.background.color}
           onChange={(e) => {
             graph?.drawBackground({ color: e });
+            updatePageConfig();
+          }}
+        />
+      </SettingBarAttrItem>
+      <SettingBarAttrItem label="水平间距">
+        <InputNumber
+          min={0}
+          value={pageConfig.layoutOptions.H_Gap}
+          onChange={(e) => {
+            editor.setLayoutOptions({
+              H_Gap: e || 0,
+            });
+            updatePageConfig();
+          }}
+        />
+      </SettingBarAttrItem>
+      <SettingBarAttrItem label="垂直间距">
+        <InputNumber
+          min={0}
+          value={pageConfig.layoutOptions.V_Gap}
+          onChange={(e) => {
+            editor.setLayoutOptions({
+              V_Gap: e || 0,
+            });
             updatePageConfig();
           }}
         />

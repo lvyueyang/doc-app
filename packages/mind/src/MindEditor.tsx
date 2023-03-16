@@ -33,7 +33,7 @@ export function MindEditor({ value }: MindEditorProps) {
     });
     if (value) {
       mindEditor?.fromJSON(value);
-      mindEditor?.graph.centerContent();
+      mindEditor?.contentCenter();
     } else {
       mindEditor?.appendRootNode({ isCenter: true });
     }
