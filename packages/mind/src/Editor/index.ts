@@ -1,4 +1,4 @@
-import type { Cell, Node } from '@antv/x6';
+import type { Cell, Edge, Node } from '@antv/x6';
 import type { MindMapResult } from '@kangmi/types';
 import { downloadJson } from '@kangmi/utils';
 import { EventEmitter } from 'events';
@@ -193,6 +193,8 @@ export class Editor extends BaseEditor {
     if (!result) return;
 
     const cells: Cell[] = [];
+    const nodes: Node.Properties[] = [];
+    const edges: Edge.Properties[] = [];
     const traverse = (hierarchyItem: MindMapResult) => {
       if (hierarchyItem) {
         const { data, children } = hierarchyItem;
@@ -201,16 +203,15 @@ export class Editor extends BaseEditor {
           x: hierarchyItem.x,
           y: hierarchyItem.y,
         };
-        const node = this.graph.createNode({
+        const nodeConfig: Node.Properties = {
           ...nodeInfo,
-          ...position,
-          ...nodeInfo.size,
-        });
-        cells.push(node);
+          position,
+        };
+        nodes.push(nodeConfig);
         if (children) {
           children.forEach((child) => {
             const edgeLayoutConfig = createEdgeConfig?.(hierarchyItem, child);
-            const edge = this.graph.createEdge({
+            const edgeConfig: Edge.Properties = {
               shape: MindMapEdgeConfig.EDGE_NAME,
               connector: {
                 name: MindMapLRConnector.NAME,
@@ -235,7 +236,9 @@ export class Editor extends BaseEditor {
                   ...shape2Theme(data.type, this.theme)?.edge,
                 },
               },
-            });
+            };
+            edges.push(edgeConfig);
+            const edge = this.graph.createEdge(edgeConfig);
             cells.push(edge);
             traverse(child);
           });
@@ -243,28 +246,7 @@ export class Editor extends BaseEditor {
       }
     };
     traverse(result);
-    this.graph.resetCells(cells);
-
-    // nodes.forEach((node) => {
-    //   const originNode = this.graph.getCellById(node.id) as Node;
-    //   if (originNode) {
-    //     // 位置对比，更新布局
-    //     const oldPosition = originNode.getPosition();
-    //     const newPosition = node.getPosition();
-    //     if (oldPosition.x !== newPosition.x || oldPosition.y !== newPosition.y) {
-    //       originNode.setPosition(newPosition);
-    //     }
-    //   }
-    //   if (originNode.shape !== RootNodeConfig.NODE_NAME) {
-    //     const parent = originNode.getParent();
-    //     if (parent) {
-    //       const edge = edgeMap[originNode.id];
-    //       if (edge) {
-    //         this.graph.addEdge(this.graph.createEdge(edge));
-    //       }
-    //     }
-    //   }
-    // });
+    this.diffLayout(nodes, edges);
 
     if (nodeId) {
       this.graph.cleanSelection();
@@ -296,6 +278,35 @@ export class Editor extends BaseEditor {
       this.graph.cleanSelection();
     }
     this.emit('layout');
+  };
+  diffLayout = (nodes: Node.Properties[], edges: Edge.Properties[]) => {
+    nodes.forEach((node) => {
+      if (!node.id || !node.position) return;
+      const originNode = this.graph.getCellById(node.id) as Node;
+      if (originNode) {
+        // 位置对比，更新布局
+        const oldPosition = originNode.getPosition();
+        const newPosition = node.position;
+        if (oldPosition.x !== newPosition.x || oldPosition.y !== newPosition.y) {
+          originNode.setPosition(newPosition);
+
+          // 重新连线
+          const targetEdge = this.graph
+            .getIncomingEdges(originNode)
+            ?.filter((e) => e.shape === MindMapEdgeConfig.EDGE_NAME)[0];
+          const newEdge = edges.find((edge) => {
+            return edge.target?.cell === originNode.id;
+          });
+          if (newEdge) {
+            if (targetEdge) {
+              targetEdge?.setProp(newEdge);
+            } else {
+              this.graph.addEdge(newEdge);
+            }
+          }
+        }
+      }
+    });
   };
   /** 设置布局方式 */
   setLayout = (type: string) => {
