@@ -12,7 +12,7 @@ interface CollapseProps {
 
 export default function Collapse({ node, onChange }: CollapseProps) {
   const { editor } = useMindEditor();
-  const children = node.getDescendants();
+  const children = node.getDescendants().filter((cell) => cell.isNode());
   const firstChild = node.getChildren()?.filter((i) => i.shape === ChildNodeConfig.NODE_NAME)?.[0];
   const isCollapse = !firstChild?.isVisible();
 
