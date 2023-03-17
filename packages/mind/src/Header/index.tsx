@@ -127,6 +127,14 @@ export default function Header() {
             <DownloadOutlined />
           </OperateItem>
         </Dropdown>
+        <OperateItem
+          title=""
+          onClick={() => {
+            console.log(editor.toJson().data.cells);
+          }}
+        >
+          JSON
+        </OperateItem>
       </div>
     </div>
   );

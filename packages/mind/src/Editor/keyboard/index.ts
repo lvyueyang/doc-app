@@ -47,11 +47,19 @@ export function registerKeyboard(editor: Editor) {
       if (!firstSelectedNode) {
         return;
       }
+      console.log('firstSelectedNode: ', firstSelectedNode);
+      const parent = firstSelectedNode.getParent();
+      console.log('parent: ', parent);
+      const index = parent?.getChildIndex(firstSelectedNode);
+      console.log('index: ', index);
 
-      // e.preventDefault();
-      // // 上移 ↑
-      // if (code === 'ArrowUp') {
-      // }
+      e.preventDefault();
+      // 上移 ↑
+      if (code === 'ArrowUp') {
+        if (index === 0) {
+          graph.select(parent!);
+        }
+      }
       // // 下移 ↓
       // if (code === 'ArrowDown') {
       // }

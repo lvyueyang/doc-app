@@ -108,7 +108,7 @@ export function cells2Tree(cells: Cell.Properties[]) {
           return;
         }
         return {
-          ...cellItem2TreeItem(cell!),
+          ...cellItem2TreeItem(cell),
           children: cell.children,
         };
       })

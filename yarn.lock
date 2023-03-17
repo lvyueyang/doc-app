@@ -155,10 +155,10 @@
   resolved "https://registry.npmjs.org/@antv/x6-react-shape/-/x6-react-shape-2.1.0.tgz#b364a021d9690abb1f8f35cefd2da913dfd145d3"
   integrity sha512-HY9tPbMU1Z7Tu2lwBenXJe53DzT2MFt9LXRBPyN+r5qu8kP3VMU1vzS+2+LsPFdPL3s71wolGjL1GExUoh77JQ==
 
-"@antv/x6@^2.7.1":
-  version "2.7.1"
-  resolved "https://registry.npmjs.org/@antv/x6/-/x6-2.7.1.tgz#d2013c118f86cfb035751797feaad138cab7d344"
-  integrity sha512-2fwx9Yh3/Et7fosPnkBTimOdiHlHpj8srEvChhlmU/mpa7dwlf68acGxMwbiD3gd5KyIlxlLr5PpdmIbuqytIA==
+"@antv/x6@^2.5.5":
+  version "2.5.5"
+  resolved "https://registry.npmjs.org/@antv/x6/-/x6-2.5.5.tgz#b6a9a05d58a287214bdb502c7b92f11ac539bc07"
+  integrity sha512-lMnUPQDzFutmE74YQsdScmrE1KYrvY3JXcBeBdzKpWEyeKETUA/UDW1sbMyDf/a/n2au5p+bJFHG1klSn01nUA==
   dependencies:
     "@antv/x6-common" "^2.0.x"
     "@antv/x6-geometry" "^2.0.x"

@@ -135,7 +135,6 @@ export class Editor extends BaseEditor {
   /** 添加子节点 */
   appendChildNode = (node?: Node) => {
     const selectedNode = this.graph.getSelectedCells().filter((cell) => cell.isNode())[0];
-
     if (selectedNode) {
       let childNode = node;
       if (!childNode) {
@@ -145,8 +144,8 @@ export class Editor extends BaseEditor {
             : this.createChildNode();
       }
 
-      childNode.addTo(selectedNode);
-      this.layout(childNode.id);
+      selectedNode.addChild(this.graph.addNode(childNode));
+      this.layout(childNode.id!);
       return childNode;
     }
     return false;
@@ -171,7 +170,7 @@ export class Editor extends BaseEditor {
             : this.createChildNode();
       }
       const index = parent?.getChildren()?.indexOf(selectedNode) || 0;
-      childNode.insertTo(parent, index + 1);
+      parent.insertChild(this.graph.addNode(childNode), index + 1);
       this.layout(childNode.id);
       return childNode;
     }
@@ -181,8 +180,9 @@ export class Editor extends BaseEditor {
   /** 布局 */
   layout = (nodeId?: string) => {
     const json = this.graph.toJSON();
-    const treeData = cells2Tree(json.cells);
-
+    const treeData = cells2Tree(
+      json.cells.filter((cell) => cell.shape !== MindMapEdgeConfig.EDGE_NAME),
+    );
     if (!treeData) return;
 
     const { layout, createEdgeConfig } =
@@ -202,14 +202,9 @@ export class Editor extends BaseEditor {
           y: hierarchyItem.y,
         };
         const node = this.graph.createNode({
-          shape: nodeInfo.shape,
-          id: nodeInfo.id,
+          ...nodeInfo,
           ...position,
           ...nodeInfo.size,
-          visible: nodeInfo.visible,
-          attrs: nodeInfo.attrs,
-          data: nodeInfo.data,
-          children: children?.map((i) => i.id),
         });
         cells.push(node);
         if (children) {
@@ -248,14 +243,34 @@ export class Editor extends BaseEditor {
       }
     };
     traverse(result);
-
     this.graph.resetCells(cells);
+
+    // nodes.forEach((node) => {
+    //   const originNode = this.graph.getCellById(node.id) as Node;
+    //   if (originNode) {
+    //     // 位置对比，更新布局
+    //     const oldPosition = originNode.getPosition();
+    //     const newPosition = node.getPosition();
+    //     if (oldPosition.x !== newPosition.x || oldPosition.y !== newPosition.y) {
+    //       originNode.setPosition(newPosition);
+    //     }
+    //   }
+    //   if (originNode.shape !== RootNodeConfig.NODE_NAME) {
+    //     const parent = originNode.getParent();
+    //     if (parent) {
+    //       const edge = edgeMap[originNode.id];
+    //       if (edge) {
+    //         this.graph.addEdge(this.graph.createEdge(edge));
+    //       }
+    //     }
+    //   }
+    // });
 
     if (nodeId) {
       this.graph.cleanSelection();
       this.graph.select(nodeId);
       const node = this.graph.getCellById(nodeId);
-      if (node.isNode()) {
+      if (node?.isNode()) {
         if (node.shape === RootNodeConfig.NODE_NAME) {
           this.contentCenter();
           return;
