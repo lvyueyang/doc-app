@@ -1,7 +1,7 @@
 /**
  * 键盘鼠标事件
  */
-import type { Graph } from '@antv/x6';
+import type { Cell, Graph } from '@antv/x6';
 import { TextEditorClassName } from '../constants';
 import type { Editor } from '../index';
 
@@ -51,24 +51,42 @@ export function registerKeyboard(editor: Editor) {
       const parent = firstSelectedNode.getParent();
       console.log('parent: ', parent);
       const index = parent?.getChildIndex(firstSelectedNode);
+      const childrenCount = parent?.getChildren()?.filter((cell) => cell.isNode()).length || 0;
+      console.log('childrenCount: ', childrenCount);
       console.log('index: ', index);
 
       e.preventDefault();
+      let nextSelectNode: Cell | null | undefined = null;
+
       // 上移 ↑
       if (code === 'ArrowUp') {
         if (index === 0) {
-          graph.select(parent!);
+          nextSelectNode = parent;
+        } else {
+          nextSelectNode = parent?.getChildAt(index! - 1);
         }
       }
-      // // 下移 ↓
-      // if (code === 'ArrowDown') {
-      // }
-      // // 左移 ←
-      // if (code === 'ArrowLeft') {
-      // }
-      // // 右移 →
-      // if (code === 'ArrowRight') {
-      // }
+      // 下移 ↓
+      if (code === 'ArrowDown') {
+        if (index === childrenCount - 1) {
+          nextSelectNode = firstSelectedNode.getChildAt(0);
+        } else {
+          nextSelectNode = parent?.getChildAt(index! + 1);
+        }
+      }
+      // 左移 ←
+      if (code === 'ArrowLeft') {
+        nextSelectNode = parent;
+      }
+      // 右移 →
+      if (code === 'ArrowRight') {
+        nextSelectNode = firstSelectedNode.getChildAt(0);
+      }
+
+      if (nextSelectNode) {
+        graph.cleanSelection();
+        graph.select(nextSelectNode);
+      }
     }
   });
 
