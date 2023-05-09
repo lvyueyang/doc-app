@@ -19,6 +19,21 @@ export default function BaseNode({ node, className, style }: BaseNodeProps) {
   const boxStyle = (node.getAttrs()?.box.style as React.CSSProperties) || {};
   const { editor } = useMindEditor();
 
+  const changeHandler = () => {
+    const target = targetRef.current;
+    if (!target || !editor) return;
+    window.requestAnimationFrame(() => {
+      const minSize = shape2Theme(node.shape, editor.getTheme()).size;
+      const { width, height } = getElementSize(target, minSize);
+
+      node?.setSize({
+        width,
+        height,
+      });
+      editor?.emit('node:autoresize', node);
+    });
+  };
+
   useEffect(() => {
     const changFn = (e: Cell.ChangeArgs<any>) => {
       const prevStyle = e.previous?.label?.style as React.CSSProperties;
@@ -34,21 +49,6 @@ export default function BaseNode({ node, className, style }: BaseNodeProps) {
   }, []);
 
   if (!editor) return null;
-
-  const changeHandler = () => {
-    const target = targetRef.current;
-    if (!target) return;
-    window.requestAnimationFrame(() => {
-      const minSize = shape2Theme(node.shape, editor?.getTheme()).size;
-      const { width, height } = getElementSize(target, minSize);
-
-      node?.setSize({
-        width,
-        height,
-      });
-      editor?.emit('node:autoresize', node);
-    });
-  };
 
   const minStyle = { minWidth: 0, minHeight: 0 };
   const { size } = shape2Theme(node.shape, editor.getTheme());

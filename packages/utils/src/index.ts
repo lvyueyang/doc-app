@@ -1,3 +1,5 @@
+export * from './osType';
+
 /** 下载文件 */
 export function downloadFile(url: string, name: string) {
   const a = document.createElement('a');

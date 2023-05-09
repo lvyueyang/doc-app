@@ -6,6 +6,7 @@
     "packages/*"
   ],
   "scripts": {
+    "demo": "lerna run --scope @kangmi/client_demo --stream dev",
     "eslint": "eslint --ext .jsx,.js,.cjs,.mjs,.ts,.tsx --fix",
     "lint": "npm run eslint && npm run prettier",
     "prepare": "husky install",
