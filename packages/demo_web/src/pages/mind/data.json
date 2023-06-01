@@ -2,534 +2,249 @@
   "data": {
     "cells": [
       {
-        "shape": "kangmiEdgeMindMap",
+        "shape": "kangmiMindMapEdge",
+        "attrs": { "line": { "stroke": "#e8eaec", "strokeWidth": 2, "type": "rounded" } },
+        "zIndex": 0,
+        "id": "cec8d871-6dbc-4bb2-a5b7-fc26f4a72c4d",
+        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
+        "parent": "0add2b81-fd5c-443d-951a-62b527ba75c4",
+        "source": {
+          "source": { "anchor": { "name": "right" } },
+          "target": { "anchor": { "name": "left" } },
+          "cell": "0add2b81-fd5c-443d-951a-62b527ba75c4",
+          "anchor": { "name": "right" }
+        },
+        "target": { "cell": "f57da778-ba6a-4227-a6ab-d40ccbc35094", "anchor": { "name": "left" } }
+      },
+      {
+        "shape": "kangmiMindMapEdge",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "fe6cd12d-8ebe-46cb-9d00-8f61e6cf0aab",
+        "id": "3209f178-43b1-405e-ae17-39bd915fa0ac",
+        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
+        "parent": "f57da778-ba6a-4227-a6ab-d40ccbc35094",
+        "source": {
+          "source": { "anchor": { "name": "right" } },
+          "target": { "anchor": { "name": "left" } },
+          "cell": "f57da778-ba6a-4227-a6ab-d40ccbc35094",
+          "anchor": { "name": "right" }
+        },
+        "target": { "cell": "788202d8-bcd0-4eb9-ab46-4486e404b825", "anchor": { "name": "left" } }
+      },
+      {
+        "shape": "kangmiMindMapEdge",
+        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
+        "zIndex": 0,
+        "id": "dc5f4093-cb63-4745-9db2-0aa87d1d8331",
+        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
+        "parent": "f57da778-ba6a-4227-a6ab-d40ccbc35094",
+        "source": {
+          "source": { "anchor": { "name": "right" } },
+          "target": { "anchor": { "name": "left" } },
+          "cell": "f57da778-ba6a-4227-a6ab-d40ccbc35094",
+          "anchor": { "name": "right" }
+        },
+        "target": { "cell": "e74f431a-fc8e-4a89-adf8-ef0fc9dd1df6", "anchor": { "name": "left" } }
+      },
+      {
+        "shape": "kangmiMindMapEdge",
+        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
+        "zIndex": 0,
+        "id": "7214008a-47ad-4612-8746-9fca1d312b33",
+        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
+        "parent": "f57da778-ba6a-4227-a6ab-d40ccbc35094",
+        "source": {
+          "source": { "anchor": { "name": "right" } },
+          "target": { "anchor": { "name": "left" } },
+          "cell": "f57da778-ba6a-4227-a6ab-d40ccbc35094",
+          "anchor": { "name": "right" }
+        },
+        "target": { "cell": "66d73b8e-069c-4515-b6e6-f3f2ea73b8db", "anchor": { "name": "left" } }
+      },
+      {
+        "shape": "kangmiMindMapEdge",
+        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
+        "zIndex": 0,
+        "id": "a66cd322-6e02-41b7-96f8-c6ced25fb270",
+        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
+        "parent": "f57da778-ba6a-4227-a6ab-d40ccbc35094",
+        "source": {
+          "source": { "anchor": { "name": "right" } },
+          "target": { "anchor": { "name": "left" } },
+          "cell": "f57da778-ba6a-4227-a6ab-d40ccbc35094",
+          "anchor": { "name": "right" }
+        },
+        "target": { "cell": "5537ed44-2ef0-46e0-bec3-7a0f3ea1e053", "anchor": { "name": "left" } }
+      },
+      {
+        "shape": "kangmiMindMapEdge",
+        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
+        "zIndex": 0,
+        "id": "d6d26a42-abab-4438-b1da-b3a2f8a749e9",
+        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
+        "parent": "788202d8-bcd0-4eb9-ab46-4486e404b825",
+        "source": {
+          "source": { "anchor": { "name": "right" } },
+          "target": { "anchor": { "name": "left" } },
+          "cell": "788202d8-bcd0-4eb9-ab46-4486e404b825",
+          "anchor": { "name": "right" }
+        },
+        "target": { "cell": "829bd040-e821-41db-9553-efea9c3669b4", "anchor": { "name": "left" } }
+      },
+      {
+        "shape": "kangmiMindMapEdge",
+        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
+        "zIndex": 0,
+        "id": "a168d6a0-bfd2-462b-b6e7-be3f4c33330d",
+        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
+        "parent": "829bd040-e821-41db-9553-efea9c3669b4",
+        "source": {
+          "source": { "anchor": { "name": "right" } },
+          "target": { "anchor": { "name": "left" } },
+          "cell": "829bd040-e821-41db-9553-efea9c3669b4",
+          "anchor": { "name": "right" }
+        },
+        "target": { "cell": "dcb408b1-5c54-4402-89ba-21ec45ec96cb", "anchor": { "name": "left" } }
+      },
+      {
+        "shape": "kangmiMindMapEdge",
+        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
+        "zIndex": 0,
+        "id": "17e2bb14-7e64-499e-ab47-35c09af123b8",
+        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
+        "parent": "829bd040-e821-41db-9553-efea9c3669b4",
+        "source": {
+          "source": { "anchor": { "name": "right" } },
+          "target": { "anchor": { "name": "left" } },
+          "cell": "829bd040-e821-41db-9553-efea9c3669b4",
+          "anchor": { "name": "right" }
+        },
+        "target": { "cell": "572064db-dcee-499b-a320-b882b5163272", "anchor": { "name": "left" } }
+      },
+      {
+        "shape": "kangmiMindMapEdge",
+        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
+        "zIndex": 0,
+        "id": "2ac114af-4710-4a83-ab06-fe0d7b5d0c64",
+        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
+        "parent": "e74f431a-fc8e-4a89-adf8-ef0fc9dd1df6",
+        "source": {
+          "source": { "anchor": { "name": "right" } },
+          "target": { "anchor": { "name": "left" } },
+          "cell": "e74f431a-fc8e-4a89-adf8-ef0fc9dd1df6",
+          "anchor": { "name": "right" }
+        },
+        "target": { "cell": "d9fb6468-0f10-483a-a106-e12d8fb4e199", "anchor": { "name": "left" } }
+      },
+      {
+        "shape": "kangmiMindMapEdge",
+        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
+        "zIndex": 0,
+        "id": "592b6712-d1af-4dcb-b3bf-59d2cd785044",
+        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
+        "parent": "e74f431a-fc8e-4a89-adf8-ef0fc9dd1df6",
+        "source": {
+          "source": { "anchor": { "name": "right" } },
+          "target": { "anchor": { "name": "left" } },
+          "cell": "e74f431a-fc8e-4a89-adf8-ef0fc9dd1df6",
+          "anchor": { "name": "right" }
+        },
+        "target": { "cell": "dfb5b7c1-d0a0-496c-b133-8292bb1a6846", "anchor": { "name": "left" } }
+      },
+      {
+        "shape": "kangmiMindMapEdge",
+        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
+        "zIndex": 0,
+        "id": "71f861ff-3bf3-4bf7-ab09-568f39f8c5c0",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
           "target": { "anchor": { "name": "left" } },
-          "cell": "3908883b-2e7c-4159-9610-e4c513dfed86",
+          "cell": "e74f431a-fc8e-4a89-adf8-ef0fc9dd1df6",
           "anchor": { "name": "right" }
         },
-        "target": { "cell": "61f49cdb-1a07-4363-bbf7-2f4c1675992d", "anchor": { "name": "left" } },
-        "parent": "3908883b-2e7c-4159-9610-e4c513dfed86"
+        "target": { "cell": "962d0506-97af-483f-b971-29d8f9b70784", "anchor": { "name": "left" } },
+        "parent": "e74f431a-fc8e-4a89-adf8-ef0fc9dd1df6"
       },
       {
-        "shape": "kangmiEdgeMindMap",
+        "shape": "kangmiMindMapEdge",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "cd93e7fd-d075-4a84-9d1c-49319f498414",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "left" } },
-          "target": { "anchor": { "name": "right" } },
-          "cell": "3908883b-2e7c-4159-9610-e4c513dfed86",
-          "anchor": { "name": "left" }
-        },
-        "target": { "cell": "d7ebb391-2143-43df-85f6-6923774f73bb", "anchor": { "name": "right" } },
-        "parent": "3908883b-2e7c-4159-9610-e4c513dfed86"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "492ba2b8-0195-4df7-a9dc-2a693d42dd8a",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "left" } },
-          "target": { "anchor": { "name": "right" } },
-          "cell": "d7ebb391-2143-43df-85f6-6923774f73bb",
-          "anchor": { "name": "left" }
-        },
-        "target": { "cell": "6d61ae7d-7b01-4511-969e-57c36a67ad65", "anchor": { "name": "right" } },
-        "parent": "d7ebb391-2143-43df-85f6-6923774f73bb"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "72c7dea4-e356-4230-8fb1-f66ba0b670c8",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "left" } },
-          "target": { "anchor": { "name": "right" } },
-          "cell": "d7ebb391-2143-43df-85f6-6923774f73bb",
-          "anchor": { "name": "left" }
-        },
-        "target": { "cell": "757acb53-4c3f-46b5-ac69-cdbb95b13625", "anchor": { "name": "right" } },
-        "parent": "d7ebb391-2143-43df-85f6-6923774f73bb"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "30594f84-625c-4bb5-85ea-f7e40cd34794",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "left" } },
-          "target": { "anchor": { "name": "right" } },
-          "cell": "d7ebb391-2143-43df-85f6-6923774f73bb",
-          "anchor": { "name": "left" }
-        },
-        "target": { "cell": "6a80e7eb-db16-43e7-8658-257a5a4dd7dd", "anchor": { "name": "right" } },
-        "parent": "d7ebb391-2143-43df-85f6-6923774f73bb"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "dd2e566f-b260-4a54-a574-fbc7bf43fd7e",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "left" } },
-          "target": { "anchor": { "name": "right" } },
-          "cell": "d7ebb391-2143-43df-85f6-6923774f73bb",
-          "anchor": { "name": "left" }
-        },
-        "target": { "cell": "93de788c-a6e0-4aa0-abeb-2e6d17e97aa9", "anchor": { "name": "right" } },
-        "parent": "d7ebb391-2143-43df-85f6-6923774f73bb"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "1847beba-ac89-4232-b524-3f22756f5a7c",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "left" } },
-          "target": { "anchor": { "name": "right" } },
-          "cell": "93de788c-a6e0-4aa0-abeb-2e6d17e97aa9",
-          "anchor": { "name": "left" }
-        },
-        "target": { "cell": "9fba7bcb-2ddb-423b-99b0-efb6394e18e8", "anchor": { "name": "right" } },
-        "parent": "93de788c-a6e0-4aa0-abeb-2e6d17e97aa9"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "bd7b4642-16eb-449f-9770-a47eb53552bf",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "left" } },
-          "target": { "anchor": { "name": "right" } },
-          "cell": "93de788c-a6e0-4aa0-abeb-2e6d17e97aa9",
-          "anchor": { "name": "left" }
-        },
-        "target": { "cell": "9a0780c2-6a93-4961-9b2c-b3fb40d427bc", "anchor": { "name": "right" } },
-        "parent": "93de788c-a6e0-4aa0-abeb-2e6d17e97aa9"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "29a46452-6580-4400-8edc-58e7d9a1a50d",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "left" } },
-          "target": { "anchor": { "name": "right" } },
-          "cell": "93de788c-a6e0-4aa0-abeb-2e6d17e97aa9",
-          "anchor": { "name": "left" }
-        },
-        "target": { "cell": "5c9e202c-2703-468d-a289-e334e7edca14", "anchor": { "name": "right" } },
-        "parent": "93de788c-a6e0-4aa0-abeb-2e6d17e97aa9"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "d385c316-52b0-4722-94ea-16268647866f",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "left" } },
-          "target": { "anchor": { "name": "right" } },
-          "cell": "93de788c-a6e0-4aa0-abeb-2e6d17e97aa9",
-          "anchor": { "name": "left" }
-        },
-        "target": { "cell": "c56a0cf6-8259-40ac-a5ca-cba3024dc9c0", "anchor": { "name": "right" } },
-        "parent": "93de788c-a6e0-4aa0-abeb-2e6d17e97aa9"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "66630165-e836-4da8-bdf2-4fee56a1b881",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "left" } },
-          "target": { "anchor": { "name": "right" } },
-          "cell": "c56a0cf6-8259-40ac-a5ca-cba3024dc9c0",
-          "anchor": { "name": "left" }
-        },
-        "target": { "cell": "a3f8a265-b369-45f4-9985-d267fbb88948", "anchor": { "name": "right" } },
-        "parent": "c56a0cf6-8259-40ac-a5ca-cba3024dc9c0"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "8735b8b9-7873-49b8-990c-a782bbe26125",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "left" } },
-          "target": { "anchor": { "name": "right" } },
-          "cell": "c56a0cf6-8259-40ac-a5ca-cba3024dc9c0",
-          "anchor": { "name": "left" }
-        },
-        "target": { "cell": "b6cb7f4f-9deb-468a-a853-fff8a5b6f9f1", "anchor": { "name": "right" } },
-        "parent": "c56a0cf6-8259-40ac-a5ca-cba3024dc9c0"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "f0084863-1b74-4171-b54b-c2ffa4b60488",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "left" } },
-          "target": { "anchor": { "name": "right" } },
-          "cell": "c56a0cf6-8259-40ac-a5ca-cba3024dc9c0",
-          "anchor": { "name": "left" }
-        },
-        "target": { "cell": "3d20c149-7f72-4073-8027-eee735670d75", "anchor": { "name": "right" } },
-        "parent": "c56a0cf6-8259-40ac-a5ca-cba3024dc9c0"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "155b4055-503c-4121-9b2f-df2b35978467",
+        "id": "021daceb-abc9-4802-9435-fca2a6d30ec0",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
           "target": { "anchor": { "name": "left" } },
-          "cell": "61f49cdb-1a07-4363-bbf7-2f4c1675992d",
+          "cell": "962d0506-97af-483f-b971-29d8f9b70784",
           "anchor": { "name": "right" }
         },
-        "target": { "cell": "6473ead3-16ee-4554-a055-c474c842c743", "anchor": { "name": "left" } },
-        "parent": "61f49cdb-1a07-4363-bbf7-2f4c1675992d"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "f5817bf5-e0bb-46f6-a5d7-0c9abea5d574",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "right" } },
-          "target": { "anchor": { "name": "left" } },
-          "cell": "61f49cdb-1a07-4363-bbf7-2f4c1675992d",
-          "anchor": { "name": "right" }
-        },
-        "target": { "cell": "85dde451-cd7f-4849-a5ca-a943ab6df36d", "anchor": { "name": "left" } },
-        "parent": "61f49cdb-1a07-4363-bbf7-2f4c1675992d"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "39d70e3b-9202-44fd-894e-37bd3ffc774e",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "right" } },
-          "target": { "anchor": { "name": "left" } },
-          "cell": "85dde451-cd7f-4849-a5ca-a943ab6df36d",
-          "anchor": { "name": "right" }
-        },
-        "target": { "cell": "315cbca8-935b-4acd-bf5d-d2a1d781a1b0", "anchor": { "name": "left" } },
-        "parent": "85dde451-cd7f-4849-a5ca-a943ab6df36d"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "43ca49a5-be67-472b-aed0-9455cbaaa5c0",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "right" } },
-          "target": { "anchor": { "name": "left" } },
-          "cell": "85dde451-cd7f-4849-a5ca-a943ab6df36d",
-          "anchor": { "name": "right" }
-        },
-        "target": { "cell": "c343e6a2-e6ea-4308-ac73-94cb251e95d4", "anchor": { "name": "left" } },
-        "parent": "85dde451-cd7f-4849-a5ca-a943ab6df36d"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "82fcc4bb-d5f1-4eaa-9d71-43bb095b189c",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "right" } },
-          "target": { "anchor": { "name": "left" } },
-          "cell": "85dde451-cd7f-4849-a5ca-a943ab6df36d",
-          "anchor": { "name": "right" }
-        },
-        "target": { "cell": "1b7b3594-e406-4369-859b-2a8d9af550b9", "anchor": { "name": "left" } },
-        "parent": "85dde451-cd7f-4849-a5ca-a943ab6df36d"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "5ae48414-4e4c-4287-8b3a-7ebaf645d0c7",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "right" } },
-          "target": { "anchor": { "name": "left" } },
-          "cell": "1b7b3594-e406-4369-859b-2a8d9af550b9",
-          "anchor": { "name": "right" }
-        },
-        "target": { "cell": "a3550fa3-77ee-4c71-aa28-bfcd1d12f736", "anchor": { "name": "left" } },
-        "parent": "1b7b3594-e406-4369-859b-2a8d9af550b9"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "c955c9ee-683f-402e-a225-e8cac5a12758",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "right" } },
-          "target": { "anchor": { "name": "left" } },
-          "cell": "1b7b3594-e406-4369-859b-2a8d9af550b9",
-          "anchor": { "name": "right" }
-        },
-        "target": { "cell": "058a75bd-c761-41b3-9e05-2754d39e6d3c", "anchor": { "name": "left" } },
-        "parent": "1b7b3594-e406-4369-859b-2a8d9af550b9"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "1123151d-6e88-4f36-bf2e-da9763efaf64",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "right" } },
-          "target": { "anchor": { "name": "left" } },
-          "cell": "1b7b3594-e406-4369-859b-2a8d9af550b9",
-          "anchor": { "name": "right" }
-        },
-        "target": { "cell": "e7a4c049-f47e-4857-8ac3-d188b522d33e", "anchor": { "name": "left" } },
-        "parent": "1b7b3594-e406-4369-859b-2a8d9af550b9"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "d60ad5df-1a26-42fa-93e4-66159ba7ba74",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "right" } },
-          "target": { "anchor": { "name": "left" } },
-          "cell": "1b7b3594-e406-4369-859b-2a8d9af550b9",
-          "anchor": { "name": "right" }
-        },
-        "target": { "cell": "9afefed1-3300-4b36-89f8-a7c22ebc6211", "anchor": { "name": "left" } },
-        "parent": "1b7b3594-e406-4369-859b-2a8d9af550b9"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "18191524-7e2c-48c4-94ad-073c81e5731c",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "right" } },
-          "target": { "anchor": { "name": "left" } },
-          "cell": "9afefed1-3300-4b36-89f8-a7c22ebc6211",
-          "anchor": { "name": "right" }
-        },
-        "target": { "cell": "895ee81d-8623-467a-b049-c249dc1fa1aa", "anchor": { "name": "left" } },
-        "parent": "9afefed1-3300-4b36-89f8-a7c22ebc6211"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "c1cfcbfe-c2ae-4e18-a4cf-0b57baa7499b",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "right" } },
-          "target": { "anchor": { "name": "left" } },
-          "cell": "9afefed1-3300-4b36-89f8-a7c22ebc6211",
-          "anchor": { "name": "right" }
-        },
-        "target": { "cell": "4292a00c-2be1-46b0-9ce7-b03a7d2ff15f", "anchor": { "name": "left" } },
-        "parent": "9afefed1-3300-4b36-89f8-a7c22ebc6211"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "9735bd72-4719-4650-a13a-3190d911c370",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "right" } },
-          "target": { "anchor": { "name": "left" } },
-          "cell": "9afefed1-3300-4b36-89f8-a7c22ebc6211",
-          "anchor": { "name": "right" }
-        },
-        "target": { "cell": "1960f48c-9d10-4022-8c9f-55b50ba758ea", "anchor": { "name": "left" } },
-        "parent": "9afefed1-3300-4b36-89f8-a7c22ebc6211"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "87533c44-a53f-4c67-b942-1bdb37eaf50a",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "right" } },
-          "target": { "anchor": { "name": "left" } },
-          "cell": "9afefed1-3300-4b36-89f8-a7c22ebc6211",
-          "anchor": { "name": "right" }
-        },
-        "target": { "cell": "bad6fe43-08cb-4963-85ae-a24fa71f868a", "anchor": { "name": "left" } },
-        "parent": "9afefed1-3300-4b36-89f8-a7c22ebc6211"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "8943ef03-c6bb-437b-a15d-6dec26ecd585",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "right" } },
-          "target": { "anchor": { "name": "left" } },
-          "cell": "9afefed1-3300-4b36-89f8-a7c22ebc6211",
-          "anchor": { "name": "right" }
-        },
-        "target": { "cell": "3dcb9781-3f72-40ae-a860-787d1cc3784f", "anchor": { "name": "left" } },
-        "parent": "9afefed1-3300-4b36-89f8-a7c22ebc6211"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "f967e334-d7c1-4751-aee6-bf0f333ea23c",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "right" } },
-          "target": { "anchor": { "name": "left" } },
-          "cell": "1960f48c-9d10-4022-8c9f-55b50ba758ea",
-          "anchor": { "name": "right" }
-        },
-        "target": { "cell": "18ff85b7-7f80-49f1-8547-27b7a1cb5b26", "anchor": { "name": "left" } },
-        "parent": "1960f48c-9d10-4022-8c9f-55b50ba758ea",
+        "target": { "cell": "a1a5e0a8-0bec-4c4d-9730-19c1c9b1be01", "anchor": { "name": "left" } },
+        "parent": "962d0506-97af-483f-b971-29d8f9b70784",
         "visible": false
       },
       {
-        "shape": "kangmiEdgeMindMap",
+        "shape": "kangmiMindMapEdge",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "ecbba9d4-fa6b-4bf7-a612-4754fb8b6894",
+        "id": "7f8af7f8-1c38-4459-98d9-5c27f4b50c6f",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
           "target": { "anchor": { "name": "left" } },
-          "cell": "18ff85b7-7f80-49f1-8547-27b7a1cb5b26",
+          "cell": "962d0506-97af-483f-b971-29d8f9b70784",
           "anchor": { "name": "right" }
         },
-        "target": { "cell": "94474537-dc04-4e48-9b23-8f9f2b3b255f", "anchor": { "name": "left" } },
-        "parent": "18ff85b7-7f80-49f1-8547-27b7a1cb5b26",
+        "target": { "cell": "326cee3f-06ba-4c41-abeb-524671cd665d", "anchor": { "name": "left" } },
+        "parent": "962d0506-97af-483f-b971-29d8f9b70784",
         "visible": false
       },
       {
-        "shape": "kangmiEdgeMindMap",
+        "shape": "kangmiMindMapEdge",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "8da8f3a1-6535-4e02-8b27-0741ed4da176",
+        "id": "11860cb6-6646-4b92-9d2c-0ff51217adb6",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
           "target": { "anchor": { "name": "left" } },
-          "cell": "18ff85b7-7f80-49f1-8547-27b7a1cb5b26",
+          "cell": "326cee3f-06ba-4c41-abeb-524671cd665d",
           "anchor": { "name": "right" }
         },
-        "target": { "cell": "1fee87fa-e950-4f61-9238-e3564166c821", "anchor": { "name": "left" } },
-        "parent": "18ff85b7-7f80-49f1-8547-27b7a1cb5b26",
+        "target": { "cell": "d4647235-3f53-4a4f-afa8-cd1786912b53", "anchor": { "name": "left" } },
+        "parent": "326cee3f-06ba-4c41-abeb-524671cd665d",
         "visible": false
       },
       {
-        "shape": "kangmiEdgeMindMap",
+        "shape": "kangmiMindMapEdge",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "d145ed36-ba62-4ee9-9b49-0cdaed914818",
+        "id": "9f25c952-7c44-49d4-b58b-4d9f0397eb3c",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
           "target": { "anchor": { "name": "left" } },
-          "cell": "18ff85b7-7f80-49f1-8547-27b7a1cb5b26",
+          "cell": "326cee3f-06ba-4c41-abeb-524671cd665d",
           "anchor": { "name": "right" }
         },
-        "target": { "cell": "771ce304-055d-4117-a124-c835269c0cf3", "anchor": { "name": "left" } },
-        "parent": "18ff85b7-7f80-49f1-8547-27b7a1cb5b26",
+        "target": { "cell": "d50728c7-ba6f-4c02-a653-268a08658b42", "anchor": { "name": "left" } },
+        "parent": "326cee3f-06ba-4c41-abeb-524671cd665d",
         "visible": false
       },
       {
-        "shape": "kangmiEdgeMindMap",
+        "shape": "kangmiMindMapEdge",
         "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
         "zIndex": 0,
-        "id": "12f9e77f-d73d-4f73-a906-e5efebd8ae7f",
+        "id": "2314e982-f4d2-49d9-95e8-30613a77f948",
         "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
         "source": {
           "source": { "anchor": { "name": "right" } },
           "target": { "anchor": { "name": "left" } },
-          "cell": "18ff85b7-7f80-49f1-8547-27b7a1cb5b26",
+          "cell": "326cee3f-06ba-4c41-abeb-524671cd665d",
           "anchor": { "name": "right" }
         },
-        "target": { "cell": "391b059d-4952-4f60-9827-571b173caf52", "anchor": { "name": "left" } },
-        "parent": "18ff85b7-7f80-49f1-8547-27b7a1cb5b26",
+        "target": { "cell": "141bba5b-a3fa-4e2d-bd22-b60649dced77", "anchor": { "name": "left" } },
+        "parent": "326cee3f-06ba-4c41-abeb-524671cd665d",
         "visible": false
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "06d364b1-dccd-4917-9c0a-4451108583ce",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "right" } },
-          "target": { "anchor": { "name": "left" } },
-          "cell": "bad6fe43-08cb-4963-85ae-a24fa71f868a",
-          "anchor": { "name": "right" }
-        },
-        "target": { "cell": "c29b071f-9900-4051-9f99-c597080793cd", "anchor": { "name": "left" } },
-        "parent": "bad6fe43-08cb-4963-85ae-a24fa71f868a"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "43a04c77-f216-4004-abe4-f6bb3065f022",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "right" } },
-          "target": { "anchor": { "name": "left" } },
-          "cell": "bad6fe43-08cb-4963-85ae-a24fa71f868a",
-          "anchor": { "name": "right" }
-        },
-        "target": { "cell": "3cba0c72-cef3-46f8-905d-9799b31f576c", "anchor": { "name": "left" } },
-        "parent": "bad6fe43-08cb-4963-85ae-a24fa71f868a"
-      },
-      {
-        "shape": "kangmiEdgeMindMap",
-        "attrs": { "line": { "stroke": "#e8eaec", "type": "orth" } },
-        "zIndex": 0,
-        "id": "1a72576d-b017-4124-93f1-77c9de40ecde",
-        "connector": { "name": "mindMapLR", "args": { "type": "orth" } },
-        "source": {
-          "source": { "anchor": { "name": "right" } },
-          "target": { "anchor": { "name": "left" } },
-          "cell": "bad6fe43-08cb-4963-85ae-a24fa71f868a",
-          "anchor": { "name": "right" }
-        },
-        "target": { "cell": "bfbf0590-c14a-4e85-9f5b-225b1847c752", "anchor": { "name": "left" } },
-        "parent": "bad6fe43-08cb-4963-85ae-a24fa71f868a"
       },
       {
         "position": { "x": -160, "y": -70 },
@@ -553,14 +268,9 @@
           }
         },
         "shape": "kangmiRoot",
-        "id": "3908883b-2e7c-4159-9610-e4c513dfed86",
+        "id": "0add2b81-fd5c-443d-951a-62b527ba75c4",
         "zIndex": 1,
-        "children": [
-          "61f49cdb-1a07-4363-bbf7-2f4c1675992d",
-          "d7ebb391-2143-43df-85f6-6923774f73bb",
-          "cd93e7fd-d075-4a84-9d1c-49319f498414",
-          "fe6cd12d-8ebe-46cb-9d00-8f61e6cf0aab"
-        ]
+        "children": ["f57da778-ba6a-4227-a6ab-d40ccbc35094", "cec8d871-6dbc-4bb2-a5b7-fc26f4a72c4d"]
       },
       {
         "position": { "x": 80, "y": -60 },
@@ -584,54 +294,22 @@
           }
         },
         "shape": "kangmiBranch",
-        "id": "61f49cdb-1a07-4363-bbf7-2f4c1675992d",
+        "id": "f57da778-ba6a-4227-a6ab-d40ccbc35094",
         "zIndex": 2,
-        "parent": "3908883b-2e7c-4159-9610-e4c513dfed86",
+        "parent": "0add2b81-fd5c-443d-951a-62b527ba75c4",
         "children": [
-          "6473ead3-16ee-4554-a055-c474c842c743",
-          "85dde451-cd7f-4849-a5ca-a943ab6df36d",
-          "155b4055-503c-4121-9b2f-df2b35978467",
-          "f5817bf5-e0bb-46f6-a5d7-0c9abea5d574"
+          "788202d8-bcd0-4eb9-ab46-4486e404b825",
+          "e74f431a-fc8e-4a89-adf8-ef0fc9dd1df6",
+          "66d73b8e-069c-4515-b6e6-f3f2ea73b8db",
+          "5537ed44-2ef0-46e0-bec3-7a0f3ea1e053",
+          "a66cd322-6e02-41b7-96f8-c6ced25fb270",
+          "7214008a-47ad-4612-8746-9fca1d312b33",
+          "3209f178-43b1-405e-ae17-39bd915fa0ac",
+          "dc5f4093-cb63-4745-9db2-0aa87d1d8331"
         ]
       },
       {
-        "position": { "x": -340, "y": -60 },
-        "size": { "width": 100, "height": 40 },
-        "view": "react-shape-view",
-        "attrs": {
-          "label": {
-            "style": { "fontSize": 16, "color": "#000", "fontWeight": "normal" },
-            "text": "分支主题"
-          },
-          "box": {
-            "style": {
-              "backgroundColor": "rgb(232, 234, 236)",
-              "borderWidth": 1,
-              "borderStyle": "solid",
-              "borderColor": "rgb(232, 234, 236)",
-              "borderRadius": 3,
-              "boxShadow": "none",
-              "padding": "10px 15px"
-            }
-          }
-        },
-        "shape": "kangmiBranch",
-        "id": "d7ebb391-2143-43df-85f6-6923774f73bb",
-        "zIndex": 3,
-        "parent": "3908883b-2e7c-4159-9610-e4c513dfed86",
-        "children": [
-          "6d61ae7d-7b01-4511-969e-57c36a67ad65",
-          "757acb53-4c3f-46b5-ac69-cdbb95b13625",
-          "6a80e7eb-db16-43e7-8658-257a5a4dd7dd",
-          "93de788c-a6e0-4aa0-abeb-2e6d17e97aa9",
-          "492ba2b8-0195-4df7-a9dc-2a693d42dd8a",
-          "72c7dea4-e356-4230-8fb1-f66ba0b670c8",
-          "30594f84-625c-4bb5-85ea-f7e40cd34794",
-          "dd2e566f-b260-4a54-a574-fbc7bf43fd7e"
-        ]
-      },
-      {
-        "position": { "x": -490, "y": -160 },
+        "position": { "x": 260, "y": -195.0234375 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -649,260 +327,13 @@
           }
         },
         "shape": "kangmiChild",
-        "id": "6d61ae7d-7b01-4511-969e-57c36a67ad65",
-        "zIndex": 4,
-        "parent": "d7ebb391-2143-43df-85f6-6923774f73bb"
-      },
-      {
-        "position": { "x": -490, "y": -90 },
-        "size": { "width": 70, "height": 30 },
-        "view": "react-shape-view",
-        "attrs": {
-          "label": { "style": { "color": "#fff", "fontWeight": "normal" }, "text": "子主题" },
-          "box": {
-            "style": {
-              "backgroundColor": "transparent",
-              "borderWidth": 1,
-              "borderRadius": 3,
-              "boxShadow": "none",
-              "padding": "6px 14px",
-              "borderColor": "rgb(232, 234, 236)",
-              "borderStyle": "solid"
-            }
-          }
-        },
-        "shape": "kangmiChild",
-        "id": "757acb53-4c3f-46b5-ac69-cdbb95b13625",
-        "zIndex": 5,
-        "parent": "d7ebb391-2143-43df-85f6-6923774f73bb"
-      },
-      {
-        "position": { "x": -490, "y": -20 },
-        "size": { "width": 70, "height": 30 },
-        "view": "react-shape-view",
-        "attrs": {
-          "label": { "style": { "color": "#fff", "fontWeight": "normal" }, "text": "子主题" },
-          "box": {
-            "style": {
-              "backgroundColor": "transparent",
-              "borderWidth": 1,
-              "borderRadius": 3,
-              "boxShadow": "none",
-              "padding": "6px 14px",
-              "borderColor": "rgb(232, 234, 236)",
-              "borderStyle": "solid"
-            }
-          }
-        },
-        "shape": "kangmiChild",
-        "id": "6a80e7eb-db16-43e7-8658-257a5a4dd7dd",
-        "zIndex": 6,
-        "parent": "d7ebb391-2143-43df-85f6-6923774f73bb"
-      },
-      {
-        "position": { "x": -490, "y": 50 },
-        "size": { "width": 70, "height": 30 },
-        "view": "react-shape-view",
-        "attrs": {
-          "label": { "style": { "color": "#fff", "fontWeight": "normal" }, "text": "子主题" },
-          "box": {
-            "style": {
-              "backgroundColor": "transparent",
-              "borderWidth": 1,
-              "borderRadius": 3,
-              "boxShadow": "none",
-              "padding": "6px 14px",
-              "borderColor": "rgb(232, 234, 236)",
-              "borderStyle": "solid"
-            }
-          }
-        },
-        "shape": "kangmiChild",
-        "id": "93de788c-a6e0-4aa0-abeb-2e6d17e97aa9",
-        "zIndex": 7,
-        "parent": "d7ebb391-2143-43df-85f6-6923774f73bb",
-        "children": [
-          "9fba7bcb-2ddb-423b-99b0-efb6394e18e8",
-          "9a0780c2-6a93-4961-9b2c-b3fb40d427bc",
-          "5c9e202c-2703-468d-a289-e334e7edca14",
-          "c56a0cf6-8259-40ac-a5ca-cba3024dc9c0",
-          "1847beba-ac89-4232-b524-3f22756f5a7c",
-          "bd7b4642-16eb-449f-9770-a47eb53552bf",
-          "29a46452-6580-4400-8edc-58e7d9a1a50d",
-          "d385c316-52b0-4722-94ea-16268647866f"
-        ]
-      },
-      {
-        "position": { "x": -640, "y": -55 },
-        "size": { "width": 70, "height": 30 },
-        "view": "react-shape-view",
-        "attrs": {
-          "label": { "style": { "color": "#fff", "fontWeight": "normal" }, "text": "子主题" },
-          "box": {
-            "style": {
-              "backgroundColor": "transparent",
-              "borderWidth": 1,
-              "borderRadius": 3,
-              "boxShadow": "none",
-              "padding": "6px 14px",
-              "borderColor": "rgb(232, 234, 236)",
-              "borderStyle": "solid"
-            }
-          }
-        },
-        "shape": "kangmiChild",
-        "id": "9fba7bcb-2ddb-423b-99b0-efb6394e18e8",
-        "zIndex": 8,
-        "parent": "93de788c-a6e0-4aa0-abeb-2e6d17e97aa9"
-      },
-      {
-        "position": { "x": -640, "y": 15 },
-        "size": { "width": 70, "height": 30 },
-        "view": "react-shape-view",
-        "attrs": {
-          "label": { "style": { "color": "#fff", "fontWeight": "normal" }, "text": "子主题" },
-          "box": {
-            "style": {
-              "backgroundColor": "transparent",
-              "borderWidth": 1,
-              "borderRadius": 3,
-              "boxShadow": "none",
-              "padding": "6px 14px",
-              "borderColor": "rgb(232, 234, 236)",
-              "borderStyle": "solid"
-            }
-          }
-        },
-        "shape": "kangmiChild",
-        "id": "9a0780c2-6a93-4961-9b2c-b3fb40d427bc",
-        "zIndex": 9,
-        "parent": "93de788c-a6e0-4aa0-abeb-2e6d17e97aa9"
-      },
-      {
-        "position": { "x": -640, "y": 85 },
-        "size": { "width": 70, "height": 30 },
-        "view": "react-shape-view",
-        "attrs": {
-          "label": { "style": { "color": "#fff", "fontWeight": "normal" }, "text": "子主题" },
-          "box": {
-            "style": {
-              "backgroundColor": "transparent",
-              "borderWidth": 1,
-              "borderRadius": 3,
-              "boxShadow": "none",
-              "padding": "6px 14px",
-              "borderColor": "rgb(232, 234, 236)",
-              "borderStyle": "solid"
-            }
-          }
-        },
-        "shape": "kangmiChild",
-        "id": "5c9e202c-2703-468d-a289-e334e7edca14",
-        "zIndex": 10,
-        "parent": "93de788c-a6e0-4aa0-abeb-2e6d17e97aa9"
-      },
-      {
-        "position": { "x": -640, "y": 155 },
-        "size": { "width": 70, "height": 30 },
-        "view": "react-shape-view",
-        "attrs": {
-          "label": { "style": { "color": "#fff", "fontWeight": "normal" }, "text": "子主题" },
-          "box": {
-            "style": {
-              "backgroundColor": "transparent",
-              "borderWidth": 1,
-              "borderRadius": 3,
-              "boxShadow": "none",
-              "padding": "6px 14px",
-              "borderColor": "rgb(232, 234, 236)",
-              "borderStyle": "solid"
-            }
-          }
-        },
-        "shape": "kangmiChild",
-        "id": "c56a0cf6-8259-40ac-a5ca-cba3024dc9c0",
-        "zIndex": 11,
-        "parent": "93de788c-a6e0-4aa0-abeb-2e6d17e97aa9",
-        "children": [
-          "a3f8a265-b369-45f4-9985-d267fbb88948",
-          "b6cb7f4f-9deb-468a-a853-fff8a5b6f9f1",
-          "3d20c149-7f72-4073-8027-eee735670d75",
-          "f0084863-1b74-4171-b54b-c2ffa4b60488",
-          "66630165-e836-4da8-bdf2-4fee56a1b881",
-          "8735b8b9-7873-49b8-990c-a782bbe26125"
-        ]
-      },
-      {
-        "position": { "x": -790, "y": 85 },
-        "size": { "width": 70, "height": 30 },
-        "view": "react-shape-view",
-        "attrs": {
-          "label": { "style": { "color": "#fff", "fontWeight": "normal" }, "text": "子主题" },
-          "box": {
-            "style": {
-              "backgroundColor": "transparent",
-              "borderWidth": 1,
-              "borderRadius": 3,
-              "boxShadow": "none",
-              "padding": "6px 14px",
-              "borderColor": "rgb(232, 234, 236)",
-              "borderStyle": "solid"
-            }
-          }
-        },
-        "shape": "kangmiChild",
-        "id": "a3f8a265-b369-45f4-9985-d267fbb88948",
-        "zIndex": 12,
-        "parent": "c56a0cf6-8259-40ac-a5ca-cba3024dc9c0"
-      },
-      {
-        "position": { "x": -790, "y": 155 },
-        "size": { "width": 70, "height": 30 },
-        "view": "react-shape-view",
-        "attrs": {
-          "label": { "style": { "color": "#fff", "fontWeight": "normal" }, "text": "子主题" },
-          "box": {
-            "style": {
-              "backgroundColor": "transparent",
-              "borderWidth": 1,
-              "borderRadius": 3,
-              "boxShadow": "none",
-              "padding": "6px 14px",
-              "borderColor": "rgb(232, 234, 236)",
-              "borderStyle": "solid"
-            }
-          }
-        },
-        "shape": "kangmiChild",
-        "id": "b6cb7f4f-9deb-468a-a853-fff8a5b6f9f1",
-        "zIndex": 13,
-        "parent": "c56a0cf6-8259-40ac-a5ca-cba3024dc9c0"
-      },
-      {
-        "position": { "x": -790, "y": 225 },
-        "size": { "width": 70, "height": 30 },
-        "view": "react-shape-view",
-        "attrs": {
-          "label": { "style": { "color": "#fff", "fontWeight": "normal" }, "text": "子主题" },
-          "box": {
-            "style": {
-              "backgroundColor": "transparent",
-              "borderWidth": 1,
-              "borderRadius": 3,
-              "boxShadow": "none",
-              "padding": "6px 14px",
-              "borderColor": "rgb(232, 234, 236)",
-              "borderStyle": "solid"
-            }
-          }
-        },
-        "shape": "kangmiChild",
-        "id": "3d20c149-7f72-4073-8027-eee735670d75",
+        "id": "788202d8-bcd0-4eb9-ab46-4486e404b825",
         "zIndex": 14,
-        "parent": "c56a0cf6-8259-40ac-a5ca-cba3024dc9c0"
+        "parent": "f57da778-ba6a-4227-a6ab-d40ccbc35094",
+        "children": ["829bd040-e821-41db-9553-efea9c3669b4", "d6d26a42-abab-4438-b1da-b3a2f8a749e9"]
       },
       {
-        "position": { "x": 260, "y": -90 },
+        "position": { "x": 260, "y": -54.9765625 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -920,12 +351,20 @@
           }
         },
         "shape": "kangmiChild",
-        "id": "6473ead3-16ee-4554-a055-c474c842c743",
+        "id": "e74f431a-fc8e-4a89-adf8-ef0fc9dd1df6",
         "zIndex": 15,
-        "parent": "61f49cdb-1a07-4363-bbf7-2f4c1675992d"
+        "parent": "f57da778-ba6a-4227-a6ab-d40ccbc35094",
+        "children": [
+          "d9fb6468-0f10-483a-a106-e12d8fb4e199",
+          "dfb5b7c1-d0a0-496c-b133-8292bb1a6846",
+          "962d0506-97af-483f-b971-29d8f9b70784",
+          "2ac114af-4710-4a83-ab06-fe0d7b5d0c64",
+          "592b6712-d1af-4dcb-b3bf-59d2cd785044",
+          "71f861ff-3bf3-4bf7-ab09-568f39f8c5c0"
+        ]
       },
       {
-        "position": { "x": 260, "y": -20 },
+        "position": { "x": 260, "y": 15.0234375 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -943,20 +382,12 @@
           }
         },
         "shape": "kangmiChild",
-        "id": "85dde451-cd7f-4849-a5ca-a943ab6df36d",
+        "id": "66d73b8e-069c-4515-b6e6-f3f2ea73b8db",
         "zIndex": 16,
-        "parent": "61f49cdb-1a07-4363-bbf7-2f4c1675992d",
-        "children": [
-          "315cbca8-935b-4acd-bf5d-d2a1d781a1b0",
-          "c343e6a2-e6ea-4308-ac73-94cb251e95d4",
-          "1b7b3594-e406-4369-859b-2a8d9af550b9",
-          "39d70e3b-9202-44fd-894e-37bd3ffc774e",
-          "43ca49a5-be67-472b-aed0-9455cbaaa5c0",
-          "82fcc4bb-d5f1-4eaa-9d71-43bb095b189c"
-        ]
+        "parent": "f57da778-ba6a-4227-a6ab-d40ccbc35094"
       },
       {
-        "position": { "x": 410, "y": -90 },
+        "position": { "x": 260, "y": 85.0234375 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -974,12 +405,12 @@
           }
         },
         "shape": "kangmiChild",
-        "id": "315cbca8-935b-4acd-bf5d-d2a1d781a1b0",
+        "id": "5537ed44-2ef0-46e0-bec3-7a0f3ea1e053",
         "zIndex": 17,
-        "parent": "85dde451-cd7f-4849-a5ca-a943ab6df36d"
+        "parent": "f57da778-ba6a-4227-a6ab-d40ccbc35094"
       },
       {
-        "position": { "x": 410, "y": -20 },
+        "position": { "x": 410, "y": -195.0234375 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -997,12 +428,18 @@
           }
         },
         "shape": "kangmiChild",
-        "id": "c343e6a2-e6ea-4308-ac73-94cb251e95d4",
+        "id": "829bd040-e821-41db-9553-efea9c3669b4",
         "zIndex": 18,
-        "parent": "85dde451-cd7f-4849-a5ca-a943ab6df36d"
+        "parent": "788202d8-bcd0-4eb9-ab46-4486e404b825",
+        "children": [
+          "dcb408b1-5c54-4402-89ba-21ec45ec96cb",
+          "572064db-dcee-499b-a320-b882b5163272",
+          "a168d6a0-bfd2-462b-b6e7-be3f4c33330d",
+          "17e2bb14-7e64-499e-ab47-35c09af123b8"
+        ]
       },
       {
-        "position": { "x": 410, "y": 50 },
+        "position": { "x": 560, "y": -230.0234375 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -1020,22 +457,12 @@
           }
         },
         "shape": "kangmiChild",
-        "id": "1b7b3594-e406-4369-859b-2a8d9af550b9",
+        "id": "dcb408b1-5c54-4402-89ba-21ec45ec96cb",
         "zIndex": 19,
-        "parent": "85dde451-cd7f-4849-a5ca-a943ab6df36d",
-        "children": [
-          "a3550fa3-77ee-4c71-aa28-bfcd1d12f736",
-          "058a75bd-c761-41b3-9e05-2754d39e6d3c",
-          "e7a4c049-f47e-4857-8ac3-d188b522d33e",
-          "9afefed1-3300-4b36-89f8-a7c22ebc6211",
-          "5ae48414-4e4c-4287-8b3a-7ebaf645d0c7",
-          "c955c9ee-683f-402e-a225-e8cac5a12758",
-          "1123151d-6e88-4f36-bf2e-da9763efaf64",
-          "d60ad5df-1a26-42fa-93e4-66159ba7ba74"
-        ]
+        "parent": "829bd040-e821-41db-9553-efea9c3669b4"
       },
       {
-        "position": { "x": 560, "y": -55 },
+        "position": { "x": 560, "y": -160.0234375 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -1053,12 +480,12 @@
           }
         },
         "shape": "kangmiChild",
-        "id": "a3550fa3-77ee-4c71-aa28-bfcd1d12f736",
+        "id": "572064db-dcee-499b-a320-b882b5163272",
         "zIndex": 20,
-        "parent": "1b7b3594-e406-4369-859b-2a8d9af550b9"
+        "parent": "829bd040-e821-41db-9553-efea9c3669b4"
       },
       {
-        "position": { "x": 560, "y": 15 },
+        "position": { "x": 410, "y": -125.0234375 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -1076,12 +503,12 @@
           }
         },
         "shape": "kangmiChild",
-        "id": "058a75bd-c761-41b3-9e05-2754d39e6d3c",
-        "zIndex": 21,
-        "parent": "1b7b3594-e406-4369-859b-2a8d9af550b9"
+        "id": "d9fb6468-0f10-483a-a106-e12d8fb4e199",
+        "zIndex": 27,
+        "parent": "e74f431a-fc8e-4a89-adf8-ef0fc9dd1df6"
       },
       {
-        "position": { "x": 560, "y": 85 },
+        "position": { "x": 410, "y": -55.0234375 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -1099,93 +526,12 @@
           }
         },
         "shape": "kangmiChild",
-        "id": "e7a4c049-f47e-4857-8ac3-d188b522d33e",
-        "zIndex": 22,
-        "parent": "1b7b3594-e406-4369-859b-2a8d9af550b9"
+        "id": "dfb5b7c1-d0a0-496c-b133-8292bb1a6846",
+        "zIndex": 28,
+        "parent": "e74f431a-fc8e-4a89-adf8-ef0fc9dd1df6"
       },
       {
-        "position": { "x": 560, "y": 155 },
-        "size": { "width": 70, "height": 30 },
-        "view": "react-shape-view",
-        "attrs": {
-          "label": { "style": { "color": "#fff", "fontWeight": "normal" }, "text": "子主题" },
-          "box": {
-            "style": {
-              "backgroundColor": "transparent",
-              "borderWidth": 1,
-              "borderRadius": 3,
-              "boxShadow": "none",
-              "padding": "6px 14px",
-              "borderColor": "rgb(232, 234, 236)",
-              "borderStyle": "solid"
-            }
-          }
-        },
-        "shape": "kangmiChild",
-        "id": "9afefed1-3300-4b36-89f8-a7c22ebc6211",
-        "zIndex": 23,
-        "parent": "1b7b3594-e406-4369-859b-2a8d9af550b9",
-        "children": [
-          "895ee81d-8623-467a-b049-c249dc1fa1aa",
-          "4292a00c-2be1-46b0-9ce7-b03a7d2ff15f",
-          "1960f48c-9d10-4022-8c9f-55b50ba758ea",
-          "bad6fe43-08cb-4963-85ae-a24fa71f868a",
-          "3dcb9781-3f72-40ae-a860-787d1cc3784f",
-          "8943ef03-c6bb-437b-a15d-6dec26ecd585",
-          "18191524-7e2c-48c4-94ad-073c81e5731c",
-          "c1cfcbfe-c2ae-4e18-a4cf-0b57baa7499b",
-          "9735bd72-4719-4650-a13a-3190d911c370",
-          "87533c44-a53f-4c67-b942-1bdb37eaf50a"
-        ]
-      },
-      {
-        "position": { "x": 710, "y": -20.046875 },
-        "size": { "width": 70, "height": 30 },
-        "view": "react-shape-view",
-        "attrs": {
-          "label": { "style": { "color": "#fff", "fontWeight": "normal" }, "text": "子主题" },
-          "box": {
-            "style": {
-              "backgroundColor": "transparent",
-              "borderWidth": 1,
-              "borderRadius": 3,
-              "boxShadow": "none",
-              "padding": "6px 14px",
-              "borderColor": "rgb(232, 234, 236)",
-              "borderStyle": "solid"
-            }
-          }
-        },
-        "shape": "kangmiChild",
-        "id": "895ee81d-8623-467a-b049-c249dc1fa1aa",
-        "zIndex": 24,
-        "parent": "9afefed1-3300-4b36-89f8-a7c22ebc6211"
-      },
-      {
-        "position": { "x": 710, "y": 49.953125 },
-        "size": { "width": 70, "height": 30 },
-        "view": "react-shape-view",
-        "attrs": {
-          "label": { "style": { "color": "#fff", "fontWeight": "normal" }, "text": "子主题" },
-          "box": {
-            "style": {
-              "backgroundColor": "transparent",
-              "borderWidth": 1,
-              "borderRadius": 3,
-              "boxShadow": "none",
-              "padding": "6px 14px",
-              "borderColor": "rgb(232, 234, 236)",
-              "borderStyle": "solid"
-            }
-          }
-        },
-        "shape": "kangmiChild",
-        "id": "4292a00c-2be1-46b0-9ce7-b03a7d2ff15f",
-        "zIndex": 25,
-        "parent": "9afefed1-3300-4b36-89f8-a7c22ebc6211"
-      },
-      {
-        "position": { "x": 710, "y": 119.953125 },
+        "position": { "x": 410, "y": 14.9765625 },
         "size": { "width": 72, "height": 30.09375 },
         "view": "react-shape-view",
         "attrs": {
@@ -1203,44 +549,18 @@
           }
         },
         "shape": "kangmiChild",
-        "id": "1960f48c-9d10-4022-8c9f-55b50ba758ea",
-        "zIndex": 26,
-        "parent": "9afefed1-3300-4b36-89f8-a7c22ebc6211",
-        "children": ["18ff85b7-7f80-49f1-8547-27b7a1cb5b26", "f967e334-d7c1-4751-aee6-bf0f333ea23c"]
-      },
-      {
-        "position": { "x": 710, "y": 260.046875 },
-        "size": { "width": 70, "height": 30 },
-        "view": "react-shape-view",
-        "attrs": {
-          "label": { "style": { "color": "#fff", "fontWeight": "normal" }, "text": "子主题" },
-          "box": {
-            "style": {
-              "backgroundColor": "transparent",
-              "borderWidth": 1,
-              "borderRadius": 3,
-              "boxShadow": "none",
-              "padding": "6px 14px",
-              "borderColor": "rgb(232, 234, 236)",
-              "borderStyle": "solid"
-            }
-          }
-        },
-        "shape": "kangmiChild",
-        "id": "bad6fe43-08cb-4963-85ae-a24fa71f868a",
-        "zIndex": 27,
-        "parent": "9afefed1-3300-4b36-89f8-a7c22ebc6211",
+        "id": "962d0506-97af-483f-b971-29d8f9b70784",
+        "zIndex": 29,
+        "parent": "e74f431a-fc8e-4a89-adf8-ef0fc9dd1df6",
         "children": [
-          "c29b071f-9900-4051-9f99-c597080793cd",
-          "3cba0c72-cef3-46f8-905d-9799b31f576c",
-          "bfbf0590-c14a-4e85-9f5b-225b1847c752",
-          "1a72576d-b017-4124-93f1-77c9de40ecde",
-          "06d364b1-dccd-4917-9c0a-4451108583ce",
-          "43a04c77-f216-4004-abe4-f6bb3065f022"
+          "a1a5e0a8-0bec-4c4d-9730-19c1c9b1be01",
+          "326cee3f-06ba-4c41-abeb-524671cd665d",
+          "021daceb-abc9-4802-9435-fca2a6d30ec0",
+          "7f8af7f8-1c38-4459-98d9-5c27f4b50c6f"
         ]
       },
       {
-        "position": { "x": 710, "y": 330.046875 },
+        "position": { "x": 562, "y": 50.0234375 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -1258,12 +578,13 @@
           }
         },
         "shape": "kangmiChild",
-        "id": "3dcb9781-3f72-40ae-a860-787d1cc3784f",
-        "zIndex": 28,
-        "parent": "9afefed1-3300-4b36-89f8-a7c22ebc6211"
+        "id": "a1a5e0a8-0bec-4c4d-9730-19c1c9b1be01",
+        "zIndex": 48,
+        "parent": "962d0506-97af-483f-b971-29d8f9b70784",
+        "visible": false
       },
       {
-        "position": { "x": 862, "y": 155 },
+        "position": { "x": 562, "y": 50.0234375 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -1281,23 +602,21 @@
           }
         },
         "shape": "kangmiChild",
-        "id": "18ff85b7-7f80-49f1-8547-27b7a1cb5b26",
-        "zIndex": 29,
-        "parent": "1960f48c-9d10-4022-8c9f-55b50ba758ea",
+        "id": "326cee3f-06ba-4c41-abeb-524671cd665d",
+        "zIndex": 49,
+        "parent": "962d0506-97af-483f-b971-29d8f9b70784",
         "children": [
-          "94474537-dc04-4e48-9b23-8f9f2b3b255f",
-          "1fee87fa-e950-4f61-9238-e3564166c821",
-          "771ce304-055d-4117-a124-c835269c0cf3",
-          "391b059d-4952-4f60-9827-571b173caf52",
-          "12f9e77f-d73d-4f73-a906-e5efebd8ae7f",
-          "ecbba9d4-fa6b-4bf7-a612-4754fb8b6894",
-          "8da8f3a1-6535-4e02-8b27-0741ed4da176",
-          "d145ed36-ba62-4ee9-9b49-0cdaed914818"
+          "d4647235-3f53-4a4f-afa8-cd1786912b53",
+          "d50728c7-ba6f-4c02-a653-268a08658b42",
+          "141bba5b-a3fa-4e2d-bd22-b60649dced77",
+          "2314e982-f4d2-49d9-95e8-30613a77f948",
+          "11860cb6-6646-4b92-9d2c-0ff51217adb6",
+          "9f25c952-7c44-49d4-b58b-4d9f0397eb3c"
         ],
         "visible": false
       },
       {
-        "position": { "x": 862, "y": 155 },
+        "position": { "x": 562, "y": 50.0234375 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -1315,13 +634,13 @@
           }
         },
         "shape": "kangmiChild",
-        "id": "94474537-dc04-4e48-9b23-8f9f2b3b255f",
-        "zIndex": 30,
-        "parent": "18ff85b7-7f80-49f1-8547-27b7a1cb5b26",
+        "id": "d4647235-3f53-4a4f-afa8-cd1786912b53",
+        "zIndex": 50,
+        "parent": "326cee3f-06ba-4c41-abeb-524671cd665d",
         "visible": false
       },
       {
-        "position": { "x": 862, "y": 155 },
+        "position": { "x": 562, "y": 50.0234375 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -1339,13 +658,13 @@
           }
         },
         "shape": "kangmiChild",
-        "id": "1fee87fa-e950-4f61-9238-e3564166c821",
-        "zIndex": 31,
-        "parent": "18ff85b7-7f80-49f1-8547-27b7a1cb5b26",
+        "id": "d50728c7-ba6f-4c02-a653-268a08658b42",
+        "zIndex": 51,
+        "parent": "326cee3f-06ba-4c41-abeb-524671cd665d",
         "visible": false
       },
       {
-        "position": { "x": 862, "y": 155 },
+        "position": { "x": 562, "y": 50.0234375 },
         "size": { "width": 70, "height": 30 },
         "view": "react-shape-view",
         "attrs": {
@@ -1363,103 +682,10 @@
           }
         },
         "shape": "kangmiChild",
-        "id": "771ce304-055d-4117-a124-c835269c0cf3",
-        "zIndex": 32,
-        "parent": "18ff85b7-7f80-49f1-8547-27b7a1cb5b26",
+        "id": "141bba5b-a3fa-4e2d-bd22-b60649dced77",
+        "zIndex": 52,
+        "parent": "326cee3f-06ba-4c41-abeb-524671cd665d",
         "visible": false
-      },
-      {
-        "position": { "x": 862, "y": 155 },
-        "size": { "width": 70, "height": 30 },
-        "view": "react-shape-view",
-        "attrs": {
-          "label": { "style": { "color": "#fff", "fontWeight": "normal" }, "text": "子主题" },
-          "box": {
-            "style": {
-              "backgroundColor": "transparent",
-              "borderWidth": 1,
-              "borderRadius": 3,
-              "boxShadow": "none",
-              "padding": "6px 14px",
-              "borderColor": "rgb(232, 234, 236)",
-              "borderStyle": "solid"
-            }
-          }
-        },
-        "shape": "kangmiChild",
-        "id": "391b059d-4952-4f60-9827-571b173caf52",
-        "zIndex": 33,
-        "parent": "18ff85b7-7f80-49f1-8547-27b7a1cb5b26",
-        "visible": false
-      },
-      {
-        "position": { "x": 860, "y": 190.046875 },
-        "size": { "width": 70, "height": 30 },
-        "view": "react-shape-view",
-        "attrs": {
-          "label": { "style": { "color": "#fff", "fontWeight": "normal" }, "text": "子主题" },
-          "box": {
-            "style": {
-              "backgroundColor": "transparent",
-              "borderWidth": 1,
-              "borderRadius": 3,
-              "boxShadow": "none",
-              "padding": "6px 14px",
-              "borderColor": "rgb(232, 234, 236)",
-              "borderStyle": "solid"
-            }
-          }
-        },
-        "shape": "kangmiChild",
-        "id": "c29b071f-9900-4051-9f99-c597080793cd",
-        "zIndex": 34,
-        "parent": "bad6fe43-08cb-4963-85ae-a24fa71f868a"
-      },
-      {
-        "position": { "x": 860, "y": 260.046875 },
-        "size": { "width": 70, "height": 30 },
-        "view": "react-shape-view",
-        "attrs": {
-          "label": { "style": { "color": "#fff", "fontWeight": "normal" }, "text": "子主题" },
-          "box": {
-            "style": {
-              "backgroundColor": "transparent",
-              "borderWidth": 1,
-              "borderRadius": 3,
-              "boxShadow": "none",
-              "padding": "6px 14px",
-              "borderColor": "rgb(232, 234, 236)",
-              "borderStyle": "solid"
-            }
-          }
-        },
-        "shape": "kangmiChild",
-        "id": "3cba0c72-cef3-46f8-905d-9799b31f576c",
-        "zIndex": 35,
-        "parent": "bad6fe43-08cb-4963-85ae-a24fa71f868a"
-      },
-      {
-        "position": { "x": 860, "y": 330.046875 },
-        "size": { "width": 70, "height": 30 },
-        "view": "react-shape-view",
-        "attrs": {
-          "label": { "style": { "color": "#fff", "fontWeight": "normal" }, "text": "子主题" },
-          "box": {
-            "style": {
-              "backgroundColor": "transparent",
-              "borderWidth": 1,
-              "borderRadius": 3,
-              "boxShadow": "none",
-              "padding": "6px 14px",
-              "borderColor": "rgb(232, 234, 236)",
-              "borderStyle": "solid"
-            }
-          }
-        },
-        "shape": "kangmiChild",
-        "id": "bfbf0590-c14a-4e85-9f5b-225b1847c752",
-        "zIndex": 36,
-        "parent": "bad6fe43-08cb-4963-85ae-a24fa71f868a"
       }
     ]
   },

@@ -146,7 +146,7 @@ interface OperateItemProps {
   placement?: TooltipProps['placement'];
   className?: string;
   active?: boolean;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 export function OperateItem({
@@ -165,9 +165,9 @@ export function OperateItem({
           .filter((i) => !!i)
           .join(' ')}
         data-disabled={disabled}
-        onClick={() => {
+        onClick={(e) => {
           if (disabled) return;
-          onClick?.();
+          onClick?.(e);
         }}
       >
         {children}

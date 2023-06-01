@@ -104,7 +104,8 @@ export function cells2Tree(cells: Cell.Properties[]) {
       .map((item) => {
         const cell = cells.find((c) => c.id === item);
         if (!cell) {
-          console.warn(`节点 ${item} 不存在`);
+          // console.warn(`节点 ${item} 不存在`);
+          //
           return;
         }
         return {

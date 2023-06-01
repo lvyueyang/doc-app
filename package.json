@@ -16,7 +16,7 @@
     "**/*.{tsx,ts,jsx,js}": "npm run lint"
   },
   "dependencies": {
-    "@ant-design/icons": "^5.1.4",
+    "@ant-design/icons": "^5.0.1",
     "@antv/hierarchy": "^0.6.11",
     "@antv/x6": "^2.11.1",
     "@antv/x6-plugin-clipboard": "^2.1.6",
@@ -34,10 +34,10 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
     "@types/lodash": "4.14.191",
     "@types/node": "20.2.5",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.32.0",
     "@typescript-eslint/parser": "^5.32.0",
     "eslint": "^8.21.0",
