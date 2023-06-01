@@ -11,6 +11,9 @@ export default function HomePage() {
           <Link to="/flow/editor">
             <List.Item>流程图编辑器</List.Item>
           </Link>
+          <Link to="/mind/editor">
+            <List.Item>脑图图编辑器</List.Item>
+          </Link>
         </List>
       </Card>
     </div>
