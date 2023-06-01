@@ -1,6 +1,5 @@
 import type { Cell, Edge, Node } from '@antv/x6';
 import type { MindMapResult } from '@kangmi/types';
-import { downloadJson } from '@kangmi/utils';
 import { EventEmitter } from 'events';
 import { cloneDeep } from 'lodash';
 import { MindMapLRConnector } from '../Editor/connector';
@@ -10,39 +9,28 @@ import { registerContextMenu } from './contextmenu';
 import { MindMapEdgeConfig } from './edges';
 import { registerKeyboard } from './keyboard';
 import * as layouts from './layout';
+import { ExportData } from './modules/ExportData';
 import { BranchNodeConfig, ChildNodeConfig, RootNodeConfig } from './nodes';
 import * as mindMapTheme from './theme';
 import type { MindMapTheme } from './theme/types';
-import type { IconDataItem, Icons, NodeConfig, Remark, TagDataItem, Tags } from './types';
+import type {
+  EditorJsonForm,
+  IconDataItem,
+  Icons,
+  NodeConfig,
+  Remark,
+  TagDataItem,
+  Tags,
+} from './types';
 import { cells2Tree, shape2Theme } from './utils';
 
 type DeepCloneNode = Node & { _children?: DeepCloneNode[] };
 
-interface BackgroundOptions {
-  color: string;
-  image: string;
-}
-
-interface EditorJsonForm {
-  data: {
-    cells: Cell.Properties[];
-  };
-  page: {
-    background: BackgroundOptions;
-  };
-  /** 主题 ID */
-  theme: string;
-  /** 布局 */
-  layout: string;
-  /** 布局配置 */
-  layoutOptions: layouts.LayoutOptions;
-}
-
-type EditorOptions = BaseEditorOptions;
-
 export class Editor extends BaseEditor {
   options: BaseEditorOptions;
   readonly eventEmitter = new EventEmitter();
+  readonly export = new ExportData(this);
+
   /** 主题 */
   private theme: MindMapTheme = mindMapTheme.defaultTheme;
   /** 结构布局*/
@@ -52,7 +40,7 @@ export class Editor extends BaseEditor {
   /** 画布标题 */
   private title: string = '';
 
-  constructor(options: EditorOptions) {
+  constructor(options: BaseEditorOptions) {
     super(options as BaseEditorOptions);
     this.options = options;
 
@@ -283,11 +271,18 @@ export class Editor extends BaseEditor {
     nodes.forEach((node) => {
       if (!node.id || !node.position) return;
       const originNode = this.graph.getCellById(node.id) as Node;
+
       if (originNode) {
         // 位置对比，更新布局
         const oldPosition = originNode.getPosition();
         const newPosition = node.position;
-        if (oldPosition.x !== newPosition.x || oldPosition.y !== newPosition.y) {
+        if (
+          oldPosition.x !== newPosition.x ||
+          oldPosition.y !== newPosition.y ||
+          !!originNode.visible === !!node.visible
+        ) {
+          console.log('originNode: ', originNode.attrs?.label?.text);
+
           originNode.setPosition(newPosition);
 
           // 重新连线
@@ -299,7 +294,10 @@ export class Editor extends BaseEditor {
           });
           if (newEdge) {
             if (targetEdge) {
-              targetEdge?.setProp(newEdge);
+              console.log('targetEdge: ', targetEdge);
+              setTimeout(() => {
+                targetEdge.setProp(newEdge);
+              }, 1000);
             } else {
               this.graph.addEdge(newEdge);
             }
@@ -594,9 +592,6 @@ export class Editor extends BaseEditor {
   getTitle = () => {
     return this.title;
   };
-  getFileName = () => {
-    return this.title || `flow-${Date.now()}`;
-  };
 
   fromJSON = (value: EditorJsonForm) => {
     this.graph.fromJSON(value.data);
@@ -607,54 +602,5 @@ export class Editor extends BaseEditor {
       Object.values(mindMapTheme).find((theme) => theme.id === value.theme) || this.theme;
     this.layoutType = value.layout || this.layoutType;
     this.layoutOptions = value.layoutOptions || this.layoutOptions;
-  };
-
-  /** 导出 JSON 数据 */
-  toJson = (): EditorJsonForm => {
-    const json = this.graph.toJSON();
-    return {
-      data: json,
-      page: {
-        background: this.getBackground(),
-      },
-      theme: this.theme.id,
-      layout: this.layoutType,
-      layoutOptions: this.layoutOptions,
-    };
-  };
-  /**
-   * 导出 JSON 文件
-   */
-  exportJSON = () => {
-    const json = this.toJson();
-    const str = JSON.stringify(json);
-    downloadJson(str, this.getFileName());
-  };
-  /**
-   * 导出 PNG 图片
-   * @param transparent 是否为透明背景 默认 false
-   */
-  exportPNG = (transparent: boolean = false) => {
-    this.graph.exportPNG(this.getFileName(), {
-      backgroundColor: transparent ? 'transparent' : this.getBackground().color,
-      quality: 1,
-      padding: 40,
-    });
-  };
-  /**
-   * 导出 JPEG 图片
-   */
-  exportJPEG = () => {
-    this.graph.exportJPEG(this.getFileName(), {
-      backgroundColor: this.getBackground().color,
-      quality: 1,
-      padding: 40,
-    });
-  };
-  /**
-   * 导出 SVG 图片
-   */
-  exportSVG = () => {
-    this.graph.exportSVG(this.getFileName());
   };
 }

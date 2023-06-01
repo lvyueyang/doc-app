@@ -92,33 +92,33 @@ export default function Header() {
               {
                 label: '导出 JSON 文件',
                 key: 'JSON',
-                onClick: editor.exportJSON,
+                onClick: editor.export.exportJSON,
               },
               {
                 label: '导出 PNG 文件',
                 key: 'PNG',
                 onClick: () => {
-                  editor.exportPNG();
+                  editor.export.exportPNG();
                 },
               },
               {
                 label: '导出 PNG 文件 (透明背景)',
                 key: 'PNG-TRANSPARENT',
                 onClick: () => {
-                  editor.exportPNG(true);
+                  editor.export.exportPNG(true);
                 },
               },
               {
                 label: '导出 JPEG 文件',
                 key: 'JPEG',
                 onClick: () => {
-                  editor.exportJPEG();
+                  editor.export.exportJPEG();
                 },
               },
               {
                 label: '导出 SVG 文件',
                 key: 'SVG',
-                onClick: editor.exportSVG,
+                onClick: editor.export.exportSVG,
               },
             ],
           }}
@@ -130,7 +130,7 @@ export default function Header() {
         <OperateItem
           title=""
           onClick={() => {
-            console.log(editor.toJson().data.cells);
+            console.log(editor.export.toJson().data.cells);
           }}
         >
           JSON

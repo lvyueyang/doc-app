@@ -1,6 +1,7 @@
-import type { Graph, Node } from '@antv/x6';
+import type { Cell, Graph, Node } from '@antv/x6';
 import type { ReactShapeConfig } from '@antv/x6-react-shape';
 import type React from 'react';
+import type * as layouts from './layout';
 
 export type NodeConfig = Node.Config & {
   inherit?: string | Node.Definition | undefined;
@@ -44,4 +45,23 @@ export type Tags = TagDataItem[];
 /** 备注 */
 export interface Remark {
   value: string;
+}
+
+export interface BackgroundOptions {
+  color: string;
+  image: string;
+}
+export interface EditorJsonForm {
+  data: {
+    cells: Cell.Properties[];
+  };
+  page: {
+    background: BackgroundOptions;
+  };
+  /** 主题 ID */
+  theme: string;
+  /** 布局 */
+  layout: string;
+  /** 布局配置 */
+  layoutOptions: layouts.LayoutOptions;
 }
