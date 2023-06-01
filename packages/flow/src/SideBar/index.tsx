@@ -1,10 +1,10 @@
 import { Dnd } from '@antv/x6-plugin-dnd';
 import { createRef, useEffect, useRef } from 'react';
 import { useFlowEditor } from '../hooks';
+import Thumbnail from './Thumbnail';
 import type { GroupChildrenItem } from './config/common';
 import DATA_GROUP from './config/index';
 import styles from './index.module.less';
-import Thumbnail from './Thumbnail';
 
 export default function SideBar() {
   const { editor } = useFlowEditor();

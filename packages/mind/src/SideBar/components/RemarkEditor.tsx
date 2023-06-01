@@ -1,8 +1,8 @@
 import type { Graph, Node } from '@antv/x6';
 import { SettingBarGroupItem } from '@kangmi/components';
 import { useEffect, useState } from 'react';
-import Editor from '../../components/Editor';
 import type { Tags } from '../../Editor/types';
+import Editor from '../../components/Editor';
 import { useMindEditor } from '../../hooks';
 import styles from './index.module.less';
 

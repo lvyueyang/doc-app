@@ -2,8 +2,8 @@ import { Portal } from '@antv/x6-react-shape';
 import { createContext, useEffect, useRef, useState } from 'react';
 import { Editor } from './Editor';
 import Header from './Header';
-import styles from './index.module.less';
 import SideBar from './SideBar';
+import styles from './index.module.less';
 
 interface MindEditorContextOptions {
   editor?: Editor;

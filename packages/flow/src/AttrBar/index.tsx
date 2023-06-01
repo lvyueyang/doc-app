@@ -1,12 +1,12 @@
 import type { Cell, Dom, Edge, EdgeView, Graph, Rectangle } from '@antv/x6';
 import {
+  SettingBarAttrItem as AttrItem,
   ColorSelect,
   FontStyleButton,
   FontWeightButton,
+  SettingBarGroupItem as GroupItem,
   HorizontalAlignButtonGroup,
   LineThroughButton,
-  SettingBarAttrItem as AttrItem,
-  SettingBarGroupItem as GroupItem,
   UnderlineButton,
   VerticalAlignButtonGroup,
 } from '@kangmi/components';

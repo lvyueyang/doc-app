@@ -6,9 +6,9 @@ import { shape2Theme } from '../../../utils';
 import HtmlText from '../HtmlText';
 import Collapse from './Collapse';
 import IconList from './IconList';
-import styles from './index.module.less';
 import RemarkItem from './Remark';
 import TagList from './TagList';
+import styles from './index.module.less';
 
 interface BaseNodeProps extends React.HTMLAttributes<HTMLDivElement> {
   node: Node;

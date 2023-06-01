@@ -8,12 +8,12 @@ import {
   SettingBarGroupItem,
   UnderlineButton,
 } from '@kangmi/components';
-import { Button, InputNumber, Row, Select } from 'antd';
 import type { LINE_TYPE_ENUM } from 'Editor/constants';
+import { Button, InputNumber, Row, Select } from 'antd';
 import { useEffect, useState } from 'react';
-import { LINE_TYPE } from '../../constants';
 import type { Editor } from '../../Editor';
 import type { LayoutOptions } from '../../Editor/layout';
+import { LINE_TYPE } from '../../constants';
 import { useMindEditor } from '../../hooks';
 import styles from './index.module.less';
 

@@ -3,8 +3,8 @@ import { SettingBarGroupItem } from '@kangmi/components';
 import { cls } from '@kangmi/utils';
 import { Popover, Row, Tag } from 'antd';
 import { useEffect, useState } from 'react';
-import FormTag from '../../components/FormTag';
 import type { TagDataItem, Tags } from '../../Editor/types';
+import FormTag from '../../components/FormTag';
 import { useMindEditor } from '../../hooks';
 import styles from '../index.module.less';
 
