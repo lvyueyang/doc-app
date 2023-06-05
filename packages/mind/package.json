@@ -4,7 +4,9 @@
   "private": true,
   "author": "lvyueyang <975794403@qq.com>",
   "main": "./src/index.ts",
-  "scripts": {},
+  "scripts": {
+    "lint": "tsc --noEmit"
+  },
   "dependencies": {
     "@icon-park/react": "^1.4.2"
   }

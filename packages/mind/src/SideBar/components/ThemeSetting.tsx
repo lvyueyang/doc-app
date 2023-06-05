@@ -8,7 +8,7 @@ const { defaultTheme, ...ThemeMaps } = themeList;
 
 export function ThemeSetting() {
   const { editor } = useMindEditor();
-  const [active, setActive] = useState(editor?.getTheme().id);
+  const [active, setActive] = useState(editor?.theme.getTheme().id);
 
   return (
     <SettingBarGroupItem label="主题风格">
@@ -19,7 +19,7 @@ export function ThemeSetting() {
               key={key}
               block
               onClick={() => {
-                editor?.setTheme(item);
+                editor?.theme.setTheme(item);
                 setActive(item.id);
               }}
               type={active === item.id ? 'primary' : 'default'}

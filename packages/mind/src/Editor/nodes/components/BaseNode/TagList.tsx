@@ -35,7 +35,7 @@ export default function TagList({ node, onChange }: TagListProps) {
                 <FormTag
                   value={{ color, value }}
                   onChange={(newValue) => {
-                    editor?.updateTag(node!, value, newValue);
+                    editor?.cellUtils.updateTag(node!, value, newValue);
                   }}
                 />
               }

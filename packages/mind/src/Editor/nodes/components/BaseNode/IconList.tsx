@@ -53,7 +53,7 @@ export default function IconList({ node, onChange }: IconListProps) {
                           ])}
                           key={name}
                           onClick={() => {
-                            editor?.addIcon(node!, group.name, name, group.isOnly);
+                            editor?.cellUtils.addIcon(node!, group.name, name, group.isOnly);
                           }}
                         >
                           {iconElement}
@@ -66,7 +66,7 @@ export default function IconList({ node, onChange }: IconListProps) {
                     title="删除图标"
                     onClick={() => {
                       if (!node) return;
-                      editor?.removeIcon(node, iconName);
+                      editor?.cellUtils.removeIcon(node, iconName);
                     }}
                   >
                     <Delete />

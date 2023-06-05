@@ -42,15 +42,15 @@ function PageSettingGroup({ editor }: { editor: Editor }) {
     background: {
       color: '#fff',
     },
-    layoutOptions: editor.getLayoutOptions(),
+    layoutOptions: editor.layout.getOptions(),
   });
   const updatePageConfig = () => {
     if (graph) {
       setPageConfig({
         background: {
-          color: editor.getBackground().color,
+          color: editor.theme.getBackground().color,
         },
-        layoutOptions: editor.getLayoutOptions(),
+        layoutOptions: editor.layout.getOptions(),
       });
     }
   };
@@ -73,7 +73,7 @@ function PageSettingGroup({ editor }: { editor: Editor }) {
           min={0}
           value={pageConfig.layoutOptions.H_Gap}
           onChange={(e) => {
-            editor.setLayoutOptions({
+            editor.layout.setOptions({
               H_Gap: e || 0,
             });
             updatePageConfig();
@@ -85,7 +85,7 @@ function PageSettingGroup({ editor }: { editor: Editor }) {
           min={0}
           value={pageConfig.layoutOptions.V_Gap}
           onChange={(e) => {
-            editor.setLayoutOptions({
+            editor.layout.setOptions({
               V_Gap: e || 0,
             });
             updatePageConfig();

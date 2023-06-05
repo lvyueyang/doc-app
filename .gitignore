@@ -18,3 +18,4 @@ temp/
 packages/pullMinio/temp/
 
 packages/*/yarn-error.log
+yarn-error.log

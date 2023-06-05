@@ -8,7 +8,7 @@ const { MindMapHLayout, ...LayoutMaps } = layouts;
 
 export function LayoutSetting() {
   const { editor } = useMindEditor();
-  const [active, setActive] = useState(editor?.getLayoutType());
+  const [active, setActive] = useState(editor?.layout.getType());
 
   return (
     <SettingBarGroupItem label="结构布局">
@@ -20,7 +20,7 @@ export function LayoutSetting() {
               key={key}
               block
               onClick={() => {
-                editor?.setLayout(item.name);
+                editor?.layout.setLayout(item.name);
                 setActive(item.name);
               }}
             >

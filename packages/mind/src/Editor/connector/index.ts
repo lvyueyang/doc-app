@@ -9,9 +9,9 @@ export const enum ConnectionType {
   rounded = 'rounded',
 }
 
-interface ConnectionItem {
+export interface ConnectionItem {
   NAME: string;
-  entity: Registry.Connector.Definition<Registry.Connector.BaseOptions & { type: ConnectionType }>;
+  entity: Registry.Connector.Definition<Registry.Connector.BaseOptions>;
   force: boolean;
 }
 

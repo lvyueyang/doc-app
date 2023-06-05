@@ -1,17 +1,9 @@
-import type { Graph } from '@antv/x6';
 import { downloadJson } from '@kangmi/utils';
-import type { Editor } from '../index';
 import type { EditorJsonForm } from '../types';
+import { BaseModule } from './BaseModule';
 
 /** 数据导出 */
-export class ExportData {
-  graph: Graph;
-  editor;
-
-  constructor(editor: Editor) {
-    this.graph = editor.graph;
-    this.editor = editor;
-  }
+export class ExportData extends BaseModule {
   getFileName = () => {
     return this.editor.getTitle() || `flow-${Date.now()}`;
   };
@@ -22,11 +14,11 @@ export class ExportData {
     return {
       data: json,
       page: {
-        background: this.editor.getBackground(),
+        background: this.editor.theme.getBackground(),
       },
-      theme: this.editor.getTheme().id,
-      layout: this.editor.getLayoutType(),
-      layoutOptions: this.editor.getLayoutOptions(),
+      theme: this.editor.theme.getTheme().id,
+      layout: this.editor.layout.getType(),
+      layoutOptions: this.editor.layout.getOptions(),
     };
   };
   /**
@@ -43,7 +35,7 @@ export class ExportData {
    */
   exportPNG = (transparent: boolean = false) => {
     this.graph.exportPNG(this.getFileName(), {
-      backgroundColor: transparent ? 'transparent' : this.editor.getBackground().color,
+      backgroundColor: transparent ? 'transparent' : this.editor.theme.getBackground().color,
       quality: 1,
       padding: 40,
     });
@@ -53,7 +45,7 @@ export class ExportData {
    */
   exportJPEG = () => {
     this.graph.exportJPEG(this.getFileName(), {
-      backgroundColor: this.editor.getBackground().color,
+      backgroundColor: this.editor.theme.getBackground().color,
       quality: 1,
       padding: 40,
     });

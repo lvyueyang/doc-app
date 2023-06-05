@@ -6,7 +6,7 @@ import { Keyboard } from '@antv/x6-plugin-keyboard';
 import { Scroller } from '@antv/x6-plugin-scroller';
 import { Selection } from '@antv/x6-plugin-selection';
 import { Transform } from '@antv/x6-plugin-transform';
-import { EventEmitter } from 'events';
+import { EventEmitter } from 'eventemitter3';
 
 import styles from './index.module.less';
 
@@ -21,7 +21,9 @@ export interface BaseEditorOptions {
   height?: number;
   width?: number;
 }
-export class BaseEditor extends EventEmitter {
+export class BaseEditor<
+  T extends EventEmitter.ValidEventTypes = string | symbol,
+> extends EventEmitter<T> {
   options: BaseEditorOptions;
   graph: Graph;
   constructor(opt: BaseEditorOptions) {
@@ -153,7 +155,6 @@ export class BaseEditor extends EventEmitter {
         // modifiers: 'space',
         pageVisible: true,
         // pannable: true,
-        graph: this.graph,
       }),
     );
   }

@@ -22,7 +22,7 @@ export function RemarkEditor() {
     setValue(value);
     if (!disabled) {
       selectNodes.forEach((node) => {
-        editor?.updateRemark(node, { value });
+        editor?.cellUtils.updateRemark(node, { value });
       });
     }
   };

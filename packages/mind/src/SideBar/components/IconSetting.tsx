@@ -16,7 +16,7 @@ export function IconSetting() {
   const clickHandler = (groupName: string, iconName: string, isOnly: boolean) => {
     if (!disabled) {
       selectNodes.forEach((node) => {
-        editor?.addIcon(node, groupName, iconName, isOnly);
+        editor?.cellUtils.addIcon(node, groupName, iconName, isOnly);
       });
     }
   };

@@ -1,6 +1,7 @@
 import { Graph } from '@antv/x6';
-import * as connectors from './index';
+import { MindMapLRConnector, MindMapTBConnector } from './index';
 
-Object.values(connectors).forEach(({ NAME, entity, force }) => {
+[MindMapLRConnector, MindMapTBConnector].forEach((item) => {
+  const { NAME, entity, force } = item;
   Graph.registerConnector(NAME, entity, force);
 });

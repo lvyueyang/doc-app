@@ -23,7 +23,7 @@ export default function BaseNode({ node, className, style }: BaseNodeProps) {
     const target = targetRef.current;
     if (!target || !editor) return;
     window.requestAnimationFrame(() => {
-      const minSize = shape2Theme(node.shape, editor.getTheme()).size;
+      const minSize = shape2Theme(node.shape, editor.theme.getTheme()).size;
       const { width, height } = getElementSize(target, minSize);
 
       node?.setSize({
@@ -51,7 +51,7 @@ export default function BaseNode({ node, className, style }: BaseNodeProps) {
   if (!editor) return null;
 
   const minStyle = { minWidth: 0, minHeight: 0 };
-  const { size } = shape2Theme(node.shape, editor.getTheme());
+  const { size } = shape2Theme(node.shape, editor.theme.getTheme());
   minStyle.minWidth = size.width;
   minStyle.minHeight = size.height;
 

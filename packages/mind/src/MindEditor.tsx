@@ -35,7 +35,7 @@ export function MindEditor({ value }: MindEditorProps) {
       mindEditor?.fromJSON(value);
       mindEditor?.contentCenter();
     } else {
-      mindEditor?.appendRootNode({ isCenter: true });
+      mindEditor?.cellUtils.appendRootNode({ isCenter: true });
     }
     setEditor(mindEditor);
   }, []);

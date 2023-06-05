@@ -46,21 +46,21 @@ export function TagSetting() {
   const addHandler = (tagItem: TagDataItem) => {
     if (!disabled && tagItem.value) {
       selectNodes.forEach((node) => {
-        editor?.addTag(node, tagItem);
+        editor?.cellUtils.addTag(node, tagItem);
       });
     }
   };
   const removeHandler = (value: string) => {
     if (!disabled) {
       selectNodes.forEach((node) => {
-        editor?.removeTag(node, value);
+        editor?.cellUtils.removeTag(node, value);
       });
     }
   };
   const updateHandler = (oldValue: string, tag: TagDataItem) => {
     if (!disabled) {
       selectNodes.forEach((node) => {
-        editor?.updateTag(node, oldValue, tag);
+        editor?.cellUtils.updateTag(node, oldValue, tag);
       });
     }
   };
