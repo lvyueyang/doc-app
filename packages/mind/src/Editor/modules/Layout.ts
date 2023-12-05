@@ -1,4 +1,4 @@
-import type { Cell, Edge, Node } from '@antv/x6';
+import type { Edge, Node } from '@antv/x6';
 import type { MindMapResult } from '@kangmi/types';
 import { MindMapLRConnector } from '../connector';
 import { MindMapEdgeConfig } from '../edges';
@@ -14,6 +14,109 @@ export class Layout extends BaseModule {
   private options: layouts.LayoutOptions = layouts.MindMapHLayout.layoutOptions;
 
   layout = (nodeId?: string) => {
+    const result = this.layoutResult();
+    if (!result) return;
+
+    const { nodes, edges } = result;
+    this.diffLayout(nodes, edges);
+
+    if (nodeId) {
+      this.graph.cleanSelection();
+      this.graph.select(nodeId);
+      const node = this.graph.getCellById(nodeId);
+      if (node?.isNode()) {
+        if (node.shape === RootNodeConfig.NODE_NAME) {
+          this.editor.contentCenter();
+          return;
+        }
+        // 判断是否超出了屏幕
+        const pos = this.graph.localToPage(node.getPosition());
+        const size = node.getSize();
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        if (
+          pos.x + size.width > windowWidth - 300 ||
+          pos.x < 70 ||
+          pos.y + size.height > windowHeight ||
+          pos.y < 100
+        ) {
+          this.editor.contentCenter();
+        }
+        if (node.shape === RootNodeConfig.NODE_NAME) {
+          this.editor.contentCenter();
+        }
+      }
+    } else {
+      this.graph.cleanSelection();
+    }
+    this.editor.emit('layout');
+  };
+
+  /** 对比变化布局 */
+  diffLayout = (nodes: Node.Properties[], edges: Edge.Properties[]) => {
+    nodes.forEach((node) => {
+      if (!node.id || !node.position) return;
+      const oldNode = this.graph.getCellById(node.id) as Node;
+      const newNode = node;
+
+      if (oldNode) {
+        // 位置对比，更新布局
+        const oldPosition = oldNode.getPosition();
+        const newPosition = newNode.getPosition();
+        if (oldPosition.x !== newPosition.x || oldPosition.y !== newPosition.y) {
+          oldNode.setPosition(newPosition);
+
+          // 重新连线
+          const targetEdge = this.graph
+            .getIncomingEdges(oldNode)
+            ?.filter((e) => e.shape === MindMapEdgeConfig.EDGE_NAME)[0];
+          const newEdge = edges.find((edge) => {
+            return edge.target?.cell === oldNode.id;
+          });
+          if (newEdge) {
+            if (targetEdge) {
+              targetEdge.setProp(newEdge);
+            } else {
+              this.graph.addEdge(newEdge);
+            }
+          }
+        }
+      }
+    });
+  };
+
+  /** 指定 node 节点更新布局 */
+  nodeLayout = (ids: string[]) => {
+    const result = this.layoutResult();
+    if (!result) return;
+    const { nodes, edges } = result;
+    ids.forEach((id) => {
+      const oldNode = this.graph.getCellById(id) as Node;
+      const newNode = nodes.find((n) => n.id === id);
+
+      if (oldNode && newNode) {
+        const newPosition = newNode.getPosition();
+        oldNode.setPosition(newPosition);
+
+        // 重新连线
+        const targetEdge = this.graph
+          .getIncomingEdges(oldNode)
+          ?.filter((e) => e.shape === MindMapEdgeConfig.EDGE_NAME)[0];
+        const newEdge = edges.find((edge) => {
+          return edge.target?.cell === oldNode.id;
+        });
+
+        if (newEdge) {
+          if (targetEdge) {
+            targetEdge.remove();
+          }
+          this.graph.addEdge(newEdge);
+        }
+      }
+    });
+  };
+
+  layoutResult = () => {
     const json = this.graph.toJSON();
     const treeData = cells2Tree(
       json.cells.filter((cell) => cell.shape !== MindMapEdgeConfig.EDGE_NAME),
@@ -27,7 +130,7 @@ export class Layout extends BaseModule {
 
     if (!result) return;
 
-    const cells: Cell[] = [];
+    // const cells: Cell[] = [];
     const nodes: Node.Properties[] = [];
     const edges: Edge.Properties[] = [];
     const traverse = (hierarchyItem: MindMapResult) => {
@@ -73,86 +176,19 @@ export class Layout extends BaseModule {
               },
             };
             edges.push(edgeConfig);
-            const edge = this.graph.createEdge(edgeConfig);
-            cells.push(edge);
+            // const edge = this.graph.createEdge(edgeConfig);
+            // cells.push(edge);
             traverse(child);
           });
         }
       }
     };
     traverse(result);
-    this.diffLayout(nodes, edges);
 
-    if (nodeId) {
-      this.graph.cleanSelection();
-      this.graph.select(nodeId);
-      const node = this.graph.getCellById(nodeId);
-      if (node?.isNode()) {
-        if (node.shape === RootNodeConfig.NODE_NAME) {
-          this.editor.contentCenter();
-          return;
-        }
-        // 判断是否超出了屏幕
-        const pos = this.graph.localToPage(node.getPosition());
-        const size = node.getSize();
-        const windowWidth = window.innerWidth;
-        const windowHeight = window.innerHeight;
-        if (
-          pos.x + size.width > windowWidth - 300 ||
-          pos.x < 70 ||
-          pos.y + size.height > windowHeight ||
-          pos.y < 100
-        ) {
-          this.editor.contentCenter();
-        }
-        if (node.shape === RootNodeConfig.NODE_NAME) {
-          this.editor.contentCenter();
-        }
-      }
-    } else {
-      this.graph.cleanSelection();
-    }
-    this.editor.emit('layout');
-  };
-
-  diffLayout = (nodes: Node.Properties[], edges: Edge.Properties[]) => {
-    nodes.forEach((node) => {
-      if (!node.id || !node.position) return;
-      const originNode = this.graph.getCellById(node.id) as Node;
-
-      if (originNode) {
-        // 位置对比，更新布局
-        const oldPosition = originNode.getPosition();
-        const newPosition = node.position;
-        if (
-          oldPosition.x !== newPosition.x ||
-          oldPosition.y !== newPosition.y ||
-          !!originNode.visible === !!node.visible
-        ) {
-          console.log('originNode: ', originNode.attrs?.label?.text);
-
-          originNode.setPosition(newPosition);
-
-          // 重新连线
-          const targetEdge = this.graph
-            .getIncomingEdges(originNode)
-            ?.filter((e) => e.shape === MindMapEdgeConfig.EDGE_NAME)[0];
-          const newEdge = edges.find((edge) => {
-            return edge.target?.cell === originNode.id;
-          });
-          if (newEdge) {
-            if (targetEdge) {
-              console.log('targetEdge: ', targetEdge);
-              setTimeout(() => {
-                targetEdge.setProp(newEdge);
-              }, 1000);
-            } else {
-              this.graph.addEdge(newEdge);
-            }
-          }
-        }
-      }
-    });
+    return {
+      nodes,
+      edges,
+    };
   };
 
   /** 设置布局方式 */
