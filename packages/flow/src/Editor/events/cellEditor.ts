@@ -12,6 +12,8 @@ export function cellEditorEvents(graph: Graph) {
         event: e,
         attrs: {
           backgroundColor: '#FFF',
+          getText: 'label/text',
+          setText: 'label/text',
         },
       },
     });

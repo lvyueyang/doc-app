@@ -1,5 +1,6 @@
 import { type Cell, type Graph } from '@antv/x6';
 import { downloadJson } from '@kangmi/utils';
+import pkgJson from '../../package.json';
 
 interface BackgroundOptions {
   color: string;
@@ -7,6 +8,7 @@ interface BackgroundOptions {
 }
 
 interface EditorJsonForm {
+  version: string;
   data: {
     cells: Cell.Properties[];
   };
@@ -62,6 +64,7 @@ export class GraphData {
         background: this.getBackground(),
         grid: this.graph.options.grid,
       },
+      version: pkgJson.version,
     };
   };
 
