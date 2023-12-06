@@ -2,15 +2,15 @@
 function getOS() {
   const userAgent = navigator.userAgent;
   let os = 'Unknown';
-  if (userAgent.indexOf('Win') !== -1) {
+  if (userAgent.includes('Win')) {
     os = 'Windows';
-  } else if (userAgent.indexOf('Mac') !== -1) {
+  } else if (userAgent.includes('Mac')) {
     os = 'MacOS';
-  } else if (userAgent.indexOf('Linux') !== -1) {
+  } else if (userAgent.includes('Linux')) {
     os = 'Linux';
-  } else if (userAgent.indexOf('Android') !== -1) {
+  } else if (userAgent.includes('Android')) {
     os = 'Android';
-  } else if (userAgent.indexOf('like Mac') !== -1) {
+  } else if (userAgent.includes('like Mac')) {
     os = 'iOS';
   }
   return os;

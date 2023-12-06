@@ -12,6 +12,7 @@ export class ContextMenu extends BaseModule {
     super(editor);
     this.init();
   }
+
   init() {
     const graph = this.graph;
     graph.on('node:contextmenu', ({ e, cell }) => {
@@ -101,7 +102,7 @@ export class ContextMenu extends BaseModule {
           },
         ],
         onClick: ({ label }) => {
-          message.success(label + '成功');
+          message.success(<>{label}成功</>);
           this.contextMenu?.close();
         },
       });

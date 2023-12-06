@@ -159,26 +159,27 @@ export function createTextSvgNodeConfig({
   propHooks,
   attrHooks,
 }: {
-  markup: Cell['markup'][];
+  markup: Array<Cell['markup']>;
   attrs?: Cell.Properties;
   propHooks?: (metadata: Node.Metadata) => Node.Metadata;
   attrHooks?: NodeConfig['attrHooks'];
 }) {
   const TextBlock = createTextBlock();
+  const newAttrs: Cell.Properties = {
+    ...TextBlock.attrs,
+    body: {
+      fill: DefaultNodeConfig.fill,
+      stroke: DefaultNodeConfig.stroke,
+      strokeWidth: DefaultNodeConfig.strokeWidth,
+    },
+    ...attrs,
+  };
 
   return {
     markup: [...markup, TextBlock.markup],
-    attrs: {
-      ...TextBlock.attrs,
-      body: {
-        fill: DefaultNodeConfig.fill,
-        stroke: DefaultNodeConfig.stroke,
-        strokeWidth: DefaultNodeConfig.strokeWidth,
-      },
-      ...attrs,
-    } as Cell.Properties,
+    attrs: newAttrs,
     propHooks: (metadata: Node.Metadata) => {
-      return TextBlock.propHooks(propHooks?.(metadata) || metadata);
+      return TextBlock.propHooks(propHooks?.(metadata) ?? metadata);
     },
     attrHooks: {
       ...TextBlock.attrHooks,
@@ -189,7 +190,7 @@ export function createTextSvgNodeConfig({
 
 /** svg 路径点字符串转数组 */
 export function svgPath2Array(value: string) {
-  const result: (string | number)[][] = [];
+  const result: Array<Array<string | number>> = [];
 
   value.split(' ').forEach((k) => {
     if (/[A-Za-z]+/.test(k)) {
@@ -201,6 +202,6 @@ export function svgPath2Array(value: string) {
 
   return result;
 }
-export function svgPathArray2String(value: (string | number)[][]) {
+export function svgPathArray2String(value: Array<Array<string | number>>) {
   return value.map((item) => item.join(' ')).join(' ');
 }

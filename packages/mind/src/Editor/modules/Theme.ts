@@ -11,6 +11,7 @@ export class Theme extends BaseModule {
   getTheme() {
     return this.config;
   }
+
   /** 更换主题 */
   setTheme(theme?: MindMapTheme) {
     if (!theme) return;

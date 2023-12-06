@@ -15,7 +15,7 @@ export function portEvents(graph: Graph) {
     const ports = cell.getPorts();
     ports.forEach((port) => {
       if (port.id) {
-        cell.portProp(port.id!, 'attrs/circle/r', 0);
+        cell.portProp(port.id, 'attrs/circle/r', 0);
       }
     });
   });
@@ -23,7 +23,7 @@ export function portEvents(graph: Graph) {
     const ports = node.getPorts();
     ports.forEach((port) => {
       if (port.id) {
-        node.portProp(port.id!, 'attrs/circle/r', 0);
+        node.portProp(port.id, 'attrs/circle/r', 0);
       }
     });
   });

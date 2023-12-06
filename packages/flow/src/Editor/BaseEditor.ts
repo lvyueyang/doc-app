@@ -35,11 +35,13 @@ export class BaseEditor extends EventEmitter {
     // 添加插件功能
     this.__initPlugin();
   }
+
   private __defaultOptions(opt: BaseEditorOptions) {
     return {
       ...opt,
     };
   }
+
   private __validateOptions(opt: BaseEditorOptions) {
     if (!opt.container) {
       throw new Error('container is undefined');
@@ -104,6 +106,7 @@ export class BaseEditor extends EventEmitter {
   private __useSnapline() {
     this.graph.use(new Snapline({ enabled: true }));
   }
+
   /** 图形变换 */
   private __useTransform() {
     this.graph.use(
@@ -118,6 +121,7 @@ export class BaseEditor extends EventEmitter {
       }),
     );
   }
+
   /** 复制粘贴 */
   private __useClipboard() {
     this.graph.use(
@@ -126,6 +130,7 @@ export class BaseEditor extends EventEmitter {
       }),
     );
   }
+
   /** 快捷键 */
   private __useKeyboard() {
     this.graph.use(
@@ -135,6 +140,7 @@ export class BaseEditor extends EventEmitter {
       }),
     );
   }
+
   /** 历史记录 */
   private __useHistory() {
     this.graph.use(
@@ -153,6 +159,7 @@ export class BaseEditor extends EventEmitter {
       }),
     );
   }
+
   /** 滚动画布 */
   private __useScroller() {
     this.graph.use(
@@ -166,6 +173,7 @@ export class BaseEditor extends EventEmitter {
       }),
     );
   }
+
   /** 框选 */
   private __useSelection() {
     this.graph.use(
@@ -180,6 +188,7 @@ export class BaseEditor extends EventEmitter {
       }),
     );
   }
+
   /** 导出 */
   private __useExport() {
     this.graph.use(new Export());

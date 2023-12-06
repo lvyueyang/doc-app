@@ -35,11 +35,13 @@ export class BaseEditor<
     // 添加插件功能
     this.__initPlugin();
   }
+
   private __defaultOptions(opt: BaseEditorOptions) {
     return {
       ...opt,
     };
   }
+
   private __validateOptions(opt: BaseEditorOptions) {
     if (!opt.container) {
       throw new Error('container is undefined');
@@ -111,6 +113,7 @@ export class BaseEditor<
       }),
     );
   }
+
   /** 复制粘贴 */
   private __useClipboard() {
     this.graph.use(
@@ -119,6 +122,7 @@ export class BaseEditor<
       }),
     );
   }
+
   /** 快捷键 */
   private __useKeyboard() {
     this.graph.use(
@@ -128,6 +132,7 @@ export class BaseEditor<
       }),
     );
   }
+
   /** 历史记录 */
   private __useHistory() {
     this.graph.use(
@@ -146,6 +151,7 @@ export class BaseEditor<
       }),
     );
   }
+
   /** 滚动画布 */
   private __useScroller() {
     this.graph.use(
@@ -158,6 +164,7 @@ export class BaseEditor<
       }),
     );
   }
+
   /** 框选 */
   private __useSelection() {
     this.graph.use(
@@ -172,6 +179,7 @@ export class BaseEditor<
       }),
     );
   }
+
   /** 导出 */
   private __useExport() {
     this.graph.use(new Export());

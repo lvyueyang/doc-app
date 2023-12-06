@@ -26,7 +26,7 @@ export function MindEditor({ value }: MindEditorProps) {
   useEffect(() => {
     const container = canvasRef.current;
     if (!container) return;
-    const height = window.innerHeight - (containerRef.current?.offsetTop || 0);
+    const height = window.innerHeight - (containerRef.current?.offsetTop ?? 0);
     const mindEditor = new Editor({
       container,
       height,

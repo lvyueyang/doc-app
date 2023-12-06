@@ -83,7 +83,7 @@ Graph.registerPortLayout(
       if (path) {
         const len = path.getTotalLength();
         const rang = Number((len / 6).toFixed(0));
-        const arr: { x: number; y: number }[] = [];
+        const arr: Array<{ x: number; y: number }> = [];
         const loop = (num: number = 0) => {
           const next = num + rang;
           const point = path.getPointAtLength(num);

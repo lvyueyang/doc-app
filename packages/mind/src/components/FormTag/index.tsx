@@ -43,7 +43,9 @@ export default function FormTag({
         placeholder="不超过 16 个字"
         style={{ flex: 1 }}
         value={content}
-        onChange={(e) => setContent(e.target.value.trim())}
+        onChange={(e) => {
+          setContent(e.target.value.trim());
+        }}
         onKeyUp={(e) => {
           if (e.code === 'Enter') {
             changeHandler({ value: content });

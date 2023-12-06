@@ -22,7 +22,7 @@ export const isParallel = function (vectorA: Point, vectorB: Point) {
   return false;
 };
 
-//向量点积
+// 向量点积
 export const dot = function (vectorA: Point, vectorB: Point) {
   return vectorA[0] * vectorB[0] + vectorA[1] * vectorB[1];
 };

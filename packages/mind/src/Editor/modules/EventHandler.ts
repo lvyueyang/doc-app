@@ -38,6 +38,7 @@ export class EventHandler extends BaseModule {
       this.editor.layout.layout(e.id);
     });
   }
+
   initKeyboard() {
     const graph = this.graph;
     const editor = this.editor;
@@ -85,7 +86,7 @@ export class EventHandler extends BaseModule {
         const parent = firstSelectedNode.getParent();
         console.log('parent: ', parent);
         const index = parent?.getChildIndex(firstSelectedNode);
-        const childrenCount = parent?.getChildren()?.filter((cell) => cell.isNode()).length || 0;
+        const childrenCount = parent?.getChildren()?.filter((cell) => cell.isNode()).length ?? 0;
         console.log('childrenCount: ', childrenCount);
         console.log('index: ', index);
 
@@ -154,6 +155,7 @@ export class EventHandler extends BaseModule {
       }
     });
   }
+
   cellEditor() {
     const graph = this.graph;
 

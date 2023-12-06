@@ -43,10 +43,17 @@ export function ColorSelect({
   onChange,
 }: ColorSelectProps) {
   const { token } = theme.useToken();
-  const [color, setColor] = useState(defaultValue || value);
+  const [color, setColor] = useState(defaultValue ?? value);
   useEffect(() => {
     setColor(value);
   }, [value]);
+  const colorSelectStyle: any = {
+    height: token.controlHeight,
+    borderRadius: token.borderRadius,
+    borderColor: token.colorBorder,
+    '--hover-color': token.colorPrimary,
+    ...style,
+  };
   return (
     <Popover
       trigger={['click']}
@@ -68,14 +75,7 @@ export function ColorSelect({
     >
       <div
         className={['kangmiColorSelect', styles.colorInput, className].join(' ')}
-        style={{
-          height: token.controlHeight,
-          borderRadius: token.borderRadius,
-          borderColor: token.colorBorder,
-          // @ts-ignore
-          '--hover-color': token.colorPrimary,
-          ...style,
-        }}
+        style={colorSelectStyle}
       >
         <span
           style={{

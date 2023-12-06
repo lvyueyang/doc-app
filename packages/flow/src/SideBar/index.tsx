@@ -26,7 +26,7 @@ export default function SideBar() {
   ) => {
     const type = item.type;
     const shape = item.config.shape;
-    const config = item.config.option || ({} as any);
+    const config = item.config.option ?? ({} as any);
     if (type === 'edge') {
       const edge = editor?.graph.createEdge({
         shape,

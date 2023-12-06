@@ -14,7 +14,7 @@ interface IconListProps {
 
 export default function IconList({ node, onChange }: IconListProps) {
   const { editor } = useMindEditor();
-  const { label } = node?.getAttrs() || {};
+  const { label } = node?.getAttrs() ?? {};
   const icons: Icons = node?.getData()?.icons || [];
   const { fontSize } = (label?.style as React.CSSProperties) || {};
 

@@ -16,7 +16,7 @@ const TextBlock = createTextBlock();
 const LgBracketsNodeComponent: React.FC<ReactNodeProps> = ({ node }) => {
   const { width, height } = node.getSize();
   const body = node.getAttrs().shape || {};
-  const { fill, stroke, strokeWidth, lineType } = node.getAttrs().body || {};
+  const { stroke, strokeWidth, lineType } = node.getAttrs().body || {};
 
   const strokeDasharray = getLineType({ strokeWidth, lineType });
 

@@ -25,6 +25,7 @@ export class Command extends BaseModule {
     graph.model.addCells(clipboardCells);
     this.editor.layout.layout(currentNode.id);
   }
+
   /** 复制 */
   copy() {
     const graph = this.graph;
@@ -32,6 +33,7 @@ export class Command extends BaseModule {
     if (!firstSelectedNode) return;
     graph.copy(selectedCells, { deep: true });
   }
+
   /** 剪切 */
   cut() {
     const graph = this.graph;

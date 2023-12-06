@@ -2,18 +2,11 @@
   "name": "kangmi-doc",
   "private": true,
   "description": "康米文档，免费的文档工具，支持流程图，脑图，Markdown",
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "dev": "lerna run --scope @kangmi/client_demo --stream dev",
-    "eslint": "eslint --ext .jsx,.js,.cjs,.mjs,.ts,.tsx --fix",
-    "lint": "npm run eslint && npm run prettier",
     "prepare": "husky install",
-    "prettier": "prettier --write ./packages/"
-  },
-  "lint-staged": {
-    "**/*.{tsx,ts,jsx,js}": "npm run lint"
+    "lint": "eslint --fix --ext .js,.ts,.tsx,.jsx ./clients ./demos ./packages",
+    "prettier": "prettier --write ./clients ./demos ./packages"
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
@@ -30,26 +23,33 @@
     "@antv/x6-plugin-snapline": "^2.1.7",
     "@antv/x6-plugin-transform": "^2.1.8",
     "@antv/x6-react-shape": "^2.2.2",
-    "antd": "^5.10.2",
+    "@icon-park/react": "^1.4.2",
+    "@kangmi/components": "workspace:*",
+    "@kangmi/flow": "workspace:*",
+    "@kangmi/icons": "workspace:*",
+    "@kangmi/mind": "workspace:*",
+    "@kangmi/types": "workspace:*",
+    "@kangmi/utils": "workspace:*",
+    "antd": "^5.11.1",
     "eventemitter3": "^5.0.1",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/lodash": "4.14.191",
     "@types/node": "20.2.5",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.32.0",
-    "@typescript-eslint/parser": "^5.32.0",
-    "eslint": "^8.52.0",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.0.0",
+    "eslint-config-standard-with-typescript": "^39.1.1",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-n": "^16.3.1",
+    "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "husky": "^8.0.1",
-    "lerna": "^7.4.1",
-    "lint-staged": "^13.0.3",
-    "prettier": "^3.0.3",
-    "typescript": "^5.0.4",
-    "umi": "^4.0.87"
+    "prettier": "^3.1.0",
+    "typescript": "^5.2.2"
   }
 }

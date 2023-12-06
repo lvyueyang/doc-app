@@ -19,7 +19,7 @@ import styles from './index.module.less';
 
 interface SelectedLabel {
   edge: Edge;
-  labels: { label: Edge.Label; index: number }[];
+  labels: Array<{ label: Edge.Label; index: number }>;
 }
 
 interface PageConfigState {
@@ -129,12 +129,12 @@ function NodeSettingGroup({ graph }: { graph: Graph }) {
       const box = cell.getBBox();
       if (cell.isNode()) {
         cell.setSize({
-          width: width || box.width,
-          height: height || box.height,
+          width: width ?? box.width,
+          height: height ?? box.height,
         });
         cell.setPosition({
-          x: x || box.x,
-          y: y || box.y,
+          x: x ?? box.x,
+          y: y ?? box.y,
         });
       }
     });
@@ -153,7 +153,7 @@ function NodeSettingGroup({ graph }: { graph: Graph }) {
         <AttrItem label="x">
           <InputNumber
             value={bBox?.x}
-            disabled={(selectCells?.length || 0) > 1}
+            disabled={(selectCells?.length ?? 0) > 1}
             min={0}
             onChange={(e) => {
               changeBBoxHandler({ x: e! });
@@ -163,7 +163,7 @@ function NodeSettingGroup({ graph }: { graph: Graph }) {
         <AttrItem label="Y">
           <InputNumber
             value={bBox?.y}
-            disabled={(selectCells?.length || 0) > 1}
+            disabled={(selectCells?.length ?? 0) > 1}
             min={0}
             onChange={(e) => {
               changeBBoxHandler({ y: e! });
@@ -369,7 +369,7 @@ function EdgeSettingGroup({ graph }: { graph: Graph }) {
           <ColorSelect
             defaultValue={(edgeLabelAttrs?.label?.fill as string) || '#000'}
             onChange={(e) => {
-              changeLabelsHandler('label/fill', e!);
+              changeLabelsHandler('label/fill', e);
             }}
           />
         </AttrItem>
@@ -377,7 +377,7 @@ function EdgeSettingGroup({ graph }: { graph: Graph }) {
           <ColorSelect
             defaultValue={(edgeLabelAttrs?.rect?.fill as string) || '#fff'}
             onChange={(e) => {
-              changeLabelsHandler('rect/fill', e!);
+              changeLabelsHandler('rect/fill', e);
             }}
           />
         </AttrItem>
@@ -454,7 +454,7 @@ function useSelectedCell(graph: Graph) {
       if (parent?.classList?.value.includes('x6-edge-label')) {
         setTimeout(() => {
           // 用setTimeout 是为了能覆盖 selected
-          const index = Number(parent.getAttribute('data-index') || '0');
+          const index = Number(parent.getAttribute('data-index') ?? '0');
           const label = edge.getLabelAt(index);
           if (label) {
             setSelectedEdgeLabels([

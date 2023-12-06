@@ -21,6 +21,7 @@ export class ExportData extends BaseModule {
       layoutOptions: this.editor.layout.getOptions(),
     };
   };
+
   /**
    * 导出 JSON 文件
    */
@@ -29,6 +30,7 @@ export class ExportData extends BaseModule {
     const str = JSON.stringify(json);
     downloadJson(str, this.getFileName());
   };
+
   /**
    * 导出 PNG 图片
    * @param transparent 是否为透明背景 默认 false
@@ -40,6 +42,7 @@ export class ExportData extends BaseModule {
       padding: 40,
     });
   };
+
   /**
    * 导出 JPEG 图片
    */
@@ -50,6 +53,7 @@ export class ExportData extends BaseModule {
       padding: 40,
     });
   };
+
   /**
    * 导出 SVG 图片
    */

@@ -22,7 +22,7 @@ const OrNodeComponent: React.FC<ReactNodeProps> = ({ node }) => {
     fill: fill as string,
     stroke: stroke as string,
     strokeWidth: (strokeWidth as number) / 2,
-    strokeDasharray: strokeDasharray,
+    strokeDasharray,
   };
 
   return (

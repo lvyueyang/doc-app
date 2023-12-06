@@ -115,7 +115,7 @@ export function contextMenuEvents(graph: Graph) {
           disabled: selectedNodes.length <= 1,
           onClick: () => {
             const groupNode = createGroup(graph, selectedNodes);
-            const minZIndex = selectedNodes[0].getZIndex() || 0;
+            const minZIndex = selectedNodes[0].getZIndex() ?? 0;
             selectedNodes.forEach((node) => {
               console.log(node.getZIndex());
             });
@@ -148,7 +148,7 @@ export function contextMenuEvents(graph: Graph) {
         },
       ],
       onClick: ({ label }) => {
-        message.success(label + '成功');
+        message.success(<>{label}成功</>);
         contextMenu?.close();
       },
     });

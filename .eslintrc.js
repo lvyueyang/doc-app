@@ -1,49 +1,63 @@
-const javascriptLints = require('./lint/eslint/javascript');
-const typescriptLints = require('./lint/eslint/typescript');
-const reactLints = require('./lint/eslint/react');
-
 module.exports = {
   env: {
     browser: true,
-    commonjs: true,
     es2021: true,
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'prettier',
+  extends: ['standard-with-typescript', 'plugin:react/recommended', 'prettier'],
+  overrides: [
+    {
+      env: {
+        node: true,
+      },
+      files: ['.eslintrc.{js,cjs}'],
+      parserOptions: {
+        sourceType: 'script',
+      },
+    },
   ],
-  parser: '@typescript-eslint/parser',
   parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 'latest',
     project: './tsconfig.json',
   },
-  plugins: ['react', '@typescript-eslint'],
   settings: {
-    // support import modules from TypeScript files in JavaScript files
-    'import/resolver': {
-      node: {
-        extensions: ['.js', '.cjs', '.mjs', '.jsx', '.ts', '.tsx', '.d.ts'],
-      },
-    },
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx', '.d.ts'],
-    },
-    'import/extensions': ['.js', '.cjs', '.mjs', '.jsx', '.ts', '.tsx', '.d.ts'],
-    'import/external-module-folders': ['node_modules', 'node_modules/@types'],
-    polyfills: ['fetch', 'Promise', 'URL', 'object-assign'],
     react: {
+      createClass: 'createReactClass',
+      pragma: 'React',
+      fragment: 'Fragment',
       version: 'detect',
+      flowVersion: '0.53',
     },
   },
+  plugins: ['react'],
   rules: {
-    ...javascriptLints,
-    ...reactLints,
-    ...typescriptLints,
+    'no-void': 'off',
+    'no-unused-vars': 'off',
+    'react/prop-types': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/no-floating-promises': 'off',
+    'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-unnecessary-type-assertion': 'warn',
+    '@typescript-eslint/no-misused-promises': [
+      'error',
+      {
+        checksVoidReturn: false,
+      },
+    ],
   },
+  ignorePatterns: [
+    'node_modules',
+    '.umi',
+    '.umi-production',
+    // '**/node_modules',
+    // '**/**/node_modules',
+    // '**/**/**/node_modules',
+  ],
 };

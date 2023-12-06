@@ -1,6 +1,7 @@
-import type { EdgeView, Point, Rectangle } from '@antv/x6';
+import type { EdgeView, Point } from '@antv/x6';
 import orthogonal from './orthogonal';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface FlowRouterArgs {}
 
 export function flowRouter(vertices: Point.PointLike[], args: FlowRouterArgs, view: EdgeView) {
@@ -25,14 +26,14 @@ export function flowRouter(vertices: Point.PointLike[], args: FlowRouterArgs, vi
   return points.map((item) => ({ x: item.position[0], y: item.position[1] }));
 }
 
-function getDirection({ x, y }: Point, box: Rectangle, endPoint: Point): [0 | 1 | -1, 0 | 1 | -1] {
-  const canBottom = y + 10 > box.y + box.height; // 可以在下面
-  const canRight = x + 10 > box.x + box.width;
+// function getDirection({ x, y }: Point, box: Rectangle, endPoint: Point): [0 | 1 | -1, 0 | 1 | -1] {
+//   const canBottom = y + 10 > box.y + box.height; // 可以在下面
+//   const canRight = x + 10 > box.x + box.width;
 
-  if (canRight) {
-    return [1, 0];
-  }
-  if (canBottom) {
-    return [0, -1];
-  }
-}
+//   if (canRight) {
+//     return [1, 0];
+//   }
+//   if (canBottom) {
+//     return [0, -1];
+//   }
+// }

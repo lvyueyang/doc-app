@@ -3,19 +3,10 @@
 
 node_modules
 
-# 公共忽略选项
-packages/*/.env.local
-packages/*/.umirc.local.ts
-packages/*/config/config.local.ts
-packages/*/src/.umi
-packages/*/src/.umi-production
-packages/*/dist
-packages/*/build_deploy
+.umi
+.umi-production
+dist
 
 temp/
 
-# pullMinio
-packages/pullMinio/temp/
-
-packages/*/yarn-error.log
 yarn-error.log

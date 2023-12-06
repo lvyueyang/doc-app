@@ -11,7 +11,7 @@ interface RemarkItemProps {
 }
 
 export default function RemarkItem({ node, onChange }: RemarkItemProps) {
-  const fontSize = (node?.getAttrs()?.label?.style as React.CSSProperties)?.fontSize || 24;
+  const fontSize = (node?.getAttrs()?.label?.style as React.CSSProperties)?.fontSize ?? 24;
 
   const remark: Remark = node?.getData()?.remark || [];
 

@@ -34,7 +34,7 @@ export class Editor extends BaseEditor {
   private title: string = '';
 
   constructor(options: EditorOptions) {
-    super(options as BaseEditorOptions);
+    super(options);
     this.options = options;
   }
 
@@ -56,6 +56,7 @@ export class Editor extends BaseEditor {
       ...conf,
     });
   };
+
   /** 添加边 */
   appendEdge = (shape: string, config?: EdgeConfig, options?: AppendNodeOptions) => {
     const conf: EdgeConfig = {
@@ -80,6 +81,7 @@ export class Editor extends BaseEditor {
       ...conf,
     });
   };
+
   /** 获取背景 */
   getBackground = () => {
     const dom = this.graph.container.parentElement!.querySelector('.x6-graph-scroller-background');
@@ -94,9 +96,11 @@ export class Editor extends BaseEditor {
   setTitle = (title: string) => {
     this.title = title;
   };
+
   getTitle = () => {
     return this.title;
   };
+
   getFileName = () => {
     return this.title || `flow-${Date.now()}`;
   };
@@ -120,6 +124,7 @@ export class Editor extends BaseEditor {
       },
     };
   };
+
   /**
    * 导出 JSON 文件
    */
@@ -128,6 +133,7 @@ export class Editor extends BaseEditor {
     const str = JSON.stringify(json);
     downloadJson(str, this.getFileName());
   };
+
   /**
    * 导出 PNG 图片
    * @param transparent 是否为透明背景 默认 false
@@ -139,6 +145,7 @@ export class Editor extends BaseEditor {
       padding: 10,
     });
   };
+
   /**
    * 导出 JPEG 图片
    */
@@ -149,6 +156,7 @@ export class Editor extends BaseEditor {
       padding: 10,
     });
   };
+
   /**
    * 导出 SVG 图片
    */

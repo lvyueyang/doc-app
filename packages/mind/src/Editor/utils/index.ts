@@ -100,20 +100,19 @@ export function cells2Tree(cells: Cell.Properties[]) {
     const children = cells.find((cell) => cell.id === dataItem.id)?.children;
     if (!children) return;
 
-    dataItem.children = children
-      .map((item) => {
-        const cell = cells.find((c) => c.id === item);
-        if (!cell) {
-          // console.warn(`节点 ${item} 不存在`);
-          //
-          return;
-        }
-        return {
+    const newChildren: MindMapData[] = [];
+
+    for (const item of children) {
+      const cell = cells.find((c) => c.id === item);
+      if (cell) {
+        newChildren.push({
           ...cellItem2TreeItem(cell),
-          children: cell.children,
-        };
-      })
-      .filter((item) => !!item) as MindMapData[];
+          children: cell.children as unknown as MindMapData[],
+        });
+      }
+    }
+
+    dataItem.children = newChildren;
 
     dataItem.children.forEach((child) => {
       traverse(child);
@@ -121,7 +120,7 @@ export function cells2Tree(cells: Cell.Properties[]) {
   };
   traverse(root);
 
-  return root as MindMapData;
+  return root;
 }
 
 export function shape2Theme(shape: string, theme: MindMapTheme) {

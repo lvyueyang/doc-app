@@ -24,7 +24,7 @@ const StarNodeComponent: React.FC<ReactNodeProps> = ({ node }) => {
   const w = width / 2;
   const h = height / 2;
 
-  const step = 2.5;
+  // const step = 2.5;
 
   const points = [
     [w / 2, 0.5],

@@ -74,7 +74,7 @@ function PageSettingGroup({ editor }: { editor: Editor }) {
           value={pageConfig.layoutOptions.H_Gap}
           onChange={(e) => {
             editor.layout.setOptions({
-              H_Gap: e || 0,
+              H_Gap: e ?? 0,
             });
             updatePageConfig();
           }}
@@ -86,7 +86,7 @@ function PageSettingGroup({ editor }: { editor: Editor }) {
           value={pageConfig.layoutOptions.V_Gap}
           onChange={(e) => {
             editor.layout.setOptions({
-              V_Gap: e || 0,
+              V_Gap: e ?? 0,
             });
             updatePageConfig();
           }}
@@ -123,13 +123,13 @@ function NodeSettingGroup({ editor }: { editor: Editor }) {
         <InputNumber
           value={nodeStyle.borderWidth}
           onChange={(e) => {
-            changeAttrsHandler('box/style/borderWidth', e || 0);
+            changeAttrsHandler('box/style/borderWidth', e ?? 0);
           }}
         />
       </SettingBarAttrItem>
       <SettingBarAttrItem label="边框风格">
         <Select
-          value={nodeStyle.borderStyle || LINE_TYPE.SOLID}
+          value={nodeStyle.borderStyle ?? LINE_TYPE.SOLID}
           options={Object.values(LINE_TYPE).map((item) => ({
             value: item.code,
             label: item.cname,
@@ -141,7 +141,7 @@ function NodeSettingGroup({ editor }: { editor: Editor }) {
       </SettingBarAttrItem>
       <SettingBarAttrItem label="填充">
         <ColorSelect
-          value={nodeStyle.backgroundColor || '#fff'}
+          value={nodeStyle.backgroundColor ?? '#fff'}
           onChange={(e) => {
             changeAttrsHandler('box/style/backgroundColor', e);
           }}
@@ -149,9 +149,9 @@ function NodeSettingGroup({ editor }: { editor: Editor }) {
       </SettingBarAttrItem>
       <SettingBarAttrItem label="圆角">
         <InputNumber
-          value={nodeStyle.borderRadius || 0}
+          value={nodeStyle.borderRadius ?? 0}
           onChange={(e) => {
-            changeAttrsHandler('box/style/borderRadius', e || 0);
+            changeAttrsHandler('box/style/borderRadius', e ?? 0);
           }}
         />
       </SettingBarAttrItem>
@@ -186,7 +186,7 @@ function TextSettingGroup({ editor }: { editor: Editor }) {
         <InputNumber
           value={labelStyle.fontSize}
           onChange={(e) => {
-            changeAttrsHandler('label/style/fontSize', e || 12);
+            changeAttrsHandler('label/style/fontSize', e ?? 12);
           }}
         />
       </SettingBarAttrItem>

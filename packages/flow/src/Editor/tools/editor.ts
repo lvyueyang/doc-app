@@ -49,8 +49,8 @@ const spaceHackFn = (e: KeyboardEvent) => {
 export class NodeTextEditor extends ToolsView.ToolItem<NodeView | EdgeView, TextEditorOptions> {
   private editor!: HTMLDivElement;
   private textView?: HTMLDivElement;
-  private labelIndex = -1;
-  private distance = 0.5;
+  private readonly labelIndex = -1;
+  private readonly distance = 0.5;
 
   render() {
     this.createElement();
@@ -96,8 +96,8 @@ export class NodeTextEditor extends ToolsView.ToolItem<NodeView | EdgeView, Text
     // set tool position
     const pos = graph.localToGraph(cell.getBBox());
     // 与节点的偏移量
-    const offsetX = textViewBox!.x - cellContainerBox.x;
-    const offsetY = textViewBox!.y - cellContainerBox.y;
+    const offsetX = textViewBox.x - cellContainerBox.x;
+    const offsetY = textViewBox.y - cellContainerBox.y;
     pos.x += offsetX;
     pos.y += offsetY;
 

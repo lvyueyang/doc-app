@@ -40,7 +40,7 @@ function createIframe(): HTMLIFrameElement {
   return iframe;
 }
 
-function createCover(
+async function createCover(
   shape: string,
   type: GroupChildrenItem['type'],
   config?: NodeConfig | EdgeConfig,
@@ -63,7 +63,7 @@ function createCover(
     editor.appendNode(shape, config as NodeConfig);
   }
 
-  return new Promise((resolve) => {
+  return await new Promise((resolve) => {
     setTimeout(() => {
       editor.graph.toSVG(
         (dataUri) => {

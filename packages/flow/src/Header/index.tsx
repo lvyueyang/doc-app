@@ -34,9 +34,9 @@ export default function Header() {
     };
   }, [editor]);
 
-  const getFileName = () => {
-    return `flow-${Date.now()}`;
-  };
+  // const getFileName = () => {
+  //   return `flow-${Date.now()}`;
+  // };
 
   if (!editor?.graph) return null;
 

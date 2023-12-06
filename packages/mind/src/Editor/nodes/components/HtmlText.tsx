@@ -19,7 +19,7 @@ const DefaultStyle: React.CSSProperties = {
 };
 
 export default function HtmlText({ style = {}, className, node, onChange }: HtmlTextProps) {
-  const { label } = node?.getAttrs() || {};
+  const { label } = node?.getAttrs() ?? {};
   const text = label.text;
   const styles = label.style as React.CSSProperties;
   const targetRef = useRef<HTMLDivElement>(null);

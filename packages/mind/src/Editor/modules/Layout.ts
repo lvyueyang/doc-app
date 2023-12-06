@@ -8,7 +8,7 @@ import { cells2Tree, shape2Theme } from '../utils';
 import { BaseModule } from './BaseModule';
 
 export class Layout extends BaseModule {
-  /** 布局结构*/
+  /** 布局结构 */
   private type: string = layouts.MindMapHLayout.name;
   /** 布局配置 */
   private options: layouts.LayoutOptions = layouts.MindMapHLayout.layoutOptions;
@@ -124,7 +124,7 @@ export class Layout extends BaseModule {
     if (!treeData) return;
 
     const { layout, createEdgeConfig } =
-      Object.values(layouts).find(({ name }) => name === this.type) || {};
+      Object.values(layouts).find(({ name }) => name === this.type) ?? {};
 
     const result = layout?.(treeData, this.options);
 
@@ -195,7 +195,7 @@ export class Layout extends BaseModule {
   setLayout = (type: string) => {
     this.type = type;
     this.options =
-      Object.values(layouts).find((item) => item.name === type)?.layoutOptions || this.options;
+      Object.values(layouts).find((item) => item.name === type)?.layoutOptions ?? this.options;
     this.layout();
     const root = this.graph.getRootNodes().find((item) => item.shape === RootNodeConfig.NODE_NAME);
     if (root) {
@@ -208,6 +208,7 @@ export class Layout extends BaseModule {
   getType() {
     return this.type;
   }
+
   getOptions() {
     return this.options;
   }

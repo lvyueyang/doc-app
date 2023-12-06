@@ -29,14 +29,17 @@ export class Editor extends BaseEditor<EventTypes> {
   /** 画布标题 */
   private title: string = '';
 
+  eventHandler: EventHandler;
+  contentMenu: ContextMenu;
+
   constructor(options: BaseEditorOptions) {
-    super(options as BaseEditorOptions);
+    super(options);
     this.options = options;
 
     this.graph.drawBackground(this.theme.getBackground());
 
-    new EventHandler(this);
-    new ContextMenu(this);
+    this.eventHandler = new EventHandler(this);
+    this.contentMenu = new ContextMenu(this);
   }
 
   /** 定位到中心 */
@@ -68,6 +71,7 @@ export class Editor extends BaseEditor<EventTypes> {
   setTitle = (title: string) => {
     this.title = title;
   };
+
   getTitle = () => {
     return this.title;
   };

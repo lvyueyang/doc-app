@@ -29,6 +29,7 @@ export class CellUtils extends BaseModule {
       },
     });
   };
+
   /** 创建根节点 */
   createRootNode = (config?: NodeConfig) => {
     return this.createNode(RootNodeConfig.NODE_NAME, {
@@ -40,6 +41,7 @@ export class CellUtils extends BaseModule {
       },
     });
   };
+
   /** 创建分支节点 */
   createBranchNode = (config?: NodeConfig) => {
     return this.createNode(BranchNodeConfig.NODE_NAME, {
@@ -51,6 +53,7 @@ export class CellUtils extends BaseModule {
       },
     });
   };
+
   /** 创建子节点 */
   createChildNode = (config?: NodeConfig) => {
     return this.createNode(ChildNodeConfig.NODE_NAME, {
@@ -62,6 +65,7 @@ export class CellUtils extends BaseModule {
       },
     });
   };
+
   /** 添加根节点 */
   appendRootNode = (options?: { isCenter?: boolean }) => {
     let center;
@@ -74,6 +78,7 @@ export class CellUtils extends BaseModule {
     this.graph.addNode(rootNode);
     this.editor.layout.layout(rootNode.id);
   };
+
   /** 添加子节点 */
   appendChildNode = (node?: Node) => {
     const selectedNode = this.graph.getSelectedCells().filter((cell) => cell.isNode())[0];
@@ -92,6 +97,7 @@ export class CellUtils extends BaseModule {
     }
     return false;
   };
+
   /** 添加兄弟节点 */
   appendNeighborNode = (node?: Node) => {
     const selectedNode = this.graph.getSelectedCells().filter((cell) => cell.isNode())[0];
@@ -111,7 +117,7 @@ export class CellUtils extends BaseModule {
             ? this.createBranchNode()
             : this.createChildNode();
       }
-      const index = parent?.getChildren()?.indexOf(selectedNode) || 0;
+      const index = parent?.getChildren()?.indexOf(selectedNode) ?? 0;
       parent.insertChild(this.graph.addNode(childNode), index + 1);
       this.editor.layout.layout(childNode.id);
       return childNode;
@@ -156,6 +162,7 @@ export class CellUtils extends BaseModule {
     }
     node.setData({ ...nodeData, icons });
   };
+
   /** 为节点删除表情 */
   removeIcon(node: Node<Node.Properties>, iconName: string) {
     const nodeData = node.data || {};
@@ -181,6 +188,7 @@ export class CellUtils extends BaseModule {
     console.log('tags: ', tags);
     node.setData({ tags });
   };
+
   /** 更新节点标签 */
   updateTag = (node: Node, oldValue: string, tagItem: TagDataItem) => {
     if (!node) return;
@@ -201,6 +209,7 @@ export class CellUtils extends BaseModule {
       },
     );
   };
+
   /** 为节点删除标签 */
   removeTag(node: Node<Node.Properties>, value: string) {
     const nodeData = node.data || {};

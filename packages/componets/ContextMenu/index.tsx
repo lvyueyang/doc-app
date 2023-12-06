@@ -39,15 +39,18 @@ export class ContextMenu {
     }
     this.renderContainer();
   }
+
   show(config: ShowConfig) {
     const { position } = config;
     this.container.style.display = 'block';
     this.setPosition(position.x, position.y);
     this.renderItems(config.items, config.onClick);
   }
+
   close() {
     this.container.style.display = 'none';
   }
+
   /** 渲染根容器 */
   private renderContainer() {
     const container = document.createElement('div');
@@ -56,6 +59,7 @@ export class ContextMenu {
     this.rootContainer.appendChild(container);
     this.rootReact = createRoot(container);
   }
+
   private renderItems(items: Item[], onClick?: (item: Item) => void) {
     this.rootReact.render(<ContextMenuComponent items={items} onClick={onClick} />);
   }

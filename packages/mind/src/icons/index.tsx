@@ -98,10 +98,10 @@ export interface GroupItem {
   name: string;
   /** 在节点中是否只能存在一个 */
   isOnly: boolean;
-  icons: {
+  icons: Array<{
     name: string;
     icon: JSX.Element;
-  }[];
+  }>;
 }
 
 export const iconGroup: GroupItem[] = [
