@@ -64,7 +64,7 @@ export default function SideBar() {
                       starDragHandler(e, dd);
                     }}
                     onClick={(e) => {
-                      editor?.appendEdge(dd.config.shape);
+                      editor?.commands.appendEdge(dd.config.shape);
                     }}
                     title={dd.label}
                   >

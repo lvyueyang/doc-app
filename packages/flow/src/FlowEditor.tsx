@@ -27,14 +27,14 @@ export function FlowEditor({ value }: FlowEditorProps) {
       container,
     });
     if (value) {
-      flowEditor?.fromJSON(value);
+      flowEditor?.graphData.fromJSON(value);
     }
     setEditor(flowEditor);
   }, []);
 
   useEffect(() => {
     if (value) {
-      editor?.fromJSON(value);
+      editor?.graphData.fromJSON(value);
     }
   }, [value]);
 

@@ -26,6 +26,7 @@ export interface BaseEditorOptions {
 export class BaseEditor extends EventEmitter {
   options: BaseEditorOptions;
   graph: Graph;
+
   constructor(opt: BaseEditorOptions) {
     super();
     this.__validateOptions(opt);
@@ -169,7 +170,7 @@ export class BaseEditor extends EventEmitter {
         // modifiers: 'space',
         pageVisible: true,
         // pannable: true,
-        graph: this.graph,
+        // graph: this.graph,
       }),
     );
   }

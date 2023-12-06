@@ -61,7 +61,7 @@ function PageSettingGroup({ graph, editor }: { graph: Graph; editor: Editor }) {
     if (graph) {
       setPageConfig({
         background: {
-          color: editor.getBackground().color,
+          color: editor.graphData.getBackground().color,
         },
         grid: {
           size: graph.getGridSize(),

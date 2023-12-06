@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { Editor } from '../Editor';
 import type { EdgeConfig } from '../Editor/edges/types';
 import type { NodeConfig } from '../Editor/types';
-import type { GroupChildrenItem } from './config';
 import styles from './index.module.less';
+import { type GroupChildrenItem } from './config/common';
 
 const iframeID = 'SideBarEditorIframe';
 
@@ -58,9 +58,9 @@ async function createCover(
     mode: 'cover',
   });
   if (type === 'edge') {
-    editor.appendEdge(shape, config as EdgeConfig);
+    editor.commands.appendEdge(shape, config as EdgeConfig);
   } else {
-    editor.appendNode(shape, config as NodeConfig);
+    editor.commands.appendNode(shape, config as NodeConfig);
   }
 
   return await new Promise((resolve) => {

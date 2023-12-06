@@ -92,33 +92,33 @@ export default function Header() {
               {
                 label: '导出 JSON 文件',
                 key: 'JSON',
-                onClick: editor.exportJSON,
+                onClick: editor.graphData.exportJSON,
               },
               {
                 label: '导出 PNG 文件',
                 key: 'PNG',
                 onClick: () => {
-                  editor.exportPNG();
+                  editor.graphData.exportPNG();
                 },
               },
               {
                 label: '导出 PNG 文件 (透明背景)',
                 key: 'PNG-TRANSPARENT',
                 onClick: () => {
-                  editor.exportPNG(true);
+                  editor.graphData.exportPNG(true);
                 },
               },
               {
                 label: '导出 JPEG 文件',
                 key: 'JPEG',
                 onClick: () => {
-                  editor.exportJPEG();
+                  editor.graphData.exportJPEG();
                 },
               },
               {
                 label: '导出 SVG 文件',
                 key: 'SVG',
-                onClick: editor.exportSVG,
+                onClick: editor.graphData.exportSVG,
               },
             ],
           }}
