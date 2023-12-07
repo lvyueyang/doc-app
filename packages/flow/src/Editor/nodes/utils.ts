@@ -1,6 +1,6 @@
-import type { Cell, Markup, Node } from '@antv/x6';
+import type { Cell, Markup, Node, Point } from '@antv/x6';
 import { ObjectExt, Shape } from '@antv/x6';
-import type { Attr } from '@antv/x6/es/registry';
+import { type Attr } from '@antv/x6/es/registry';
 import {
   DefaultNodeConfig,
   DefaultTextStyle,
@@ -38,11 +38,30 @@ export function createTextBlock() {
     return others;
   };
 
+  const attrHooks: Record<
+    string,
+    {
+      set?: (value: string, options: Attr.Options) => void;
+      position?: (value: string, options: Attr.Options) => Point.PointLike | undefined | null;
+    }
+  > = {
+    text: {
+      set(text: string, { elem }) {
+        elem.innerHTML = text;
+      },
+      position(text, { refBBox, elem }) {
+        if (elem instanceof SVGElement) {
+          return refBBox.getCenter();
+        }
+      },
+    },
+  };
+
   return {
     markup,
     attrs,
     propHooks,
-    attrHooks: Shape.TextBlock.getAttrHooks(),
+    attrHooks,
   };
 }
 
