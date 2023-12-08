@@ -1,9 +1,19 @@
-import type { Cell, CellView, Dom, EdgeView, NodeView } from '@antv/x6';
-import { FunctionExt, ToolsView } from '@antv/x6';
+import {
+  type Cell,
+  type CellView,
+  type EdgeView,
+  type NodeView,
+  Dom,
+  FunctionExt,
+  Point,
+  ToolsView,
+  Util,
+} from '@antv/x6';
 
 interface TextEditorOptions extends ToolsView.ToolItem.Options {
   event?: Dom.EventObject;
   textView: HTMLDivElement;
+  labelAddable?: boolean;
   attrs?: {
     fontSize?: number;
     fontFamily?: string;
@@ -49,8 +59,8 @@ const spaceHackFn = (e: KeyboardEvent) => {
 export class NodeTextEditor extends ToolsView.ToolItem<NodeView | EdgeView, TextEditorOptions> {
   private editor!: HTMLDivElement;
   private textView?: HTMLDivElement;
-  private readonly labelIndex = -1;
-  private readonly distance = 0.5;
+  private labelIndex = -1;
+  private distance = 0.5;
 
   render() {
     this.createElement();
@@ -63,7 +73,7 @@ export class NodeTextEditor extends ToolsView.ToolItem<NodeView | EdgeView, Text
 
   createElement() {
     const classNames = [
-      this.prefixClassName(`node-tool-editor`),
+      this.prefixClassName(`${this.cell.isEdge() ? 'edge' : 'node'}-tool-editor`),
       this.prefixClassName('cell-tool-editor'),
     ];
     this.editor = ToolsView.createElement('div', false) as HTMLDivElement;
@@ -73,10 +83,20 @@ export class NodeTextEditor extends ToolsView.ToolItem<NodeView | EdgeView, Text
   }
 
   updateEditor() {
-    const { graph, cell, editor, cellView, options } = this;
-    const textView = options.textView;
-    editor.addEventListener('keydown', spaceHackFn);
+    if (this.cell.isNode()) {
+      this.updateNodeEditor();
+    }
+    if (this.cell.isEdge()) {
+      this.updateEdgeEditor();
+    }
 
+    return this;
+  }
+
+  updateNodeEditor() {
+    const { graph, cell, editor, cellView, options } = this;
+    editor.addEventListener('keydown', spaceHackFn);
+    const textView = options.textView;
     this.textView = textView;
 
     const cellContainerBox = cellView.container.getBoundingClientRect();
@@ -132,8 +152,56 @@ export class NodeTextEditor extends ToolsView.ToolItem<NodeView | EdgeView, Text
     editor.innerHTML = text || '文字内容';
     // 隐藏节点，防止阴影
     this.textView.style.visibility = 'hidden';
+  }
 
-    return this;
+  updateEdgeEditor() {
+    if (!this.options.event) {
+      return;
+    }
+
+    const { graph, editor } = this;
+    if (!editor) {
+      return;
+    }
+
+    let pos = Point.create();
+    let minWidth = 20;
+    const { style } = editor;
+    const target = this.options.event.target;
+    const parent = target.parentElement;
+    const isEdgeLabel = parent && Dom.hasClass(parent, this.prefixClassName('edge-label'));
+    if (isEdgeLabel) {
+      const index = parent.getAttribute('data-index') || '0';
+      this.labelIndex = parseInt(index, 10);
+      const matrix = parent.getAttribute('transform');
+      const { translation } = Dom.parseTransformString(matrix);
+      pos = new Point(translation.tx, translation.ty);
+      minWidth = Util.getBBox(target).width;
+    } else {
+      if (!this.options.labelAddable) {
+        return this;
+      }
+      pos = graph.clientToLocal(
+        Point.create(this.options.event.clientX, this.options.event.clientY),
+      );
+      const view = this.cellView as EdgeView;
+      const d = view.path.closestPointLength(pos);
+      this.distance = d;
+      this.labelIndex = -1;
+    }
+
+    pos = graph.localToGraph(pos);
+    const scale = graph.scale();
+    style.left = `${pos.x}px`;
+    style.top = `${pos.y}px`;
+    style.minWidth = `${minWidth}px`;
+    style.transform = `scale(${scale.sx}, ${scale.sy}) translate(-50%, -50%)`;
+    style.background = '#fff';
+    style.fontSize = '14px';
+
+    const text = this.getCellText();
+
+    editor.innerHTML = text || '';
   }
 
   onDocumentMouseDown(e: Dom.MouseDownEvent) {
@@ -143,11 +211,14 @@ export class NodeTextEditor extends ToolsView.ToolItem<NodeView | EdgeView, Text
       if (cell.isNode()) {
         value = this.editor.innerHTML || '';
       }
+      if (cell.isEdge()) {
+        value = this.editor.innerHTML || '';
+      }
       // set value
       this.setCellText(value);
 
       // remove tool
-      cell.removeTool('node-text-editor');
+      cell.removeTool(`${cell.isNode() ? 'node' : 'edge'}-text-editor`);
       this.undelegateDocumentEvents();
       if (this.textView) {
         this.textView.style.visibility = '';
@@ -181,14 +252,52 @@ export class NodeTextEditor extends ToolsView.ToolItem<NodeView | EdgeView, Text
     }
   }
 
+  getCellText() {
+    const getText = this.options.getText || getNodeText;
+
+    if (this.cell.isNode()) {
+      return FunctionExt.call(getText, this.cellView, {
+        cell: this.cell,
+        index: this.labelIndex,
+      });
+    }
+    if (this.cell.isEdge()) {
+      if (this.labelIndex !== -1) {
+        return this.cell.prop(`labels/${this.labelIndex}/attrs/label/text`);
+      }
+    }
+  }
+
   setCellText(value: string) {
-    const setText = this.options.setText || setNodeText;
-    FunctionExt.call(setText, this.cellView, {
-      cell: this.cell,
-      value,
-      index: this.labelIndex,
-      distance: this.distance,
-    });
+    const setText = this.options.setText;
+    console.log('setText: ', this.options.setText);
+    if (typeof setText === 'function' || this.cell.isNode()) {
+      FunctionExt.call(setText || setNodeText, this.cellView, {
+        cell: this.cell,
+        value,
+        index: this.labelIndex,
+        distance: this.distance,
+      });
+    } else if (this.cell.isEdge()) {
+      const edge = this.cell;
+      if (this.labelIndex === -1) {
+        if (value) {
+          const newLabel = {
+            position: {
+              distance: this.distance,
+            },
+            attrs: {},
+          };
+          edge.appendLabel(newLabel);
+        }
+      } else {
+        if (value !== null) {
+          edge.prop(`labels/${this.labelIndex}/attrs/label/text`, value);
+        } else if (typeof this.labelIndex === 'number') {
+          edge.removeLabelAt(this.labelIndex);
+        }
+      }
+    }
   }
 }
 

@@ -12,6 +12,18 @@ Shape.Edge.config({
   },
   // 将边置于最底层, 否则会出现覆盖到链接桩问题
   zIndex: 0,
+  attrHooks: {
+    text: {
+      set(text: string, { elem, ...e }) {
+        elem.innerHTML = text;
+      },
+      position(text, { refBBox, elem }) {
+        if (elem instanceof SVGElement) {
+          return refBBox.getCenter();
+        }
+      },
+    },
+  },
 });
 
 Object.values(edges).forEach((edge) => {
