@@ -49,14 +49,13 @@ const getNodeText: TextEditorOptions['getText'] = ({ cell }) => {
 const setNodeText: TextEditorOptions['setText'] = ({ cell, value }) => {
   cell.attr('label/text', value);
 };
-
 const spaceHackFn = (e: KeyboardEvent) => {
   if (e.code === 'Space') {
     e.stopPropagation();
   }
 };
 
-export class NodeTextEditor extends ToolsView.ToolItem<NodeView | EdgeView, TextEditorOptions> {
+export class CellEditor extends ToolsView.ToolItem<NodeView | EdgeView, TextEditorOptions> {
   private editor!: HTMLDivElement;
   private textView?: HTMLDivElement;
   private labelIndex = -1;
@@ -163,13 +162,13 @@ export class NodeTextEditor extends ToolsView.ToolItem<NodeView | EdgeView, Text
     if (!editor) {
       return;
     }
-
     let pos = Point.create();
-    let minWidth = 20;
     const { style } = editor;
     const target = this.options.event.target;
     const parent = target.parentElement;
     const isEdgeLabel = parent && Dom.hasClass(parent, this.prefixClassName('edge-label'));
+    let minWidth = 20;
+
     if (isEdgeLabel) {
       const index = parent.getAttribute('data-index') || '0';
       this.labelIndex = parseInt(index, 10);
@@ -178,9 +177,9 @@ export class NodeTextEditor extends ToolsView.ToolItem<NodeView | EdgeView, Text
       pos = new Point(translation.tx, translation.ty);
       minWidth = Util.getBBox(target).width;
     } else {
-      if (!this.options.labelAddable) {
-        return this;
-      }
+      // if (!this.options.labelAddable) {
+      //   return this;
+      // }
       pos = graph.clientToLocal(
         Point.create(this.options.event.clientX, this.options.event.clientY),
       );
@@ -270,7 +269,6 @@ export class NodeTextEditor extends ToolsView.ToolItem<NodeView | EdgeView, Text
 
   setCellText(value: string) {
     const setText = this.options.setText;
-    console.log('setText: ', this.options.setText);
     if (typeof setText === 'function' || this.cell.isNode()) {
       FunctionExt.call(setText || setNodeText, this.cellView, {
         cell: this.cell,
@@ -280,13 +278,18 @@ export class NodeTextEditor extends ToolsView.ToolItem<NodeView | EdgeView, Text
       });
     } else if (this.cell.isEdge()) {
       const edge = this.cell;
+
       if (this.labelIndex === -1) {
         if (value) {
           const newLabel = {
             position: {
               distance: this.distance,
             },
-            attrs: {},
+            attrs: {
+              label: {
+                text: value,
+              },
+            },
           };
           edge.appendLabel(newLabel);
         }
@@ -301,7 +304,7 @@ export class NodeTextEditor extends ToolsView.ToolItem<NodeView | EdgeView, Text
   }
 }
 
-NodeTextEditor.config({
+CellEditor.config({
   tagName: 'div',
   isSVGElement: false,
   events: {

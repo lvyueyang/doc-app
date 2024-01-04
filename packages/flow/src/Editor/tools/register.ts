@@ -1,5 +1,5 @@
 import { Graph } from '@antv/x6';
-import { NodeTextEditor } from './editor';
+import { CellEditor } from './editor';
 
-Graph.registerNodeTool('node-text-editor', NodeTextEditor, true);
-Graph.registerEdgeTool('edge-text-editor', NodeTextEditor, true);
+Graph.registerNodeTool('node-text-editor', CellEditor, true);
+Graph.registerEdgeTool('edge-text-editor', CellEditor, true);

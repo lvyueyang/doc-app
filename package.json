@@ -3,7 +3,7 @@
   "private": true,
   "description": "康米文档，免费的文档工具，支持流程图，脑图，Markdown",
   "scripts": {
-    "dev": "lerna run --scope @kangmi/client_demo --stream dev",
+    "start": "npm run start --prefix ./demos/web",
     "lint": "eslint --fix --ext .js,.ts,.tsx,.jsx ./clients ./demos ./packages",
     "prettier": "prettier --write ./clients ./demos ./packages"
   },
