@@ -20,21 +20,27 @@ type EventTypes = {
 
 export class Editor extends BaseEditor<EventTypes> {
   options: BaseEditorOptions;
-  readonly export = new ExportData(this);
-  readonly theme = new Theme(this);
-  readonly layout = new Layout(this);
-  readonly cellUtils = new CellUtils(this);
-  readonly command = new Command(this);
+  readonly export: ExportData;
+  readonly theme: Theme;
+  readonly layout: Layout;
+  readonly cellUtils: CellUtils;
+  readonly command: Command;
 
   /** 画布标题 */
   private title: string = '';
 
-  eventHandler: EventHandler;
-  contentMenu: ContextMenu;
+  readonly eventHandler: EventHandler;
+  readonly contentMenu: ContextMenu;
 
   constructor(options: BaseEditorOptions) {
     super(options);
     this.options = options;
+
+    this.layout = new Layout(this);
+    this.export = new ExportData(this);
+    this.theme = new Theme(this);
+    this.cellUtils = new CellUtils(this);
+    this.command = new Command(this);
 
     this.graph.drawBackground(this.theme.getBackground());
 

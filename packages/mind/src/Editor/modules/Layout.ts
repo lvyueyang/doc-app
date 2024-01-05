@@ -58,27 +58,28 @@ export class Layout extends BaseModule {
       if (!node.id || !node.position) return;
       const oldNode = this.graph.getCellById(node.id) as Node;
       const newNode = node;
+      if (!oldNode) return;
 
-      if (oldNode) {
-        // 位置对比，更新布局
-        const oldPosition = oldNode.getPosition();
-        const newPosition = newNode.getPosition();
-        if (oldPosition.x !== newPosition.x || oldPosition.y !== newPosition.y) {
-          oldNode.setPosition(newPosition);
+      const oldPos = oldNode.getPosition();
+      const newPos = newNode.position;
+      if (!oldPos || !newPos) return;
 
-          // 重新连线
-          const targetEdge = this.graph
-            .getIncomingEdges(oldNode)
-            ?.filter((e) => e.shape === MindMapEdgeConfig.EDGE_NAME)[0];
-          const newEdge = edges.find((edge) => {
-            return edge.target?.cell === oldNode.id;
-          });
-          if (newEdge) {
-            if (targetEdge) {
-              targetEdge.setProp(newEdge);
-            } else {
-              this.graph.addEdge(newEdge);
-            }
+      // 位置对比，更新布局
+      if (oldPos.x !== newPos.x || oldPos.y !== newPos.y) {
+        oldNode.setPosition(newPos);
+
+        // 重新连线
+        const targetEdge = this.graph
+          .getIncomingEdges(oldNode)
+          ?.filter((e) => e.shape === MindMapEdgeConfig.EDGE_NAME)[0];
+        const newEdge = edges.find((edge) => {
+          return edge.target?.cell === oldNode.id;
+        });
+        if (newEdge) {
+          if (targetEdge) {
+            targetEdge.setProp(newEdge);
+          } else {
+            this.graph.addEdge(newEdge);
           }
         }
       }
@@ -95,7 +96,7 @@ export class Layout extends BaseModule {
       const newNode = nodes.find((n) => n.id === id);
 
       if (oldNode && newNode) {
-        const newPosition = newNode.getPosition();
+        const newPosition = newNode.position!;
         oldNode.setPosition(newPosition);
 
         // 重新连线
