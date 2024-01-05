@@ -1,6 +1,6 @@
 import { type Graph } from '@antv/x6';
-import { type NodeConfig } from './types';
-import { type EdgeConfig } from './edges/types';
+import { type NodeConfig } from '../types';
+import { type EdgeConfig } from '../edges/types';
 
 interface AppendNodeOptions {
   /** 是否添加到画布中心 */

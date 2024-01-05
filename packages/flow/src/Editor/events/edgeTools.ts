@@ -5,9 +5,9 @@ const TOOLS = [
   // {
   //   name: 'vertices',
   // },
-  // {
-  //   name: 'segments',
-  // },
+  {
+    name: 'segments',
+  },
   {
     name: 'source-arrowhead',
     args: {

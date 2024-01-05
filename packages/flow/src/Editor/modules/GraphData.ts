@@ -1,6 +1,6 @@
 import { type Cell, type Graph } from '@antv/x6';
 import { downloadJson } from '@kangmi/utils';
-import pkgJson from '../../package.json';
+import pkgJson from '../../../package.json';
 
 interface BackgroundOptions {
   color: string;

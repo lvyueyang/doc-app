@@ -1,7 +1,7 @@
 import type { BaseEditorOptions } from './BaseEditor';
 import { BaseEditor } from './BaseEditor';
-import { Commands } from './Commands';
-import { GraphData } from './GraphData';
+import { Commands } from './modules/Commands';
+import { GraphData } from './modules/GraphData';
 
 type EditorOptions = BaseEditorOptions;
 
