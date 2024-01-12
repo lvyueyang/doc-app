@@ -20,9 +20,19 @@ export default function Collapse({ node, onChange }: CollapseProps) {
     const first = firstChild;
     if (first) {
       const visible = first.isVisible();
-      node.getDescendants().forEach((child) => {
-        child.setVisible(!visible);
-      });
+      console.log('visible: ', visible);
+      const children = node.getDescendants();
+      for (const child of children) {
+        // TODO 用于解决折叠后的数据被展开连线位置错误问题
+        if (child.isNode()) {
+          child.setAttrs({
+            // box: {
+            //   visible: !visible,
+            // },
+          });
+        }
+        child.visible = !visible;
+      }
       onChange?.();
     }
   };
